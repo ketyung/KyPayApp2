@@ -1,0 +1,26 @@
+<?php
+require_once __DIR__."/lib/Db/SQLBuilder.php";
+require_once_in("/lib/Util");
+require_once_in("/lib/Db");
+require_once_in("/lib/Core/Controllers");
+require_once_in("/lib/Core/Db");
+
+//header("Content-type:text/plain");
+
+function require_once_in($dir, $excludes = array('lib/Db/SQLBuilder.php')){
+
+   $dir = __DIR__.$dir;
+    
+   foreach (scandir($dir) as $filename)  {
+        $path = $dir . '/' . $filename;
+       
+        $file_parts = pathinfo($path);
+       
+        if (is_file($path) && !in_array($path, $excludes) && $file_parts['extension'] == 'php') {
+            
+         //  echo $path."\n";
+           require_once $path;
+        }
+    }
+}
+?>

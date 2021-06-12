@@ -15,6 +15,44 @@
 		1033B2612674A7F300D999CE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1033B25F2674A7F300D999CE /* LaunchScreen.storyboard */; };
 		1033B26C2674A7F300D999CE /* KyPayApp2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033B26B2674A7F300D999CE /* KyPayApp2Tests.swift */; };
 		1033B2772674A7F300D999CE /* KyPayApp2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033B2762674A7F300D999CE /* KyPayApp2UITests.swift */; };
+		1033B2922674A82F00D999CE /* T.json in Resources */ = {isa = PBXBuildFile; fileRef = 1033B2872674A82F00D999CE /* T.json */; };
+		1033B2932674A82F00D999CE /* Tester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033B2882674A82F00D999CE /* Tester.swift */; };
+		1033B2942674A82F00D999CE /* DictionaryExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033B2892674A82F00D999CE /* DictionaryExt.swift */; };
+		1033B2952674A82F00D999CE /* UserImg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033B28B2674A82F00D999CE /* UserImg.swift */; };
+		1033B2962674A82F00D999CE /* UserAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033B28C2674A82F00D999CE /* UserAddress.swift */; };
+		1033B2972674A82F00D999CE /* UserWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033B28D2674A82F00D999CE /* UserWallet.swift */; };
+		1033B2982674A82F00D999CE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033B28E2674A82F00D999CE /* User.swift */; };
+		1033B2992674A82F00D999CE /* UserPaymentTx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033B28F2674A82F00D999CE /* UserPaymentTx.swift */; };
+		1033B29A2674A82F00D999CE /* DateFormatterExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033B2902674A82F00D999CE /* DateFormatterExt.swift */; };
+		1033B29B2674A82F00D999CE /* ApiRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033B2912674A82F00D999CE /* ApiRequestHandler.swift */; };
+		1033B2C22674A92D00D999CE /* bootstrap.php in Resources */ = {isa = PBXBuildFile; fileRef = 1033B29D2674A92D00D999CE /* bootstrap.php */; };
+		1033B2C32674A92D00D999CE /* Test2.php in Resources */ = {isa = PBXBuildFile; fileRef = 1033B29E2674A92D00D999CE /* Test2.php */; };
+		1033B2C42674A92D00D999CE /* Test.php in Resources */ = {isa = PBXBuildFile; fileRef = 1033B29F2674A92D00D999CE /* Test.php */; };
+		1033B2C52674A92D00D999CE /* index.php in Resources */ = {isa = PBXBuildFile; fileRef = 1033B2A12674A92D00D999CE /* index.php */; };
+		1033B2C62674A92D00D999CE /* tb.sql in Resources */ = {isa = PBXBuildFile; fileRef = 1033B2A42674A92D00D999CE /* tb.sql */; };
+		1033B2C72674A92D00D999CE /* KypayUser.php in Resources */ = {isa = PBXBuildFile; fileRef = 1033B2A62674A92D00D999CE /* KypayUser.php */; };
+		1033B2C82674A92D00D999CE /* KypayUserPaymentTx.php in Resources */ = {isa = PBXBuildFile; fileRef = 1033B2A72674A92D00D999CE /* KypayUserPaymentTx.php */; };
+		1033B2C92674A92D00D999CE /* KypayUserAddress.php in Resources */ = {isa = PBXBuildFile; fileRef = 1033B2A82674A92D00D999CE /* KypayUserAddress.php */; };
+		1033B2CA2674A92D00D999CE /* KypayUserWallet.php in Resources */ = {isa = PBXBuildFile; fileRef = 1033B2A92674A92D00D999CE /* KypayUserWallet.php */; };
+		1033B2CB2674A92D00D999CE /* KypayUserImg.php in Resources */ = {isa = PBXBuildFile; fileRef = 1033B2AA2674A92D00D999CE /* KypayUserImg.php */; };
+		1033B2CC2674A92D00D999CE /* KypayDbObject.php in Resources */ = {isa = PBXBuildFile; fileRef = 1033B2AB2674A92D00D999CE /* KypayDbObject.php */; };
+		1033B2CD2674A92D00D999CE /* KypayUserController.php in Resources */ = {isa = PBXBuildFile; fileRef = 1033B2AD2674A92D00D999CE /* KypayUserController.php */; };
+		1033B2CE2674A92D00D999CE /* Controller.php in Resources */ = {isa = PBXBuildFile; fileRef = 1033B2AE2674A92D00D999CE /* Controller.php */; };
+		1033B2CF2674A92D00D999CE /* RequestMethod.php in Resources */ = {isa = PBXBuildFile; fileRef = 1033B2AF2674A92D00D999CE /* RequestMethod.php */; };
+		1033B2D02674A92D00D999CE /* KypayUserWalletController.php in Resources */ = {isa = PBXBuildFile; fileRef = 1033B2B02674A92D00D999CE /* KypayUserWalletController.php */; };
+		1033B2D12674A92D00D999CE /* KypayUserAddressController.php in Resources */ = {isa = PBXBuildFile; fileRef = 1033B2B12674A92D00D999CE /* KypayUserAddressController.php */; };
+		1033B2D22674A92D00D999CE /* DotEnv.php in Resources */ = {isa = PBXBuildFile; fileRef = 1033B2B32674A92D00D999CE /* DotEnv.php */; };
+		1033B2D32674A92D00D999CE /* .env in Resources */ = {isa = PBXBuildFile; fileRef = 1033B2B52674A92D00D999CE /* .env */; };
+		1033B2D42674A92D00D999CE /* EncUtil.php in Resources */ = {isa = PBXBuildFile; fileRef = 1033B2B62674A92D00D999CE /* EncUtil.php */; };
+		1033B2D52674A92D00D999CE /* KeyManager.php in Resources */ = {isa = PBXBuildFile; fileRef = 1033B2B72674A92D00D999CE /* KeyManager.php */; };
+		1033B2D62674A92D00D999CE /* StrUtil.php in Resources */ = {isa = PBXBuildFile; fileRef = 1033B2B82674A92D00D999CE /* StrUtil.php */; };
+		1033B2D72674A92D00D999CE /* Log.php in Resources */ = {isa = PBXBuildFile; fileRef = 1033B2B92674A92D00D999CE /* Log.php */; };
+		1033B2D82674A92D00D999CE /* SQLBuilder.php in Resources */ = {isa = PBXBuildFile; fileRef = 1033B2BB2674A92D00D999CE /* SQLBuilder.php */; };
+		1033B2D92674A92D00D999CE /* DbConnector.php in Resources */ = {isa = PBXBuildFile; fileRef = 1033B2BC2674A92D00D999CE /* DbConnector.php */; };
+		1033B2DA2674A92D00D999CE /* DbObject.php in Resources */ = {isa = PBXBuildFile; fileRef = 1033B2BD2674A92D00D999CE /* DbObject.php */; };
+		1033B2DB2674A92D00D999CE /* RapydRequest.php in Resources */ = {isa = PBXBuildFile; fileRef = 1033B2BF2674A92D00D999CE /* RapydRequest.php */; };
+		1033B2DC2674A92D00D999CE /* CollectRequest.php in Resources */ = {isa = PBXBuildFile; fileRef = 1033B2C02674A92D00D999CE /* CollectRequest.php */; };
+		1033B2DD2674A92D00D999CE /* ObtainTK.php in Resources */ = {isa = PBXBuildFile; fileRef = 1033B2C12674A92D00D999CE /* ObtainTK.php */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +87,44 @@
 		1033B2722674A7F300D999CE /* KyPayApp2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KyPayApp2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1033B2762674A7F300D999CE /* KyPayApp2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KyPayApp2UITests.swift; sourceTree = "<group>"; };
 		1033B2782674A7F300D999CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1033B2872674A82F00D999CE /* T.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = T.json; sourceTree = "<group>"; };
+		1033B2882674A82F00D999CE /* Tester.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tester.swift; sourceTree = "<group>"; };
+		1033B2892674A82F00D999CE /* DictionaryExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExt.swift; sourceTree = "<group>"; };
+		1033B28B2674A82F00D999CE /* UserImg.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserImg.swift; sourceTree = "<group>"; };
+		1033B28C2674A82F00D999CE /* UserAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAddress.swift; sourceTree = "<group>"; };
+		1033B28D2674A82F00D999CE /* UserWallet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserWallet.swift; sourceTree = "<group>"; };
+		1033B28E2674A82F00D999CE /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		1033B28F2674A82F00D999CE /* UserPaymentTx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPaymentTx.swift; sourceTree = "<group>"; };
+		1033B2902674A82F00D999CE /* DateFormatterExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatterExt.swift; sourceTree = "<group>"; };
+		1033B2912674A82F00D999CE /* ApiRequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiRequestHandler.swift; sourceTree = "<group>"; };
+		1033B29D2674A92D00D999CE /* bootstrap.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = bootstrap.php; sourceTree = "<group>"; };
+		1033B29E2674A92D00D999CE /* Test2.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = Test2.php; sourceTree = "<group>"; };
+		1033B29F2674A92D00D999CE /* Test.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = Test.php; sourceTree = "<group>"; };
+		1033B2A12674A92D00D999CE /* index.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = index.php; sourceTree = "<group>"; };
+		1033B2A42674A92D00D999CE /* tb.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tb.sql; sourceTree = "<group>"; };
+		1033B2A62674A92D00D999CE /* KypayUser.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = KypayUser.php; sourceTree = "<group>"; };
+		1033B2A72674A92D00D999CE /* KypayUserPaymentTx.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = KypayUserPaymentTx.php; sourceTree = "<group>"; };
+		1033B2A82674A92D00D999CE /* KypayUserAddress.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = KypayUserAddress.php; sourceTree = "<group>"; };
+		1033B2A92674A92D00D999CE /* KypayUserWallet.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = KypayUserWallet.php; sourceTree = "<group>"; };
+		1033B2AA2674A92D00D999CE /* KypayUserImg.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = KypayUserImg.php; sourceTree = "<group>"; };
+		1033B2AB2674A92D00D999CE /* KypayDbObject.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = KypayDbObject.php; sourceTree = "<group>"; };
+		1033B2AD2674A92D00D999CE /* KypayUserController.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = KypayUserController.php; sourceTree = "<group>"; };
+		1033B2AE2674A92D00D999CE /* Controller.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = Controller.php; sourceTree = "<group>"; };
+		1033B2AF2674A92D00D999CE /* RequestMethod.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = RequestMethod.php; sourceTree = "<group>"; };
+		1033B2B02674A92D00D999CE /* KypayUserWalletController.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = KypayUserWalletController.php; sourceTree = "<group>"; };
+		1033B2B12674A92D00D999CE /* KypayUserAddressController.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = KypayUserAddressController.php; sourceTree = "<group>"; };
+		1033B2B32674A92D00D999CE /* DotEnv.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = DotEnv.php; sourceTree = "<group>"; };
+		1033B2B52674A92D00D999CE /* .env */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .env; sourceTree = "<group>"; };
+		1033B2B62674A92D00D999CE /* EncUtil.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = EncUtil.php; sourceTree = "<group>"; };
+		1033B2B72674A92D00D999CE /* KeyManager.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = KeyManager.php; sourceTree = "<group>"; };
+		1033B2B82674A92D00D999CE /* StrUtil.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = StrUtil.php; sourceTree = "<group>"; };
+		1033B2B92674A92D00D999CE /* Log.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = Log.php; sourceTree = "<group>"; };
+		1033B2BB2674A92D00D999CE /* SQLBuilder.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = SQLBuilder.php; sourceTree = "<group>"; };
+		1033B2BC2674A92D00D999CE /* DbConnector.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = DbConnector.php; sourceTree = "<group>"; };
+		1033B2BD2674A92D00D999CE /* DbObject.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = DbObject.php; sourceTree = "<group>"; };
+		1033B2BF2674A92D00D999CE /* RapydRequest.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = RapydRequest.php; sourceTree = "<group>"; };
+		1033B2C02674A92D00D999CE /* CollectRequest.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = CollectRequest.php; sourceTree = "<group>"; };
+		1033B2C12674A92D00D999CE /* ObtainTK.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = ObtainTK.php; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +155,7 @@
 		1033B2482674A7F200D999CE = {
 			isa = PBXGroup;
 			children = (
+				1033B29C2674A92D00D999CE /* RapydPHP */,
 				1033B2532674A7F200D999CE /* KyPayApp2 */,
 				1033B26A2674A7F300D999CE /* KyPayApp2Tests */,
 				1033B2752674A7F300D999CE /* KyPayApp2UITests */,
@@ -99,6 +176,7 @@
 		1033B2532674A7F200D999CE /* KyPayApp2 */ = {
 			isa = PBXGroup;
 			children = (
+				1033B2852674A82F00D999CE /* ApiClient */,
 				1033B2542674A7F200D999CE /* AppDelegate.swift */,
 				1033B2562674A7F200D999CE /* SceneDelegate.swift */,
 				1033B2582674A7F200D999CE /* ContentView.swift */,
@@ -134,6 +212,146 @@
 				1033B2782674A7F300D999CE /* Info.plist */,
 			);
 			path = KyPayApp2UITests;
+			sourceTree = "<group>";
+		};
+		1033B2852674A82F00D999CE /* ApiClient */ = {
+			isa = PBXGroup;
+			children = (
+				1033B2862674A82F00D999CE /* Test */,
+				1033B2892674A82F00D999CE /* DictionaryExt.swift */,
+				1033B28A2674A82F00D999CE /* Models */,
+				1033B2902674A82F00D999CE /* DateFormatterExt.swift */,
+				1033B2912674A82F00D999CE /* ApiRequestHandler.swift */,
+			);
+			path = ApiClient;
+			sourceTree = "<group>";
+		};
+		1033B2862674A82F00D999CE /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				1033B2872674A82F00D999CE /* T.json */,
+				1033B2882674A82F00D999CE /* Tester.swift */,
+			);
+			path = Test;
+			sourceTree = "<group>";
+		};
+		1033B28A2674A82F00D999CE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1033B28B2674A82F00D999CE /* UserImg.swift */,
+				1033B28C2674A82F00D999CE /* UserAddress.swift */,
+				1033B28D2674A82F00D999CE /* UserWallet.swift */,
+				1033B28E2674A82F00D999CE /* User.swift */,
+				1033B28F2674A82F00D999CE /* UserPaymentTx.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1033B29C2674A92D00D999CE /* RapydPHP */ = {
+			isa = PBXGroup;
+			children = (
+				1033B29D2674A92D00D999CE /* bootstrap.php */,
+				1033B29E2674A92D00D999CE /* Test2.php */,
+				1033B29F2674A92D00D999CE /* Test.php */,
+				1033B2A02674A92D00D999CE /* public */,
+				1033B2A22674A92D00D999CE /* lib */,
+				1033B2C12674A92D00D999CE /* ObtainTK.php */,
+			);
+			path = RapydPHP;
+			sourceTree = "<group>";
+		};
+		1033B2A02674A92D00D999CE /* public */ = {
+			isa = PBXGroup;
+			children = (
+				1033B2A12674A92D00D999CE /* index.php */,
+			);
+			path = public;
+			sourceTree = "<group>";
+		};
+		1033B2A22674A92D00D999CE /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				1033B2A32674A92D00D999CE /* Core */,
+				1033B2B22674A92D00D999CE /* Util */,
+				1033B2BA2674A92D00D999CE /* Db */,
+				1033B2BE2674A92D00D999CE /* Rapyd */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		1033B2A32674A92D00D999CE /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				1033B2A42674A92D00D999CE /* tb.sql */,
+				1033B2A52674A92D00D999CE /* Db */,
+				1033B2AC2674A92D00D999CE /* Controllers */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		1033B2A52674A92D00D999CE /* Db */ = {
+			isa = PBXGroup;
+			children = (
+				1033B2A62674A92D00D999CE /* KypayUser.php */,
+				1033B2A72674A92D00D999CE /* KypayUserPaymentTx.php */,
+				1033B2A82674A92D00D999CE /* KypayUserAddress.php */,
+				1033B2A92674A92D00D999CE /* KypayUserWallet.php */,
+				1033B2AA2674A92D00D999CE /* KypayUserImg.php */,
+				1033B2AB2674A92D00D999CE /* KypayDbObject.php */,
+			);
+			path = Db;
+			sourceTree = "<group>";
+		};
+		1033B2AC2674A92D00D999CE /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1033B2AD2674A92D00D999CE /* KypayUserController.php */,
+				1033B2AE2674A92D00D999CE /* Controller.php */,
+				1033B2AF2674A92D00D999CE /* RequestMethod.php */,
+				1033B2B02674A92D00D999CE /* KypayUserWalletController.php */,
+				1033B2B12674A92D00D999CE /* KypayUserAddressController.php */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		1033B2B22674A92D00D999CE /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				1033B2B32674A92D00D999CE /* DotEnv.php */,
+				1033B2B42674A92D00D999CE /* config */,
+				1033B2B62674A92D00D999CE /* EncUtil.php */,
+				1033B2B72674A92D00D999CE /* KeyManager.php */,
+				1033B2B82674A92D00D999CE /* StrUtil.php */,
+				1033B2B92674A92D00D999CE /* Log.php */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		1033B2B42674A92D00D999CE /* config */ = {
+			isa = PBXGroup;
+			children = (
+				1033B2B52674A92D00D999CE /* .env */,
+			);
+			path = config;
+			sourceTree = "<group>";
+		};
+		1033B2BA2674A92D00D999CE /* Db */ = {
+			isa = PBXGroup;
+			children = (
+				1033B2BB2674A92D00D999CE /* SQLBuilder.php */,
+				1033B2BC2674A92D00D999CE /* DbConnector.php */,
+				1033B2BD2674A92D00D999CE /* DbObject.php */,
+			);
+			path = Db;
+			sourceTree = "<group>";
+		};
+		1033B2BE2674A92D00D999CE /* Rapyd */ = {
+			isa = PBXGroup;
+			children = (
+				1033B2BF2674A92D00D999CE /* RapydRequest.php */,
+				1033B2C02674A92D00D999CE /* CollectRequest.php */,
+			);
+			path = Rapyd;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -239,9 +457,38 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1033B2D62674A92D00D999CE /* StrUtil.php in Resources */,
+				1033B2C82674A92D00D999CE /* KypayUserPaymentTx.php in Resources */,
+				1033B2C92674A92D00D999CE /* KypayUserAddress.php in Resources */,
+				1033B2D22674A92D00D999CE /* DotEnv.php in Resources */,
 				1033B2612674A7F300D999CE /* LaunchScreen.storyboard in Resources */,
+				1033B2D72674A92D00D999CE /* Log.php in Resources */,
+				1033B2C22674A92D00D999CE /* bootstrap.php in Resources */,
+				1033B2D32674A92D00D999CE /* .env in Resources */,
 				1033B25E2674A7F300D999CE /* Preview Assets.xcassets in Resources */,
+				1033B2DB2674A92D00D999CE /* RapydRequest.php in Resources */,
+				1033B2C32674A92D00D999CE /* Test2.php in Resources */,
+				1033B2CE2674A92D00D999CE /* Controller.php in Resources */,
+				1033B2CB2674A92D00D999CE /* KypayUserImg.php in Resources */,
+				1033B2922674A82F00D999CE /* T.json in Resources */,
+				1033B2DA2674A92D00D999CE /* DbObject.php in Resources */,
+				1033B2CF2674A92D00D999CE /* RequestMethod.php in Resources */,
+				1033B2D02674A92D00D999CE /* KypayUserWalletController.php in Resources */,
 				1033B25B2674A7F300D999CE /* Assets.xcassets in Resources */,
+				1033B2C42674A92D00D999CE /* Test.php in Resources */,
+				1033B2D42674A92D00D999CE /* EncUtil.php in Resources */,
+				1033B2D82674A92D00D999CE /* SQLBuilder.php in Resources */,
+				1033B2D52674A92D00D999CE /* KeyManager.php in Resources */,
+				1033B2C52674A92D00D999CE /* index.php in Resources */,
+				1033B2C72674A92D00D999CE /* KypayUser.php in Resources */,
+				1033B2CA2674A92D00D999CE /* KypayUserWallet.php in Resources */,
+				1033B2CC2674A92D00D999CE /* KypayDbObject.php in Resources */,
+				1033B2CD2674A92D00D999CE /* KypayUserController.php in Resources */,
+				1033B2C62674A92D00D999CE /* tb.sql in Resources */,
+				1033B2D92674A92D00D999CE /* DbConnector.php in Resources */,
+				1033B2D12674A92D00D999CE /* KypayUserAddressController.php in Resources */,
+				1033B2DD2674A92D00D999CE /* ObtainTK.php in Resources */,
+				1033B2DC2674A92D00D999CE /* CollectRequest.php in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,8 +513,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1033B2942674A82F00D999CE /* DictionaryExt.swift in Sources */,
+				1033B2962674A82F00D999CE /* UserAddress.swift in Sources */,
 				1033B2552674A7F200D999CE /* AppDelegate.swift in Sources */,
+				1033B2972674A82F00D999CE /* UserWallet.swift in Sources */,
+				1033B29A2674A82F00D999CE /* DateFormatterExt.swift in Sources */,
+				1033B2952674A82F00D999CE /* UserImg.swift in Sources */,
+				1033B2982674A82F00D999CE /* User.swift in Sources */,
+				1033B29B2674A82F00D999CE /* ApiRequestHandler.swift in Sources */,
 				1033B2572674A7F200D999CE /* SceneDelegate.swift in Sources */,
+				1033B2992674A82F00D999CE /* UserPaymentTx.swift in Sources */,
+				1033B2932674A82F00D999CE /* Tester.swift in Sources */,
 				1033B2592674A7F200D999CE /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
