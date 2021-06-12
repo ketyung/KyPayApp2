@@ -30,5 +30,28 @@ class KypayUserPaymentTx extends KypayDbObject {
         parent::__construct($db, "kypay_user_payment_tx");
     }
     
+    
+    private function genId(&$input){
+        
+        if (!isset($input['id'])){
+            
+            $rid = EncUtil::randomString(16);
+            
+            $count = $this->count(array('id'=>$input['id']));
+            
+            if ($count > 0)
+            {
+                $rid .= EncUtil::randomString(3). ($count + 1);
+            }
+            
+            $input['id'] = StrUtil::escapeBase64($rid);
+        }
+    }
+
+    public function insert(Array &$input){
+      
+        $this->genId($input);
+        return parent::insert($input);
+    }
 }
 ?>

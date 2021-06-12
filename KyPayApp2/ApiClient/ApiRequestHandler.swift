@@ -418,3 +418,20 @@ extension ApiRequestHandler {
     }
     
 }
+
+
+// wallet
+extension ApiRequestHandler {
+    
+    func addUserPaymentTx <R:Decodable> (_ tx : UserPaymentTx, returnType : R.Type? = nil, completion:  ((Result<ReturnedResult<R>, Error>)->Void)? = nil){
+        
+        send(module: "userPayment", dataObject: tx, returnType: returnType,completion:  completion)
+    }
+    
+    func fetchUserPaymentTx (id : String,
+                           completion:  ((Result<UserPaymentTx, Error>)->Void)? = nil ){
+        
+        fetch(module: "userWallet", param: "id/\(id)" , decode: UserPaymentTx.self, completion: completion)
+    }
+    
+}

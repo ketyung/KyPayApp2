@@ -7,7 +7,7 @@ require_once_in("/lib/Core/Db");
 
 //header("Content-type:text/plain");
 
-function require_once_in($dir, $excludes = array('lib/Db/SQLBuilder.php')){
+function require_once_in($dir, $excludes = array(__DIR__.'/lib/Db/SQLBuilder.php')){
 
    $dir = __DIR__.$dir;
     
@@ -18,7 +18,7 @@ function require_once_in($dir, $excludes = array('lib/Db/SQLBuilder.php')){
        
         if (is_file($path) && !in_array($path, $excludes) && $file_parts['extension'] == 'php') {
             
-         //  echo $path."\n";
+        //   echo $path."\n";
            require_once $path;
         }
     }

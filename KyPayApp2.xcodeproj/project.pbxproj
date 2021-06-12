@@ -53,6 +53,7 @@
 		1033B2DB2674A92D00D999CE /* RapydRequest.php in Resources */ = {isa = PBXBuildFile; fileRef = 1033B2BF2674A92D00D999CE /* RapydRequest.php */; };
 		1033B2DC2674A92D00D999CE /* CollectRequest.php in Resources */ = {isa = PBXBuildFile; fileRef = 1033B2C02674A92D00D999CE /* CollectRequest.php */; };
 		1033B2DD2674A92D00D999CE /* ObtainTK.php in Resources */ = {isa = PBXBuildFile; fileRef = 1033B2C12674A92D00D999CE /* ObtainTK.php */; };
+		1033B2DF2674AC3800D999CE /* KyPayUserPaymentTxController.php in Resources */ = {isa = PBXBuildFile; fileRef = 1033B2DE2674AC3800D999CE /* KyPayUserPaymentTxController.php */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +126,7 @@
 		1033B2BF2674A92D00D999CE /* RapydRequest.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = RapydRequest.php; sourceTree = "<group>"; };
 		1033B2C02674A92D00D999CE /* CollectRequest.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = CollectRequest.php; sourceTree = "<group>"; };
 		1033B2C12674A92D00D999CE /* ObtainTK.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = ObtainTK.php; sourceTree = "<group>"; };
+		1033B2DE2674AC3800D999CE /* KyPayUserPaymentTxController.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = KyPayUserPaymentTxController.php; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -309,6 +311,7 @@
 				1033B2AE2674A92D00D999CE /* Controller.php */,
 				1033B2AF2674A92D00D999CE /* RequestMethod.php */,
 				1033B2B02674A92D00D999CE /* KypayUserWalletController.php */,
+				1033B2DE2674AC3800D999CE /* KyPayUserPaymentTxController.php */,
 				1033B2B12674A92D00D999CE /* KypayUserAddressController.php */,
 			);
 			path = Controllers;
@@ -478,6 +481,7 @@
 				1033B2C42674A92D00D999CE /* Test.php in Resources */,
 				1033B2D42674A92D00D999CE /* EncUtil.php in Resources */,
 				1033B2D82674A92D00D999CE /* SQLBuilder.php in Resources */,
+				1033B2DF2674AC3800D999CE /* KyPayUserPaymentTxController.php in Resources */,
 				1033B2D52674A92D00D999CE /* KeyManager.php in Resources */,
 				1033B2C52674A92D00D999CE /* index.php in Resources */,
 				1033B2C72674A92D00D999CE /* KypayUser.php in Resources */,

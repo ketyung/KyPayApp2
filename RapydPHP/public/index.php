@@ -51,6 +51,13 @@ function processUri(){
         $u = new KyPayUserWalletController( DbConn::conn() , $requestMethod, $params );
         $u->processRequest();
     }
+    else
+    if ($uri[1] == 'userPayment'){
+
+        $u = new KyPayUserPaymentTxController( DbConn::conn() , $requestMethod, $params );
+        $u->processRequest();
+    }
+   
     else {
         
         header("HTTP/1.1 404 Not Found");
