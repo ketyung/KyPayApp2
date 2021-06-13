@@ -22,9 +22,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // ARH.shared.requestUser()
         
-        Tester.testAddPayment()
+        //Tester.testAddPayment()
          
-         Tester.testAddUser()
+         //Tester.testAddUser()
          
          
          //Tester.testSignOut()

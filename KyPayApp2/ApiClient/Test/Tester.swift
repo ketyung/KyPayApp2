@@ -234,7 +234,7 @@ class Tester {
     
     static func testAddPayment(){
         
-        var t = UserPaymentTx(uid:"Che_Rm92ndZL", amount: 25.00, currency: "MYR")
+        let t = UserPaymentTx(uid:"Che_Rm92ndZL", amount: 25.00, currency: "MYR")
         
         ARH.shared.addUserPaymentTx(t, returnType: UserPaymentTx.self, completion: {
             
@@ -256,15 +256,15 @@ class Tester {
                     
                         print("paymentAdded:: \(rr.id ?? "")")
                         
-                        print("Trying to update after 1 sec!!!")
+                        print("Trying to delete after 1 sec!!!")
                         
                         DispatchQueue.main.asyncAfter(wallDeadline: .now() + 1, execute: {
                             
-                            //Tester.testDeletePayment(id: rr.id ?? "")
+                            Tester.testDeletePayment(id: rr.id ?? "")
                             
-                            t.amount = 89.65
-                            t.id = rr.id 
-                            Tester.testUpdatePayment(t)
+                            //t.amount = 89.65
+                            //t.id = rr.id
+                            //Tester.testUpdatePayment(t)
                         })
                 
                     }
@@ -339,7 +339,7 @@ class Tester {
     
     static func testAddUserWallet(){
         
-        let w = UserWallet(id: "Che_Rm92ndZL", balance: 5.00, currency: "MYR", type:.personal)
+        var w = UserWallet(id: "Che_Rm92ndZL", balance: 5.00, currency: "MYR", type:.personal)
         
         ARH.shared.addUserWallet(w, returnType: UserWallet.self, completion: {
                 
@@ -352,10 +352,81 @@ class Tester {
                 case .success(let rr) :
                     print("addedUserWallet!::id::\(rr.returnedObject?.id ?? "")::\(rr.returnedObject?.refId ?? "")")
                     
-                    Tester.fetchWallet(id: rr.returnedObject?.id ?? "", refId: rr.returnedObject?.refId ?? "")
+                    //Tester.fetchWallet(id: rr.returnedObject?.id ?? "", refId: rr.returnedObject?.refId ?? "")
+                    w.id = rr.returnedObject?.id
+                    w.refId = rr.returnedObject?.refId
+                    
+                    print("to.update.wallet..after 1 sec")
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                        
+                        w.balance = Double(Float.random(in: (20...60)))
+                        Tester.updateWallet(w)
+                        //Tester.testDeleteWallet(w)
+                        
+                        
+                    })
+            
                    
             }
                
+        })
+    }
+    
+    static func updateWallet(_ wallet : UserWallet) {
+        
+        ARH.shared.updateUserWallet(wallet, returnType:  UserWallet.self, completion: {
+            res in
+            
+            switch (res) {
+            
+                case .failure(let err) :
+                    print("error!:\(err)")
+                case .success(let rr) :
+                    
+                    if rr.status == .failed {
+                        
+                        print("wallet update:: Failed! \(rr.text ?? "")")
+                
+                    }
+                    else {
+                    
+                        print("wallet updated:: \(rr.returnedObject?.id ?? ""):: \(rr.returnedObject?.refId ?? "")")
+                
+                    }
+                    
+            }
+            
+        })
+    }
+    
+    
+    
+    static func testDeleteWallet(_ wallet : UserWallet){
+        
+        ARH.shared.deleteUserWallet(wallet, returnType: UserWallet.self, completion: {
+            
+            res in
+            
+            
+            switch (res) {
+            
+                case .failure(let err) :
+                    print("error!:\(err)")
+                case .success(let rr) :
+                    
+                    if rr.status == .failed {
+                        
+                        print("wallet Deletion:: Failed! \(rr.text ?? "")")
+                
+                    }
+                    else {
+                    
+                        print("wallet deleted:: \(rr.id ?? "")")
+                
+                    }
+                    
+            }
         })
     }
     

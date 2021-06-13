@@ -70,6 +70,10 @@ class Controller {
         
         if (isset($response['body']))
             echo $response['body'];
+    
+    
+        //Log::printRToErrorLog($response);
+       
     }
     
     

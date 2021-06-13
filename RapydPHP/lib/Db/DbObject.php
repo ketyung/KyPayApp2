@@ -134,20 +134,41 @@ class DbObject extends SQLBuilder {
 	}
 	
 	
+    protected function prepareParamsForDelete(Array $input){
+        
+        $a = array();
+        
+        $cols = $this->getPrimaryKeys();
+        
+        $keys = array_keys($input);
+        
+        foreach($keys as $key){
+            
+            if (in_array($key, $cols)){
+                
+                $a[$key] = $input[$key];
+            }
+        }
+        
+        
+        return $a;
+    }
+    
+    
 	public function delete(Array $pk){
 		
 		try {
         
 			if (!isset($this->deleteStatement)){
 			
-                $sql = $this->buildDeleteSql();
-                Log::printRToErrorLog($sql);
-                $this->deleteStatement = $this->db->prepare($sql);
+                $this->deleteStatement = $this->db->prepare( $this->buildDeleteSql() );
 			}
 		
-            Log::printRToErrorLog($pk);
-        
-			$this->deleteStatement->execute($this->prepareParams($pk));
+            
+            $params = $this->prepareParamsForDelete($pk);
+          //  Log::printRToErrorLog($params);
+            
+			$this->deleteStatement->execute($params);
             
             return $this->deleteStatement->rowCount();
         }

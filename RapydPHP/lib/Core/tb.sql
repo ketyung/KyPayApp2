@@ -78,7 +78,7 @@ create table if not exists kypay_user_payment_tx (
     
     id varchar(32) default 'x' NOT null,
     uid varchar(32) default 'x' NOT null,
-    to_uid varchar(255) default 'X' NOT null,
+    to_uid varchar(255),
     to_uid_type enum('P', 'E', 'U') default 'U' NOT null,
     amount float(10,2),
     currency varchar(5) default 'MYR' NOT null,

@@ -118,6 +118,7 @@ class KypayUserWalletController extends Controller {
     
         $param1 = "";
        
+        
         if (isset($this->params)) {
             
             if (isset($this->params[0])){
@@ -168,6 +169,30 @@ class KypayUserWalletController extends Controller {
         
     }
     
+    
+    protected function deleteDbObject(){
+        
+        $response['status_code_header'] = 'HTTP/1.1 204 Deletion';
+       
+        $input = $this->getInput();
+        
+        StrUtil::arrayKeysToSnakeCase($input);
+       
+    
+        if ( $this->dbObject->delete($input) > 0){
+            
+            $response['body'] = json_encode(array('status'=>1, 'id'=>$input['id'].'-'.$input['ref_id'], 'text'=>'Deleted!'));
+       
+        }
+        else {
+            $response['body'] = json_encode(array('status'=> -1 , 'id'=>null, 'text'=>$this->dbObject->getErrorMessage()));
+        }
+      
+                                            
+        return $response;
+                                    
+        
+    }
     
 }
 ?>

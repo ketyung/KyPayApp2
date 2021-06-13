@@ -54,6 +54,16 @@ struct ReturnedResult <R:Decodable> : Decodable {
     
 }
 
+
+extension ReturnedResult {
+    
+    static func defaultAsOk (type : R.Type) -> ReturnedResult {
+        
+        return ReturnedResult(status: .ok)
+        
+    }
+}
+
 extension ReturnedResult {
     
     enum CodingKeys: String, CodingKey {
@@ -174,8 +184,7 @@ extension ApiRequestHandler {
         if let url = URL(string: urlString) {
        
             var request = URLRequest(url: url)
-            request.allHTTPHeaderFields = ["Content-Type": "application/json",
-            "Authorization" : token ]
+            request.allHTTPHeaderFields = ["Content-Type": "application/json","Authorization" : token ]
             
             request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
             request.httpMethod = method
@@ -217,14 +226,17 @@ extension ApiRequestHandler {
                     }
                     
                     
+                   
+                   
+                    
                     if let returnType = returnType {
-                
-                        self.decodeJson(ReturnedResult.self, data: data,
-                                        returnType: returnType,
+                        
+                        self.decodeJson(ReturnedResult.self, data: data, returnType: returnType,
                                         completion: completion)
                     
                     }
                     else {
+                        
                         
                         self.decodeJson(ReturnedResult.self, data: data, completion: completion)
                     
@@ -259,14 +271,12 @@ extension ApiRequestHandler {
                 decoder.dateDecodingStrategy = dateDecodingStrategy
                 decoder.keyDecodingStrategy = keyDecodingStrategy
              
-              
                 let results = try decoder.decode(type, from: data)
-               
+                 
                 if let completion = completion {
-                
-                     completion(.success(results))
+                  
+                    completion(.success(results))
                 }
-               
             }
             
         }
@@ -299,13 +309,29 @@ extension ApiRequestHandler {
              
                 decoder.userInfo = [.returnTypeKey : returnType]
                 
-                let results = try decoder.decode(type, from: data)
                
-                if let completion = completion {
-                
-                     completion(.success(results))
+                if data.count > 0 {
+               
+                    if let completion = completion {
+              
+                        let results = try decoder.decode(type, from: data)
+                      
+                         completion(.success(results))
+                    }
+                   
                 }
                
+                else {
+                    
+                    if let completion = completion {
+                    
+                        let res = ReturnedResult.defaultAsOk(type: returnType)
+                        completion(.success(res as! T))
+                        
+                    }
+            
+                }
+              
             }
             
         }
@@ -406,6 +432,21 @@ extension ApiRequestHandler {
         send(module: "userWallet", dataObject: wallet, returnType: returnType,completion:  completion)
     }
     
+
+    func updateUserWallet <R:Decodable> (_ wallet : UserWallet, returnType : R.Type? = nil, completion:  ((Result<ReturnedResult<R>, Error>)->Void)? = nil){
+        
+        send(module: "userWallet", param: "update", dataObject: wallet,
+             returnType: returnType,completion:  completion, method: "PUT")
+    }
+    
+    func deleteUserWallet <R:Decodable> (_ wallet : UserWallet,
+        returnType : R.Type? = nil, completion:  ((Result<ReturnedResult<R>, Error>)->Void)? = nil){
+        
+        
+        send(module: "userWallet",
+             dataObject: wallet, returnType: returnType, completion:  completion,method: "DELETE")
+    }
+  
     
     
     func fetchUserWallet (id : String, refId : String,
@@ -438,8 +479,7 @@ extension ApiRequestHandler {
         let tx = UserPaymentTx(id: id)
         
         send(module: "userPayment",
-             dataObject: tx,
-             returnType: returnType, completion:  completion,method: "DELETE")
+             dataObject: tx, returnType: returnType, completion:  completion,method: "DELETE")
     }
    
     

@@ -160,24 +160,17 @@ class KypayUserPaymentTxController extends Controller {
        
         $input = $this->getInput();
          
-        if (isset($input['id'])) {
+        StrUtil::arrayKeysToSnakeCase($input);
+       
+        if ( $this->dbObject->delete($input) > 0){
             
-            if ( $this->dbObject->delete($input) > 0){
-                
-                
-                $response['body'] = json_encode(array('status'=>1, 'id'=>$input['id'], 'text'=>'Deleted!'));
-           
-            }
-            else {
-                $response['body'] = json_encode(array('status'=> -1 , 'id'=>null, 'text'=>$this->dbObject->getErrorMessage()));
-            }
-          
+            $response['body'] = json_encode(array('status'=>1, 'id'=>$input['id'], 'text'=>'Deleted!'));
+       
         }
         else {
-            $response['body'] = json_encode(array('status'=> -1 , 'id'=>null, 'text'=>"Invalid Payment ID!"));
+            $response['body'] = json_encode(array('status'=> -1 , 'id'=>null, 'text'=>$this->dbObject->getErrorMessage()));
         }
-        
-       // Log::printRToErrorLog($response);
+      
                                             
         return $response;
                                     
