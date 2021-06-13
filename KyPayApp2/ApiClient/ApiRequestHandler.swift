@@ -101,10 +101,37 @@ class ApiRequestHandler : NSObject {
 
     private let urlBase = "http://127.0.0.1:808/"
     
-    private let token = "eyJraWQiOiJuNnFOTTgxaERYd3hGVWczMnVtZ2l0MzdHQW1DWTBmc3BvempsYmdFMEo0IiwiYWxnIjoiUlMyNTYifQ.eyJ2ZXIiOjEsImp0aSI6IkFULkpfRElPdHliNXBGdGY3dDFCbGRwUnBrVkVtS1dZaGJGZy05T05keFVaeW8iLCJpc3MiOiJodHRwczovL2Rldi04MjUxNzk5Ni5va3RhLmNvbS9vYXV0aDIvZGVmYXVsdCIsImF1ZCI6ImFwaTovL2RlZmF1bHQiLCJpYXQiOjE2MjM0ODMyNTYsImV4cCI6MTYyMzQ4Njg1NiwiY2lkIjoiMG9hemVxdnJkSlZ2SFJKQTI1ZDYiLCJzY3AiOlsia3lwYXlfYXBpIl0sInN1YiI6IjBvYXplcXZyZEpWdkhSSkEyNWQ2In0.BB0CEIGc7fw5QZQ4qZLN527JuzN73ueB06Oh3ws7_VL6heb6aHhCRDAH9W5t4-mUS7nbKKaA9a7Sl-odnSyVYS2Mm7eWkqD-QAYv6dSej7LH4F_jSe7auwWZnqkJjzK8g--9Sv3uNvcgtiORQ9c4P-O9xHQBRMzzHdlHjqEqauSIvejTQQT7c8zHDN_lmNGeTLKMHbNfASLZKFF9UhEQ5a-vmtMAy-5ZbgdJsOX0SAW54pw2KCQHvFJRDyx8DMCP-bpNfE40i4LtIz2lWbMOXFmOebFmTnHJhfuPj--yk9VYeApogE6huA1SzZZaKkpeejRlxWW0PMeSkkLBePnFgg"
+    private var token : String? = nil
     
-    func fetch <T:Decodable> (module : String,
-        param : String? = nil, decode to : T.Type? = nil,
+   
+    func fetch <T:Decodable> (module : String, param : String? = nil, decode to : T.Type? = nil,
+        completion:  ((Result<T, Error>)->Void)? = nil ){
+        
+        
+        guard let _ = self.token else {
+       
+            obtainToken(completion: {
+                token, err in
+                
+                if err != nil {
+                    print("Error.obtaining.token::\(String(describing: err))")
+                    return
+                }
+                
+                self.token = token
+                
+                self.fetchWOA(module: module, param: param , decode: to , completion: completion)
+            })
+           
+            return
+            
+        }
+        
+
+        fetchWOA(module: module, param: param , decode: to , completion: completion)
+    }
+    
+    func fetchWOA <T:Decodable> (module : String, param : String? = nil, decode to : T.Type? = nil,
         completion:  ((Result<T, Error>)->Void)? = nil ){
         
         var urlString = "\(urlBase)\(module)"
@@ -119,7 +146,7 @@ class ApiRequestHandler : NSObject {
             var request = URLRequest(url: url)
             request.allHTTPHeaderFields = [
               "Content-Type": "application/json",
-              "Authorization" : token ]
+              "Authorization" : token ?? "" ]
 
             request.httpMethod = "GET"
             
@@ -167,7 +194,37 @@ class ApiRequestHandler : NSObject {
 
 extension ApiRequestHandler {
     
+    
     func send <T:Codable, R:Decodable> (module : String, param : String? = nil,
+    dataObject : T? = nil, returnType : R.Type? = nil,
+    completion:  ((Result<ReturnedResult<R>, Error>)->Void)? = nil,
+    method : String = "POST"){
+        
+        guard let _ = self.token else {
+       
+            obtainToken(completion: {
+                token, err in
+                
+                if err != nil {
+                    print("Error.obtaining.token::\(String(describing: err))")
+                    return
+                }
+                
+                self.token = token
+                
+                self.sendWOA(module: module, param: param, dataObject: dataObject, returnType: returnType, completion: completion, method: method)
+                
+            })
+           
+            return
+            
+        }
+        
+        sendWOA(module: module, param: param, dataObject: dataObject, returnType: returnType, completion: completion, method: method)
+    }
+    
+    
+    func sendWOA <T:Codable, R:Decodable> (module : String, param : String? = nil,
     dataObject : T? = nil, returnType : R.Type? = nil,
     completion:  ((Result<ReturnedResult<R>, Error>)->Void)? = nil,
     method : String = "POST"){
@@ -184,7 +241,7 @@ extension ApiRequestHandler {
         if let url = URL(string: urlString) {
        
             var request = URLRequest(url: url)
-            request.allHTTPHeaderFields = ["Content-Type": "application/json","Authorization" : token ]
+            request.allHTTPHeaderFields = ["Content-Type": "application/json","Authorization" : token ?? "" ]
             
             request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
             request.httpMethod = method
@@ -343,6 +400,118 @@ extension ApiRequestHandler {
     
   
 }
+
+extension ApiRequestHandler {
+    
+    
+    private struct Token : Decodable{
+        
+        var access_token : String?
+        
+        var token_type : String?
+        
+    }
+    
+    
+    private func obtainToken (completion : ((String?, Error?)->Void)? = nil){
+        
+        let issuer = "https://dev-82517996.okta.com/oauth2/default"
+        let clientId = "0oazeqvrdJVvHRJA25d6"
+        let secret = "snUceW-lq5eVA2MWpvXNtR4yoLHSY92QQQL4Z3eF"
+        let scope = "kypay_api"
+        
+        let urlString = "\(issuer)/v1/token"
+        
+        
+        print("utl.str::\(urlString)")
+        if let url = URL(string: urlString) {
+       
+            let token = "\(clientId):\(secret)".data(using: .utf8)
+
+            if let b64Token = token?.base64EncodedString() {
+                
+                print("b64Token::\(b64Token)")
+                var request = URLRequest(url: url)
+                request.allHTTPHeaderFields = ["Content-Type": "application/x-www-form-urlencoded","Authorization Basic" : b64Token ]
+                
+                request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+                request.httpMethod = "POST"
+                
+                
+                let payload : [String : Any] = ["grant_type": "client_credentials", "scope": scope]
+                
+                request.httpBody = payload.percentEncoded()
+        
+                
+                URLSession.shared.dataTask(with: request) { (data, response, error) in
+                  
+                    guard error == nil else {
+                        print("error::\(String(describing: error))")
+                        return
+                    }
+                    
+                    if let _ = response as? HTTPURLResponse{
+                        
+                        /**
+                        guard (200 ... 299) ~= httpResponse.statusCode else{
+                            
+                            
+                            if let completion = completion {
+                                
+                                completion(nil, ApiError(errorText: "Obtaining token error :: response code :\(httpResponse.statusCode)"))
+                            }
+                            
+                            
+                            return
+                        }*/
+                        
+                        print("data.count::\(data?.count ?? 0)")
+                        if let data = data {
+                       
+                            let str = String(decoding: data, as: UTF8.self)
+                            print("data.str:\(str)")
+                           
+                        }
+                        
+                        self.decodeJson(Token.self, data: data, completion: {
+                            
+                            res in
+                            
+                            switch(res){
+                            
+                                case .failure(let err) :
+                                    
+                                    if let completion = completion {
+                                        
+                                        completion(nil, err)
+                                    }
+                                    
+                                case .success(let rr) :
+                                    
+                                    if let completion = completion {
+                                        
+                                        completion("\(rr.access_token ?? "") \(rr.token_type ?? "")", nil)
+                                    }
+                                    
+                                    
+                                
+                            }
+                            
+                        })
+                        
+                    }
+                    
+                }.resume()
+                
+            }
+            
+            
+            
+        }
+        
+    }
+}
+
 
 // user
 extension ApiRequestHandler {
