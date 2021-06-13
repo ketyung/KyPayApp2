@@ -172,7 +172,7 @@ class KypayUserWalletController extends Controller {
     
     protected function deleteDbObject(){
         
-        $response['status_code_header'] = 'HTTP/1.1 204 Deletion';
+        $response['status_code_header'] = 'HTTP/1.1 202 Deletion';
        
         $input = $this->getInput();
         

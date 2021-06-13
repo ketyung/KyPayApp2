@@ -156,7 +156,8 @@ class KypayUserPaymentTxController extends Controller {
     
     protected function deleteDbObject(){
         
-        $response['status_code_header'] = 'HTTP/1.1 204 Deletion';
+        // Use 202 , as 204 indicates no content 
+        $response['status_code_header'] = 'HTTP/1.1 202 Deletion';
        
         $input = $this->getInput();
          

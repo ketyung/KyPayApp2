@@ -356,13 +356,13 @@ class Tester {
                     w.id = rr.returnedObject?.id
                     w.refId = rr.returnedObject?.refId
                     
-                    print("to.update.wallet..after 1 sec")
+                    print("to.delete.wallet..after 1 sec")
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
                         
-                        w.balance = Double(Float.random(in: (20...60)))
-                        Tester.updateWallet(w)
-                        //Tester.testDeleteWallet(w)
+                       // w.balance = Double(Float.random(in: (20...60)))
+                        //Tester.updateWallet(w)
+                        Tester.testDeleteWallet(w)
                         
                         
                     })

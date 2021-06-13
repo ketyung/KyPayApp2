@@ -226,13 +226,9 @@ extension ApiRequestHandler {
                     }
                     
                     
-                   
-                   
-                    
                     if let returnType = returnType {
                         
-                        self.decodeJson(ReturnedResult.self, data: data, returnType: returnType,
-                                        completion: completion)
+                        self.decodeJson(ReturnedResult.self, data: data, returnType: returnType, completion: completion)
                     
                     }
                     else {
@@ -293,7 +289,7 @@ extension ApiRequestHandler {
     
     
     private func decodeJson <T:Decodable, R:Decodable> (_ type : T.Type ,
-    data : Data?, returnType : R.Type,
+    data : Data?, returnType : R.Type ,
     completion:  ((Result<T, Error>)->Void)? = nil ,
     dateDecodingStrategy: JSONDecoder.DateDecodingStrategy = DateFormatter.decodingStrategy,
     keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy = .convertFromSnakeCase){
@@ -309,7 +305,7 @@ extension ApiRequestHandler {
              
                 decoder.userInfo = [.returnTypeKey : returnType]
                 
-               
+               // data.count will be 0, if the http response code is 204
                 if data.count > 0 {
                
                     if let completion = completion {
