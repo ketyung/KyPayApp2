@@ -64,10 +64,7 @@ extension ReturnedResult {
        case returnedObject
    }
     
-    
-
-
-    init(from decoder: Decoder) throws {
+   init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
         id = try values.decodeIfPresent(String.self, forKey: .id)
@@ -428,10 +425,30 @@ extension ApiRequestHandler {
         send(module: "userPayment", dataObject: tx, returnType: returnType,completion:  completion)
     }
     
+    
+    func updateUserPaymentTx <R:Decodable> (_ tx : UserPaymentTx, returnType : R.Type? = nil, completion:  ((Result<ReturnedResult<R>, Error>)->Void)? = nil){
+        
+        send(module: "userPayment", dataObject: tx,
+             returnType: returnType, completion:  completion,method: "PUT")
+    }
+    
+   
+    func deleteUserPaymentTx <R:Decodable> (id : String, returnType : R.Type? = nil, completion:  ((Result<ReturnedResult<R>, Error>)->Void)? = nil){
+        
+        let tx = UserPaymentTx(id: id)
+        
+        send(module: "userPayment", dataObject: tx,
+             returnType: returnType, completion:  completion,method: "DELETE")
+    }
+   
+    
+    
     func fetchUserPaymentTx (id : String,
                            completion:  ((Result<UserPaymentTx, Error>)->Void)? = nil ){
         
         fetch(module: "userWallet", param: "id/\(id)" , decode: UserPaymentTx.self, completion: completion)
     }
+    
+    
     
 }

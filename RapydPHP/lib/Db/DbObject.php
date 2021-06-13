@@ -80,6 +80,7 @@ class DbObject extends SQLBuilder {
         
 			if (!isset($this->insertStatement)){
 			
+               // Log::printRToErrorLog($sql);
 				$this->insertStatement = $this->db->prepare($this->buildInsertSql());
 			}
 		
@@ -139,7 +140,7 @@ class DbObject extends SQLBuilder {
         
 			if (!isset($this->deleteStatement)){
 			
-				$this->deleteStatement = $this->db->prepare($this->buildDeleteSql());
+                $this->deleteStatement = $this->db->prepare($this->buildDeleteSql());
 			}
 		
         

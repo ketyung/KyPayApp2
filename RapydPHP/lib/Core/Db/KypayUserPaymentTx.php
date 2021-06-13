@@ -2,6 +2,9 @@
 namespace Core\Db;
 
 use Core\Db\KypayDbObject as KypayDbObject;
+use Util\EncUtil as EncUtil;
+use Util\StrUtil as StrUtil;
+
 
 class KypayUserPaymentTx extends KypayDbObject {
     
@@ -37,7 +40,7 @@ class KypayUserPaymentTx extends KypayDbObject {
             
             $rid = EncUtil::randomString(16);
             
-            $count = $this->count(array('id'=>$input['id']));
+            $count = $this->count(array('id'=>$rid));
             
             if ($count > 0)
             {

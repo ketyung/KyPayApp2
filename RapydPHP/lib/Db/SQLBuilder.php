@@ -227,7 +227,7 @@ class SQLBuilder {
 
 	public function buildDeleteSql(){
 		
-		$sql = "DELETE FROM $this->tableName WHERE ";
+		$sql = "DELETE FROM $this->tableName ";
 		
 		return $sql. $this->buildPKWhereClause();	
 	}

@@ -5,6 +5,7 @@ use Util\Log as Log;
 use Core\Controllers\KypayUserController;
 use Core\Controllers\KypayUserAddressController;
 use Core\Controllers\KypayUserWalletController;
+use Core\Controllers\KypayUserPaymentTxController;
 use Db\DbConnector as DbConn;
 
 date_default_timezone_set('Asia/Brunei');

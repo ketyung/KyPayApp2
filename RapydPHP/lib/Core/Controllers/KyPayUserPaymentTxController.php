@@ -78,6 +78,14 @@ class KypayUserPaymentTxController extends Controller {
        
         $response['status_code_header'] = 'HTTP/1.1 201 Create';
         
+        if (!User::exists($input['uid'], $this->db)){
+            
+            $response['body'] = json_encode(array('status'=> -1 , 'id'=>null, 'text'=>'User NOT found!'));
+    
+            return $response;
+        }
+        
+        
         if ($this->dbObject->insert($input) > 0){
             
             $response['body'] = json_encode(array('status'=>1, 'id'=>$input['id'],
@@ -124,11 +132,15 @@ class KypayUserPaymentTxController extends Controller {
         StrUtil::arrayKeysToSnakeCase($input);
         
         
+        if (!User::exists($input['uid'], $this->db)){
+            
+            $response['body'] = json_encode(array('status'=> -1 , 'id'=>null, 'text'=>'User NOT found!'));
+    
+            return $response;
+        }
+        
        
         if ($this->dbObject->update($input) > 0){
-            
-            $obj = array('id'=>$input['id'], 'ref_id'=>$input['ref_id']);
-
             
             $response['body'] = json_encode(array('status'=>1, 'id'=>$input['id'], 'text'=>'Updated!'));
         
@@ -140,6 +152,38 @@ class KypayUserPaymentTxController extends Controller {
         return $response;
         
     }
+    
+    
+    protected function deleteDbObject(){
+        
+        $response['status_code_header'] = 'HTTP/1.1 204 Deletion';
+       
+        $input = $this->getInput();
+         
+        if (isset($input['id'])) {
+            
+            if ( $this->dbObject->delete($input) > 0){
+                
+                
+                $response['body'] = json_encode(array('status'=>1, 'id'=>$input['id'], 'text'=>'Deleted!'));
+           
+            }
+            else {
+                $response['body'] = json_encode(array('status'=> -1 , 'id'=>null, 'text'=>$this->dbObject->getErrorMessage()));
+            }
+          
+        }
+        else {
+            $response['body'] = json_encode(array('status'=> -1 , 'id'=>null, 'text'=>"Invalid Payment ID!"));
+        }
+        
+        Log::printRToErrorLog($response);
+                                            
+        return $response;
+                                    
+        
+    }
+
     
 }
 ?>

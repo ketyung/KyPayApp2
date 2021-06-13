@@ -29,7 +29,7 @@ struct UserPaymentTx : Codable{
     
     var id : String?
     
-    var ud : String?
+    var uid : String?
     
     var toUid : String?
     

@@ -231,6 +231,79 @@ class Tester {
         })
     }
     
+    
+    static func testAddPayment(){
+        
+        let t = UserPaymentTx(uid:"Che_Rm92ndZL", amount: 25.00, currency: "MYR")
+        
+        ARH.shared.addUserPaymentTx(t, returnType: UserPaymentTx.self, completion: {
+            
+            res in
+            
+            
+            switch (res) {
+            
+                case .failure(let err) :
+                    print("error!:\(err)")
+                case .success(let rr) :
+                    
+                    if rr.status == .failed {
+                        
+                        print("paymentAdded:: Failed! \(rr.text ?? "")")
+                
+                    }
+                    else {
+                    
+                        print("paymentAdded:: \(rr.id ?? "")")
+                        
+                        print("Trying to delete after 1 sec!!!")
+                        
+                        DispatchQueue.main.asyncAfter(wallDeadline: .now() + 1, execute: {
+                            
+                            Tester.testDeletePayment(id: rr.id ?? "")
+                        })
+                
+                    }
+                    
+            }
+                    
+            
+            
+        })
+    }
+    
+    
+    static func testDeletePayment( id : String){
+        
+        ARH.shared.deleteUserPaymentTx(id: id,
+                                       returnType: UserPaymentTx.self,
+                                       completion: {
+            res in
+            
+            switch (res) {
+            
+                case .failure(let err) :
+                    print("error!:\(err)")
+                case .success(let rr) :
+                    
+                    if rr.status == .failed {
+                        
+                        print("payment Deletion:: Failed! \(rr.text ?? "")")
+                
+                    }
+                    else {
+                    
+                        print("payment deleted:: \(rr.id ?? "")")
+                
+                    }
+                    
+            }
+           
+            
+        })
+    }
+    
+    
     static func testAddUserWallet(){
         
         let w = UserWallet(id: "Che_Rm92ndZL", balance: 5.00, currency: "MYR", type:.personal)
