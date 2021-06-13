@@ -10,6 +10,8 @@ use Db\DbConnector as DbConn;
 
 date_default_timezone_set('Asia/Brunei');
 
+//checkIfAuthorized();
+
 headers();
 
 processUri();
@@ -87,4 +89,49 @@ function extractParams ($uri, $from){
     
 }
 
+function checkIfAuthorized(){
+    
+    if (!authenticate()) {
+        header("HTTP/1.1 401 Unauthorized");
+        header("Content-type:text/plain");
+        exit('Unauthorized');
+    }
+}
+
+
+
+function authenticate() {
+    
+    try
+    {
+        switch(true)
+        {
+            case array_key_exists('HTTP_AUTHORIZATION', $_SERVER) :
+                $authHeader = $_SERVER['HTTP_AUTHORIZATION'];
+                break;
+            case array_key_exists('Authorization', $_SERVER) :
+                $authHeader = $_SERVER['Authorization'];
+                break;
+            default :
+                $authHeader = null;
+                break;
+        }
+        
+        preg_match('/Bearer\s(\S+)/', $authHeader, $matches);
+    
+        if(!isset($matches[1])) {
+            throw new \Exception('No Bearer Token');
+        }
+        
+        $jwtVerifier = (new \Okta\JwtVerifier\JwtVerifierBuilder())
+            ->setIssuer(getenv('OKTAISSUER'))
+            ->setAudience('api://default')
+            ->setClientId(getenv('OKTACLIENTID'))->build();
+                
+        return $jwtVerifier->verify($matches[1]);
+    }
+    catch (\Exception $e) {
+        return false;
+    }
+}
 ?>

@@ -221,6 +221,11 @@ extension ApiRequestHandler {
                 if let httpResponse = response as? HTTPURLResponse{
                     
                     guard (200 ... 299) ~= httpResponse.statusCode else{
+               
+                        if let completion = completion {
+                       
+                            completion(.failure(ApiError(errorText: "Response status code :\(httpResponse.statusCode)")))
+                        }
                         
                         return 
                     }
@@ -285,12 +290,9 @@ extension ApiRequestHandler {
     }
     
     
-  
-    
-    
+
     private func decodeJson <T:Decodable, R:Decodable> (_ type : T.Type ,
-    data : Data?, returnType : R.Type ,
-    completion:  ((Result<T, Error>)->Void)? = nil ,
+    data : Data?, returnType : R.Type ,completion:  ((Result<T, Error>)->Void)? = nil ,
     dateDecodingStrategy: JSONDecoder.DateDecodingStrategy = DateFormatter.decodingStrategy,
     keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy = .convertFromSnakeCase){
         
@@ -379,8 +381,7 @@ extension ApiRequestHandler {
     }
     
     
-    func signInUser <R:Decodable> (phoneNumber : String,
-                                   returnType : R.Type? = nil,
+    func signInUser <R:Decodable> (phoneNumber : String, returnType : R.Type? = nil,
                                    completion:  ((Result<ReturnedResult<R>, Error>)->Void)? = nil) {
     
         let user = User(phoneNumber : phoneNumber)
@@ -389,8 +390,7 @@ extension ApiRequestHandler {
     }
     
     
-    func signOutUser <R:Decodable> (_ user : User,
-                                    returnType : R.Type? = nil,
+    func signOutUser <R:Decodable> (_ user : User, returnType : R.Type? = nil,
                                     completion:  ((Result<ReturnedResult<R>, Error>)->Void)? = nil) {
     
         send(module: "user", param: "signOut", dataObject: user, returnType: returnType,
@@ -438,9 +438,8 @@ extension ApiRequestHandler {
     func deleteUserWallet <R:Decodable> (_ wallet : UserWallet,
         returnType : R.Type? = nil, completion:  ((Result<ReturnedResult<R>, Error>)->Void)? = nil){
         
-        
-        send(module: "userWallet",
-             dataObject: wallet, returnType: returnType, completion:  completion,method: "DELETE")
+        send(module: "userWallet", dataObject: wallet, returnType: returnType,
+             completion:  completion,method: "DELETE")
     }
   
     

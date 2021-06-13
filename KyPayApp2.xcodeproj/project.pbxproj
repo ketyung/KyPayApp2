@@ -220,9 +220,9 @@
 			isa = PBXGroup;
 			children = (
 				1033B2862674A82F00D999CE /* Test */,
-				1033B2892674A82F00D999CE /* DictionaryExt.swift */,
 				1033B28A2674A82F00D999CE /* Models */,
 				1033B2902674A82F00D999CE /* DateFormatterExt.swift */,
+				1033B2892674A82F00D999CE /* DictionaryExt.swift */,
 				1033B2912674A82F00D999CE /* ApiRequestHandler.swift */,
 			);
 			path = ApiClient;
@@ -255,9 +255,9 @@
 				1033B29D2674A92D00D999CE /* bootstrap.php */,
 				1033B29E2674A92D00D999CE /* Test2.php */,
 				1033B29F2674A92D00D999CE /* Test.php */,
+				1033B2C12674A92D00D999CE /* ObtainTK.php */,
 				1033B2A02674A92D00D999CE /* public */,
 				1033B2A22674A92D00D999CE /* lib */,
-				1033B2C12674A92D00D999CE /* ObtainTK.php */,
 			);
 			path = RapydPHP;
 			sourceTree = "<group>";
@@ -307,8 +307,8 @@
 		1033B2AC2674A92D00D999CE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				1033B2AD2674A92D00D999CE /* KypayUserController.php */,
 				1033B2AE2674A92D00D999CE /* Controller.php */,
+				1033B2AD2674A92D00D999CE /* KypayUserController.php */,
 				1033B2AF2674A92D00D999CE /* RequestMethod.php */,
 				1033B2B02674A92D00D999CE /* KypayUserWalletController.php */,
 				1033B2DE2674AC3800D999CE /* KyPayUserPaymentTxController.php */,
@@ -320,9 +320,9 @@
 		1033B2B22674A92D00D999CE /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				1033B2B32674A92D00D999CE /* DotEnv.php */,
 				1033B2B42674A92D00D999CE /* config */,
 				1033B2B62674A92D00D999CE /* EncUtil.php */,
+				1033B2B32674A92D00D999CE /* DotEnv.php */,
 				1033B2B72674A92D00D999CE /* KeyManager.php */,
 				1033B2B82674A92D00D999CE /* StrUtil.php */,
 				1033B2B92674A92D00D999CE /* Log.php */,

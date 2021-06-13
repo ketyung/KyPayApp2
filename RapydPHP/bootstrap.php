@@ -4,6 +4,7 @@ require_once_in("/lib/Util");
 require_once_in("/lib/Db");
 require_once_in("/lib/Core/Controllers");
 require_once_in("/lib/Core/Db");
+require_once __DIR__."/vendor/autoload.php";
 
 //header("Content-type:text/plain");
 
