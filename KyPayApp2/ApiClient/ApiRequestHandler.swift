@@ -117,9 +117,11 @@ class ApiRequestHandler : NSObject {
                     print("Error.obtaining.token::\(String(describing: err))")
                     return
                 }
+            
                 
                 self.token = token
                 
+               // print("token::\(String(describing: token))")
                 self.fetchWOA(module: module, param: param , decode: to , completion: completion)
             })
            
@@ -212,6 +214,8 @@ extension ApiRequestHandler {
                 
                 self.token = token
                 
+                //print("self.token::\(String(describing: self.token))")
+                
                 self.sendWOA(module: module, param: param, dataObject: dataObject, returnType: returnType, completion: completion, method: method)
                 
             })
@@ -253,17 +257,7 @@ extension ApiRequestHandler {
            
                 if let encoded = try? encoder.encode(object) {
                     
-                    
                     request.httpBody = encoded
-                    // send as JSON directly
-                    // There isn't a need to convert to parameters
-                    /**
-                    if let params = try? JSONSerialization.jsonObject(with: encoded)
-                        as? [String: Any] ?? [:] {
-                    
-                        request.httpBody = params.percentEncoded()
-                        
-                    }*/
                 }
             }
             
@@ -406,9 +400,9 @@ extension ApiRequestHandler {
     
     private struct Token : Decodable{
         
-        var access_token : String?
+        var accessToken : String?
         
-        var token_type : String?
+        var tokenType : String?
         
     }
     
@@ -423,26 +417,26 @@ extension ApiRequestHandler {
         let urlString = "\(issuer)/v1/token"
         
         
-        print("utl.str::\(urlString)")
         if let url = URL(string: urlString) {
        
             let token = "\(clientId):\(secret)".data(using: .utf8)
 
             if let b64Token = token?.base64EncodedString() {
                 
-                print("b64Token::\(b64Token)")
+                //print("b64Token::\(b64Token)")
+                
                 var request = URLRequest(url: url)
-                request.allHTTPHeaderFields = ["Content-Type": "application/x-www-form-urlencoded","Authorization Basic" : b64Token ]
+                request.allHTTPHeaderFields = ["Content-Type": "application/x-www-form-urlencoded","Authorization" :"Basic \(b64Token)" ]
                 
                 request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
                 request.httpMethod = "POST"
                 
                 
-                let payload : [String : Any] = ["grant_type": "client_credentials", "scope": scope]
+                let payload : [String : String] = ["grant_type": "client_credentials", "scope": scope]
                 
-                request.httpBody = payload.percentEncoded()
+                request.httpBody =  payload.percentEncoded()
         
-                
+            
                 URLSession.shared.dataTask(with: request) { (data, response, error) in
                   
                     guard error == nil else {
@@ -450,9 +444,11 @@ extension ApiRequestHandler {
                         return
                     }
                     
-                    if let _ = response as? HTTPURLResponse{
+                    
+                    
+                    if let httpResponse = response as? HTTPURLResponse{
                         
-                        /**
+                        
                         guard (200 ... 299) ~= httpResponse.statusCode else{
                             
                             
@@ -461,17 +457,9 @@ extension ApiRequestHandler {
                                 completion(nil, ApiError(errorText: "Obtaining token error :: response code :\(httpResponse.statusCode)"))
                             }
                             
-                            
                             return
-                        }*/
-                        
-                        print("data.count::\(data?.count ?? 0)")
-                        if let data = data {
-                       
-                            let str = String(decoding: data, as: UTF8.self)
-                            print("data.str:\(str)")
-                           
                         }
+                        
                         
                         self.decodeJson(Token.self, data: data, completion: {
                             
@@ -490,7 +478,7 @@ extension ApiRequestHandler {
                                     
                                     if let completion = completion {
                                         
-                                        completion("\(rr.access_token ?? "") \(rr.token_type ?? "")", nil)
+                                        completion("\(rr.accessToken ?? "") \(rr.tokenType ?? "")", nil)
                                     }
                                     
                                     
