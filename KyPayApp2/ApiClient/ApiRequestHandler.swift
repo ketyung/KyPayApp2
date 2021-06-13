@@ -428,7 +428,7 @@ extension ApiRequestHandler {
     
     func updateUserPaymentTx <R:Decodable> (_ tx : UserPaymentTx, returnType : R.Type? = nil, completion:  ((Result<ReturnedResult<R>, Error>)->Void)? = nil){
         
-        send(module: "userPayment", dataObject: tx,
+        send(module: "userPayment", param: "update", dataObject: tx,
              returnType: returnType, completion:  completion,method: "PUT")
     }
     
@@ -437,7 +437,8 @@ extension ApiRequestHandler {
         
         let tx = UserPaymentTx(id: id)
         
-        send(module: "userPayment", dataObject: tx,
+        send(module: "userPayment",
+             dataObject: tx,
              returnType: returnType, completion:  completion,method: "DELETE")
     }
    

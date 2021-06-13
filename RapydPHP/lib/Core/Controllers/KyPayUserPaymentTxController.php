@@ -131,7 +131,6 @@ class KypayUserPaymentTxController extends Controller {
         
         StrUtil::arrayKeysToSnakeCase($input);
         
-        
         if (!User::exists($input['uid'], $this->db)){
             
             $response['body'] = json_encode(array('status'=> -1 , 'id'=>null, 'text'=>'User NOT found!'));
@@ -140,7 +139,7 @@ class KypayUserPaymentTxController extends Controller {
         }
         
        
-        if ($this->dbObject->update($input) > 0){
+        if ($this->dbObject->update($input, true ) > 0){
             
             $response['body'] = json_encode(array('status'=>1, 'id'=>$input['id'], 'text'=>'Updated!'));
         
@@ -148,6 +147,7 @@ class KypayUserPaymentTxController extends Controller {
         else {
             $response['body'] = json_encode(array('status'=> -1 , 'id'=>null, 'text'=>$this->dbObject->getErrorMessage()));
         }
+        
         
         return $response;
         
@@ -177,7 +177,7 @@ class KypayUserPaymentTxController extends Controller {
             $response['body'] = json_encode(array('status'=> -1 , 'id'=>null, 'text'=>"Invalid Payment ID!"));
         }
         
-        Log::printRToErrorLog($response);
+       // Log::printRToErrorLog($response);
                                             
         return $response;
                                     

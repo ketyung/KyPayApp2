@@ -106,7 +106,7 @@ class DbObject extends SQLBuilder {
         
             if ($toRecreateStatement){
             
-                $this->updateStatement = $this->db->prepare($this->buildUpdateSql($input));
+                $this->updateStatement = $this->db->prepare( $this->buildUpdateSql($input) );
         
             }
             else {
@@ -140,9 +140,12 @@ class DbObject extends SQLBuilder {
         
 			if (!isset($this->deleteStatement)){
 			
-                $this->deleteStatement = $this->db->prepare($this->buildDeleteSql());
+                $sql = $this->buildDeleteSql();
+                Log::printRToErrorLog($sql);
+                $this->deleteStatement = $this->db->prepare($sql);
 			}
 		
+            Log::printRToErrorLog($pk);
         
 			$this->deleteStatement->execute($this->prepareParams($pk));
             

@@ -234,7 +234,7 @@ class Tester {
     
     static func testAddPayment(){
         
-        let t = UserPaymentTx(uid:"Che_Rm92ndZL", amount: 25.00, currency: "MYR")
+        var t = UserPaymentTx(uid:"Che_Rm92ndZL", amount: 25.00, currency: "MYR")
         
         ARH.shared.addUserPaymentTx(t, returnType: UserPaymentTx.self, completion: {
             
@@ -256,11 +256,15 @@ class Tester {
                     
                         print("paymentAdded:: \(rr.id ?? "")")
                         
-                        print("Trying to delete after 1 sec!!!")
+                        print("Trying to update after 1 sec!!!")
                         
                         DispatchQueue.main.asyncAfter(wallDeadline: .now() + 1, execute: {
                             
-                            Tester.testDeletePayment(id: rr.id ?? "")
+                            //Tester.testDeletePayment(id: rr.id ?? "")
+                            
+                            t.amount = 89.65
+                            t.id = rr.id 
+                            Tester.testUpdatePayment(t)
                         })
                 
                     }
@@ -269,6 +273,35 @@ class Tester {
                     
             
             
+        })
+    }
+    
+    
+    static func testUpdatePayment( _ payment : UserPaymentTx){
+        
+        ARH.shared.updateUserPaymentTx(payment ,returnType:  UserPaymentTx.self, completion: {
+            
+            res in
+            
+            
+            switch (res) {
+            
+                case .failure(let err) :
+                    print("error!:\(err)")
+                case .success(let rr) :
+                    
+                    if rr.status == .failed {
+                        
+                        print("payment update:: Failed! \(rr.text ?? "")")
+                
+                    }
+                    else {
+                    
+                        print("payment updated:: \(rr.id ?? "")")
+                
+                    }
+                    
+            }
         })
     }
     
