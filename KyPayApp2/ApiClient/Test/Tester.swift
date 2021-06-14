@@ -60,7 +60,7 @@ class Tester {
     
     static func testPhoneAuth(phone : String = "+60168319183"){
         
-        PA.shared.authenticate(phoneNumber: phone)
+        PA.shared.sendOTP(phoneNumber: phone)
     }
     
     

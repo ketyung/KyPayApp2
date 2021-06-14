@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 class LoginDataViewModel : NSObject, ObservableObject {
     
@@ -67,5 +68,29 @@ class LoginDataViewModel : NSObject, ObservableObject {
             loginData.isCountryPickerPresented = newVal
         }
     }
+    
+    
+    var isOTPViewPresented : Bool {
+        
+        get {
+            
+            loginData.isOTPViewPresented
+        }
+    }
+}
+
+
+extension LoginDataViewModel : AuthUIDelegate {
+    
+    func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
+    
+        loginData.isOTPViewPresented = true
+    }
+    
+    func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+        
+        loginData.isOTPViewPresented = false 
+    }
+    
     
 }
