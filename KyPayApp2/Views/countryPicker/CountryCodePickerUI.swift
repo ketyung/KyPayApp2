@@ -13,17 +13,26 @@ struct CountryCodePickerUI : View {
     
     let countries = Bundle.main.decodeJson([Country].self, fileName: "CountryPickerView.bundle/Data/CountryCodes.json")
     
+    @State private var searchText : String = ""
+    
     var body: some View {
         
-        List{
+        
+        VStack {
             
-            ForEach(countries, id:\.code){
+            SearchBar(text: $searchText)
+            
+            List{
                 
-                country in
-                
-                countryRowButton(country)
-                
+                ForEach( countries.filter({ searchText.isEmpty ?
+                true : ($0.name?.contains(searchText) ?? true) }) , id:\.code)
+                {
+                    country in
+                    countryRowButton(country)
+                }
             }
+          
+            
         }
         
     }
@@ -70,6 +79,14 @@ extension CountryCodePickerUI {
             
             Text(country.name ?? "")
             .font(.body)
+            
+            Spacer()
+            
+            Image(systemName: "checkmark.circle.fill")
+            .resizable()
+            .foregroundColor(Color(UIColor(hex:"#338855ff")!))
+            .frame(width:20,height:20)
+            .hidden(viewModel.selectedCountry?.code ?? "MY" != country.code)
             
         }
     }

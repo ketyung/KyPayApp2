@@ -66,6 +66,7 @@
 		1033C0792676F3C500D999CE /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 1033C0782676F3C500D999CE /* SwiftUIX */; };
 		1033C0812677011400D999CE /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0802677011400D999CE /* Country.swift */; };
 		1033C0832677035100D999CE /* CountryPickerView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1033C0822677035100D999CE /* CountryPickerView.bundle */; };
+		1033C08526771A7D00D999CE /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C08426771A7D00D999CE /* SearchBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,6 +151,7 @@
 		1033C0732676E81000D999CE /* ViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		1033C0802677011400D999CE /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		1033C0822677035100D999CE /* CountryPickerView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CountryPickerView.bundle; sourceTree = "<group>"; };
+		1033C08426771A7D00D999CE /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -388,10 +390,10 @@
 		1033C05D2676DC3200D999CE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1033C08626771A9900D999CE /* countryPicker */,
 				1033C0702676E81000D999CE /* bottomSheet */,
 				1033B2582674A7F200D999CE /* ContentView.swift */,
 				1033C05E2676DC5700D999CE /* LoginView.swift */,
-				1033C0682676DD8700D999CE /* CountryCodePickerUI.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -430,6 +432,15 @@
 				1033C0732676E81000D999CE /* ViewExtension.swift */,
 			);
 			path = bottomSheet;
+			sourceTree = "<group>";
+		};
+		1033C08626771A9900D999CE /* countryPicker */ = {
+			isa = PBXGroup;
+			children = (
+				1033C0682676DD8700D999CE /* CountryCodePickerUI.swift */,
+				1033C08426771A7D00D999CE /* SearchBar.swift */,
+			);
+			path = countryPicker;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -615,6 +626,7 @@
 				1033C06F2676E46F00D999CE /* LoginData.swift in Sources */,
 				1033B2992674A82F00D999CE /* UserPaymentTx.swift in Sources */,
 				1033B2932674A82F00D999CE /* Tester.swift in Sources */,
+				1033C08526771A7D00D999CE /* SearchBar.swift in Sources */,
 				1033B2592674A7F200D999CE /* ContentView.swift in Sources */,
 				1033C0642676DCCE00D999CE /* UIColorExt.swift in Sources */,
 				1033C0812677011400D999CE /* Country.swift in Sources */,
