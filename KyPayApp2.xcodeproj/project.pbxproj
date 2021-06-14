@@ -183,7 +183,6 @@
 		1033B2482674A7F200D999CE = {
 			isa = PBXGroup;
 			children = (
-				1033C0822677035100D999CE /* CountryPickerView.bundle */,
 				1033B29C2674A92D00D999CE /* RapydPHP */,
 				1033B2532674A7F200D999CE /* KyPayApp2 */,
 				1033B26A2674A7F300D999CE /* KyPayApp2Tests */,
@@ -437,6 +436,7 @@
 		1033C08626771A9900D999CE /* countryPicker */ = {
 			isa = PBXGroup;
 			children = (
+				1033C0822677035100D999CE /* CountryPickerView.bundle */,
 				1033C0682676DD8700D999CE /* CountryCodePickerUI.swift */,
 				1033C08426771A7D00D999CE /* SearchBar.swift */,
 			);
