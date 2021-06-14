@@ -58,6 +58,18 @@ class Tester {
      */
     
     
+    static func testStoreAndRetrieveUser(){
+        
+        let u = User(id: "88373737agsvd", firstName: "Chee", lastName: "K Y")
+        KDS.shared.saveUser( u )
+        
+        if let uu = KDS.shared.getUser() {
+            
+            print("Loaded::.user::\(uu.id ?? "")::\(uu.firstName ?? "")")
+        }
+        
+    }
+    
     
     static func testDecodeCountries(){
         

@@ -56,7 +56,7 @@ extension LoginView {
         .padding()
         .frame(width: UIScreen.main.bounds.width - 10, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
         .background(Color(UIColor(hex: "#334455ff")!))
-        .cornerRadius(10)
+        .cornerRadius(6)
        
     }
     
@@ -109,10 +109,10 @@ extension LoginView {
     
         
         CocoaTextField("Phone Number", text: $viewModel.enteredPhoneNumber)
-        .font(UIFont.boldSystemFont(ofSize: 30))
+        .font(UIFont.boldSystemFont(ofSize: 24))
         .isFirstResponder(viewModel.phoneNumberIsFirstResponder)
         .width(200)
-        .height(24)
+        .height(20)
         .padding()
         .foregroundColor(.black)
         .background(Color.white)
