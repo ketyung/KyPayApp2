@@ -49,6 +49,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         //Tester.testStoreAndRetrieveUser()
         
+       // Tester.testPhoneAuth()
+        
         let contentView = LoginView().environmentObject(LoginDataViewModel())
 
         // Use a UIHostingController as window root view controller.

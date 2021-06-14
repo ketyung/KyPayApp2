@@ -58,6 +58,12 @@ class Tester {
      */
     
     
+    static func testPhoneAuth(phone : String = "+60168319183"){
+        
+        PA.shared.authenticate(phoneNumber: phone)
+    }
+    
+    
     static func testStoreAndRetrieveUser(){
         
         let u = User(id: "88373737agsvd", firstName: "Chee", lastName: "K Y")

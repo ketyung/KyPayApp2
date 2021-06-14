@@ -44,17 +44,22 @@ extension KCDataStore {
     
     private static let fbVerificationIDKey = "FbVerID_8736363bVZAv3t36VAV39NBgad_09OP"
     
-    func saveFBVerificationID( _ id : String ){
+    func saveFBVid( _ id : String ){
         
         KeychainWrapper.standard.set(id, forKey: KDS.fbVerificationIDKey)
     }
     
     
-    func getFBVerificationID() -> String?{
+    func getFBVid() -> String?{
         
         return KeychainWrapper.standard.string(forKey: KDS.fbVerificationIDKey)
         
     }
     
+    
+    func removeFBVid(){
+        
+        KeychainWrapper.standard.removeObject(forKey: KDS.fbVerificationIDKey)
+    }
     
 }

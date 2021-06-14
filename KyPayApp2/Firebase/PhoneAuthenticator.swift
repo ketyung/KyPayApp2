@@ -8,8 +8,13 @@
 import Foundation
 import FirebaseAuth
 
+typealias PA = PhoneAuthenticator
+
+
 class PhoneAuthenticator : NSObject{
     
+    
+    static let shared = PA()
     
     func authenticate(phoneNumber : String){
         
@@ -20,6 +25,12 @@ class PhoneAuthenticator : NSObject{
            
                 print("auth.err:\(error)")
                 return
+            }
+
+            if let vid = verificationID {
+           
+                KDS.shared.saveFBVid(vid)
+               
             }
             
         }
