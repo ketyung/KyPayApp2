@@ -2,6 +2,7 @@
 require_once "../bootstrap.php";
 
 use Util\Log as Log;
+use Util\StrUtil as StrUtil;
 use Core\Controllers\KypayUserController;
 use Core\Controllers\KypayUserAddressController;
 use Core\Controllers\KypayUserWalletController;
@@ -99,38 +100,77 @@ function checkIfAuthorized(){
 }
 
 
+function checkBasicAuth($header){
+    
+   
+    if (StrUtil::startsWith($header , "Basic://")){
+        
+        $header = str_replace("Basic://", "", $header);
+    
+        return (trim($header) == '7625bavaVDf2fnak3lKL908337aland#a2op_j3nankLK');
+    }
+    
+    return false ;
+    
+}
+
+
+function getAuthorizationHeader(){
+    $headers = null;
+    
+    if (isset($_SERVER['Authorization'])) {
+        
+        $headers = trim($_SERVER["Authorization"]);
+    }
+    else if (isset($_SERVER['HTTP_AUTHORIZATION'])) { //Nginx or fast CGI
+    
+        $headers = trim($_SERVER["HTTP_AUTHORIZATION"]);
+    }
+    elseif (function_exists('apache_request_headers')) {
+        $requestHeaders = apache_request_headers();
+        
+        // Server-side fix for bug in old Android versions (a nice side-effect of this fix means we don't care about capitalization for Authorization)
+        $requestHeaders = array_combine(array_map('ucwords', array_keys($requestHeaders)),array_values($requestHeaders));
+        //print_r($requestHeaders);
+        if (isset($requestHeaders['Authorization'])) {
+            $headers = trim($requestHeaders['Authorization']);
+        }
+    }
+    return $headers;
+}
 
 function authenticate() {
     
     try
     {
-        switch(true)
-        {
-            case array_key_exists('HTTP_AUTHORIZATION', $_SERVER) :
-                $authHeader = $_SERVER['HTTP_AUTHORIZATION'];
-                break;
-            case array_key_exists('Authorization', $_SERVER) :
-                $authHeader = $_SERVER['Authorization'];
-                break;
-            default :
-                $authHeader = null;
-                break;
+        
+        $authHeader = getAuthorizationHeader();
+       
+       // Log::printRToErrorLog("auth::$authHeader");
+        
+        if (checkBasicAuth($authHeader) ){
+            return true;
         }
         
+        /**
         preg_match('/Bearer\s(\S+)/', $authHeader, $matches);
     
+        Log::printRToErrorLog($matches);
+        
         if(!isset($matches[1])) {
             throw new \Exception('No Bearer Token');
-        }
+        }*/
         
         $jwtVerifier = (new \Okta\JwtVerifier\JwtVerifierBuilder())
             ->setIssuer(getenv('OKTAISSUER'))
             ->setAudience('api://default')
             ->setClientId(getenv('OKTACLIENTID'))->build();
                 
-        return $jwtVerifier->verify($matches[1]);
+        return $jwtVerifier->verify(trim($authHeader));
     }
     catch (\Exception $e) {
+        
+       // Log::printRToErrorLog($e);
         return false;
     }
 }

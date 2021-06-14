@@ -60,5 +60,11 @@ class StrUtil {
         return strtr($input, '+/='."\\", $s);
     }
            
+    static function startsWith($string, $word ){
+        
+        return substr( $word, 0, strlen($word) ) == $word ;
+        
+    }
+           
 }
 ?>

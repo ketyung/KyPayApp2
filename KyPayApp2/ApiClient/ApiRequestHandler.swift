@@ -60,7 +60,6 @@ extension ReturnedResult {
     static func defaultAsOk (type : R.Type) -> ReturnedResult {
         
         return ReturnedResult(status: .ok)
-        
     }
 }
 
@@ -103,6 +102,18 @@ class ApiRequestHandler : NSObject {
     
     private var token : String? = nil
     
+    private let useOta : Bool = false 
+    
+    override init(){
+        
+        super.init()
+        if !useOta {
+            token = "Basic://7625bavaVDf2fnak3lKL908337aland#a2op_j3nankLK"
+        }
+    }
+}
+
+extension ApiRequestHandler {
    
     func fetch <T:Decodable> (module : String, param : String? = nil, decode to : T.Type? = nil,
         completion:  ((Result<T, Error>)->Void)? = nil ){
@@ -478,7 +489,7 @@ extension ApiRequestHandler {
                                     
                                     if let completion = completion {
                                         
-                                        completion("\(rr.accessToken ?? "") \(rr.tokenType ?? "")", nil)
+                                        completion("\(rr.accessToken ?? "")", nil )// \(rr.tokenType ?? "")", nil)
                                     }
                                     
                                     
