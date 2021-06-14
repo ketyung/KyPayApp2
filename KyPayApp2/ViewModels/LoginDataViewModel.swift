@@ -76,6 +76,11 @@ class LoginDataViewModel : NSObject, ObservableObject {
             
             loginData.isOTPViewPresented
         }
+        
+        set(newVal){
+            
+            loginData.isOTPViewPresented = newVal
+        }
     }
 }
 
@@ -92,5 +97,10 @@ extension LoginDataViewModel : AuthUIDelegate {
         loginData.isOTPViewPresented = false 
     }
     
+    
+    func sendOTP(phoneNumber : String){
+        
+        PA.shared.sendOTP(phoneNumber: phoneNumber, delegate: self)
+    }
     
 }

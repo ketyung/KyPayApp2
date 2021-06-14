@@ -39,6 +39,11 @@ struct LoginView : View {
             CountryCodePickerUI()
             
         }
+        .bottomSheet(isPresented: $viewModel.isOTPViewPresented, height: UIScreen.main.bounds.height, showGrayOverlay: true, content: {
+            
+            OTPView()
+        })
+        
     }
 }
 
@@ -134,7 +139,10 @@ extension LoginView {
         
         Button(action: {
             
-            viewModel.phoneNumberIsFirstResponder = false 
+            viewModel.phoneNumberIsFirstResponder = false
+            
+            viewModel.sendOTP(phoneNumber: "\(viewModel.selectedCountry?.dialCode ?? "+60")\(viewModel.enteredPhoneNumber)")
+            
         }){
             
             Text("Continue")

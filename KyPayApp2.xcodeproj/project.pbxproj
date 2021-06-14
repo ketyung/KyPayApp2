@@ -70,6 +70,7 @@
 		1033C0882677386000D999CE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1033C0872677386000D999CE /* GoogleService-Info.plist */; };
 		1033C08B26773A5000D999CE /* PhoneAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C08A26773A5000D999CE /* PhoneAuthenticator.swift */; };
 		1033C08E26773C0600D999CE /* KCDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C08D26773C0600D999CE /* KCDataStore.swift */; };
+		1033C090267749F600D999CE /* OTPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C08F267749F600D999CE /* OTPView.swift */; };
 		94C85EFD927289A72B96857C /* Pods_KyPayApp2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD2A35EA43E8F034705E971 /* Pods_KyPayApp2.framework */; };
 /* End PBXBuildFile section */
 
@@ -160,6 +161,7 @@
 		1033C0872677386000D999CE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1033C08A26773A5000D999CE /* PhoneAuthenticator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneAuthenticator.swift; sourceTree = "<group>"; };
 		1033C08D26773C0600D999CE /* KCDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCDataStore.swift; sourceTree = "<group>"; };
+		1033C08F267749F600D999CE /* OTPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPView.swift; sourceTree = "<group>"; };
 		1B47377B496C6F0F1022FFD4 /* Pods-KyPayApp2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.debug.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.debug.xcconfig"; sourceTree = "<group>"; };
 		6F523BC3D4353462922B31B9 /* Pods-KyPayApp2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.release.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -418,6 +420,7 @@
 				1033C0702676E81000D999CE /* bottomSheet */,
 				1033B2582674A7F200D999CE /* ContentView.swift */,
 				1033C05E2676DC5700D999CE /* LoginView.swift */,
+				1033C08F267749F600D999CE /* OTPView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -710,6 +713,7 @@
 				1033C0762676E81000D999CE /* ViewExtension.swift in Sources */,
 				1033B2972674A82F00D999CE /* UserWallet.swift in Sources */,
 				1033B29A2674A82F00D999CE /* DateFormatterExt.swift in Sources */,
+				1033C090267749F600D999CE /* OTPView.swift in Sources */,
 				1033B2952674A82F00D999CE /* UserImg.swift in Sources */,
 				1033C0752676E81000D999CE /* BottomSheet.swift in Sources */,
 				1033B2982674A82F00D999CE /* User.swift in Sources */,
