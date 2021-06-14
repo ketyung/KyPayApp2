@@ -6,22 +6,71 @@
 //
 
 import SwiftUI
-import CountryPickerView
 
-struct CountryCodePickerUI : UIViewRepresentable {
+struct CountryCodePickerUI : View {
     
+    @EnvironmentObject private var viewModel : LoginDataViewModel
     
-    func makeUIView(context: Context) -> CountryPickerView {
+    let countries = Bundle.main.decodeJson([Country].self, fileName: "CountryPickerView.bundle/Data/CountryCodes.json")
     
-        let cpv = CountryPickerView(frame: CGRect(x:0, y:0, width: UIScreen.main.bounds.width, height:  UIScreen.main.bounds.height))
+    var body: some View {
         
+        List{
+            
+            ForEach(countries, id:\.code){
+                
+                country in
+                
+                countryRowButton(country)
+                
+            }
+        }
         
-        
-        return cpv
     }
+}
 
-    func updateUIView(_ uiView: CountryPickerView, context: Context) {
+
+extension CountryCodePickerUI {
+    
+    
+    private func countryRowButton(_ country : Country ) -> some View {
         
+        Button(action: {
+            
+            viewModel.selectedCountry = country
+            
+            withAnimation{
+                
+                viewModel.isCountryPickerPresented = false
+            }
+        }, label: {
+        
+            countryRow(country)
+        })
     }
     
+    
+    private func countryRow(_ country : Country ) -> some View {
+        
+        HStack(spacing: 20) {
+            
+            if let img = country.flag {
+                
+                let w : CGFloat = 30
+                let h = img.size.height / img.size.width * w
+           
+                Image(uiImage: img)
+                .resizable()
+                .frame(width: w, height: h, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+             
+            }
+            
+            Text(country.code ?? "")
+            .font(.body)
+            
+            Text(country.name ?? "")
+            .font(.body)
+            
+        }
+    }
 }

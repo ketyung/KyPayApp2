@@ -43,6 +43,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
          //Tester.testSignIn()//phoneNumber: "+60128126882")
          // Create the SwiftUI view that provides the window contents.
        
+       // Tester.testDecodeCountries()
         
         //Tester.testAccessOtherBundle()
         

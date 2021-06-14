@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import CountryPickerView
 
 class LoginDataViewModel : NSObject, ObservableObject {
     
@@ -14,7 +13,7 @@ class LoginDataViewModel : NSObject, ObservableObject {
     @Published private var loginData : LoginData = LoginData()
     
     
-    var selectedCounrty : CPVCountry? {
+    var selectedCountry : Country? {
         
         get {
             
@@ -42,5 +41,31 @@ class LoginDataViewModel : NSObject, ObservableObject {
     }
 
     
+    var phoneNumberIsFirstResponder : Bool {
+        
+        get {
+            
+            return loginData.phoneNumberIsFirstResponder
+        }
+        
+        set(newVal){
+            
+            loginData.phoneNumberIsFirstResponder = newVal
+        }
+    }
+    
+    
+    var isCountryPickerPresented : Bool {
+        
+        get {
+            
+            return loginData.isCountryPickerPresented
+        }
+        
+        set(newVal){
+            
+            loginData.isCountryPickerPresented = newVal
+        }
+    }
     
 }

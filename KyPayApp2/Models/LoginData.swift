@@ -6,14 +6,16 @@
 //
 
 import Foundation
-import CountryPickerView
 
 
 struct LoginData {
     
-    var selectedCountry : CPVCountry?
+    var selectedCountry : Country?
     
     var enteredPhoneNumber : String = ""
     
+    var phoneNumberIsFirstResponder : Bool = true
+    
+    var isCountryPickerPresented : Bool = false 
 }
 

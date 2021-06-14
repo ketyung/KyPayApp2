@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import CountryPickerView
 import Combine
 import SwiftUIX
 
@@ -33,6 +32,12 @@ struct LoginView : View {
         }
         .frame(width: UIScreen.main.bounds.width, height:UIScreen.main.bounds.height)
         .background(Color(UIColor(hex: "#3388AAff")!))
+        .bottomSheet(isPresented: $viewModel.isCountryPickerPresented, height: UIScreen.main.bounds.height - 100, showGrayOverlay: true){
+            
+            
+            CountryCodePickerUI()
+            
+        }
     }
 }
 
@@ -59,7 +64,11 @@ extension LoginView {
     @ViewBuilder
     private func flagButton() -> some View {
         
-        Button(action: {}){
+        Button(action: {
+            
+            viewModel.isCountryPickerPresented = true 
+            
+        }){
             
        
             if let img = selectedCountryImage() {
@@ -95,16 +104,22 @@ extension LoginView {
     
         
         CocoaTextField("Phone Number", text: $viewModel.enteredPhoneNumber)
-        .isFirstResponder(true)
-        .borderStyle(.roundedRect)
+        .font(UIFont.boldSystemFont(ofSize: 30))
+        .isFirstResponder(viewModel.phoneNumberIsFirstResponder)
         .width(220)
         .height(50)
-        .font(.system(size: 50))
         .foregroundColor(.black)
         .background(Color.white)
         .padding()
         .keyboardType(.decimalPad)
-        .onReceive(Just(viewModel.enteredPhoneNumber)) { _ in limitPhoneNumber() }
+        .onReceive(Just(viewModel.enteredPhoneNumber)) { _ in
+            
+            if !viewModel.phoneNumberIsFirstResponder {
+                viewModel.phoneNumberIsFirstResponder = true
+            }
+            limitPhoneNumber()
+            
+        }
 
     }
     
@@ -114,9 +129,10 @@ extension LoginView {
         
         Button(action: {
             
+            viewModel.phoneNumberIsFirstResponder = false 
         }){
             
-            Text("Sign In")
+            Text("Continue")
             .foregroundColor(.white)
             .font(Font.system(size: 20, design: .rounded))
               
@@ -130,7 +146,7 @@ extension LoginView {
     
     private func selectedCountryImage() -> UIImage? {
         
-        if let country = viewModel.selectedCounrty {
+        if let country = viewModel.selectedCountry {
             
             return country.flag
         }
