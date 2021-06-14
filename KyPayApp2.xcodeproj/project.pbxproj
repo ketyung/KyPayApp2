@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -54,6 +54,16 @@
 		1033B2DC2674A92D00D999CE /* CollectRequest.php in Resources */ = {isa = PBXBuildFile; fileRef = 1033B2C02674A92D00D999CE /* CollectRequest.php */; };
 		1033B2DD2674A92D00D999CE /* ObtainTK.php in Resources */ = {isa = PBXBuildFile; fileRef = 1033B2C12674A92D00D999CE /* ObtainTK.php */; };
 		1033B2DF2674AC3800D999CE /* KyPayUserPaymentTxController.php in Resources */ = {isa = PBXBuildFile; fileRef = 1033B2DE2674AC3800D999CE /* KyPayUserPaymentTxController.php */; };
+		1033C05F2676DC5700D999CE /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C05E2676DC5700D999CE /* LoginView.swift */; };
+		1033C0622676DCAF00D999CE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0612676DCAF00D999CE /* Extensions.swift */; };
+		1033C0642676DCCE00D999CE /* UIColorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0632676DCCE00D999CE /* UIColorExt.swift */; };
+		1033C0672676DD4100D999CE /* CountryPickerView in Frameworks */ = {isa = PBXBuildFile; productRef = 1033C0662676DD4100D999CE /* CountryPickerView */; };
+		1033C0692676DD8700D999CE /* CountryCodePickerUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0682676DD8700D999CE /* CountryCodePickerUI.swift */; };
+		1033C06C2676E3FA00D999CE /* LoginDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C06B2676E3FA00D999CE /* LoginDataViewModel.swift */; };
+		1033C06F2676E46F00D999CE /* LoginData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C06E2676E46F00D999CE /* LoginData.swift */; };
+		1033C0742676E81000D999CE /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0712676E81000D999CE /* RoundedCorner.swift */; };
+		1033C0752676E81000D999CE /* BottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0722676E81000D999CE /* BottomSheet.swift */; };
+		1033C0762676E81000D999CE /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0732676E81000D999CE /* ViewExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +137,15 @@
 		1033B2C02674A92D00D999CE /* CollectRequest.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = CollectRequest.php; sourceTree = "<group>"; };
 		1033B2C12674A92D00D999CE /* ObtainTK.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = ObtainTK.php; sourceTree = "<group>"; };
 		1033B2DE2674AC3800D999CE /* KyPayUserPaymentTxController.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = KyPayUserPaymentTxController.php; sourceTree = "<group>"; };
+		1033C05E2676DC5700D999CE /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		1033C0612676DCAF00D999CE /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		1033C0632676DCCE00D999CE /* UIColorExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExt.swift; sourceTree = "<group>"; };
+		1033C0682676DD8700D999CE /* CountryCodePickerUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCodePickerUI.swift; sourceTree = "<group>"; };
+		1033C06B2676E3FA00D999CE /* LoginDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDataViewModel.swift; sourceTree = "<group>"; };
+		1033C06E2676E46F00D999CE /* LoginData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginData.swift; sourceTree = "<group>"; };
+		1033C0712676E81000D999CE /* RoundedCorner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
+		1033C0722676E81000D999CE /* BottomSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomSheet.swift; sourceTree = "<group>"; };
+		1033C0732676E81000D999CE /* ViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +153,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1033C0672676DD4100D999CE /* CountryPickerView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,10 +198,13 @@
 		1033B2532674A7F200D999CE /* KyPayApp2 */ = {
 			isa = PBXGroup;
 			children = (
+				1033C0602676DC7D00D999CE /* Extensions */,
 				1033B2852674A82F00D999CE /* ApiClient */,
+				1033C06D2676E44E00D999CE /* Models */,
+				1033C06A2676E30600D999CE /* ViewModels */,
+				1033C05D2676DC3200D999CE /* Views */,
 				1033B2542674A7F200D999CE /* AppDelegate.swift */,
 				1033B2562674A7F200D999CE /* SceneDelegate.swift */,
-				1033B2582674A7F200D999CE /* ContentView.swift */,
 				1033B25A2674A7F300D999CE /* Assets.xcassets */,
 				1033B25F2674A7F300D999CE /* LaunchScreen.storyboard */,
 				1033B2622674A7F300D999CE /* Info.plist */,
@@ -357,6 +380,52 @@
 			path = Rapyd;
 			sourceTree = "<group>";
 		};
+		1033C05D2676DC3200D999CE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1033C0702676E81000D999CE /* bottomSheet */,
+				1033B2582674A7F200D999CE /* ContentView.swift */,
+				1033C05E2676DC5700D999CE /* LoginView.swift */,
+				1033C0682676DD8700D999CE /* CountryCodePickerUI.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1033C0602676DC7D00D999CE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1033C0632676DCCE00D999CE /* UIColorExt.swift */,
+				1033C0612676DCAF00D999CE /* Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		1033C06A2676E30600D999CE /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				1033C06B2676E3FA00D999CE /* LoginDataViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		1033C06D2676E44E00D999CE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1033C06E2676E46F00D999CE /* LoginData.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1033C0702676E81000D999CE /* bottomSheet */ = {
+			isa = PBXGroup;
+			children = (
+				1033C0712676E81000D999CE /* RoundedCorner.swift */,
+				1033C0722676E81000D999CE /* BottomSheet.swift */,
+				1033C0732676E81000D999CE /* ViewExtension.swift */,
+			);
+			path = bottomSheet;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -373,6 +442,9 @@
 			dependencies = (
 			);
 			name = KyPayApp2;
+			packageProductDependencies = (
+				1033C0662676DD4100D999CE /* CountryPickerView */,
+			);
 			productName = KyPayApp2;
 			productReference = 1033B2512674A7F200D999CE /* KyPayApp2.app */;
 			productType = "com.apple.product-type.application";
@@ -444,6 +516,9 @@
 				Base,
 			);
 			mainGroup = 1033B2482674A7F200D999CE;
+			packageReferences = (
+				1033C0652676DD4100D999CE /* XCRemoteSwiftPackageReference "CountryPickerView" */,
+			);
 			productRefGroup = 1033B2522674A7F200D999CE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -520,15 +595,24 @@
 				1033B2942674A82F00D999CE /* DictionaryExt.swift in Sources */,
 				1033B2962674A82F00D999CE /* UserAddress.swift in Sources */,
 				1033B2552674A7F200D999CE /* AppDelegate.swift in Sources */,
+				1033C0762676E81000D999CE /* ViewExtension.swift in Sources */,
 				1033B2972674A82F00D999CE /* UserWallet.swift in Sources */,
 				1033B29A2674A82F00D999CE /* DateFormatterExt.swift in Sources */,
 				1033B2952674A82F00D999CE /* UserImg.swift in Sources */,
+				1033C0752676E81000D999CE /* BottomSheet.swift in Sources */,
 				1033B2982674A82F00D999CE /* User.swift in Sources */,
+				1033C05F2676DC5700D999CE /* LoginView.swift in Sources */,
 				1033B29B2674A82F00D999CE /* ApiRequestHandler.swift in Sources */,
 				1033B2572674A7F200D999CE /* SceneDelegate.swift in Sources */,
+				1033C06C2676E3FA00D999CE /* LoginDataViewModel.swift in Sources */,
+				1033C06F2676E46F00D999CE /* LoginData.swift in Sources */,
 				1033B2992674A82F00D999CE /* UserPaymentTx.swift in Sources */,
 				1033B2932674A82F00D999CE /* Tester.swift in Sources */,
 				1033B2592674A7F200D999CE /* ContentView.swift in Sources */,
+				1033C0642676DCCE00D999CE /* UIColorExt.swift in Sources */,
+				1033C0622676DCAF00D999CE /* Extensions.swift in Sources */,
+				1033C0742676E81000D999CE /* RoundedCorner.swift in Sources */,
+				1033C0692676DD8700D999CE /* CountryCodePickerUI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -857,6 +941,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1033C0652676DD4100D999CE /* XCRemoteSwiftPackageReference "CountryPickerView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kizitonwose/CountryPickerView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1033C0662676DD4100D999CE /* CountryPickerView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1033C0652676DD4100D999CE /* XCRemoteSwiftPackageReference "CountryPickerView" */;
+			productName = CountryPickerView;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1033B2492674A7F200D999CE /* Project object */;
 }

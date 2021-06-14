@@ -38,13 +38,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
          
          //Tester.testFetchUserAddress()
          
-         Tester.testAddUserWallet()
+         //Tester.testAddUserWallet()
          
          //Tester.testSignIn()//phoneNumber: "+60128126882")
          // Create the SwiftUI view that provides the window contents.
        
         
-        let contentView = ContentView()
+        //Tester.testAccessOtherBundle()
+        
+        let contentView = LoginView().environmentObject(LoginDataViewModel())
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

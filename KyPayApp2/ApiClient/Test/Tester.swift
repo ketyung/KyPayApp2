@@ -6,7 +6,8 @@
 //
 
 import Foundation
-
+import UIKit
+import CountryPickerView
 
 extension Bundle {
     func decodeJson <T:Decodable> (_ type : T.Type ,
@@ -80,6 +81,17 @@ class Tester {
         print("t.id::\(t.id ?? "")::t.text ::\(t.text ?? ""):: more::\(String(describing: t.more))")
     }
      */
+    
+    
+    
+    static func testAccessOtherBundle(){
+        
+        let i = UIImage(named: "MY.png",
+            in: Bundle(for: CountryPickerView.self), compatibleWith: nil)
+        
+        print("i.sz::\(i?.size ?? .zero)")
+    }
+    
     
     static func testx <T:Decodable, U:Codable>( type : T, returnValue : U, completion : ((U)->Void)? = nil ) {
     
