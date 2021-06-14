@@ -64,6 +64,7 @@
 		1033C0742676E81000D999CE /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0712676E81000D999CE /* RoundedCorner.swift */; };
 		1033C0752676E81000D999CE /* BottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0722676E81000D999CE /* BottomSheet.swift */; };
 		1033C0762676E81000D999CE /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0732676E81000D999CE /* ViewExtension.swift */; };
+		1033C0792676F3C500D999CE /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 1033C0782676F3C500D999CE /* SwiftUIX */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -154,6 +155,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1033C0672676DD4100D999CE /* CountryPickerView in Frameworks */,
+				1033C0792676F3C500D999CE /* SwiftUIX in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,6 +446,7 @@
 			name = KyPayApp2;
 			packageProductDependencies = (
 				1033C0662676DD4100D999CE /* CountryPickerView */,
+				1033C0782676F3C500D999CE /* SwiftUIX */,
 			);
 			productName = KyPayApp2;
 			productReference = 1033B2512674A7F200D999CE /* KyPayApp2.app */;
@@ -518,6 +521,7 @@
 			mainGroup = 1033B2482674A7F200D999CE;
 			packageReferences = (
 				1033C0652676DD4100D999CE /* XCRemoteSwiftPackageReference "CountryPickerView" */,
+				1033C0772676F3C500D999CE /* XCRemoteSwiftPackageReference "SwiftUIX" */,
 			);
 			productRefGroup = 1033B2522674A7F200D999CE /* Products */;
 			projectDirPath = "";
@@ -951,6 +955,14 @@
 				minimumVersion = 3.2.0;
 			};
 		};
+		1033C0772676F3C500D999CE /* XCRemoteSwiftPackageReference "SwiftUIX" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftUIX/SwiftUIX";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.7;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -958,6 +970,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1033C0652676DD4100D999CE /* XCRemoteSwiftPackageReference "CountryPickerView" */;
 			productName = CountryPickerView;
+		};
+		1033C0782676F3C500D999CE /* SwiftUIX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1033C0772676F3C500D999CE /* XCRemoteSwiftPackageReference "SwiftUIX" */;
+			productName = SwiftUIX;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
