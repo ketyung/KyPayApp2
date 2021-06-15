@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 class UserViewModel : NSObject, ObservableObject {
     
@@ -80,4 +81,17 @@ class UserViewModel : NSObject, ObservableObject {
         }
     }
     
+}
+
+extension UserViewModel {
+    
+    func hasSignedIn() -> Bool {
+        
+        if let user = KDS.shared.getUser() , let auser = Auth.auth().currentUser {
+            
+            return auser.phoneNumber == user.phoneNumber
+        }
+        
+        return false
+    }
 }

@@ -75,6 +75,11 @@
 		1033C09426782B5700D999CE /* OtpText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C09326782B5700D999CE /* OtpText.swift */; };
 		1033C096267846E500D999CE /* FirstSignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C095267846E500D999CE /* FirstSignInView.swift */; };
 		1033C0982678477600D999CE /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0972678477600D999CE /* UserViewModel.swift */; };
+		1033C09A26784FC300D999CE /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C09926784FC300D999CE /* HomeView.swift */; };
+		1033C09C2678509D00D999CE /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C09B2678509D00D999CE /* SettingsView.swift */; };
+		1033C09E267850D900D999CE /* SendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C09D267850D900D999CE /* SendView.swift */; };
+		1033C0A02678510100D999CE /* RequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C09F2678510100D999CE /* RequestView.swift */; };
+		1033C0A32678514500D999CE /* HomeTabbedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0A22678514500D999CE /* HomeTabbedView.swift */; };
 		94C85EFD927289A72B96857C /* Pods_KyPayApp2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD2A35EA43E8F034705E971 /* Pods_KyPayApp2.framework */; };
 /* End PBXBuildFile section */
 
@@ -170,6 +175,11 @@
 		1033C09326782B5700D999CE /* OtpText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpText.swift; sourceTree = "<group>"; };
 		1033C095267846E500D999CE /* FirstSignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstSignInView.swift; sourceTree = "<group>"; };
 		1033C0972678477600D999CE /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		1033C09926784FC300D999CE /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		1033C09B2678509D00D999CE /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		1033C09D267850D900D999CE /* SendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendView.swift; sourceTree = "<group>"; };
+		1033C09F2678510100D999CE /* RequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestView.swift; sourceTree = "<group>"; };
+		1033C0A22678514500D999CE /* HomeTabbedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabbedView.swift; sourceTree = "<group>"; };
 		1B47377B496C6F0F1022FFD4 /* Pods-KyPayApp2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.debug.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.debug.xcconfig"; sourceTree = "<group>"; };
 		6F523BC3D4353462922B31B9 /* Pods-KyPayApp2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.release.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -424,6 +434,7 @@
 		1033C05D2676DC3200D999CE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1033C0A12678510600D999CE /* homeViews */,
 				1033C08626771A9900D999CE /* countryPicker */,
 				1033C0702676E81000D999CE /* bottomSheet */,
 				1033B2582674A7F200D999CE /* ContentView.swift */,
@@ -497,6 +508,18 @@
 				1033C08D26773C0600D999CE /* KCDataStore.swift */,
 			);
 			path = DataStore;
+			sourceTree = "<group>";
+		};
+		1033C0A12678510600D999CE /* homeViews */ = {
+			isa = PBXGroup;
+			children = (
+				1033C09B2678509D00D999CE /* SettingsView.swift */,
+				1033C09F2678510100D999CE /* RequestView.swift */,
+				1033C09D267850D900D999CE /* SendView.swift */,
+				1033C09926784FC300D999CE /* HomeView.swift */,
+				1033C0A22678514500D999CE /* HomeTabbedView.swift */,
+			);
+			path = homeViews;
 			sourceTree = "<group>";
 		};
 		55C51AF7366AAFF575FED9C7 /* Frameworks */ = {
@@ -726,7 +749,9 @@
 				1033B2972674A82F00D999CE /* UserWallet.swift in Sources */,
 				1033B29A2674A82F00D999CE /* DateFormatterExt.swift in Sources */,
 				1033C090267749F600D999CE /* OTPView.swift in Sources */,
+				1033C0A32678514500D999CE /* HomeTabbedView.swift in Sources */,
 				1033B2952674A82F00D999CE /* UserImg.swift in Sources */,
+				1033C09E267850D900D999CE /* SendView.swift in Sources */,
 				1033C0752676E81000D999CE /* BottomSheet.swift in Sources */,
 				1033B2982674A82F00D999CE /* User.swift in Sources */,
 				1033C05F2676DC5700D999CE /* LoginView.swift in Sources */,
@@ -735,6 +760,8 @@
 				1033C0982678477600D999CE /* UserViewModel.swift in Sources */,
 				1033B2572674A7F200D999CE /* SceneDelegate.swift in Sources */,
 				1033C06C2676E3FA00D999CE /* LoginDataViewModel.swift in Sources */,
+				1033C09A26784FC300D999CE /* HomeView.swift in Sources */,
+				1033C0A02678510100D999CE /* RequestView.swift in Sources */,
 				1033C06F2676E46F00D999CE /* LoginData.swift in Sources */,
 				1033C09426782B5700D999CE /* OtpText.swift in Sources */,
 				1033C096267846E500D999CE /* FirstSignInView.swift in Sources */,
@@ -743,6 +770,7 @@
 				1033C08B26773A5000D999CE /* PhoneAuthenticator.swift in Sources */,
 				1033C08526771A7D00D999CE /* SearchBar.swift in Sources */,
 				1033B2592674A7F200D999CE /* ContentView.swift in Sources */,
+				1033C09C2678509D00D999CE /* SettingsView.swift in Sources */,
 				1033C0642676DCCE00D999CE /* UIColorExt.swift in Sources */,
 				1033C0812677011400D999CE /* Country.swift in Sources */,
 				1033C0622676DCAF00D999CE /* Extensions.swift in Sources */,

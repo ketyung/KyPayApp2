@@ -8,9 +8,31 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @EnvironmentObject private var viewModel : UserViewModel
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        
+        view()
+    }
+}
+
+
+extension ContentView {
+    
+    
+    @ViewBuilder
+    private func view() -> some View {
+        
+        if viewModel.hasSignedIn() {
+            
+            HomeTabbedView()
+        }
+        else {
+            
+            LoginView()
+        }
+        
     }
 }
 
