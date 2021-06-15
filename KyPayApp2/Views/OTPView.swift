@@ -11,13 +11,8 @@ import Combine
 
 struct OTPView : View {
     
-    @State private var number1 : String = ""
-    @State private var number2 : String = ""
-    @State private var number3 : String = ""
-    @State private var number4 : String = ""
-    @State private var number5 : String = ""
-    @State private var number6 : String = ""
-   
+    @ObservedObject private var viewModel = OtpTextViewModel()
+    
     @State private var timeToCountDown : TimeInterval = 120
    
     private var timeForDisplay : String {
@@ -74,20 +69,14 @@ extension OTPView {
         
         HStack (spacing: 10){
             
-            textField(bind: $number1, isFirstResponder: true)
-            .onReceive(Just($number1)) { _ in
-                limitText(bind: $number1)
-            }
+            textField(bind: $viewModel.number1, isFirstResponder: (viewModel.focusableIndex == 0))
             
-            textField(bind: $number2)
-            .onReceive(Just($number2)) { _ in
-                limitText(bind: $number2)
-            }
+            textField(bind: $viewModel.number2, isFirstResponder: (viewModel.focusableIndex == 1))
                 
-            textField(bind: $number3)
-            textField(bind: $number4)
-            textField(bind: $number5)
-            textField(bind: $number6)
+            textField(bind: $viewModel.number3, isFirstResponder: (viewModel.focusableIndex == 2))
+            textField(bind: $viewModel.number4, isFirstResponder: (viewModel.focusableIndex == 3))
+            textField(bind: $viewModel.number5, isFirstResponder: (viewModel.focusableIndex == 4))
+            textField(bind: $viewModel.number6, isFirstResponder: (viewModel.focusableIndex == 5))
          
         }
         .padding()
@@ -105,9 +94,9 @@ extension OTPView {
         .isFirstResponder(isFirstResponder)
         .width(w)
         .height(w)
+        .multilineTextAlignment(.center)
         .foregroundColor(.black)
         .background(Color.white)
-       
         
     }
     

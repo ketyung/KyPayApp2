@@ -31,6 +31,7 @@ class PhoneAuthenticator : NSObject{
            
                 KDS.shared.saveFBVid(vid)
                
+                print("vid::\(vid)")
             }
             
         }

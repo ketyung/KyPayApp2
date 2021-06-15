@@ -39,7 +39,7 @@ struct LoginView : View {
             CountryCodePickerUI()
             
         }
-        .bottomSheet(isPresented: $viewModel.isOTPViewPresented, height: UIScreen.main.bounds.height, showGrayOverlay: true, content: {
+        .bottomSheet(isPresented: $viewModel.isOTPViewPresented, height: UIScreen.main.bounds.height + 50, showGrayOverlay: true, content: {
             
             OTPView()
         })
