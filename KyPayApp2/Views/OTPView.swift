@@ -10,6 +10,8 @@ import SwiftUIX
 import Combine
 
 struct OTPView : View {
+  
+    @EnvironmentObject private var loginViewModel : LoginDataViewModel
     
     @ObservedObject private var viewModel = OtpTextViewModel()
     
@@ -28,7 +30,10 @@ struct OTPView : View {
         VStack(spacing:20){
             
             Spacer()
-            .frame(height:100)
+            .frame(height:30)
+
+            closeButton()
+          
             
             Text("Please enter the 6-digit verification code below:")
             .font(.system(size: 20))
@@ -105,6 +110,33 @@ extension OTPView {
             text.wrappedValue = String(text.wrappedValue.prefix(upper))
             print("text.wt::\(text.wrappedValue)")
         }
+    }
+    
+    
+    private func closeButton() -> some View {
+        
+        HStack(spacing:20) {
+       
+            Spacer()
+            .frame(width:5)
+            
+            Button(action: {
+                withAnimation {
+                    loginViewModel.isOTPViewPresented = false
+                }
+            }){
+                
+                Image(systemName: "x.circle.fill")
+                .resizable()
+                .frame(width:20, height: 20, alignment: .topLeading)
+                .foregroundColor(.black)
+                
+            }
+            
+            Spacer()
+        }
+        
+       
     }
 }
 

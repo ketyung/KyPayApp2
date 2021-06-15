@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import FirebaseAuth
 
 class LoginDataViewModel : NSObject, ObservableObject {
     
@@ -85,22 +84,16 @@ class LoginDataViewModel : NSObject, ObservableObject {
 }
 
 
-extension LoginDataViewModel : AuthUIDelegate {
-    
-    func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
-    
-        loginData.isOTPViewPresented = true
-    }
-    
-    func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
-        
-        loginData.isOTPViewPresented = false 
-    }
+extension LoginDataViewModel {
     
     
     func sendOTP(phoneNumber : String){
         
-        PA.shared.sendOTP(phoneNumber: phoneNumber, delegate: self)
+        PA.shared.sendOTP(phoneNumber: phoneNumber, completion: {
+            
+            self.loginData.isOTPViewPresented = true
+            
+        })
     }
     
 }

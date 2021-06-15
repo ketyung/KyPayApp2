@@ -16,9 +16,9 @@ class PhoneAuthenticator : NSObject{
     
     static let shared = PA()
     
-    func sendOTP(phoneNumber : String, delegate : AuthUIDelegate? = nil ){
+    func sendOTP(phoneNumber : String, completion : ( ()->Void )? = nil  ){
         
-        PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: delegate) {
+        PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) {
           verificationID, error in
           
             if let error = error {
@@ -27,11 +27,15 @@ class PhoneAuthenticator : NSObject{
                 return
             }
 
+          
             if let vid = verificationID {
            
                 KDS.shared.saveFBVid(vid)
-               
-                print("vid::\(vid)")
+           
+                if let completion = completion {
+                    
+                    completion()
+                }
             }
             
         }
