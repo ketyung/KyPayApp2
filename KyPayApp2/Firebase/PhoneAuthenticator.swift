@@ -51,7 +51,7 @@ class PhoneAuthenticator : NSObject{
 extension PhoneAuthenticator {
     
     
-    func signIn(_ verificationCode : String) {
+    func signIn(verificationCode : String, completion: ((String?,Error?) -> Void)? = nil ) {
         
         if let vid = KDS.shared.getFBVid() {
    
@@ -65,11 +65,16 @@ extension PhoneAuthenticator {
                 
                 if let err = err {
     
-                    print("Err::!\(err)")
+                    completion?(nil, err)
+                    
                     return
                 }
                 
-                print("authres?.user.phoneNumber::\(authres?.user.phoneNumber ?? "")")
+                completion?(authres?.user.phoneNumber, nil)
+            
+                KDS.shared.removeFBVid()
+                
+                // print("authres?.user.phoneNumber::\(authres?.user.phoneNumber ?? "")")
                 
             })
             

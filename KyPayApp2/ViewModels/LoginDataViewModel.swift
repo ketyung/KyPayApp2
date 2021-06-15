@@ -114,3 +114,53 @@ extension LoginDataViewModel {
     }
     
 }
+
+
+extension LoginDataViewModel {
+    
+    
+    func signIn (verificationCode : String, completion : ((Bool,Error?)->Void)? = nil  ){
+        
+        PA.shared.signIn(verificationCode: verificationCode, completion: {
+            phoneNumber, err in
+            
+            if let err = err {
+                
+                completion?(false, err)
+                return
+            }
+            
+            if let phone = phoneNumber {
+           
+                ARH.shared.fetchUser(phoneNumber: phone, completion: {
+                    
+                    res in
+                    
+                    switch (res) {
+                    
+                        case .failure(let err) :
+                            if let err = err as? ApiError, err.statusCode == 404 {
+                                // indicate first sign in
+                                completion?(true, nil)
+                            }
+                            else {
+                                
+                                completion?(false, err)
+                            }
+                            
+                        case .success(let rr) :
+                            
+                            // save the user info 
+                            KDS.shared.saveUser(rr)
+                            completion?(false, nil)
+                            
+                            
+                    }
+                    
+                })
+               
+            }
+            
+        })
+    }
+}

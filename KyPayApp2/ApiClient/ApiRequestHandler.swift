@@ -14,6 +14,8 @@ struct ApiError : Error {
     
     var errorText : String?
     
+    var statusCode : Int?
+    
     public var description: String {
         
         if let error = errorText {
@@ -187,7 +189,7 @@ extension ApiRequestHandler {
                         
                         if let completion = completion {
                             
-                            completion(.failure(ApiError(errorText: "Response status code :\(httpResponse.statusCode)")))
+                            completion(.failure(ApiError(errorText: "Response status code :\(httpResponse.statusCode)", statusCode: httpResponse.statusCode)))
                         }
                     }
                     
@@ -286,7 +288,7 @@ extension ApiRequestHandler {
                
                         if let completion = completion {
                        
-                            completion(.failure(ApiError(errorText: "Response status code :\(httpResponse.statusCode)")))
+                            completion(.failure(ApiError(errorText: "Response status code :\(httpResponse.statusCode)", statusCode: httpResponse.statusCode)))
                         }
                         
                         return 
@@ -465,7 +467,7 @@ extension ApiRequestHandler {
                             
                             if let completion = completion {
                                 
-                                completion(nil, ApiError(errorText: "Obtaining token error :: response code :\(httpResponse.statusCode)"))
+                                completion(nil, ApiError(errorText: "Obtaining token error :: response code :\(httpResponse.statusCode)", statusCode: httpResponse.statusCode))
                             }
                             
                             return
