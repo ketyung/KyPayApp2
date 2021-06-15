@@ -12,6 +12,7 @@ struct OtpText {
     
     var focusableIndex : Int = 0
     
+    
     var number1 : String = "" {
         
         didSet{
@@ -19,8 +20,12 @@ struct OtpText {
      
                 number1 = String(number1.prefix(1))
             }
-            focusableIndex = 1
-       
+            else if number1.count == 1 && number1.trim() != "" {
+         
+                focusableIndex = 1
+           
+            }
+         
         }
     }
     
@@ -32,8 +37,10 @@ struct OtpText {
        
                 number2 = String(number2.prefix(1))
             }
-            focusableIndex = 2
-       
+            else if number2.count == 1 && number2.trim() != "" {
+        
+                focusableIndex = 2
+            }
         }
     }
     
@@ -45,7 +52,10 @@ struct OtpText {
       
                 number3 = String(number3.prefix(1))
             }
-            focusableIndex = 3
+            else if number3.count == 1 && number3.trim() != "" {
+                
+                focusableIndex = 3
+            }
        
         }
     }
@@ -59,8 +69,10 @@ struct OtpText {
                 
                 number4 = String(number4.prefix(1))
             }
-            focusableIndex = 4
-      
+            else if number4.count == 1 && number4.trim() != "" {
+           
+                focusableIndex = 4
+            }
         }
     }
     
@@ -72,8 +84,11 @@ struct OtpText {
      
                 number5 = String(number5.prefix(1))
             }
-            focusableIndex = 5
-        
+            else if number5.count == 1 && number5.trim() != "" {
+           
+                focusableIndex = 5
+            }
+           
         }
     }
     
@@ -85,10 +100,12 @@ struct OtpText {
             if number6.count > 1 {
       
                 number6 = String(number6.prefix(1))
-                
             }
-            focusableIndex = 0
-        
+            else if number6.count == 1 && number6.trim() != "" {
+           
+                focusableIndex = 0
+            }
+           
         }
     }
     

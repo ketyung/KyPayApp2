@@ -12,7 +12,7 @@ import Combine
 struct OTPView : View {
   
     @EnvironmentObject private var loginViewModel : LoginDataViewModel
-    
+ 
     @ObservedObject private var viewModel = OtpTextViewModel()
     
     private static let timeIntervalToResend : TimeInterval = 120
@@ -20,7 +20,17 @@ struct OTPView : View {
     @State private var timeToCountDown : TimeInterval = OTPView.timeIntervalToResend
     
     @State private var resendEnabled : Bool = false
-   
+    
+    @State private var invalidOtpAlertPresented : Bool = false
+    
+    @State private var invalidOtpMessage : String = "Invalid Verification Code!!"
+    
+    @State private var pushToFirstSignIn : Bool = false
+    
+    @State private var pushToHome : Bool = false
+    
+    @State private var activityIndicatorPresented : Bool = false
+    
     private var timeForDisplay : String {
         
         let timeComponents = self.secondsToHoursMinutesSeconds(seconds: Int(self.timeToCountDown))
@@ -35,6 +45,11 @@ struct OTPView : View {
       
             otpScreenView()
         }
+        .alert(isPresented: $invalidOtpAlertPresented){
+            
+            Alert(title: Text("Oppps!"),message:Text(invalidOtpMessage))
+        }
+        .progressView(isShowing: $activityIndicatorPresented)
     }
 }
 
@@ -63,8 +78,10 @@ extension OTPView {
             Spacer()
             .frame(height:30)
             
-            
             resendText()
+            
+            firstScreenNavLink()
+            homeScreenNavLink()
             
             Spacer()
         }
@@ -122,7 +139,7 @@ extension OTPView {
     private func limitText(bind text : Binding<String>, upper: Int = 1 ) {
         if text.wrappedValue.count > upper {
             text.wrappedValue = String(text.wrappedValue.prefix(upper))
-            print("text.wt::\(text.wrappedValue)")
+           // print("text.wt::\(text.wrappedValue)")
         }
     }
 }
@@ -131,12 +148,57 @@ extension OTPView {
     
     private func proceedButton() -> some View {
         
-        //Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/){
-        NavigationLink(destination: FirstSignInView()){
+       
+        Button(action: {
+            
+            if viewModel.text.count == 6 {
+                
+                
+                activityIndicatorPresented = true
+                loginViewModel.signIn(verificationCode: viewModel.text, completion: {
+                    
+                    firstSignIn , err in
+                    
+                    if let err = err {
+                        
+                        invalidOtpMessage = err.localizedDescription
+                        self.invalidOtpAlertPresented = true
+                        self.activityIndicatorPresented = false
+                        
+                        return
+                    }
+                    
+                    if firstSignIn {
+                        
+                        self.pushToFirstSignIn = true
+                        self.pushToHome = false
+                        
+                        print("push.2.1st.signin")
+                    }
+                    else {
+                        
+                        self.pushToFirstSignIn = false
+                        self.pushToHome = true
+                        
+                        print("push2.home")
+                    }
+                    
+                    self.activityIndicatorPresented = false
+                    
+                    
+                })
+            }
+            else {
+                
+                invalidOtpMessage = "Invalid Verification Code!!"
+                self.invalidOtpAlertPresented = true 
+            }
+            
+        }){
             
             Text("Proceed")
         }
-       
+        
     }
     
     private func closeButton() -> some View {
@@ -186,6 +248,20 @@ extension OTPView {
          
         }
         
+    }
+}
+
+extension OTPView {
+    
+    private func firstScreenNavLink() -> some View {
+        
+        NavigationLink(destination: FirstSignInView(), isActive : $pushToFirstSignIn){}
+    }
+    
+    
+    private func homeScreenNavLink() -> some View {
+        
+        NavigationLink(destination: ContentView(), isActive : $pushToHome){}
     }
 }
 

@@ -96,4 +96,11 @@ class OtpTextViewModel : NSObject, ObservableObject {
         }
     }
    
+    
+    var text : String {
+        
+        "\(number1)\(number2)\(number3)\(number4)\(number5)\(number6)"
+    }
+    
+    
 }

@@ -53,7 +53,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let contentView = ContentView().environmentObject(LoginDataViewModel()).environmentObject(UserViewModel())
 
-           // OTPView().environmentObject(LoginDataViewModel()).environmentObject(UserViewModel())
+           //OTPView().environmentObject(LoginDataViewModel()).environmentObject(UserViewModel())
             //LoginView().environmentObject(LoginDataViewModel()).environmentObject(UserViewModel())
 
             //HomeTabbedView().environmentObject(UserViewModel())

@@ -69,4 +69,10 @@ extension String {
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailTest.evaluate(with: self)
     }
+    
+    
+    func trim() -> String {
+        
+        return self.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
 }

@@ -80,6 +80,8 @@
 		1033C09E267850D900D999CE /* SendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C09D267850D900D999CE /* SendView.swift */; };
 		1033C0A02678510100D999CE /* RequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C09F2678510100D999CE /* RequestView.swift */; };
 		1033C0A32678514500D999CE /* HomeTabbedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0A22678514500D999CE /* HomeTabbedView.swift */; };
+		1033C0A62678A87C00D999CE /* ProgressViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0A52678A87C00D999CE /* ProgressViewModifier.swift */; };
+		1033C0A82678A8CD00D999CE /* CustomActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0A72678A8CD00D999CE /* CustomActivityIndicator.swift */; };
 		94C85EFD927289A72B96857C /* Pods_KyPayApp2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD2A35EA43E8F034705E971 /* Pods_KyPayApp2.framework */; };
 /* End PBXBuildFile section */
 
@@ -180,6 +182,8 @@
 		1033C09D267850D900D999CE /* SendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendView.swift; sourceTree = "<group>"; };
 		1033C09F2678510100D999CE /* RequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestView.swift; sourceTree = "<group>"; };
 		1033C0A22678514500D999CE /* HomeTabbedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabbedView.swift; sourceTree = "<group>"; };
+		1033C0A52678A87C00D999CE /* ProgressViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewModifier.swift; sourceTree = "<group>"; };
+		1033C0A72678A8CD00D999CE /* CustomActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActivityIndicator.swift; sourceTree = "<group>"; };
 		1B47377B496C6F0F1022FFD4 /* Pods-KyPayApp2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.debug.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.debug.xcconfig"; sourceTree = "<group>"; };
 		6F523BC3D4353462922B31B9 /* Pods-KyPayApp2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.release.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -246,6 +250,7 @@
 		1033B2532674A7F200D999CE /* KyPayApp2 */ = {
 			isa = PBXGroup;
 			children = (
+				1033C0A42678A7F600D999CE /* Modifiers */,
 				1033C08C26773AC800D999CE /* DataStore */,
 				1033C08926773A3D00D999CE /* Firebase */,
 				1033C0602676DC7D00D999CE /* Extensions */,
@@ -441,6 +446,7 @@
 				1033C05E2676DC5700D999CE /* LoginView.swift */,
 				1033C095267846E500D999CE /* FirstSignInView.swift */,
 				1033C08F267749F600D999CE /* OTPView.swift */,
+				1033C0A72678A8CD00D999CE /* CustomActivityIndicator.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -520,6 +526,14 @@
 				1033C0A22678514500D999CE /* HomeTabbedView.swift */,
 			);
 			path = homeViews;
+			sourceTree = "<group>";
+		};
+		1033C0A42678A7F600D999CE /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				1033C0A52678A87C00D999CE /* ProgressViewModifier.swift */,
+			);
+			path = Modifiers;
 			sourceTree = "<group>";
 		};
 		55C51AF7366AAFF575FED9C7 /* Frameworks */ = {
@@ -750,6 +764,7 @@
 				1033B29A2674A82F00D999CE /* DateFormatterExt.swift in Sources */,
 				1033C090267749F600D999CE /* OTPView.swift in Sources */,
 				1033C0A32678514500D999CE /* HomeTabbedView.swift in Sources */,
+				1033C0A62678A87C00D999CE /* ProgressViewModifier.swift in Sources */,
 				1033B2952674A82F00D999CE /* UserImg.swift in Sources */,
 				1033C09E267850D900D999CE /* SendView.swift in Sources */,
 				1033C0752676E81000D999CE /* BottomSheet.swift in Sources */,
@@ -776,6 +791,7 @@
 				1033C0622676DCAF00D999CE /* Extensions.swift in Sources */,
 				1033C08E26773C0600D999CE /* KCDataStore.swift in Sources */,
 				1033C0742676E81000D999CE /* RoundedCorner.swift in Sources */,
+				1033C0A82678A8CD00D999CE /* CustomActivityIndicator.swift in Sources */,
 				1033C0692676DD8700D999CE /* CountryCodePickerUI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

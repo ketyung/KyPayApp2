@@ -10,7 +10,7 @@ import FirebaseAuth
 
 class UserViewModel : NSObject, ObservableObject {
     
-    @Published private var user = User()
+    @Published private var user = loadUser()
     
     var id : String {
         
@@ -94,4 +94,18 @@ extension UserViewModel {
         
         return false
     }
+    
+    
+    private static func loadUser() -> User{
+        
+        if let u = KDS.shared.getUser() {
+            
+            return u
+        }
+        
+        return User()
+    }
 }
+
+
+
