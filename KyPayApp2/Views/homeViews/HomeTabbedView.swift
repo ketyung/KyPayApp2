@@ -16,27 +16,45 @@ struct HomeTabbedView : View {
         TabView(selection: $selectedTab ){
            
             HomeView()
-           .tabItem {Label("Home", systemImage: "house")}
+           .tabItem {tabLabel("Home", systemImage: "house")}
            .tag(0)
            
         
            SendView()
-           .tabItem {Label("Send Money", systemImage: "arrow.right.circle")}
+           .tabItem {tabLabel("Send Money", systemImage: "arrow.right.circle")}
            .tag(1)
            
             
            RequestView()
-           .tabItem {Label("Request Money", systemImage: "arrow.left.circle")}
+           .tabItem {tabLabel("Request Money", systemImage: "arrow.left.circle")}
            .tag(2)
             
             
            SettingsView()
-           .tabItem {Label("Settings", systemImage: "gear")}
+           .tabItem {tabLabel("Settings", systemImage: "gear")}
            .tag(3)
        }
        .onAppear{
            // always reset back to zero
            self.selectedTab = 0
        }
+    }
+}
+
+extension HomeTabbedView {
+    
+    @ViewBuilder
+    func tabLabel(_ text : String , systemImage : String ) -> some View {
+        
+        if #available(iOS 14.0, *) {
+            Label(text, systemImage: systemImage)
+        } else {
+            
+            VStack {
+    
+                Text(text)
+                Image(systemName: systemImage)
+            }
+        }
     }
 }
