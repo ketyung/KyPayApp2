@@ -23,7 +23,11 @@ struct LoginView : View {
         VStack{
             
             Spacer()
-            .frame(height:250)
+            .frame(height:180)
+            
+            Text("Welcome")
+            .font(.system(.largeTitle, design: .rounded))
+            .foregroundColor(.white)
             
             signInPanel()
             
