@@ -16,14 +16,18 @@ class PhoneAuthenticator : NSObject{
     
     static let shared = PA()
     
-    func sendOTP(phoneNumber : String, completion : ( ()->Void )? = nil  ){
+    func sendOTP(phoneNumber : String, completion : ( (Error?)->Void )? = nil  ){
         
         PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) {
           verificationID, error in
           
             if let error = error {
            
-                print("auth.err:\(error)")
+                if let completion = completion {
+                    
+                    completion(error)
+                }
+           
                 return
             }
 
@@ -34,7 +38,7 @@ class PhoneAuthenticator : NSObject{
            
                 if let completion = completion {
                     
-                    completion()
+                    completion(nil)
                 }
             }
             

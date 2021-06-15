@@ -87,11 +87,28 @@ class LoginDataViewModel : NSObject, ObservableObject {
 extension LoginDataViewModel {
     
     
-    func sendOTP(phoneNumber : String){
+    func sendOTP(phoneNumber : String, completion : ( (Error?)->Void )? = nil ){
         
-        PA.shared.sendOTP(phoneNumber: phoneNumber, completion: {
+        PA.shared.sendOTP(phoneNumber: phoneNumber, completion: { err in
+            
+            if let err = err {
+                
+                if let completion = completion {
+                    
+                    completion(err)
+                }
+                
+                return
+            }
             
             self.loginData.isOTPViewPresented = true
+            
+            
+            if let completion = completion {
+                
+                completion(nil)
+            }
+        
             
         })
     }
