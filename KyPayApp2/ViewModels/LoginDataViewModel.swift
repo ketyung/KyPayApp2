@@ -140,7 +140,7 @@ extension LoginDataViewModel {
                     
                         case .failure(let err) :
                             if let err = err as? ApiError, err.statusCode == 404 {
-                                // indicate first sign in
+                                // indicate first sign in if NOT found!
                                 completion?(true, nil)
                             }
                             else {
@@ -150,10 +150,9 @@ extension LoginDataViewModel {
                             
                         case .success(let rr) :
                             
-                            // save the user info 
+                            // save the user info
                             KDS.shared.saveUser(rr)
                             completion?(false, nil)
-                            
                             
                     }
                     

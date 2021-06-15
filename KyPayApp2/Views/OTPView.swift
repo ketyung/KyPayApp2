@@ -31,6 +31,18 @@ struct OTPView : View {
     
     var body : some View {
         
+        NavigationView {
+      
+            otpScreenView()
+        }
+    }
+}
+
+extension OTPView {
+    
+    
+    private func otpScreenView() -> some View {
+        
         VStack(spacing:20){
             
             Spacer()
@@ -45,14 +57,12 @@ struct OTPView : View {
             
             otpTextFields()
             
-            
-            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/){
-                
-                Text("Proceed")
-            }
+
+            proceedButton()
             
             Spacer()
             .frame(height:30)
+            
             
             resendText()
             
@@ -115,7 +125,19 @@ extension OTPView {
             print("text.wt::\(text.wrappedValue)")
         }
     }
+}
+
+extension OTPView {
     
+    private func proceedButton() -> some View {
+        
+        //Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/){
+        NavigationLink(destination: FirstSignInView()){
+            
+            Text("Proceed")
+        }
+       
+    }
     
     private func closeButton() -> some View {
         
