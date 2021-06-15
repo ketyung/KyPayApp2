@@ -13,6 +13,10 @@ struct LoginView : View {
     
     @EnvironmentObject private var viewModel : LoginDataViewModel
     
+    @State private var signInButtonDisabled : Bool = false
+    
+    @State private var invalidPhoneAlertPresented : Bool = false
+    
     
     var body: some View {
         
@@ -27,6 +31,7 @@ struct LoginView : View {
             .frame(height:30)
             
             signInButton()
+            .disabled(signInButtonDisabled)
             
             Spacer()
         }
@@ -43,6 +48,13 @@ struct LoginView : View {
             
             OTPView()
         })
+        .alert(isPresented: $invalidPhoneAlertPresented){
+            
+            Alert(
+               title: Text("Error!"),
+               message:Text("Invalid Phone Number!!")
+            )
+        }
         
     }
 }
@@ -139,9 +151,7 @@ extension LoginView {
         
         Button(action: {
             
-            viewModel.phoneNumberIsFirstResponder = false
-            
-            viewModel.sendOTP(phoneNumber: "\(viewModel.selectedCountry?.dialCode ?? "+60")\(viewModel.enteredPhoneNumber)")
+            self.signInButtonAction()
             
         }){
             
@@ -150,11 +160,40 @@ extension LoginView {
             .font(Font.system(size: 20, design: .rounded))
               
         }
+        
     }
+    
 }
 
 
 extension LoginView {
+    
+    private func signInButtonAction(){
+        
+        viewModel.phoneNumberIsFirstResponder = false
+        
+        let phoneNum = "\(viewModel.selectedCountry?.dialCode ?? "+60")\(viewModel.enteredPhoneNumber)"
+        
+        if phoneNum.isValidPhone() {
+       
+            viewModel.sendOTP(phoneNumber: phoneNum)
+            
+            signInButtonDisabled = true
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
+                
+                self.signInButtonDisabled = false
+            })
+        }
+        else {
+            withAnimation {
+       
+                invalidPhoneAlertPresented = true
+            }
+        }
+        
+       
+    }
     
     
     private func selectedCountryImage() -> UIImage? {

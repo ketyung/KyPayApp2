@@ -15,7 +15,11 @@ struct OTPView : View {
     
     @ObservedObject private var viewModel = OtpTextViewModel()
     
-    @State private var timeToCountDown : TimeInterval = 120
+    private static let timeIntervalToResend : TimeInterval = 120
+    
+    @State private var timeToCountDown : TimeInterval = OTPView.timeIntervalToResend
+    
+    @State private var resendEnabled : Bool = false
    
     private var timeForDisplay : String {
         
@@ -50,7 +54,7 @@ struct OTPView : View {
             Spacer()
             .frame(height:30)
             
-            Text("Code will be resent after \(timeForDisplay)")
+            resendText()
             
             Spacer()
         }
@@ -135,8 +139,31 @@ extension OTPView {
             
             Spacer()
         }
+        .hidden(!resendEnabled)
         
        
+    }
+    
+    
+    @ViewBuilder
+    private func resendText() -> some View {
+        
+        if resendEnabled {
+            
+            Button(action: {
+                
+                self.resendEnabled = false
+            }){
+                
+                Text("Resend")
+            }
+        }
+        else {
+     
+            Text("Code will be resent after \(timeForDisplay)")
+         
+        }
+        
     }
 }
 
@@ -156,20 +183,25 @@ extension OTPView {
     private func startCountingDown(){
         
        
-        if self.timeToCountDown > 0 && self.timeToCountDown < 20 {
+        if self.timeToCountDown > 0 && self.timeToCountDown < OTPView.timeIntervalToResend {
             
             return
         }
         
         if self.timeToCountDown <= 0 {
-            self.timeToCountDown = 20
+            self.timeToCountDown = OTPView.timeIntervalToResend
+            self.resendEnabled = true
         }
         
         Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
            
-            
             if self.timeToCountDown <= 0 {
                 timer.invalidate()
+                withAnimation {
+          
+                    self.timeToCountDown = OTPView.timeIntervalToResend
+                    self.resendEnabled = true
+                }
             }
             else {
                 self.timeToCountDown -= 1

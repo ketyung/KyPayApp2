@@ -52,6 +52,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
        // Tester.testPhoneAuth()
         
         let contentView =
+        //OTPView().environmentObject(LoginDataViewModel())
         LoginView().environmentObject(LoginDataViewModel())
 
         // Use a UIHostingController as window root view controller.
