@@ -110,4 +110,6 @@ struct OtpText {
     }
     
     
+    var resendEnabled : Bool = false 
+    
 }

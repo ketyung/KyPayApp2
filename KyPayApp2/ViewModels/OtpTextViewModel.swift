@@ -103,4 +103,17 @@ class OtpTextViewModel : NSObject, ObservableObject {
     }
     
     
+    var resendEnabled : Bool {
+        
+        get {
+            
+            otpText.resendEnabled
+        }
+        
+        set(newVal){
+            
+            otpText.resendEnabled = newVal
+        }
+    }
+    
 }

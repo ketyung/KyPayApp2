@@ -17,9 +17,6 @@ struct OTPView : View {
  
     @ObservedObject private var viewModel = OtpTextViewModel()
     
-    private static let timeIntervalToResend : TimeInterval = 120
-    
-    @State private var timeToCountDown : TimeInterval = OTPView.timeIntervalToResend
     
     @State private var resendEnabled : Bool = false
     
@@ -33,13 +30,6 @@ struct OTPView : View {
     
     @State private var activityIndicatorPresented : Bool = false
     
-    private var timeForDisplay : String {
-        
-        let timeComponents = self.secondsToHoursMinutesSeconds(seconds: Int(self.timeToCountDown))
-        let forDisplay = "\(timeText(from: timeComponents.0)):\(timeText(from: timeComponents.1))"
-        
-        return forDisplay
-    }
     
     var body : some View {
         
@@ -93,10 +83,7 @@ extension OTPView {
         .background(Color(UIColor(hex:"#DDDDDDff")!))
         .frame(width: UIScreen.main.bounds.width)
         .edgesIgnoringSafeArea(.all)
-        .onAppear{
-            
-           // startCountingDown()
-        }
+       
      
     }
 }
@@ -257,8 +244,12 @@ extension OTPView {
         }
         else {
      
-            Text("Code will be resent after \(timeForDisplay)")
-         
+            HStack{
+            
+                Text("Code will be resent after")
+                CountDownTextView(viewModel: viewModel)
+            }
+            
         }
         
     }
@@ -278,46 +269,3 @@ extension OTPView {
     }
 }
 
-
-extension OTPView {
-    
-    private func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int)
-    {
-        return  ((seconds % 3600) / 60, (seconds % 3600) % 60)
-    }
-    
-    private func timeText(from number: Int) -> String {
-        return number < 10 ? "0\(number)" : "\(number)"
-    }
-    
-    
-    private func startCountingDown(){
-        
-       
-        if self.timeToCountDown > 0 && self.timeToCountDown < OTPView.timeIntervalToResend {
-            
-            return
-        }
-        
-        if self.timeToCountDown <= 0 {
-            self.timeToCountDown = OTPView.timeIntervalToResend
-            self.resendEnabled = true
-        }
-        
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
-           
-            if self.timeToCountDown <= 0 {
-                timer.invalidate()
-                withAnimation {
-          
-                    self.timeToCountDown = OTPView.timeIntervalToResend
-                    self.resendEnabled = true
-                }
-            }
-            else {
-                self.timeToCountDown -= 1
-            }
-          
-        }
-    }
-}
