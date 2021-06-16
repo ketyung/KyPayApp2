@@ -19,11 +19,14 @@ struct LoginView : View {
     
     @State private var errorMessage : String = ""
     
+    @State private var keyboardShouldGoDown : Bool = false
+    
     
     var body: some View {
         
         VStack{
             
+                
             Spacer()
             .frame(height:180)
             
@@ -38,6 +41,9 @@ struct LoginView : View {
             
             signInButton()
             .disabled(signInButtonDisabled)
+            
+            dismissKeyboardButton()
+         
             
             Spacer()
         }
@@ -132,6 +138,7 @@ extension LoginView {
     
         
         CocoaTextField("Phone Number", text: $viewModel.enteredPhoneNumber)
+        .keyboardType(.numberPad)
         .font(UIFont.boldSystemFont(ofSize: 24))
         .isFirstResponder(viewModel.phoneNumberIsFirstResponder)
         .width(200)
@@ -139,12 +146,16 @@ extension LoginView {
         .padding()
         .foregroundColor(.black)
         .background(Color.white)
-        .keyboardType(.decimalPad)
         .onReceive(Just(viewModel.enteredPhoneNumber)) { _ in
             
-            if !viewModel.phoneNumberIsFirstResponder {
-                viewModel.phoneNumberIsFirstResponder = true
+            if !keyboardShouldGoDown {
+           
+                if !viewModel.phoneNumberIsFirstResponder {
+                    viewModel.phoneNumberIsFirstResponder = true
+                }
+               
             }
+            
             limitPhoneNumber()
             
         }
@@ -165,6 +176,33 @@ extension LoginView {
             .foregroundColor(.white)
             .font(Font.system(size: 20, design: .rounded))
               
+        }
+        
+    }
+    
+    private func dismissKeyboardButton() -> some View {
+        
+        HStack(spacing:20) {
+       
+            Spacer()
+            .frame(width:5)
+            
+            Button(action: {
+                withAnimation {
+                    
+                    viewModel.phoneNumberIsFirstResponder = false
+                    keyboardShouldGoDown = true
+                }
+            }){
+                
+                Image(systemName: "circle.grid.cross.down.fill")
+                .resizable()
+                .frame(width:20, height: 20, alignment: .topLeading)
+                .foregroundColor(.white)
+                
+            }
+            
+            Spacer()
         }
         
     }

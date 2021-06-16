@@ -14,7 +14,7 @@ struct LoginData {
     
     var enteredPhoneNumber : String = ""
     
-    var phoneNumberIsFirstResponder : Bool = true
+    var phoneNumberIsFirstResponder : Bool = false
     
     var isCountryPickerPresented : Bool = false
     

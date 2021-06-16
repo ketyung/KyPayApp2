@@ -128,6 +128,7 @@ extension OTPView {
         let w : CGFloat = 40
         
         CocoaTextField("", text: text)
+        .keyboardType(.decimalPad)
         .font(UIFont.boldSystemFont(ofSize: 30))
         .isFirstResponder(isFirstResponder)
         .width(w)

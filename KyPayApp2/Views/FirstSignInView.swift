@@ -15,6 +15,7 @@ struct FirstSignInView : View {
         
         VStack(spacing: 20){
             
+            
             infoTitleView()
             
             Form{
