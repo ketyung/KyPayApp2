@@ -38,7 +38,7 @@ struct SettingsView : View {
     
     @State private var promptSignOutPresented = false
     
-    @State private var pushToHome = false
+    @State private var pushToLogin = false
     
     var body : some View {
         
@@ -98,7 +98,7 @@ extension SettingsView {
                 
                 signOutButton()
             
-                homeScreenNavLink()
+                loginScreenNavLink()
            }
         
         }
@@ -108,9 +108,9 @@ extension SettingsView {
 extension SettingsView {
     
     
-    private func homeScreenNavLink() -> some View {
+    private func loginScreenNavLink() -> some View {
         
-        NavigationLink(destination: ContentView(), isActive : $pushToHome){}
+        NavigationLink(destination: LoginView(), isActive : $pushToLogin){}
     }
 }
 
@@ -160,9 +160,8 @@ extension SettingsView {
                
                     self.progressViewPresented = false
                     
-                    self.pushToHome = true
+                    self.pushToLogin = true
                     
-                    Tool.hiddenTabBar()
                 }
                 
             })

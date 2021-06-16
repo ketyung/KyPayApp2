@@ -191,12 +191,12 @@ extension OTPView {
                     }
                     else {
                     
-                        Tool.showTabBar()
                         self.pushToFirstSignIn = false
                         self.pushToHome = true
                     }
                     
                     self.activityIndicatorPresented = false
+                    loginViewModel.removeAllUnneeded()
                     
                 }
                 

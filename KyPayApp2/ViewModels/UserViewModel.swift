@@ -126,6 +126,11 @@ extension UserViewModel {
     
             KDS.shared.removeUser()
             
+            DispatchQueue.main.async {
+                
+                self.userHolder.user = User()
+            }
+            
             completion?(nil)
         }
         catch {

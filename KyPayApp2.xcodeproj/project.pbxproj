@@ -449,7 +449,6 @@
 				1033C095267846E500D999CE /* FirstSignInView.swift */,
 				1033C08F267749F600D999CE /* OTPView.swift */,
 				1033C0A72678A8CD00D999CE /* CustomActivityIndicator.swift */,
-				1033C0AB2679A38000D999CE /* Tool.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -534,6 +533,7 @@
 		1033C0A42678A7F600D999CE /* Modifiers */ = {
 			isa = PBXGroup;
 			children = (
+				1033C0AB2679A38000D999CE /* Tool.swift */,
 				1033C0A52678A87C00D999CE /* ProgressViewModifier.swift */,
 			);
 			path = Modifiers;

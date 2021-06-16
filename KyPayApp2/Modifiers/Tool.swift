@@ -29,7 +29,7 @@ struct Tool {
         })
     }
     
-    static func hiddenTabBar() {
+    static func hideTabBar() {
         UIApplication.shared.windows.first(where: { $0.isKeyWindow })?.allSubviews().forEach({ (v) in
             if let view = v as? UITabBar {
                 view.isHidden = true
