@@ -173,15 +173,15 @@ extension UserViewModel {
                                 completion?(false, err)
                             }
                             
-                        case .success(let rr) :
+                        case .success(let usr) :
                             
                             // save the user info
-                            KDS.shared.saveUser(rr)
+                            KDS.shared.saveUser(usr)
                             // refresh user in userHolder
                             
                             DispatchQueue.main.async {
                            
-                                self.userHolder.user = rr
+                                self.userHolder.user = usr
                             }
                             
                             completion?(false, nil)

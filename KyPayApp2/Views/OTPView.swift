@@ -150,48 +150,9 @@ extension OTPView {
     
     private func proceedButton() -> some View {
         
-       
         Button(action: {
             
-            if viewModel.text.count == 6 {
-                
-                
-                activityIndicatorPresented = true
-                userViewModel.signIn(verificationCode: viewModel.text, completion: {
-                    
-                    firstSignIn , err in
-                    
-                    if let err = err {
-                        
-                        invalidOtpMessage = err.localizedDescription
-                        self.invalidOtpAlertPresented = true
-                        self.activityIndicatorPresented = false
-                        
-                        return
-                    }
-                    
-                    if firstSignIn {
-                        
-                        self.pushToFirstSignIn = true
-                        self.pushToHome = false
-                        
-                    }
-                    else {
-                        
-                        self.pushToFirstSignIn = false
-                        self.pushToHome = true
-                    }
-                    
-                    self.activityIndicatorPresented = false
-                    
-                    
-                })
-            }
-            else {
-                
-                invalidOtpMessage = "Invalid Verification Code!!"
-                self.invalidOtpAlertPresented = true 
-            }
+            proceed()
             
         }){
             
@@ -199,6 +160,50 @@ extension OTPView {
         }
         
     }
+    
+    private func proceed() {
+        
+        if viewModel.text.count == 6 {
+            
+            
+            activityIndicatorPresented = true
+            userViewModel.signIn(verificationCode: viewModel.text, completion: {
+                
+                firstSignIn , err in
+                
+                if let err = err {
+                    
+                    invalidOtpMessage = err.localizedDescription
+                    self.invalidOtpAlertPresented = true
+                    self.activityIndicatorPresented = false
+                    
+                    return
+                }
+                
+                if firstSignIn {
+                    
+                    self.pushToFirstSignIn = true
+                    self.pushToHome = false
+                    
+                }
+                else {
+                    
+                    self.pushToFirstSignIn = false
+                    self.pushToHome = true
+                }
+                
+                self.activityIndicatorPresented = false
+                
+                
+            })
+        }
+        else {
+            
+            invalidOtpMessage = "Invalid Verification Code!!"
+            self.invalidOtpAlertPresented = true
+        }
+    }
+    
     
     private func closeButton() -> some View {
         
