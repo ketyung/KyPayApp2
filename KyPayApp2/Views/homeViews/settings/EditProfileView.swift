@@ -15,14 +15,13 @@ struct EditProfileView : View {
     
     @State private var userViewModel = UserViewModel()
     
-    @State private var countryPickerViewModel = LoginDataViewModel()
+    @ObservedObject private var countryPickerViewModel = LoginDataViewModel()
     
     var body: some View {
         
         profileFormView()
-        .bottomSheet(isPresented: $countryPickerViewModel.isCountryPickerPresented,
-         height: UIScreen.main.bounds.height - 100, showGrayOverlay: true){
-            
+        .popOver(isPresented: $countryPickerViewModel.isCountryPickerPresented){
+        
             CountryCodePickerUI(viewModel: countryPickerViewModel)
         }
         .onAppear{

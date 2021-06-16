@@ -13,6 +13,9 @@ struct CountryCodePickerUI : View {
     
     var viewModel : LoginDataViewModel
     
+    
+    var textColor : Color = .black
+    
     let countries = Bundle.main.decodeJson([Country].self, fileName: "CountryPickerView.bundle/Data/CountryCodes.json")
     
     @State private var searchText : String = ""
@@ -33,7 +36,6 @@ struct CountryCodePickerUI : View {
                     countryRowButton(country)
                 }
             }
-          
             
         }
         
@@ -78,10 +80,12 @@ extension CountryCodePickerUI {
             
             Text(country.code ?? "")
             .font(.body)
+            .foregroundColor(textColor)
             
             Text(country.name ?? "")
             .font(.body)
-            
+            .foregroundColor(textColor)
+                
             Spacer()
             
             Image(systemName: "checkmark.circle.fill")
@@ -90,6 +94,6 @@ extension CountryCodePickerUI {
             .frame(width:20,height:20)
             .hidden(viewModel.selectedCountry?.code ?? "MY" != country.code)
             
-        }
+        }.padding()
     }
 }
