@@ -25,6 +25,7 @@ struct CountryCodePickerUI : View {
         
         VStack {
             
+
             SearchBar(text: $searchText)
             
             List{

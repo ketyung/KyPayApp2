@@ -103,9 +103,7 @@ extension LoginDataViewModel {
             }
             
             if let completion = completion {
-          
-                self.loginData.isOTPViewPresented = true
-              
+                
                 completion(nil)
             }
         

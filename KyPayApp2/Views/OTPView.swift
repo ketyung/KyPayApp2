@@ -63,6 +63,8 @@ extension OTPView {
         
         VStack(spacing:20){
             
+            
+            let _ = print("otp.presented!")
             Spacer()
             .frame(height:30)
 
@@ -93,7 +95,7 @@ extension OTPView {
         .edgesIgnoringSafeArea(.all)
         .onAppear{
             
-            startCountingDown()
+           // startCountingDown()
         }
      
     }

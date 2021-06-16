@@ -236,6 +236,8 @@ extension LoginView {
           
                 signInButtonDisabled = true
                 
+                self.viewModel.isOTPViewPresented = true 
+               
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
                     
                     self.signInButtonDisabled = false
