@@ -10,7 +10,17 @@ import FirebaseAuth
 
 private struct UserHolder {
     
-    var user : User = User()
+    var user : User = loadUser()
+    
+    private static func loadUser() -> User{
+        
+        if let u = KDS.shared.getUser() {
+            
+            return u
+        }
+        
+        return User()
+    }
 }
 
 
@@ -87,6 +97,20 @@ class UserViewModel : NSObject, ObservableObject {
         }
     }
     
+    
+    var phoneNumber : String {
+        
+        get {
+            
+            userHolder.user.phoneNumber ?? ""
+        }
+        
+        set(newVal){
+            
+            userHolder.user.phoneNumber = newVal
+        }
+    }
+    
     var hasSignedIn : Bool {
         
        
@@ -99,19 +123,18 @@ class UserViewModel : NSObject, ObservableObject {
    
     }
     
+    var user : User{
+        
+        userHolder.user
+    }
+    
 }
 
 extension UserViewModel {
    
-    
-    private static func loadUser() -> User{
+    func loadUser(_ user : User) {
         
-        if let u = KDS.shared.getUser() {
-            
-            return u
-        }
-        
-        return User()
+        self.userHolder.user = user 
     }
 }
 

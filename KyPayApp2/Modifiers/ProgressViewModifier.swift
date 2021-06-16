@@ -14,6 +14,8 @@ struct ProgressViewModifier : ViewModifier {
     var text : String
     var size : CGSize
     var color : Color
+    var showsGrayOverlay : Bool = true
+    
     
     func body(content: Content) -> some View {
     
@@ -23,10 +25,13 @@ struct ProgressViewModifier : ViewModifier {
             
             if isShowing {
                 
-                withAnimation {
-                    
-                    showProgressView()
+                if showsGrayOverlay {
+                    progressViewWithGrayOverlay()
                 }
+                else {
+                    progressView()
+                }
+                
             }
         }
     }
@@ -36,7 +41,22 @@ struct ProgressViewModifier : ViewModifier {
 
 extension ProgressViewModifier {
     
-    private func showProgressView() -> some View {
+    
+    private func progressViewWithGrayOverlay() -> some View {
+        
+        ZStack {
+            
+            Color.black
+            .frame(height: UIScreen.main.bounds.height + 50)
+            .opacity(0.5)
+            .edgesIgnoringSafeArea(.all)
+            
+            progressView()
+        }
+    }
+    
+    
+    private func progressView() -> some View {
         
         VStack (spacing : 20) {
             

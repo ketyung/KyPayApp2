@@ -68,7 +68,7 @@ extension SettingsView {
            List {
             
                 Section(header: Text("Account")) {
-                    NavigationLink(destination: EmptyView(), label: {
+                    NavigationLink(destination: EditProfileView(), label: {
                         SettingRowView(title: "Edit Profile", systemImageName: "person")
                     })
                     
