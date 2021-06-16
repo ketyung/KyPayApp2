@@ -177,8 +177,12 @@ extension UserViewModel {
                             
                             // save the user info
                             KDS.shared.saveUser(rr)
+                            // refresh user in userHolder
                             
-                            self.userHolder.user = rr 
+                            DispatchQueue.main.async {
+                           
+                                self.userHolder.user = rr
+                            }
                             
                             completion?(false, nil)
                             

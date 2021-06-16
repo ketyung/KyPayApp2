@@ -116,3 +116,13 @@ extension LoginDataViewModel {
 }
 
 
+extension LoginDataViewModel {
+    
+    func removeAllUnneeded(){
+        
+        self.enteredPhoneNumber = ""
+        self.isCountryPickerPresented = false
+        self.isOTPViewPresented = false 
+    }
+}
+

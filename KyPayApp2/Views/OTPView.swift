@@ -175,14 +175,11 @@ extension OTPView {
                         self.pushToFirstSignIn = true
                         self.pushToHome = false
                         
-                        print("push.2.1st.signin")
                     }
                     else {
                         
                         self.pushToFirstSignIn = false
                         self.pushToHome = true
-                        
-                        print("push2.home")
                     }
                     
                     self.activityIndicatorPresented = false

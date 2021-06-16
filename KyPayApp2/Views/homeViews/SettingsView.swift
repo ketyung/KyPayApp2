@@ -36,6 +36,8 @@ struct SettingsView : View {
     
     @State private var promptSignOutPresented = false
     
+    @State private var pushToHome = false
+    
     var body : some View {
         
         settingsView()
@@ -93,12 +95,22 @@ extension SettingsView {
                 Spacer()
                 
                 signOutButton()
+            
+                homeScreenNavLink()
            }
         
         }
     }
 }
 
+extension SettingsView {
+    
+    
+    private func homeScreenNavLink() -> some View {
+        
+        NavigationLink(destination: ContentView(), isActive : $pushToHome){}
+    }
+}
 
 
 extension SettingsView {
@@ -126,24 +138,33 @@ extension SettingsView {
     
     private func signOutNow() {
         
-        self.progressViewPresented = true
+        withAnimation{
+       
+            self.progressViewPresented = true
+        }
         
-        viewModel.signOut(completion: {
-            err in
-            
-            if let err = err {
+        DispatchQueue.main.asyncAfter(wallDeadline: .now() + 1.5 , execute:{
+       
+            viewModel.signOut(completion: {
+                err in
                 
-                self.errorMessage = err.localizedDescription
-                self.errorAlertPresented = true
-            }
-            
-            withAnimation {
-           
-                self.progressViewPresented = false
+                if let err = err {
+                    
+                    self.errorMessage = err.localizedDescription
+                    self.errorAlertPresented = true
+                }
+                
+                withAnimation {
                
-            }
-            
+                    self.progressViewPresented = false
+                    
+                    self.pushToHome = true 
+                   
+                }
+                
+            })
         })
+       
     }
     
 }
