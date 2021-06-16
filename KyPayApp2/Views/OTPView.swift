@@ -180,20 +180,25 @@ extension OTPView {
                     return
                 }
                 
-                if firstSignIn {
-                    
-                    self.pushToFirstSignIn = true
-                    self.pushToHome = false
-                    
-                }
-                else {
-                    
-                    self.pushToFirstSignIn = false
-                    self.pushToHome = true
-                    loginViewModel.homeTabbedViewHidden = false 
-                }
                 
-                self.activityIndicatorPresented = false
+                DispatchQueue.main.async {
+                
+                    if firstSignIn {
+                        
+                        self.pushToFirstSignIn = true
+                        self.pushToHome = false
+                        
+                    }
+                    else {
+                        
+                        self.pushToFirstSignIn = false
+                        self.pushToHome = true
+                        loginViewModel.homeTabbedViewHidden = false
+                    }
+                    
+                    self.activityIndicatorPresented = false
+                    
+                }
                 
                 
             })
