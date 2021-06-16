@@ -144,6 +144,8 @@ extension SettingsView {
                 Spacer()
                 Text("Sign Out")
                 .font(.subheadline)
+                .foregroundColor(Color(UIColor(hex:"#aa5500ff")!))
+                
                 Spacer()
             }.padding()
         }

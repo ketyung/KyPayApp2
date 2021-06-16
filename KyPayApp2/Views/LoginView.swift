@@ -42,7 +42,7 @@ struct LoginView : View {
             Spacer()
         }
         .frame(width: UIScreen.main.bounds.width, height:UIScreen.main.bounds.height)
-        .background(Color(UIColor(hex: "#3388AAff")!))
+        .background(Color(UIColor(hex: "#5566aaff")!))
         .edgesIgnoringSafeArea(.all)
         .bottomSheet(isPresented: $viewModel.isCountryPickerPresented, height: UIScreen.main.bounds.height - 100, showGrayOverlay: true){
             
@@ -78,7 +78,7 @@ extension LoginView {
         }
         .padding()
         .frame(width: UIScreen.main.bounds.width - 10, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-        .background(Color(UIColor(hex: "#334455ff")!))
+        .background(Color(UIColor(hex: "#445566ff")!))
         .cornerRadius(6)
        
     }

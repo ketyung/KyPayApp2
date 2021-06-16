@@ -15,13 +15,17 @@ struct HomeView : View {
         
         ScrollView(/*@START_MENU_TOKEN@*/.vertical/*@END_MENU_TOKEN@*/, showsIndicators: false) {
             
-            Spacer().frame(height: 50)
-            
-            welcomePanel()
-            
-            buttonsScrollView()
-            
-            Spacer()
+            VStack(spacing:20) {
+    
+                Spacer().frame(height: 50)
+                
+                welcomePanel()
+                
+                buttonsScrollView()
+                
+                Spacer()
+        
+            }
         }
         .padding()
         .frame(width:UIScreen.main.bounds.width )
@@ -46,8 +50,9 @@ extension HomeView {
            
         }
         .padding(6)
-        .frame(width: UIScreen.main.bounds.width - 100)
-        
+        .frame(width: UIScreen.main.bounds.width - 40)
+        .background(Color(UIColor(hex:"#DDEEFFFF")!))
+        .cornerRadius(10)
     }
 }
 
@@ -56,29 +61,44 @@ extension HomeView {
     
     private func buttonsScrollView() -> some View {
         
-        ScrollView(.horizontal, showsIndicators: false ){
+        VStack {
+       
+            Text("What can you do with KyPay app?")
+            .font(.headline)
+            .frame(alignment: .leading)
             
-            HStack {
+            
+            ScrollView(.horizontal, showsIndicators: false ){
                 
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/){
+                HStack {
                     
-                    buttonView(imageOne: "wallet", imageTwo: "plus.circle", text: "Top Up")
-                }
-                
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/){
+                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/){
+                        
+                        buttonView(color : Color(UIColor(hex:"#5566aaff")!), imageOne: "wallet",
+                                   imageTwo: "plus.circle", text: "Top Up")
+                    }
                     
-                    buttonView(color: .orange, imageOne: "dollarsign.circle.fill", imageTwo: "arrow.right", text: "Send Money")
-                }
-                
-                
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/){
+                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/){
+                        
+                        buttonView(color: Color(UIColor(hex:"#F2a642ff")!), imageOne: "dollarsign.circle.fill",
+                                   imageOneForegroundColor: Color(UIColor(hex:"#aa0000ff")!),
+                                   imageTwo: "arrow.right", text: "Send Money")
+                    }
                     
-                    buttonView(color: .purple, imageOne: "arrow.left", imageOneSize:  CGSize(width:24, height:24),
-                    imageTwo: "dollarsign.circle.fill", imageTwoSize:  CGSize(width:40, height:40), text: "Request Money")
+                    
+                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/){
+                        
+                        buttonView(color: .purple, imageOne: "arrow.left", imageOneSize:  CGSize(width:24, height:24),
+                        imageOneForegroundColor: Color(UIColor(hex:"#DDFFDDFF")!),
+                        imageTwo: "dollarsign.circle.fill", imageTwoSize:  CGSize(width:40, height:40),
+                        imageTwoForegroundColor: Color(UIColor(hex:"#88ee66ff")!) ,
+                        text: "Request Money")
+                    }
+                    
                 }
-                
             }
         }
+       
     }
     
     
@@ -89,11 +109,10 @@ extension HomeView {
     private func buttonView ( color : Color = .green,
                               imageOne : String,
                               imageOneSize : CGSize = CGSize(width:40, height: 40),
-                              
+                              imageOneForegroundColor : Color = .brown,
                               imageTwo : String,
-                              
                               imageTwoSize : CGSize = CGSize(width:24, height: 24),
-                              
+                              imageTwoForegroundColor : Color = .white,
                               text : String ) -> some View{
         
         
@@ -107,7 +126,6 @@ extension HomeView {
                 
             VStack {
             
-                
                 HStack {
                 
                     if let img = UIImage(named: imageOne){
@@ -115,13 +133,16 @@ extension HomeView {
                         Image(uiImage: img)
                         .resizable()
                         .frame(width:imageOneSize.width, height: imageOneSize.height)
+                        .foregroundColor(imageOneForegroundColor)
+                     
                     }
                     else {
                         
                         Image(systemName: imageOne)
                         .resizable()
                         .frame(width:imageOneSize.width, height: imageOneSize.height)
-                       
+                        .foregroundColor(imageOneForegroundColor)
+                        
                     }
                     
                     if let img2 = UIImage(named: imageTwo){
@@ -129,7 +150,7 @@ extension HomeView {
                         Image(uiImage: img2)
                         .resizable()
                         .frame(width:imageTwoSize.width, height: imageTwoSize.height)
-                        .foregroundColor(.white)
+                        .foregroundColor(imageTwoForegroundColor)
                         
                     }
                     else {
@@ -137,14 +158,14 @@ extension HomeView {
                         Image(systemName: imageTwo)
                         .resizable()
                         .frame(width:imageTwoSize.width, height: imageTwoSize.height)
-                        .foregroundColor(.white)
-                        
+                        .foregroundColor(imageTwoForegroundColor)
+                       
                     }
                 
                 }
                 
                 Text(text)
-                .font(.custom("Helvetica Neue", size: 15))
+                .font(.custom("Helvetica Neue", size: 13))
                 .foregroundColor(.white)
                 
             }
