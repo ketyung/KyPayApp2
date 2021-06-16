@@ -38,6 +38,9 @@ struct HomeTabbedView : View {
            // always reset back to zero
            self.selectedTab = 0
        }
+       .navigationBarBackButtonHidden(true)
+        
+        
     }
 }
 

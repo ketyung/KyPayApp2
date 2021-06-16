@@ -17,31 +17,52 @@ class KCDataStore : NSObject {
     
     static let shared = KDS()
     
-    func saveUser( _ user : User ){
+    func save <T:Encodable> (_ object : T , key : String){
         
-       let encoder = JSONEncoder()
-       if let encoded = try? encoder.encode(user) {
-            KeychainWrapper.standard.set(encoded, forKey: KDS.userKey)
-       }
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(object) {
+             KeychainWrapper.standard.set(encoded, forKey: key)
+        }
     }
     
-    func getUser() -> User? {
+    
+    func load <T:Decodable> ( _ key : String, type : T.Type) -> T? {
         
-        if let savedUser = KeychainWrapper.standard.data(forKey: KDS.userKey)  {
+        if let savedObject = KeychainWrapper.standard.data(forKey: key)  {
             let decoder = JSONDecoder()
-            if let loadedUser = try? decoder.decode(User.self, from: savedUser) {
+            if let loadedObject = try? decoder.decode(type, from: savedObject) {
                         
-                return loadedUser
+                return loadedObject
             }
         }
         
         return nil
     }
     
+    func remove(_ key : String){
+        
+        KeychainWrapper.standard.removeObject( forKey: key )
+    }
+    
+}
+
+extension KCDataStore {
+    
+    
+    func saveUser( _ user : User ){
+        
+        save(user, key: KDS.userKey)
+    }
+    
+    func getUser() -> User? {
+        
+        return load(KDS.userKey, type: User.self)
+    }
+    
     
     func removeUser(){
         
-        KeychainWrapper.standard.removeObject(forKey: KDS.userKey)
+        remove(KDS.userKey)
     }
     
 }
