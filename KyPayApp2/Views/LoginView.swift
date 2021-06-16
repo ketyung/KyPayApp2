@@ -47,7 +47,7 @@ struct LoginView : View {
         .bottomSheet(isPresented: $viewModel.isCountryPickerPresented, height: UIScreen.main.bounds.height - 100, showGrayOverlay: true){
             
             
-            CountryCodePickerUI()
+            CountryCodePickerUI(viewModel: viewModel)
             
         }
         .bottomSheet(isPresented: $viewModel.isOTPViewPresented, height: UIScreen.main.bounds.height + 50, showGrayOverlay: true, content: {

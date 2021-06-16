@@ -9,7 +9,9 @@ import SwiftUI
 
 struct CountryCodePickerUI : View {
     
-    @EnvironmentObject private var viewModel : LoginDataViewModel
+    //@EnvironmentObject private
+    
+    var viewModel : LoginDataViewModel
     
     let countries = Bundle.main.decodeJson([Country].self, fileName: "CountryPickerView.bundle/Data/CountryCodes.json")
     

@@ -15,17 +15,21 @@ struct EditProfileView : View {
     
     @State private var userViewModel = UserViewModel()
     
-    @State private var isCountryPickerPresented : Bool = false
-    
-    @State private var selectedCountry : Country?
+    @State private var countryPickerViewModel = LoginDataViewModel()
     
     var body: some View {
         
         profileFormView()
-        .onAppear{
+        .bottomSheet(isPresented: $countryPickerViewModel.isCountryPickerPresented,
+         height: UIScreen.main.bounds.height - 100, showGrayOverlay: true){
             
+            CountryCodePickerUI(viewModel: countryPickerViewModel)
+        }
+        .onAppear{
+                
             userViewModel.loadUser(viewModel.user)
         }
+          
     }
 }
 
@@ -50,8 +54,11 @@ extension EditProfileView {
     
     private func profileFormView() -> some View {
         
-        VStack {
+        VStack(spacing:10) {
        
+            Spacer()
+            .frame(height: 20)
+            
             infoTitleView()
             
             Form{
@@ -70,7 +77,7 @@ extension EditProfileView {
             .frame(height:400)
            
             Spacer()
-            .frame(minHeight: 300)
+            .frame(minHeight: 200)
         }
         
     }
@@ -123,7 +130,7 @@ extension EditProfileView {
         
         Button(action: {
             
-            self.isCountryPickerPresented = true
+            self.countryPickerViewModel.isCountryPickerPresented = true
             
         }){
             
@@ -140,7 +147,7 @@ extension EditProfileView {
                 
                 }
        
-                Text(selectedCountry?.dialCode ?? "+60")
+                Text(countryPickerViewModel.selectedCountry?.dialCode ?? "+60")
                 .foregroundColor(.black)
                 .font(Font.system(size: 18, design: .rounded))
                 .lineLimit(1)
@@ -154,7 +161,7 @@ extension EditProfileView {
     
     private func selectedCountryImage() -> UIImage? {
         
-        if let country = selectedCountry {
+        if let country = countryPickerViewModel.selectedCountry {
             
             return country.flag
         }
