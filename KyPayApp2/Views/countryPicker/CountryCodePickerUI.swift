@@ -11,15 +11,15 @@ struct CountryCodePickerUI : View {
     
     //@EnvironmentObject private
     
+    @Environment(\.colorScheme) var colorScheme
+    
     var viewModel : LoginDataViewModel
 
-    var textColor : Color = .black
-
-    var textFont : Font = .body
-    
-
+    var textFont : Font
+   
     @State private var searchText : String = ""
     
+
     var body: some View {
         
         
@@ -45,6 +45,17 @@ struct CountryCodePickerUI : View {
 
 extension CountryCodePickerUI {
     
+    private func defaultTextColor() -> Color {
+        
+        let c = ((colorScheme == .dark) ? Color.white : Color.black)
+        return c
+    }
+    
+    
+    private func defaultTextFont() -> Font {
+        
+        return .custom("Helvetica Neue", size: 15)
+    }
     
     private func countryRowButton(_ country : Country ) -> some View {
         
@@ -78,13 +89,13 @@ extension CountryCodePickerUI {
              
             }
             
-            Text(country.code ?? "")
+            Text(country.code ??  "MY")
             .font(textFont)
-            .foregroundColor(textColor)
+            .foregroundColor(defaultTextColor())
             
             Text(country.name ?? "")
-            .font(textFont)
-            .foregroundColor(textColor)
+            .font(.body)
+            .foregroundColor(defaultTextColor())
                 
             Spacer()
             

@@ -19,7 +19,7 @@ struct LoginView : View {
     
     @State private var errorMessage : String = ""
     
-    @State private var keyboardShouldGoDown : Bool = false
+    @State private var keyboardShouldGoOff : Bool = false
     
     
     var body: some View {
@@ -53,7 +53,7 @@ struct LoginView : View {
         .bottomSheet(isPresented: $viewModel.isCountryPickerPresented, height: UIScreen.main.bounds.height - 100, showGrayOverlay: true){
             
             
-            CountryCodePickerUI(viewModel: viewModel)
+            CountryCodePickerUI(viewModel: viewModel, textFont: .custom("Helvetica Neue", size: 16))
             
         }
         .bottomSheet(isPresented: $viewModel.isOTPViewPresented, height: UIScreen.main.bounds.height + 50, showGrayOverlay: true, content: {
@@ -138,17 +138,17 @@ extension LoginView {
     
         
         CocoaTextField("Phone Number", text: $viewModel.enteredPhoneNumber)
+        .foregroundColor(.black)
         .keyboardType(.numberPad)
         .font(UIFont.boldSystemFont(ofSize: 24))
         .isFirstResponder(viewModel.phoneNumberIsFirstResponder)
         .width(200)
         .height(20)
         .padding()
-        .foregroundColor(.black)
         .background(Color.white)
         .onReceive(Just(viewModel.enteredPhoneNumber)) { _ in
             
-            if !keyboardShouldGoDown {
+            if !keyboardShouldGoOff {
            
                 if !viewModel.phoneNumberIsFirstResponder {
                     viewModel.phoneNumberIsFirstResponder = true
@@ -159,7 +159,10 @@ extension LoginView {
             limitPhoneNumber()
             
         }
-
+        .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardDidShowNotification)) { _ in
+            
+            keyboardShouldGoOff = false
+        }
     }
     
     
@@ -191,7 +194,7 @@ extension LoginView {
                 withAnimation {
                     
                     viewModel.phoneNumberIsFirstResponder = false
-                    keyboardShouldGoDown = true
+                    keyboardShouldGoOff = true
                 }
             }){
                 

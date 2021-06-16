@@ -91,7 +91,7 @@ extension HomeView {
                         buttonView(color: .purple, imageOne: "arrow.left", imageOneSize:  CGSize(width:24, height:24),
                         imageOneForegroundColor: Color(UIColor(hex:"#DDFFDDFF")!),
                         imageTwo: "dollarsign.circle.fill", imageTwoSize:  CGSize(width:40, height:40),
-                        imageTwoForegroundColor: Color(UIColor(hex:"#88ee66ff")!) ,
+                        imageTwoForegroundColor: Color(UIColor(hex:"#55dd66ff")!) ,
                         text: "Request Money")
                     }
                     
