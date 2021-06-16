@@ -111,6 +111,8 @@ extension SettingsView {
             
                 loginScreenNavLink()
            }
+            
+           Spacer()
         
         }
     }
