@@ -26,7 +26,9 @@ struct SettingRowView : View {
 
 struct SettingsView : View {
     
-    @EnvironmentObject private var viewModel : UserViewModel
+    @EnvironmentObject private var userViewModel : UserViewModel
+   
+    @EnvironmentObject private var loginViewModel : LoginDataViewModel
     
     @State private var progressViewPresented : Bool = false
     
@@ -145,7 +147,7 @@ extension SettingsView {
         
         DispatchQueue.main.asyncAfter(wallDeadline: .now() + 1.5 , execute:{
        
-            viewModel.signOut(completion: {
+            userViewModel.signOut(completion: {
                 err in
                 
                 if let err = err {
@@ -158,7 +160,9 @@ extension SettingsView {
                
                     self.progressViewPresented = false
                     
-                    self.pushToHome = true 
+                    self.pushToHome = true
+                    
+                    loginViewModel.homeTabbedViewHidden = true 
                    
                 }
                 

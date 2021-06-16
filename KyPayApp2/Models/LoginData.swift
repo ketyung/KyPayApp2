@@ -18,7 +18,9 @@ struct LoginData {
     
     var isCountryPickerPresented : Bool = false
     
-    var isOTPViewPresented : Bool = false 
+    var isOTPViewPresented : Bool = false
+    
+    var homeTabbedViewHidden : Bool = false 
     
 }
 

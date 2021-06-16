@@ -81,6 +81,20 @@ class LoginDataViewModel : NSObject, ObservableObject {
             loginData.isOTPViewPresented = newVal
         }
     }
+    
+    
+    var homeTabbedViewHidden : Bool {
+        
+        get {
+            
+            loginData.homeTabbedViewHidden
+        }
+        
+        set(newVal){
+            
+            loginData.homeTabbedViewHidden = newVal
+        }
+    }
 }
 
 
@@ -101,11 +115,10 @@ extension LoginDataViewModel {
                 return
             }
             
-            self.loginData.isOTPViewPresented = true
-            
-            
             if let completion = completion {
-                
+          
+                self.loginData.isOTPViewPresented = true
+              
                 completion(nil)
             }
         

@@ -190,6 +190,7 @@ extension OTPView {
                     
                     self.pushToFirstSignIn = false
                     self.pushToHome = true
+                    loginViewModel.homeTabbedViewHidden = false 
                 }
                 
                 self.activityIndicatorPresented = false

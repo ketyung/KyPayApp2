@@ -15,6 +15,17 @@ struct HomeTabbedView : View {
     
     var body: some View {
     
+        tabbedView()
+        .hidden(loginViewModel.homeTabbedViewHidden)
+        
+    }
+}
+
+
+extension HomeTabbedView {
+    
+    private func tabbedView() -> some View {
+        
         TabView(selection: $selectedTab ){
            
             HomeView()
@@ -43,9 +54,9 @@ struct HomeTabbedView : View {
        }
        .navigationBarBackButtonHidden(true)
        .navigationBarHidden(true)
-        
     }
 }
+
 
 extension HomeTabbedView {
     

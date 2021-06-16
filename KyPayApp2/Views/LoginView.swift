@@ -15,7 +15,9 @@ struct LoginView : View {
     
     @State private var signInButtonDisabled : Bool = false
     
-    @State private var invalidPhoneAlertPresented : Bool = false
+    @State private var errorAlertPresented : Bool = false
+    
+    @State private var errorMessage : String = ""
     
     
     var body: some View {
@@ -52,11 +54,11 @@ struct LoginView : View {
             
             OTPView()
         })
-        .alert(isPresented: $invalidPhoneAlertPresented){
+        .alert(isPresented: $errorAlertPresented){
             
             Alert(
                title: Text("Error!"),
-               message:Text("Invalid Phone Number!!")
+               message:Text(errorMessage)
             )
         }
         
@@ -180,19 +182,32 @@ extension LoginView {
         
         if phoneNum.isValidPhone() {
        
-            viewModel.sendOTP(phoneNumber: phoneNum)
-            
-            signInButtonDisabled = true
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
+            viewModel.sendOTP(phoneNumber: phoneNum, completion: {
                 
-                self.signInButtonDisabled = false
+                err in
+                
+                if let err = err {
+                    
+                    self.errorMessage = err.localizedDescription
+                    self.errorAlertPresented = true 
+                    return
+                }
+          
+                signInButtonDisabled = true
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
+                    
+                    self.signInButtonDisabled = false
+                })
+
             })
+            
         }
         else {
             withAnimation {
        
-                invalidPhoneAlertPresented = true
+                self.errorAlertPresented = true
+                self.errorMessage = "Invalid Phone Number !"
             }
         }
         
