@@ -16,7 +16,6 @@ struct HomeTabbedView : View {
     var body: some View {
     
         tabbedView()
-        .hidden(loginViewModel.homeTabbedViewHidden)
         
     }
 }

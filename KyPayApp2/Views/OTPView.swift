@@ -52,6 +52,7 @@ struct OTPView : View {
             Alert(title: Text("Oppps!"),message:Text(invalidOtpMessage))
         }
         .progressView(isShowing: $activityIndicatorPresented, text : "Signing in ...")
+        .navigationBarBackButtonHidden(true)
     }
 }
 
@@ -87,7 +88,6 @@ extension OTPView {
             
             Spacer()
         }
- 
         .background(Color(UIColor(hex:"#DDDDDDff")!))
         .frame(width: UIScreen.main.bounds.width)
         .edgesIgnoringSafeArea(.all)
@@ -190,10 +190,10 @@ extension OTPView {
                         
                     }
                     else {
-                        
+                    
+                        Tool.showTabBar()
                         self.pushToFirstSignIn = false
                         self.pushToHome = true
-                        loginViewModel.homeTabbedViewHidden = false
                     }
                     
                     self.activityIndicatorPresented = false

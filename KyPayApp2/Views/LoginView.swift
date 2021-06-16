@@ -195,8 +195,9 @@ extension LoginView {
           
                 signInButtonDisabled = true
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
                     
+                    Tool.showTabBar()
                     self.signInButtonDisabled = false
                 })
 

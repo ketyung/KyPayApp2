@@ -48,8 +48,9 @@ extension ProgressViewModifier {
         }
         .frame(width: size.width, height: size.height)
         .background(Color.white)
-        .cornerRadius(30)
-        .shadow(radius: 20 )
+        .cornerRadius(10)
+        .shadow(radius: 10 )
+        .offset(y : -50)
     }
     
     
@@ -58,7 +59,7 @@ extension ProgressViewModifier {
 
 extension View {
     
-    func progressView(isShowing: Binding <Bool>, text : String = "Loading...", size : CGSize =  CGSize(width:120, height:120), color : Color = .purple) -> some View{
+    func progressView(isShowing: Binding <Bool>, text : String = "Loading...", size : CGSize =  CGSize(width:120, height:120), color : Color = .orange) -> some View{
         
         self.modifier(ProgressViewModifier(isShowing: isShowing, text: text, size: size, color: color))
     }

@@ -162,8 +162,7 @@ extension SettingsView {
                     
                     self.pushToHome = true
                     
-                    loginViewModel.homeTabbedViewHidden = true 
-                   
+                    Tool.hiddenTabBar()
                 }
                 
             })

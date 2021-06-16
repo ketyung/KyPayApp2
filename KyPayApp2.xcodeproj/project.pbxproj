@@ -82,6 +82,7 @@
 		1033C0A32678514500D999CE /* HomeTabbedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0A22678514500D999CE /* HomeTabbedView.swift */; };
 		1033C0A62678A87C00D999CE /* ProgressViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0A52678A87C00D999CE /* ProgressViewModifier.swift */; };
 		1033C0A82678A8CD00D999CE /* CustomActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0A72678A8CD00D999CE /* CustomActivityIndicator.swift */; };
+		1033C0AC2679A38000D999CE /* Tool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0AB2679A38000D999CE /* Tool.swift */; };
 		94C85EFD927289A72B96857C /* Pods_KyPayApp2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD2A35EA43E8F034705E971 /* Pods_KyPayApp2.framework */; };
 /* End PBXBuildFile section */
 
@@ -184,6 +185,7 @@
 		1033C0A22678514500D999CE /* HomeTabbedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabbedView.swift; sourceTree = "<group>"; };
 		1033C0A52678A87C00D999CE /* ProgressViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewModifier.swift; sourceTree = "<group>"; };
 		1033C0A72678A8CD00D999CE /* CustomActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActivityIndicator.swift; sourceTree = "<group>"; };
+		1033C0AB2679A38000D999CE /* Tool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tool.swift; sourceTree = "<group>"; };
 		1B47377B496C6F0F1022FFD4 /* Pods-KyPayApp2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.debug.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.debug.xcconfig"; sourceTree = "<group>"; };
 		6F523BC3D4353462922B31B9 /* Pods-KyPayApp2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.release.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -447,6 +449,7 @@
 				1033C095267846E500D999CE /* FirstSignInView.swift */,
 				1033C08F267749F600D999CE /* OTPView.swift */,
 				1033C0A72678A8CD00D999CE /* CustomActivityIndicator.swift */,
+				1033C0AB2679A38000D999CE /* Tool.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -765,6 +768,7 @@
 				1033C090267749F600D999CE /* OTPView.swift in Sources */,
 				1033C0A32678514500D999CE /* HomeTabbedView.swift in Sources */,
 				1033C0A62678A87C00D999CE /* ProgressViewModifier.swift in Sources */,
+				1033C0AC2679A38000D999CE /* Tool.swift in Sources */,
 				1033B2952674A82F00D999CE /* UserImg.swift in Sources */,
 				1033C09E267850D900D999CE /* SendView.swift in Sources */,
 				1033C0752676E81000D999CE /* BottomSheet.swift in Sources */,

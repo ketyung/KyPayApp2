@@ -82,19 +82,6 @@ class LoginDataViewModel : NSObject, ObservableObject {
         }
     }
     
-    
-    var homeTabbedViewHidden : Bool {
-        
-        get {
-            
-            loginData.homeTabbedViewHidden
-        }
-        
-        set(newVal){
-            
-            loginData.homeTabbedViewHidden = newVal
-        }
-    }
 }
 
 
