@@ -12,7 +12,7 @@ class KypayUserWallet extends KypayDbObject{
     
     public $refId;
     
-    public $balance;
+    public float $balance;
     
     public $currency;
     

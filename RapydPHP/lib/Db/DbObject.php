@@ -339,7 +339,7 @@ class DbObject extends SQLBuilder {
     
     
     
-    private function getTypeName(string $className, string $propertyName): ?string
+    protected function getTypeName(string $className, string $propertyName): ?string
     {
         $rp = new \ReflectionProperty($className, $propertyName);
         
@@ -366,6 +366,38 @@ class DbObject extends SQLBuilder {
         return null;
     }
             
+    
+            
+    protected function convertNumeric(&$val, $type){
+        
+        if ($type == 'integer' || $type == 'int'){
+            
+            if (is_numeric($val)){
+                $val = intval($val);
+            }
+            return;
+        }
+        
+        
+        if ($type == 'float'){
+            
+            if (is_numeric($val)){
+                $val = floatval($val);
+            }
+            return;
+        }
+        
+        
+        if ($type == 'double'){
+            
+            if (is_numeric($val)){
+                $val = doubleval($val);
+            }
+            return;
+        }
+        
+        
+    }
 
     protected function convertNumericIfAny(&$val){
         
@@ -412,10 +444,11 @@ class DbObject extends SQLBuilder {
                 
                 //$code = '$rp = new \ReflectionProperty("'.$className.'","'. $propertyName.'");';
                 
-                $code  = '$val = $row[$col]; ';
-                $code .= '$this->convertNumericIfAny($val);';
+                $code  = '$ptype = $this->getTypeName("'.$className.'","'. $propertyName.'");';
+                $code .= '$val = $row[$col]; ';
+                $code .= '$this->convertNumeric($val, $ptype);';
                 
-                //$code .= 'Log::printRToErrorLog("ptype:".$ptype);';
+               // $code .= 'Util\Log::printRToErrorLog("ptype:".$ptype);';
                 $code .= '$this->'.$propertyName.' = $val;';
             
                 
@@ -451,7 +484,7 @@ class DbObject extends SQLBuilder {
             }
             
         }
-        return json_encode($public, JSON_NUMERIC_CHECK);
+        return json_encode($public);//, JSON_NUMERIC_CHECK); don't check numeric, numeric is to be specified based on object property
     }
     
     

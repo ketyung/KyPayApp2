@@ -243,7 +243,7 @@ class Tester {
     
     static func testAddPayment(){
         
-        let t = UserPaymentTx(uid:"Che_Rm92ndZL", amount: 25.00, currency: "MYR")
+        var t = UserPaymentTx(uid:"Che_Rm92ndZL", amount: 25.00, currency: "MYR")
         
         ARH.shared.addUserPaymentTx(t, returnType: UserPaymentTx.self, completion: {
             
@@ -269,11 +269,11 @@ class Tester {
                         
                         DispatchQueue.main.asyncAfter(wallDeadline: .now() + 1, execute: {
                             
-                            Tester.testDeletePayment(id: rr.id ?? "")
+                            //Tester.testDeletePayment(id: rr.id ?? "")
                             
-                            //t.amount = 89.65
-                            //t.id = rr.id
-                            //Tester.testUpdatePayment(t)
+                            t.amount = Double.random(in: 12...59)
+                            t.id = rr.id
+                            Tester.testUpdatePayment(t)
                         })
                 
                     }

@@ -51,6 +51,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
        // Tester.testPhoneAuth()
         
+        //Tester.testAddPayment()
+        
         let contentView = ContentView().environmentObject(LoginDataViewModel()).environmentObject(UserViewModel())
 
            //OTPView().environmentObject(LoginDataViewModel()).environmentObject(UserViewModel())
