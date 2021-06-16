@@ -81,20 +81,22 @@ class UserViewModel : NSObject, ObservableObject {
         }
     }
     
-}
-
-extension UserViewModel {
-    
-    func hasSignedIn() -> Bool {
+    var hasSignedIn : Bool {
         
+       
         if let user = KDS.shared.getUser() , let auser = Auth.auth().currentUser {
             
             return auser.phoneNumber == user.phoneNumber
         }
-        
+     
         return false
+   
     }
     
+}
+
+extension UserViewModel {
+   
     
     private static func loadUser() -> User{
         
@@ -107,5 +109,24 @@ extension UserViewModel {
     }
 }
 
-
+extension UserViewModel {
+    
+    
+    func signOut(completion : ((Error?)-> Void)? = nil ){
+        
+        do {
+       
+            try Auth.auth().signOut()
+    
+            KDS.shared.removeUser()
+            
+            completion?(nil)
+        }
+        catch {
+            
+            completion?(error)
+            
+        }
+    }
+}
 

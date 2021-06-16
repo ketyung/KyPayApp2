@@ -49,7 +49,7 @@ struct OTPView : View {
             
             Alert(title: Text("Oppps!"),message:Text(invalidOtpMessage))
         }
-        .progressView(isShowing: $activityIndicatorPresented)
+        .progressView(isShowing: $activityIndicatorPresented, text : "Signing in ...")
     }
 }
 

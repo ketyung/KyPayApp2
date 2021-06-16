@@ -24,7 +24,7 @@ extension ContentView {
     @ViewBuilder
     private func view() -> some View {
         
-        if viewModel.hasSignedIn() {
+        if viewModel.hasSignedIn {
             
             HomeTabbedView()
         }

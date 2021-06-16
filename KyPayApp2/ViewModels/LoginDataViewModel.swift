@@ -134,7 +134,6 @@ extension LoginDataViewModel {
             
             if let phone = phoneNumber {
            
-                print("sign.in.phone::\(phone)")
                 
                 ARH.shared.fetchUser(phoneNumber: phone, completion: {
                     
@@ -147,12 +146,10 @@ extension LoginDataViewModel {
                                 // indicate first sign in if NOT found!
                                 completion?(true, nil)
                                 
-                                print("indicate.first.signin")
                             }
                             else {
                             
-                                print("indicate.err::\(err)")
-                            
+        
                                 completion?(false, err)
                             }
                             
@@ -160,9 +157,6 @@ extension LoginDataViewModel {
                             
                             // save the user info
                             KDS.shared.saveUser(rr)
-                            
-                            
-                            print("indicate.succ::\(rr)")
                             
                             completion?(false, nil)
                             

@@ -15,21 +15,24 @@ struct CustomActivityIndicator : View {
     
     @State private var position : Int = 0
     
+    
+    private let circleWidth : CGFloat = 20
+    
     var body: some View {
         
         HStack (spacing: 10){
             
             Circle()
             .fill( (self.position == 0) ? self.color : Color(UIColor.lightGray) )
-            .frame(width: 30, height: 30)
+            .frame(width: circleWidth, height: circleWidth)
             
             Circle()
             .fill( (self.position == 1) ? self.color : Color(UIColor.lightGray)  )
-            .frame(width: 30, height: 30)
+            .frame(width: circleWidth, height: circleWidth)
             
             Circle()
             .fill( (self.position == 2) ? self.color : Color(UIColor.lightGray)  )
-            .frame(width: 30, height: 30)
+            .frame(width: circleWidth, height: circleWidth)
             
         }
         .onAppear {

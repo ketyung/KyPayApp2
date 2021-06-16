@@ -59,7 +59,7 @@ extension ProgressViewModifier {
 
 extension View {
     
-    func progressView(isShowing: Binding <Bool>, text : String = "Loading...", size : CGSize =  CGSize(width:160, height:160), color : Color = .purple) -> some View{
+    func progressView(isShowing: Binding <Bool>, text : String = "Loading...", size : CGSize =  CGSize(width:100, height:100), color : Color = .purple) -> some View{
         
         self.modifier(ProgressViewModifier(isShowing: isShowing, text: text, size: size, color: color))
     }

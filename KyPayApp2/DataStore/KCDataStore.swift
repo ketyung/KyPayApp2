@@ -38,6 +38,12 @@ class KCDataStore : NSObject {
         return nil
     }
     
+    
+    func removeUser(){
+        
+        KeychainWrapper.standard.removeObject(forKey: KDS.userKey)
+    }
+    
 }
 
 extension KCDataStore {

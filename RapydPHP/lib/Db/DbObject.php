@@ -447,7 +447,8 @@ class DbObject extends SQLBuilder {
                 $code  = '$ptype = $this->getTypeName("'.$className.'","'. $propertyName.'");';
                 $code .= '$val = $row[$col]; ';
                 $code .= '$this->convertNumeric($val, $ptype);';
-                
+                //$code .= '$this->convertNumericIfAny($val);';
+               
                // $code .= 'Util\Log::printRToErrorLog("ptype:".$ptype);';
                 $code .= '$this->'.$propertyName.' = $val;';
             
