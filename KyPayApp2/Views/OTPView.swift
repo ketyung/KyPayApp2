@@ -11,6 +11,8 @@ import Combine
 
 struct OTPView : View {
   
+    @EnvironmentObject private var userViewModel : UserViewModel
+ 
     @EnvironmentObject private var loginViewModel : LoginDataViewModel
  
     @ObservedObject private var viewModel = OtpTextViewModel()
@@ -155,7 +157,7 @@ extension OTPView {
                 
                 
                 activityIndicatorPresented = true
-                loginViewModel.signIn(verificationCode: viewModel.text, completion: {
+                userViewModel.signIn(verificationCode: viewModel.text, completion: {
                     
                     firstSignIn , err in
                     

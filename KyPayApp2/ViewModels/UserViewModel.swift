@@ -8,20 +8,26 @@
 import Foundation
 import FirebaseAuth
 
+private struct UserHolder {
+    
+    var user : User = User()
+}
+
+
 class UserViewModel : NSObject, ObservableObject {
     
-    @Published private var user = loadUser()
+    @Published private var userHolder = UserHolder()
     
     var id : String {
         
         get {
             
-            user.id ?? ""
+            userHolder.user.id ?? ""
         }
         
         set(newVal){
             
-            user.id = newVal
+            userHolder.user.id = newVal
         }
     }
     
@@ -29,12 +35,12 @@ class UserViewModel : NSObject, ObservableObject {
         
         get {
             
-            user.firstName ?? ""
+            userHolder.user.firstName ?? ""
         }
         
         set(newVal){
             
-            user.firstName = newVal
+            userHolder.user.firstName = newVal
         }
     }
     
@@ -44,12 +50,12 @@ class UserViewModel : NSObject, ObservableObject {
         
         get {
             
-            user.lastName ?? ""
+            userHolder.user.lastName ?? ""
         }
         
         set(newVal){
             
-            user.lastName = newVal
+            userHolder.user.lastName = newVal
         }
     }
     
@@ -58,12 +64,12 @@ class UserViewModel : NSObject, ObservableObject {
         
         get {
             
-            user.email ?? ""
+            userHolder.user.email ?? ""
         }
         
         set(newVal){
             
-            user.email = newVal
+            userHolder.user.email = newVal
         }
     }
     
@@ -72,12 +78,12 @@ class UserViewModel : NSObject, ObservableObject {
         
         get {
             
-            user.dob ?? Date()
+            userHolder.user.dob ?? Date()
         }
         
         set(newVal){
             
-            user.dob = newVal
+            userHolder.user.dob = newVal
         }
     }
     
@@ -130,3 +136,58 @@ extension UserViewModel {
     }
 }
 
+
+extension UserViewModel {
+    
+    
+    func signIn (verificationCode : String, completion : ((Bool,Error?)->Void)? = nil  ){
+        
+        PA.shared.signIn(verificationCode: verificationCode, completion: {
+            phoneNumber, err in
+            
+            if let err = err {
+                
+                completion?(false, err)
+                return
+            }
+            
+            
+            if let phone = phoneNumber {
+           
+                
+                ARH.shared.fetchUser(phoneNumber: phone, completion: {
+                    
+                    res in
+                    
+                    switch (res) {
+                    
+                        case .failure(let err) :
+                            if let err = err as? ApiError, err.statusCode == 404 {
+                                // indicate first sign in if NOT found!
+                                completion?(true, nil)
+                                
+                            }
+                            else {
+                            
+        
+                                completion?(false, err)
+                            }
+                            
+                        case .success(let rr) :
+                            
+                            // save the user info
+                            KDS.shared.saveUser(rr)
+                            
+                            self.userHolder.user = rr 
+                            
+                            completion?(false, nil)
+                            
+                    }
+                    
+                })
+               
+            }
+            
+        })
+    }
+}
