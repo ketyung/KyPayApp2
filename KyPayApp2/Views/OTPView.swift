@@ -265,13 +265,13 @@ extension OTPView {
     
     private func firstScreenNavLink() -> some View {
         
-        NavigationLink(destination: FirstSignInView(), isActive : $pushToFirstSignIn){}
+        NavigationLink(destination: FirstSignInView(), isActive : $pushToFirstSignIn){}.hidden(true)
     }
     
     
     private func homeScreenNavLink() -> some View {
         
-        NavigationLink(destination: ContentView(), isActive : $pushToHome){}
+        NavigationLink(destination: ContentView(), isActive : $pushToHome){}.hidden(true)
     }
 }
 

@@ -12,12 +12,12 @@ struct CountryCodePickerUI : View {
     //@EnvironmentObject private
     
     var viewModel : LoginDataViewModel
-    
-    
+
     var textColor : Color = .black
+
+    var textFont : Font = .body
     
-    let countries = Bundle.main.decodeJson([Country].self, fileName: "CountryPickerView.bundle/Data/CountryCodes.json")
-    
+
     @State private var searchText : String = ""
     
     var body: some View {
@@ -29,7 +29,7 @@ struct CountryCodePickerUI : View {
             
             List{
                 
-                ForEach( countries.filter({ searchText.isEmpty ?
+                ForEach( Country.countries.filter({ searchText.isEmpty ?
                 true : ($0.name?.contains(searchText) ?? true) }) , id:\.code)
                 {
                     country in
@@ -79,11 +79,11 @@ extension CountryCodePickerUI {
             }
             
             Text(country.code ?? "")
-            .font(.body)
+            .font(textFont)
             .foregroundColor(textColor)
             
             Text(country.name ?? "")
-            .font(.body)
+            .font(textFont)
             .foregroundColor(textColor)
                 
             Spacer()

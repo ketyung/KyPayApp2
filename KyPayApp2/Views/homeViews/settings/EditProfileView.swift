@@ -22,7 +22,7 @@ struct EditProfileView : View {
         profileFormView()
         .popOver(isPresented: $countryPickerViewModel.isCountryPickerPresented){
         
-            CountryCodePickerUI(viewModel: countryPickerViewModel)
+            CountryCodePickerUI(viewModel: countryPickerViewModel, textFont: .custom("Helvetica Neue", size: 15))
         }
         .onAppear{
                 
@@ -98,7 +98,7 @@ extension EditProfileView {
     private func phoneTextField() -> some View {
     
         
-        CocoaTextField("Phone Number", text: $userViewModel.phoneNumber)
+        CocoaTextField("Phone Number", text: $userViewModel.phoneNumberOnly)
         .font(UIFont.boldSystemFont(ofSize: 20))
         .width(160)
         .height(20)
@@ -129,7 +129,10 @@ extension EditProfileView {
         
         Button(action: {
             
-            self.countryPickerViewModel.isCountryPickerPresented = true
+            withAnimation{
+           
+                self.countryPickerViewModel.isCountryPickerPresented = true
+            }
             
         }){
             

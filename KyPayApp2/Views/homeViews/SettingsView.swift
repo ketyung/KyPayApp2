@@ -14,12 +14,16 @@ struct SettingRowView : View {
     
     
     var body : some View {
-        HStack (spacing : 15) {
+        HStack (spacing : 20) {
             Image(systemName: systemImageName)
+            .resizable()
+            .frame(width:20, height: 20)
             .foregroundColor(imageForegroundColor)
             
             Text (title)
-        }
+            
+            Spacer()
+        }.padding(6)
     }
 }
 
@@ -73,13 +77,20 @@ extension SettingsView {
                     })
                     
                     NavigationLink(destination: EmptyView(), label: {
-                        SettingRowView(title: "Merchant Profile", systemImageName: "cart", imageForegroundColor: .green)
+                        SettingRowView(title:
+                        userViewModel.isBusinessUser ?  "Merchant Profile".localized : "Become A Merchant".localized,
+                        systemImageName: "cart", imageForegroundColor: .green)
                     })
                     
                 }
             
                 Section(header: Text("Settings")) {
             
+                    NavigationLink(destination: EmptyView(), label: {
+                        SettingRowView(title: "Your Wallet", systemImageName: "dollarsign.circle", imageForegroundColor: .purple)
+                    })
+                 
+                    
                     NavigationLink(destination: EmptyView(), label: {
                         SettingRowView(title: "Face ID", systemImageName: "faceid", imageForegroundColor: .blue)
                     })
@@ -110,7 +121,7 @@ extension SettingsView {
     
     private func loginScreenNavLink() -> some View {
         
-        NavigationLink(destination: LoginView(), isActive : $pushToLogin){}
+        NavigationLink(destination: LoginView(), isActive : $pushToLogin){}.hidden(true)
     }
 }
 

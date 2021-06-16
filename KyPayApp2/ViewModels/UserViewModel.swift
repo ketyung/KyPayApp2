@@ -111,6 +111,53 @@ class UserViewModel : NSObject, ObservableObject {
         }
     }
     
+    var phoneNumberOnly : String {
+        
+        get {
+            
+            Country.phoneNumberOnly(phoneNumber, countryCode: userHolder.user.countryCode ?? "MY")
+        }
+        
+        set(newVal){
+            
+            phoneNumber = newVal
+        }
+    }
+    
+    var accountType : User.AccountType {
+        
+        get {
+            
+            userHolder.user.accountType ?? .personal
+        }
+        
+        set(newVal){
+            
+            userHolder.user.accountType = newVal
+        }
+        
+    }
+    
+    
+    var isBusinessUser : Bool {
+        
+        accountType == .business
+    }
+    
+    
+    var countryCode : String {
+        
+        get {
+            
+            userHolder.user.countryCode ?? "MY"
+        }
+        
+        set(newVal){
+            
+            userHolder.user.countryCode = newVal
+        }
+    }
+    
     var hasSignedIn : Bool {
         
        

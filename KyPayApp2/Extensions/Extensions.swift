@@ -75,4 +75,16 @@ extension String {
         
         return self.trimmingCharacters(in: .whitespacesAndNewlines)
     }
+    
+    
+    func deletingPrefix(_ prefix: String) -> String {
+        guard self.hasPrefix(prefix) else { return self }
+        return String(self.dropFirst(prefix.count))
+    }
+    
+    
+    var localized: String {
+        return NSLocalizedString(self, comment: "\(self)_comment")
+    }
+      
 }

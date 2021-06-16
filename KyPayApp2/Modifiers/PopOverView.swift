@@ -35,23 +35,56 @@ struct PopOverView <Content: View>: View {
         ZStack {
             if isPresented {
                 
+                
+                Color.black
+                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 100)
+                .opacity(0.35)
+                
+                
                 let w = UIScreen.main.bounds.width - 40
-              //  let x = (UIScreen.main.bounds.width - w) / 2
-      
                 let h : CGFloat = 400
-                //let y = (UIScreen.main.bounds.height - h) / 2
-      
+              
                 VStack (spacing: 10){
+                    
+                    closeButton()
+                    
                     content
                 }
                 .padding()
-                .frame(width:w , height: h, alignment: .center)
-                .background(Color(UIColor(hex: "#DDDDDDff")!))
+                .background(Color.white)
                 .cornerRadius(10)
-          
+                .frame(width:w , height: h, alignment: .center)
+               
             }
         }
     
+    }
+    
+    
+    
+    private func closeButton() -> some View {
+        
+        HStack(spacing:5) {
+       
+            Spacer()
+            .frame(width:2)
+            
+            Button(action: {
+                withAnimation {
+                    self.isPresented = false
+                }
+            }){
+                
+                Image(systemName: "x.circle.fill")
+                .resizable()
+                .frame(width:20, height: 20, alignment: .topLeading)
+                .foregroundColor(.black)
+                
+            }
+            
+            Spacer()
+        }
+        
     }
     
 }
