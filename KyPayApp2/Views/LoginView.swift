@@ -63,7 +63,7 @@ extension LoginView {
         .frame(width: UIScreen.main.bounds.width, height:UIScreen.main.bounds.height + 200)
         .background(Color(UIColor(hex: "#223355ff")!))
         .edgesIgnoringSafeArea(.all)
-        .bottomSheet(isPresented: $viewModel.isCountryPickerPresented, height: UIScreen.main.bounds.height - 100, showGrayOverlay: true){
+        .bottomSheet(isPresented: $viewModel.isCountryPickerPresented, height: UIScreen.main.bounds.height - 20, showGrayOverlay: true){
             
             
             CountryCodePickerUI(viewModel: viewModel, textFont: .custom("Helvetica Neue", size: 16))
