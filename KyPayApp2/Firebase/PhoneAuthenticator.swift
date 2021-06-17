@@ -18,7 +18,7 @@ class PhoneAuthenticator : NSObject{
     
     func sendOTP(phoneNumber : String, completion : ( (Error?)->Void )? = nil  ){
         
-        PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) {
+        PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) { 
           verificationID, error in
           
             if let error = error {

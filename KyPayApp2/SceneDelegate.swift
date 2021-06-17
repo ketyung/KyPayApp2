@@ -58,7 +58,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         //CountDownTextView(viewModel: OtpTextViewModel())
         ContentView().environmentObject(LoginDataViewModel()).environmentObject(UserViewModel())
 
-           //OTPView().environmentObject(LoginDataViewModel()).environmentObject(UserViewModel())
+        //OTPView().environmentObject(LoginDataViewModel()).environmentObject(UserViewModel())
             //LoginView().environmentObject(LoginDataViewModel()).environmentObject(UserViewModel())
 
             //HomeTabbedView().environmentObject(UserViewModel())

@@ -113,6 +113,12 @@ class OtpTextViewModel : NSObject, ObservableObject {
         set(newVal){
             
             otpText.text = newVal
+        
+            
+            if otpText.text?.count ?? 0 > 6 {
+                
+                otpText.text = String(otpText.text?.prefix(6) ?? "")
+            }
         }
     }
     

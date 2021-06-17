@@ -109,10 +109,12 @@ extension LoginDataViewModel {
             
             if let completion = completion {
             
-                self.loginData.isOTPViewPresented.toggle()
                 
-                print("otp.sent!")
-                
+                DispatchQueue.main.async {
+          
+                    self.loginData.isOTPViewPresented.toggle()
+                }
+            
                 completion(nil)
             }
         

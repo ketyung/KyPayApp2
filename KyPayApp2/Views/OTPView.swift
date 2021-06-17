@@ -6,8 +6,6 @@
 //
 
 import SwiftUI
-import SwiftUIX
-import Combine
 
 struct OTPView : View {
   
@@ -32,10 +30,10 @@ struct OTPView : View {
         
         NavigationView {
       
+            let _ = print("otp.presented!")
             otpScreenView()
         }
         .alert(isPresented: $invalidOtpAlertPresented){
-            
             Alert(title: Text("Oppps!"),message:Text(invalidOtpMessage))
         }
         .progressView(isShowing: $activityIndicatorPresented, text : "Signing in ...")
@@ -66,7 +64,7 @@ extension OTPView {
             //otpTextFields()
             
             otpTextField()
-
+            
             proceedButton()
             
             Spacer()
@@ -93,75 +91,19 @@ extension OTPView {
     
     private func otpTextField() -> some View {
         
-        CocoaTextField("", text: $viewModel.text)
+        TextField("", text: $viewModel.text)
         .keyboardType(.numberPad)
-        .font(UIFont.boldSystemFont(ofSize: 30))
-        .isFirstResponder(true)
-        .width(200)
-        .height(40)
+        .font(.custom("Helvetica", size: 30), weight: .bold)
+        .frame(width: 200, height: 40)
         .multilineTextAlignment(.center)
         .foregroundColor(.black)
         .background(Color.white)
-        .onReceive(Just(viewModel.text)) { _ in
-                
-            limitOtp()
-                
-        }
        
-        
     }
     
-    
-    private func limitOtp(_ upper: Int = 6 ) {
-        if viewModel.text.count > upper {
-            viewModel.text = String(viewModel.text.prefix(upper))
-        }
-    }
-    
-    
-    private func otpTextFields() -> some View {
-        
-        HStack (spacing: 10){
-            
-            textField(bind: $viewModel.number1, isFirstResponder: (viewModel.focusableIndex == 0))
-            
-            textField(bind: $viewModel.number2, isFirstResponder: (viewModel.focusableIndex == 1))
-                
-            textField(bind: $viewModel.number3, isFirstResponder: (viewModel.focusableIndex == 2))
-            textField(bind: $viewModel.number4, isFirstResponder: (viewModel.focusableIndex == 3))
-            textField(bind: $viewModel.number5, isFirstResponder: (viewModel.focusableIndex == 4))
-            textField(bind: $viewModel.number6, isFirstResponder: (viewModel.focusableIndex == 5))
-         
-        }
-        .padding()
-        .frame(width: UIScreen.main.bounds.width , height: 100, alignment: .center)
-    }
-    
-    
-    @ViewBuilder
-    private func textField( bind text : Binding<String>, isFirstResponder : Bool = false ) ->some View{
-    
-        let w : CGFloat = 40
-        
-        CocoaTextField("", text: text)
-        .keyboardType(.numberPad)
-        .font(UIFont.boldSystemFont(ofSize: 30))
-        .isFirstResponder(isFirstResponder)
-        .width(w)
-        .height(w)
-        .multilineTextAlignment(.center)
-        .foregroundColor(.black)
-        .background(Color.white)
-        
-    }
-    
-    private func limitText(bind text : Binding<String>, upper: Int = 1 ) {
-        if text.wrappedValue.count > upper {
-            text.wrappedValue = String(text.wrappedValue.prefix(upper))
-           // print("text.wt::\(text.wrappedValue)")
-        }
-    }
 }
+
+
 
 extension OTPView {
     
@@ -247,8 +189,6 @@ extension OTPView {
             Button(action: {
                 withAnimation {
                     loginViewModel.isOTPViewPresented = false
-                    
-                    print("xxxx.cl")
                 }
             }){
                 
@@ -285,7 +225,7 @@ extension OTPView {
             HStack{
             
                 Text("Code will be resent after")
-                CountDownTextView(viewModel: viewModel)
+               // CountDownTextView(viewModel: viewModel)
             }
             
         }
@@ -307,3 +247,48 @@ extension OTPView {
     }
 }
 
+
+
+
+
+/** No More needed - commented out
+extension OTPView {
+    
+    
+    private func otpTextFields() -> some View {
+        
+        HStack (spacing: 10){
+            
+            textField(bind: $viewModel.number1, isFirstResponder: (viewModel.focusableIndex == 0))
+            
+            textField(bind: $viewModel.number2, isFirstResponder: (viewModel.focusableIndex == 1))
+                
+            textField(bind: $viewModel.number3, isFirstResponder: (viewModel.focusableIndex == 2))
+            textField(bind: $viewModel.number4, isFirstResponder: (viewModel.focusableIndex == 3))
+            textField(bind: $viewModel.number5, isFirstResponder: (viewModel.focusableIndex == 4))
+            textField(bind: $viewModel.number6, isFirstResponder: (viewModel.focusableIndex == 5))
+         
+        }
+        .padding()
+        .frame(width: UIScreen.main.bounds.width , height: 100, alignment: .center)
+    }
+    
+    
+    @ViewBuilder
+    private func textField( bind text : Binding<String>, isFirstResponder : Bool = false ) ->some View{
+    
+        let w : CGFloat = 40
+        
+        CocoaTextField("", text: text)
+        .keyboardType(.numberPad)
+        .font(UIFont.boldSystemFont(ofSize: 30))
+        .isFirstResponder(isFirstResponder)
+        .width(w)
+        .height(w)
+        .multilineTextAlignment(.center)
+        .foregroundColor(.black)
+        .background(Color.white)
+        
+    }
+    
+}*/
