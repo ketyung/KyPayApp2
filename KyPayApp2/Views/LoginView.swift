@@ -21,10 +21,14 @@ struct LoginView : View {
     
     @State private var keyboardShouldGoOff : Bool = false
     
+    @State private var yOffset : CGFloat = 0
+    
     
     var body: some View {
         
         view()
+        .offset(y: yOffset)
+     
     }
 }
 
@@ -35,7 +39,6 @@ extension LoginView {
         
         VStack{
             
-                
             Spacer()
             .frame(height:180)
             
@@ -75,6 +78,12 @@ extension LoginView {
                title: Text("Error!"),
                message:Text(errorMessage)
             )
+        }
+        .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardDidShowNotification)) { _ in
+            
+            keyboardShouldGoOff = false
+            yOffset = 100
+            viewModel.phoneNumberIsFirstResponder = true
         }
     }
 }
@@ -150,6 +159,9 @@ extension LoginView {
         .height(20)
         .padding()
         .background(Color.white)
+        .onTapGesture {
+            viewModel.phoneNumberIsFirstResponder = true
+        }
         .onReceive(Just(viewModel.enteredPhoneNumber)) { _ in
             
             if !keyboardShouldGoOff {
@@ -163,10 +175,7 @@ extension LoginView {
             limitPhoneNumber()
             
         }
-        .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardDidShowNotification)) { _ in
-            
-            keyboardShouldGoOff = false
-        }
+         
     }
     
     
@@ -199,6 +208,7 @@ extension LoginView {
                     
                     viewModel.phoneNumberIsFirstResponder = false
                     keyboardShouldGoOff = true
+                    yOffset = 0
                 }
             }){
                 
