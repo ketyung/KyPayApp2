@@ -65,7 +65,7 @@ class Tester {
         cs.forEach{
             c in
             
-            print("c.\(c.identifier)::\(c.familyName) :: \(c.givenName)::")
+            print("c.\(c.cnIdentifier)::\(c.firstName) :: \(c.lastName)::")
         }
     }
     

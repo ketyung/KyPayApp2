@@ -6,53 +6,63 @@
 //
 
 import SwiftUI
-import ContactsUI
 
 struct ContactsListView : View {
     
     private let contacts = ContactFetcher.getContacts()
     
+    @State private var searchText : String = ""
+    
     var body : some View {
         
-        List{
+        
+        VStack {
             
-            ForEach(contacts, id : \.identifier){
+            SearchBar(text: $searchText)
+       
+            List{
                 
-                contact in
-            
-                contactRow(contact)
+                ForEach(contacts.filter({ searchText.isEmpty ? true : $0.name.lowercased().contains(searchText.lowercased()) }), id : \.cnIdentifier){
+                    
+                    contact in
+                
+                    contactRow(contact)
+                }
             }
+            
         }
+       
     }
 }
 
 extension ContactsListView {
     
-    private func contactRow(_ contact : CNContact) -> some View {
+    private func contactRow(_ contact : Contact) -> some View {
         
         HStack(spacing:5) {
             
             ZStack{
                 
+                let f = contact.firstName.prefix(1).uppercased()
+                
                 Circle().fill(Color.orange)
                 .frame(width: 40, height: 40)
                 
-                let t = "\(contact.givenName.prefix(1).uppercased())\(contact.familyName.prefix(1).uppercased())"
+                let t = "\(f)\(contact.lastName.prefix(1).uppercased())"
                 Text(t)
-                .font(.custom(Theme.fontName, size: 20))
+                .font(.custom(Theme.fontNameBold, size: 18))
                 .foregroundColor(.white)
             }
             
-            Text(contact.givenName)
+            Text(contact.name)
             .font(.custom(Theme.fontName, size: 16))
             .lineLimit(1)
            
-            Text(contact.familyName)
-            .font(.custom(Theme.fontName, size: 16))
-            .lineLimit(1)
-               
-            Text(contact.phoneNumbers.first?.value.stringValue ?? "")
-            .font(.custom(Theme.fontName, size: 16))
+            Spacer()
+            
+            Text(contact.phoneNumber)
+            .font(.custom(Theme.fontNameBold, size: 14))
+
 
         }
     }

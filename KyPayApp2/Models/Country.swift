@@ -37,11 +37,20 @@ extension Country{
     
     static func phoneNumberOnly (_ phoneNumber : String, countryCode : String) -> String{
         
+        let dialCode = dialCode(countryCode: countryCode)
+        
+        return phoneNumber.deletingPrefix(dialCode)
+    }
+    
+    
+    static func dialCode(countryCode : String) -> String {
+        
         let fcountries = Country.countries.filter({ $0.code?.contains(countryCode) ?? false  } )
         
         let dialCode = fcountries.first?.dialCode ?? "+60"
         
-        return phoneNumber.deletingPrefix(dialCode)
+        return dialCode
+      
     }
 
 }

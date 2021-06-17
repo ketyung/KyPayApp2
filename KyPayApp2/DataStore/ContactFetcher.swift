@@ -18,18 +18,17 @@ struct Contact {
     var lastName : String = ""
     
     var phoneNumber : String = ""
+    
+    var name : String {
+        
+        "\(firstName) \(lastName)"
+    }
 }
 
 class ContactFetcher : NSObject {
     
-
-    enum ContactsFilter {
-       case none
-       case mail
-       case message
-    }
     
-    class func getContacts() -> [CNContact] { //  ContactsFilter is Enum find it below
+    class func getContacts() -> [Contact] { //  ContactsFilter is Enum find it below
 
         let contactStore = CNContactStore()
         let keysToFetch = [
@@ -40,7 +39,7 @@ class ContactFetcher : NSObject {
         ] as [Any]
 
     
-        var results: [CNContact] = []
+        var results: [Contact] = []
 
     
         let request = CNContactFetchRequest(keysToFetch: keysToFetch as! [CNKeyDescriptor])
@@ -51,7 +50,12 @@ class ContactFetcher : NSObject {
             try contactStore.enumerateContacts(with: request){
                     (contact, stop) in
                 // Array containing all unified contacts from everywhere
-                results.append(contact)
+                
+                if let cont = cnContactToContact(contact) {
+               
+                    results.append(cont)
+                   
+                }
                 
             }
             
@@ -64,7 +68,7 @@ class ContactFetcher : NSObject {
     
     
     
-    private func doesContactHaveMobile (_ contact : CNContact)  {
+    private class func cnContactToContact (_ contact : CNContact) -> Contact? {
         
         
         for num in contact.phoneNumbers
@@ -72,11 +76,21 @@ class ContactFetcher : NSObject {
              if num.label == "_$!<Mobile>!$_"
              {
                 
-                return 
+                let cc = (num.value.value(forKey: "countryCode") as? String ?? "").uppercased()
+                
+                let dialCode = Country.dialCode(countryCode: cc)
+                
+                let phoneNum = (num.value.value(forKey: "digits") as? String ?? "").deletingPrefix(dialCode).deletingPrefix("0")
+                
+                
+                let contact = Contact(cnIdentifier: contact.identifier, firstName:contact.givenName, lastName: contact.familyName, phoneNumber: "\(dialCode)\(phoneNum)")
+                
+                return contact
              }
             
         }
 
+        return nil
     }
 }
 
