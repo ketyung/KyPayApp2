@@ -30,7 +30,7 @@ struct OTPView : View {
         
         NavigationView {
       
-            //let _ = print("otp.presented!")
+            let _ = print("otp.presented!")
             otpScreenView()
         }
         .alert(isPresented: $invalidOtpAlertPresented){
@@ -93,11 +93,13 @@ extension OTPView {
         
         TextField("", text: $viewModel.text)
         .keyboardType(.numberPad)
+        .textContentType(.oneTimeCode)
         .font(.custom("Helvetica", size: 30), weight: .bold)
         .frame(width: 200, height: 40)
         .multilineTextAlignment(.center)
         .foregroundColor(.black)
         .background(Color.white)
+        
        
     }
     
