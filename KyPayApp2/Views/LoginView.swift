@@ -28,6 +28,7 @@ struct LoginView : View {
         
         view()
         .offset(y: yOffset)
+        .animation(.easeInOut(duration: 0.65))
      
     }
 }
@@ -40,7 +41,7 @@ extension LoginView {
         VStack{
             
             Spacer()
-            .frame(height:180)
+            .frame(height:280)
             
             Text("Welcome")
             .font(.system(.largeTitle, design: .rounded))
@@ -59,7 +60,7 @@ extension LoginView {
             
             Spacer()
         }
-        .frame(width: UIScreen.main.bounds.width, height:UIScreen.main.bounds.height)
+        .frame(width: UIScreen.main.bounds.width, height:UIScreen.main.bounds.height + 200)
         .background(Color(UIColor(hex: "#223355ff")!))
         .edgesIgnoringSafeArea(.all)
         .bottomSheet(isPresented: $viewModel.isCountryPickerPresented, height: UIScreen.main.bounds.height - 100, showGrayOverlay: true){
@@ -212,7 +213,7 @@ extension LoginView {
                 }
             }){
                 
-                Image(systemName: "circle.grid.cross.down.fill")
+                Image(systemName: "arrowtriangle.down.circle.fill")
                 .resizable()
                 .frame(width:20, height: 20, alignment: .topLeading)
                 .foregroundColor(.white)
@@ -221,7 +222,7 @@ extension LoginView {
             
             Spacer()
         }
-        
+        .hidden(!viewModel.phoneNumberIsFirstResponder)
     }
     
 }
