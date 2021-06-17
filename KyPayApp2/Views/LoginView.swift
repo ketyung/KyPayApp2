@@ -26,9 +26,15 @@ struct LoginView : View {
     
     var body: some View {
         
-        view()
-        .offset(y: yOffset)
-        .animation(.easeInOut(duration: 0.65))
+        if $viewModel.isOTPViewPresented.wrappedValue {
+            
+            OTPView()
+        }
+        else {
+    
+            loginView().offset(y: yOffset)
+            .animation(.easeInOut(duration: 0.65))
+        }
      
     }
 }
@@ -36,7 +42,7 @@ struct LoginView : View {
 
 extension LoginView {
     
-    private func view() -> some View {
+    private func loginView() -> some View {
         
         VStack{
             
@@ -68,10 +74,11 @@ extension LoginView {
             CountryCodePickerUI(viewModel: viewModel, textFont: .custom(Theme.fontName, size: 16))
             
         }
+        /**
         .sheet(isPresented: $viewModel.isOTPViewPresented, content: {
             
             OTPView()
-        })
+        })*/
         .alert(isPresented: $errorAlertPresented){
             
             Alert(title: Text("Error!"),message:Text(errorMessage))
