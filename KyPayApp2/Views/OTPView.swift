@@ -40,7 +40,6 @@ struct OTPView : View {
         }
         .progressView(isShowing: $activityIndicatorPresented, text : "Signing in ...")
         .navigationBarBackButtonHidden(true)
-        .animation(.easeInOut(duration: 0.65))
     
     }
 }
@@ -53,7 +52,7 @@ extension OTPView {
         VStack(spacing:20){
             
             
-            let _ = print("otp.presented!")
+            //let _ = print("otp.presented!")
             Spacer()
             .frame(height:30)
 
@@ -64,8 +63,9 @@ extension OTPView {
             .font(.system(size: 20))
             .frame(width: 300)
             
-            otpTextFields()
+            //otpTextFields()
             
+            otpTextField()
 
             proceedButton()
             
@@ -89,6 +89,34 @@ extension OTPView {
 
 
 extension OTPView {
+    
+    
+    private func otpTextField() -> some View {
+        
+        CocoaTextField("", text: $viewModel.text)
+        .keyboardType(.numberPad)
+        .font(UIFont.boldSystemFont(ofSize: 30))
+        .isFirstResponder(true)
+        .width(200)
+        .height(40)
+        .multilineTextAlignment(.center)
+        .foregroundColor(.black)
+        .background(Color.white)
+        .onReceive(Just(viewModel.text)) { _ in
+                
+            limitOtp()
+                
+        }
+       
+        
+    }
+    
+    
+    private func limitOtp(_ upper: Int = 6 ) {
+        if viewModel.text.count > upper {
+            viewModel.text = String(viewModel.text.prefix(upper))
+        }
+    }
     
     
     private func otpTextFields() -> some View {
@@ -116,7 +144,7 @@ extension OTPView {
         let w : CGFloat = 40
         
         CocoaTextField("", text: text)
-        .keyboardType(.decimalPad)
+        .keyboardType(.numberPad)
         .font(UIFont.boldSystemFont(ofSize: 30))
         .isFirstResponder(isFirstResponder)
         .width(w)
@@ -257,7 +285,7 @@ extension OTPView {
             HStack{
             
                 Text("Code will be resent after")
-               // CountDownTextView(viewModel: viewModel)
+                CountDownTextView(viewModel: viewModel)
             }
             
         }

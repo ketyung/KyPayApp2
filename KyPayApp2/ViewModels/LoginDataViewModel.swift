@@ -102,14 +102,16 @@ extension LoginDataViewModel {
                 return
             }
             
+            guard let self = self else {
+                
+                return
+            }
+            
             if let completion = completion {
             
+                self.loginData.isOTPViewPresented.toggle()
                 
-                if !(self?.loginData.isOTPViewPresented ?? false) {
-                    
-                    self?.loginData.isOTPViewPresented = true
-                  
-                }
+                print("otp.sent!")
                 
                 completion(nil)
             }

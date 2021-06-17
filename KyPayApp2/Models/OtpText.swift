@@ -112,4 +112,6 @@ struct OtpText {
     
     var resendEnabled : Bool = false 
     
+    var text : String?
+    
 }

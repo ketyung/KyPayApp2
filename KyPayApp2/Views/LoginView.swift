@@ -68,7 +68,7 @@ extension LoginView {
             CountryCodePickerUI(viewModel: viewModel, textFont: .custom("Helvetica Neue", size: 16))
             
         }
-        .bottomSheet(isPresented: $viewModel.isOTPViewPresented, height: UIScreen.main.bounds.height + 100, showGrayOverlay: true, content: {
+        .sheet(isPresented: $viewModel.isOTPViewPresented, content: {
             
             OTPView()
         })
@@ -166,7 +166,6 @@ extension LoginView {
                 if !viewModel.phoneNumberIsFirstResponder {
                     viewModel.phoneNumberIsFirstResponder = true
                 }
-               
             }
             
             limitPhoneNumber()

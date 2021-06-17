@@ -99,7 +99,21 @@ class OtpTextViewModel : NSObject, ObservableObject {
     
     var text : String {
         
-        "\(number1)\(number2)\(number3)\(number4)\(number5)\(number6)"
+        get{
+            
+            guard let txt = otpText.text else {
+                
+                return "\(number1)\(number2)\(number3)\(number4)\(number5)\(number6)"
+                
+            }
+            
+            return txt
+        }
+        
+        set(newVal){
+            
+            otpText.text = newVal
+        }
     }
     
     
