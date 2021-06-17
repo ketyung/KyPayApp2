@@ -7,11 +7,36 @@
 
 import SwiftUI
 
+struct HomeControl {
+    
+    var topUpPresented : Bool = false
+    
+    var sendMoneyPresented : Bool = false
+    
+    var requestMoneyPresented : Bool = false
+}
+
 struct HomeView : View {
 
     @EnvironmentObject private var viewModel : UserViewModel
     
+    @State private var control = HomeControl()
+    
     var body : some View {
+        
+        view()
+        .bottomSheet(isPresented: $control.topUpPresented, height: UIScreen.main.bounds.height, showGrayOverlay: true, content:{
+        
+            TopUpView(isPresented: $control.topUpPresented)
+        })
+    }
+    
+}
+
+
+extension HomeView {
+    
+    private func view () -> some View {
         
         ScrollView(/*@START_MENU_TOKEN@*/.vertical/*@END_MENU_TOKEN@*/, showsIndicators: false) {
             
@@ -30,9 +55,7 @@ struct HomeView : View {
         .padding()
         .frame(width:UIScreen.main.bounds.width )
     }
-    
 }
-
 
 
 extension HomeView {
@@ -72,7 +95,11 @@ extension HomeView {
                 
                 HStack {
                     
-                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/){
+                    Button(action: {
+                        
+                        control.topUpPresented.toggle()
+                        
+                    }){
                         
                         buttonView(color : Color(UIColor(hex:"#5566aaff")!), imageOne: "wallet",
                                    imageTwo: "plus.circle", text: "Top Up")
@@ -165,7 +192,7 @@ extension HomeView {
                 }
                 
                 Text(text)
-                .font(.custom("Helvetica Neue", size: 13))
+                .font(.custom(Theme.fontName, size: 13))
                 .foregroundColor(.white)
                 
             }

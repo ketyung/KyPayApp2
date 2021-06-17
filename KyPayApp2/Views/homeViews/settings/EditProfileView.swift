@@ -22,7 +22,7 @@ struct EditProfileView : View {
         profileFormView()
         .popOver(isPresented: $countryPickerViewModel.isCountryPickerPresented){
         
-            CountryCodePickerUI(viewModel: countryPickerViewModel, textFont: .custom("Helvetica Neue", size: 15))
+            CountryCodePickerUI(viewModel: countryPickerViewModel, textFont: .custom(Theme.fontName, size: 15))
         }
         .onAppear{
                 

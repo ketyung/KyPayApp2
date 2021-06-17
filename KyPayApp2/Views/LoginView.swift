@@ -65,7 +65,7 @@ extension LoginView {
         .bottomSheet(isPresented: $viewModel.isCountryPickerPresented, height: UIScreen.main.bounds.height - 20, showGrayOverlay: true){
             
             
-            CountryCodePickerUI(viewModel: viewModel, textFont: .custom("Helvetica Neue", size: 16))
+            CountryCodePickerUI(viewModel: viewModel, textFont: .custom(Theme.fontName, size: 16))
             
         }
         .sheet(isPresented: $viewModel.isOTPViewPresented, content: {

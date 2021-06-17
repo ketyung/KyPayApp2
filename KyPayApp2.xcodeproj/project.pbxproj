@@ -88,6 +88,8 @@
 		1033C0B32679E01600D999CE /* ShadowedRoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0B22679E01600D999CE /* ShadowedRoundedCorner.swift */; };
 		1033C0B5267A2B5B00D999CE /* CountDownTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0B4267A2B5B00D999CE /* CountDownTextView.swift */; };
 		1033C0B7267AC63100D999CE /* NeumorphismModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0B6267AC63100D999CE /* NeumorphismModifier.swift */; };
+		1033C0BA267AEC3700D999CE /* TopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0B9267AEC3700D999CE /* TopUpView.swift */; };
+		1033C0BC267AECA200D999CE /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0BB267AECA200D999CE /* Theme.swift */; };
 		94C85EFD927289A72B96857C /* Pods_KyPayApp2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD2A35EA43E8F034705E971 /* Pods_KyPayApp2.framework */; };
 /* End PBXBuildFile section */
 
@@ -196,6 +198,8 @@
 		1033C0B22679E01600D999CE /* ShadowedRoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowedRoundedCorner.swift; sourceTree = "<group>"; };
 		1033C0B4267A2B5B00D999CE /* CountDownTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownTextView.swift; sourceTree = "<group>"; };
 		1033C0B6267AC63100D999CE /* NeumorphismModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeumorphismModifier.swift; sourceTree = "<group>"; };
+		1033C0B9267AEC3700D999CE /* TopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopUpView.swift; sourceTree = "<group>"; };
+		1033C0BB267AECA200D999CE /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		1B47377B496C6F0F1022FFD4 /* Pods-KyPayApp2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.debug.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.debug.xcconfig"; sourceTree = "<group>"; };
 		6F523BC3D4353462922B31B9 /* Pods-KyPayApp2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.release.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -535,6 +539,7 @@
 				1033C0AD2679BB6B00D999CE /* settings */,
 				1033C09B2678509D00D999CE /* SettingsView.swift */,
 				1033C09F2678510100D999CE /* RequestView.swift */,
+				1033C0B9267AEC3700D999CE /* TopUpView.swift */,
 				1033C09D267850D900D999CE /* SendView.swift */,
 				1033C09926784FC300D999CE /* HomeView.swift */,
 				1033C0A22678514500D999CE /* HomeTabbedView.swift */,
@@ -550,6 +555,7 @@
 				1033C0A52678A87C00D999CE /* ProgressViewModifier.swift */,
 				1033C0B22679E01600D999CE /* ShadowedRoundedCorner.swift */,
 				1033C0B6267AC63100D999CE /* NeumorphismModifier.swift */,
+				1033C0BB267AECA200D999CE /* Theme.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -791,6 +797,7 @@
 				1033C090267749F600D999CE /* OTPView.swift in Sources */,
 				1033C0A32678514500D999CE /* HomeTabbedView.swift in Sources */,
 				1033C0A62678A87C00D999CE /* ProgressViewModifier.swift in Sources */,
+				1033C0BA267AEC3700D999CE /* TopUpView.swift in Sources */,
 				1033C0AC2679A38000D999CE /* Tool.swift in Sources */,
 				1033B2952674A82F00D999CE /* UserImg.swift in Sources */,
 				1033C09E267850D900D999CE /* SendView.swift in Sources */,
@@ -808,6 +815,7 @@
 				1033C0B32679E01600D999CE /* ShadowedRoundedCorner.swift in Sources */,
 				1033C09426782B5700D999CE /* OtpText.swift in Sources */,
 				1033C0AF2679BB7800D999CE /* EditProfileView.swift in Sources */,
+				1033C0BC267AECA200D999CE /* Theme.swift in Sources */,
 				1033C0B7267AC63100D999CE /* NeumorphismModifier.swift in Sources */,
 				1033C096267846E500D999CE /* FirstSignInView.swift in Sources */,
 				1033B2992674A82F00D999CE /* UserPaymentTx.swift in Sources */,

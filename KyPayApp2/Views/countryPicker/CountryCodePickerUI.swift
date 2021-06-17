@@ -55,7 +55,7 @@ extension CountryCodePickerUI {
     
     private func defaultTextFont() -> Font {
         
-        return .custom("Helvetica Neue", size: 15)
+        return .custom(Theme.fontName, size: 15)
     }
     
     private func countryRowButton(_ country : Country ) -> some View {

@@ -29,8 +29,7 @@ struct OTPView : View {
     var body : some View {
         
         NavigationView {
-      
-            let _ = print("otp.presented!")
+           // let _ = print("otp.presented!")
             otpScreenView()
         }
         .alert(isPresented: $invalidOtpAlertPresented){
@@ -94,7 +93,7 @@ extension OTPView {
         TextField("", text: $viewModel.text)
         .keyboardType(.numberPad)
         .textContentType(.oneTimeCode)
-        .font(.custom("Helvetica", size: 30), weight: .bold)
+        .font(.custom(Theme.fontName, size: 30), weight: .bold)
         .frame(width: 200, height: 40)
         .multilineTextAlignment(.center)
         .foregroundColor(.black)
@@ -227,7 +226,7 @@ extension OTPView {
             HStack{
             
                 Text("Code will be resent after")
-               // CountDownTextView(viewModel: viewModel)
+                CountDownTextView(viewModel: viewModel)
             }
             
         }
