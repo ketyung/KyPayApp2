@@ -58,6 +58,17 @@ class Tester {
      */
     
     
+    static func testFetchAllContacts(){
+        
+        let cs = ContactFetcher.getContacts()
+        
+        cs.forEach{
+            c in
+            
+            print("c.\(c.identifier)::\(c.familyName) :: \(c.givenName)::")
+        }
+    }
+    
     static func testPhoneAuth(phone : String = "+60168319183"){
         
         PA.shared.sendOTP(phoneNumber: phone)

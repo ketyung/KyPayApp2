@@ -53,8 +53,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         //Tester.testAddPayment()
         
+    
+       // Tester.testFetchAllContacts()
+        
         let contentView =
         
+       // ContactsListView()
         //CountDownTextView(viewModel: OtpTextViewModel())
         ContentView().environmentObject(LoginDataViewModel()).environmentObject(UserViewModel())
 
