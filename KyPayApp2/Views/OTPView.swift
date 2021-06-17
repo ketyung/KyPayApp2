@@ -30,7 +30,7 @@ struct OTPView : View {
         
         NavigationView {
       
-            let _ = print("otp.presented!")
+            //let _ = print("otp.presented!")
             otpScreenView()
         }
         .alert(isPresented: $invalidOtpAlertPresented){
