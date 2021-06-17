@@ -57,7 +57,6 @@ extension LoginView {
             
             dismissKeyboardButton()
          
-            
             Spacer()
         }
         .frame(width: UIScreen.main.bounds.width, height:UIScreen.main.bounds.height + 200)
@@ -69,16 +68,13 @@ extension LoginView {
             CountryCodePickerUI(viewModel: viewModel, textFont: .custom("Helvetica Neue", size: 16))
             
         }
-        .bottomSheet(isPresented: $viewModel.isOTPViewPresented, height: UIScreen.main.bounds.height + 50, showGrayOverlay: true, content: {
+        .bottomSheet(isPresented: $viewModel.isOTPViewPresented, height: UIScreen.main.bounds.height + 100, showGrayOverlay: true, content: {
             
             OTPView()
         })
         .alert(isPresented: $errorAlertPresented){
             
-            Alert(
-               title: Text("Error!"),
-               message:Text(errorMessage)
-            )
+            Alert(title: Text("Error!"),message:Text(errorMessage))
         }
         .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardDidShowNotification)) { _ in
             
@@ -251,7 +247,6 @@ extension LoginView {
           
                 signInButtonDisabled = true
                 
-                self.viewModel.isOTPViewPresented = true 
                
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
                     

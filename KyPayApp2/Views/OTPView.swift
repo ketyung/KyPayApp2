@@ -17,9 +17,6 @@ struct OTPView : View {
  
     @ObservedObject private var viewModel = OtpTextViewModel()
     
-    
-    @State private var resendEnabled : Bool = false
-    
     @State private var invalidOtpAlertPresented : Bool = false
     
     @State private var invalidOtpMessage : String = "Invalid Verification Code!!"
@@ -43,6 +40,8 @@ struct OTPView : View {
         }
         .progressView(isShowing: $activityIndicatorPresented, text : "Signing in ...")
         .navigationBarBackButtonHidden(true)
+        .animation(.easeInOut(duration: 0.65))
+    
     }
 }
 
@@ -171,32 +170,41 @@ extension OTPView {
                 }
                 
                 
+    
                 DispatchQueue.main.async {
-                
-                    if firstSignIn {
-                        
-                        self.pushToFirstSignIn = true
-                        self.pushToHome = false
-                        
-                    }
-                    else {
-                    
-                        self.pushToFirstSignIn = false
-                        self.pushToHome = true
-                    }
-                    
-                    self.activityIndicatorPresented = false
-                    loginViewModel.removeAllUnneeded()
-                    
+        
+                    self.determineScreenToPush(firstSignIn)
                 }
-                
-                
+                        
             })
         }
         else {
             
             invalidOtpMessage = "Invalid Verification Code!!"
             self.invalidOtpAlertPresented = true
+        }
+    }
+    
+    
+    private func determineScreenToPush( _ firstSignIn : Bool ){
+        
+        withAnimation{
+  
+            if firstSignIn {
+                
+                self.pushToFirstSignIn = true
+                self.pushToHome = false
+                
+            }
+            else {
+            
+                self.pushToFirstSignIn = false
+                self.pushToHome = true
+            }
+            
+            self.activityIndicatorPresented = false
+            loginViewModel.removeAllUnneeded()
+      
         }
     }
     
@@ -211,6 +219,8 @@ extension OTPView {
             Button(action: {
                 withAnimation {
                     loginViewModel.isOTPViewPresented = false
+                    
+                    print("xxxx.cl")
                 }
             }){
                 
@@ -223,7 +233,7 @@ extension OTPView {
             
             Spacer()
         }
-        .hidden(!resendEnabled)
+        .hidden(!viewModel.resendEnabled)
         
        
     }
@@ -232,11 +242,11 @@ extension OTPView {
     @ViewBuilder
     private func resendText() -> some View {
         
-        if resendEnabled {
+        if viewModel.resendEnabled {
             
             Button(action: {
                 
-                self.resendEnabled = false
+                self.viewModel.resendEnabled = false
             }){
                 
                 Text("Resend")
@@ -247,7 +257,7 @@ extension OTPView {
             HStack{
             
                 Text("Code will be resent after")
-                CountDownTextView(viewModel: viewModel)
+               // CountDownTextView(viewModel: viewModel)
             }
             
         }

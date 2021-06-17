@@ -90,7 +90,7 @@ extension LoginDataViewModel {
     
     func sendOTP(phoneNumber : String, completion : ( (Error?)->Void )? = nil ){
         
-        PA.shared.sendOTP(phoneNumber: phoneNumber, completion: { err in
+        PA.shared.sendOTP(phoneNumber: phoneNumber, completion: {[weak self] err in
             
             if let err = err {
                 
@@ -103,6 +103,13 @@ extension LoginDataViewModel {
             }
             
             if let completion = completion {
+            
+                
+                if !(self?.loginData.isOTPViewPresented ?? false) {
+                    
+                    self?.loginData.isOTPViewPresented = true
+                  
+                }
                 
                 completion(nil)
             }
