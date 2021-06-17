@@ -217,11 +217,10 @@ extension UserViewModel {
     
     func signIn (verificationCode : String, completion : ((Bool,Error?)->Void)? = nil  ){
         
-        PA.shared.signIn(verificationCode: verificationCode, completion: {
-            phoneNumber, err in
+        PA.shared.signIn(verificationCode: verificationCode, completion: { phoneNumber, err in
+    
             
             if let err = err {
-                
                 completion?(false, err)
                 return
             }
@@ -230,9 +229,15 @@ extension UserViewModel {
             if let phone = phoneNumber {
            
                 
-                ARH.shared.fetchUser(phoneNumber: phone, completion: {
+                ARH.shared.fetchUser(phoneNumber: phone, completion: {  [weak self]
                     
                     res in
+                    
+                    
+                    guard let self = self else {
+                        return
+                    }
+               
                     
                     switch (res) {
                     

@@ -50,11 +50,10 @@ extension OTPView {
             
             
             Spacer()
-            .frame(height:30)
+            .frame(height:100)
 
             closeButton()
           
-            
             Text("Please enter the 6-digit verification code below:")
             .font(.system(size: 20))
             .frame(width: 300)
