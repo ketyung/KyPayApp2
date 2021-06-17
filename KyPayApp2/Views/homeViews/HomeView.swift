@@ -87,13 +87,13 @@ extension HomeView {
         VStack {
        
             Text("What can you do with KyPay app?")
-            .font(.headline)
+            .font(.custom(Theme.fontName, size: 20))
             .frame(alignment: .leading)
             
             
             ScrollView(.horizontal, showsIndicators: false ){
                 
-                HStack {
+                HStack(spacing:4) {
                     
                     Button(action: {
                         
@@ -115,14 +115,14 @@ extension HomeView {
                     
                     Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/){
                         
-                        buttonView(color: .purple, imageOne: "arrow.left", imageOneSize:  CGSize(width:24, height:24),
+                        buttonView(color: .purple, imageOne: "arrow.left", imageOneSize:  CGSize(width:18, height:18),
                         imageOneForegroundColor: Color(UIColor(hex:"#DDFFDDFF")!),
-                        imageTwo: "dollarsign.circle.fill", imageTwoSize:  CGSize(width:40, height:40),
+                        imageTwo: "dollarsign.circle.fill", imageTwoSize:  CGSize(width:32, height:32),
                         imageTwoForegroundColor: Color(UIColor(hex:"#55dd66ff")!) ,
                         text: "Request Money")
                     }
                     
-                }
+                }.padding(4)
             }
         }
        
@@ -135,10 +135,10 @@ extension HomeView {
     
     private func buttonView ( color : Color = .green,
                               imageOne : String,
-                              imageOneSize : CGSize = CGSize(width:40, height: 40),
+                              imageOneSize : CGSize = CGSize(width:32, height: 32),
                               imageOneForegroundColor : Color = .brown,
                               imageTwo : String,
-                              imageTwoSize : CGSize = CGSize(width:24, height: 24),
+                              imageTwoSize : CGSize = CGSize(width:18, height: 18),
                               imageTwoForegroundColor : Color = .white,
                               text : String ) -> some View{
         
@@ -147,9 +147,9 @@ extension HomeView {
       
             Rectangle()
             .fill(color)
-            .frame(width: 120, height: 80)
+            .frame(width: 100, height: 70)
             .cornerRadius(10)
-            .padding(4)
+            .padding(6)
                 
             VStack {
             
@@ -192,7 +192,7 @@ extension HomeView {
                 }
                 
                 Text(text)
-                .font(.custom(Theme.fontName, size: 13))
+                .font(.custom(Theme.fontName, size: 12))
                 .foregroundColor(.white)
                 
             }
