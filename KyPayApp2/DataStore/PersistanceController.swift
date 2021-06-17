@@ -17,7 +17,7 @@ struct PersistenceController {
     
     init(){
         
-        container = NSPersistentContainer(name: "InvoiceDB")
+        container = NSPersistentContainer(name: "KyPayDb")
         
         container.loadPersistentStores {
             (storeDescription, error) in

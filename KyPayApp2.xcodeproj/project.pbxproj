@@ -93,6 +93,8 @@
 		1033C0BE267AFCCD00D999CE /* PersistanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0BD267AFCCD00D999CE /* PersistanceController.swift */; };
 		1033C0C0267AFD4F00D999CE /* ContactFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0BF267AFD4F00D999CE /* ContactFetcher.swift */; };
 		1033C0C2267AFFB600D999CE /* ContactsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0C1267AFFB600D999CE /* ContactsListView.swift */; };
+		1033C0C5267B358E00D999CE /* KyPayDb.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0C3267B358E00D999CE /* KyPayDb.xcdatamodeld */; };
+		1033C0C7267B363C00D999CE /* KyPayContactDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0C6267B363C00D999CE /* KyPayContactDataStore.swift */; };
 		94C85EFD927289A72B96857C /* Pods_KyPayApp2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD2A35EA43E8F034705E971 /* Pods_KyPayApp2.framework */; };
 /* End PBXBuildFile section */
 
@@ -206,6 +208,8 @@
 		1033C0BD267AFCCD00D999CE /* PersistanceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistanceController.swift; sourceTree = "<group>"; };
 		1033C0BF267AFD4F00D999CE /* ContactFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactFetcher.swift; sourceTree = "<group>"; };
 		1033C0C1267AFFB600D999CE /* ContactsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsListView.swift; sourceTree = "<group>"; };
+		1033C0C4267B358E00D999CE /* KyPayDb.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = KyPayDb.xcdatamodel; sourceTree = "<group>"; };
+		1033C0C6267B363C00D999CE /* KyPayContactDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KyPayContactDataStore.swift; sourceTree = "<group>"; };
 		1B47377B496C6F0F1022FFD4 /* Pods-KyPayApp2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.debug.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.debug.xcconfig"; sourceTree = "<group>"; };
 		6F523BC3D4353462922B31B9 /* Pods-KyPayApp2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.release.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -537,6 +541,8 @@
 				1033C0BD267AFCCD00D999CE /* PersistanceController.swift */,
 				1033C08D26773C0600D999CE /* KCDataStore.swift */,
 				1033C0BF267AFD4F00D999CE /* ContactFetcher.swift */,
+				1033C0C3267B358E00D999CE /* KyPayDb.xcdatamodeld */,
+				1033C0C6267B363C00D999CE /* KyPayContactDataStore.swift */,
 			);
 			path = DataStore;
 			sourceTree = "<group>";
@@ -816,6 +822,7 @@
 				1033B2982674A82F00D999CE /* User.swift in Sources */,
 				1033C05F2676DC5700D999CE /* LoginView.swift in Sources */,
 				1033B29B2674A82F00D999CE /* ApiRequestHandler.swift in Sources */,
+				1033C0C5267B358E00D999CE /* KyPayDb.xcdatamodeld in Sources */,
 				1033C0922678292900D999CE /* OtpTextViewModel.swift in Sources */,
 				1033C0982678477600D999CE /* UserViewModel.swift in Sources */,
 				1033B2572674A7F200D999CE /* SceneDelegate.swift in Sources */,
@@ -823,6 +830,7 @@
 				1033C09A26784FC300D999CE /* HomeView.swift in Sources */,
 				1033C0A02678510100D999CE /* RequestView.swift in Sources */,
 				1033C06F2676E46F00D999CE /* LoginData.swift in Sources */,
+				1033C0C7267B363C00D999CE /* KyPayContactDataStore.swift in Sources */,
 				1033C0B32679E01600D999CE /* ShadowedRoundedCorner.swift in Sources */,
 				1033C09426782B5700D999CE /* OtpText.swift in Sources */,
 				1033C0AF2679BB7800D999CE /* EditProfileView.swift in Sources */,
@@ -1196,6 +1204,19 @@
 			productName = SwiftUIX;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		1033C0C3267B358E00D999CE /* KyPayDb.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1033C0C4267B358E00D999CE /* KyPayDb.xcdatamodel */,
+			);
+			currentVersion = 1033C0C4267B358E00D999CE /* KyPayDb.xcdatamodel */;
+			path = KyPayDb.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 1033B2492674A7F200D999CE /* Project object */;
 }
