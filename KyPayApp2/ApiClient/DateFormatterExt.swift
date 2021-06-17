@@ -23,7 +23,7 @@ extension DateFormatter {
         return .formatted(self)
     }
     
-    func string( from : Date ,dateFormat : String ) -> String {
+    func string( from : Date ,dateFormat : String = "yyyy-MM-dd HH:mm:ss"  ) -> String {
         self.dateFormat = dateFormat
         return self.string(from: from)
     }

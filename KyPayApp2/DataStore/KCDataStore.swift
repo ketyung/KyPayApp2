@@ -90,3 +90,38 @@ extension KCDataStore {
     }
     
 }
+
+
+extension KCDataStore {
+    
+    
+    private static let lastKyPayUserSyncedKey = "keyPayUserSynced_ha5523fggFAf3"
+    
+    func saveLastKyPayUserSyncedDate(){
+        
+        let date = DateFormatter().string(from: Date())
+        
+        KeychainWrapper.standard.set(date, forKey: KDS.lastKyPayUserSyncedKey)
+   
+    }
+    
+    
+    func lastSyncedDateLonger(than secs : TimeInterval = 3600) -> Bool{
+        
+        if let dateStr = KeychainWrapper.standard.string(forKey: KDS.lastKyPayUserSyncedKey){
+       
+            if let date = DateFormatter.date(from: dateStr){
+           
+                return date.timeIntervalSinceNow > secs
+               
+            }
+            
+        }
+        
+        return false
+
+    }
+    
+    
+   
+}
