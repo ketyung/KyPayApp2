@@ -24,6 +24,15 @@ struct LoginView : View {
     
     var body: some View {
         
+        view()
+    }
+}
+
+
+extension LoginView {
+    
+    private func view() -> some View {
+        
         VStack{
             
                 
@@ -32,7 +41,7 @@ struct LoginView : View {
             
             Text("Welcome")
             .font(.system(.largeTitle, design: .rounded))
-            .foregroundColor(.white)
+            .foregroundColor(.systemYellow)
             
             signInPanel()
             
@@ -48,7 +57,7 @@ struct LoginView : View {
             Spacer()
         }
         .frame(width: UIScreen.main.bounds.width, height:UIScreen.main.bounds.height)
-        .background(Color(UIColor(hex: "#5566aaff")!))
+        .background(Color(UIColor(hex: "#223355ff")!))
         .edgesIgnoringSafeArea(.all)
         .bottomSheet(isPresented: $viewModel.isCountryPickerPresented, height: UIScreen.main.bounds.height - 100, showGrayOverlay: true){
             
@@ -67,7 +76,6 @@ struct LoginView : View {
                message:Text(errorMessage)
             )
         }
-        
     }
 }
 
@@ -84,9 +92,9 @@ extension LoginView {
         }
         .padding()
         .frame(width: UIScreen.main.bounds.width - 10, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-        .background(Color(UIColor(hex: "#445566ff")!))
+        .neumo()
         .cornerRadius(6)
-       
+        
     }
     
     
@@ -114,18 +122,14 @@ extension LoginView {
                 }
        
                 Text(viewModel.selectedCountry?.dialCode ?? "+60")
-                .foregroundColor(.white)
+                .foregroundColor(.black)
                 .font(Font.system(size: 18, design: .rounded))
                 .lineLimit(1)
             
             }
-       
-                
-                
             
         }
-        
-       
+    
     }
     
 }
@@ -175,8 +179,8 @@ extension LoginView {
             
         }){
             
-            Text("Continue")
-            .foregroundColor(.white)
+            Text("Continue".localized)
+            .foregroundColor(.offWhite)
             .font(Font.system(size: 20, design: .rounded))
               
         }

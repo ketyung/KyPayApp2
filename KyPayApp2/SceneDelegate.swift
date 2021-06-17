@@ -53,7 +53,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         //Tester.testAddPayment()
         
-        let contentView = ContentView().environmentObject(LoginDataViewModel()).environmentObject(UserViewModel())
+        let contentView =
+        
+        //CountDownTextView(viewModel: OtpTextViewModel())
+        ContentView().environmentObject(LoginDataViewModel()).environmentObject(UserViewModel())
 
            //OTPView().environmentObject(LoginDataViewModel()).environmentObject(UserViewModel())
             //LoginView().environmentObject(LoginDataViewModel()).environmentObject(UserViewModel())

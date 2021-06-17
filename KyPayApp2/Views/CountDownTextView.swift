@@ -10,10 +10,13 @@ import SwiftUI
 
 struct CountDownTextView : View {
     
-    private static let timeIntervalToResend : TimeInterval = 120
+    private static let timeIntervalToResend : TimeInterval = 10
     
     @State private var timeToCountDown : TimeInterval = CountDownTextView.timeIntervalToResend
   
+    private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+
+    
     var viewModel : OtpTextViewModel
     
     private var timeForDisplay : String {
@@ -33,11 +36,14 @@ struct CountDownTextView : View {
     var body: some View{
         
         Text(timeForDisplay)
-        .onAppear{
-            DispatchQueue.main.async {
-                startCountingDown()
-            }
+        .padding()
+        .neumo()
+        .cornerRadius(6)
+        .onReceive(timer) { _ in
+            
+            countingDown()
         }
+            
     }
 }
 
@@ -55,33 +61,25 @@ extension CountDownTextView {
     }
     
     
-    private func startCountingDown(){
+    private func countingDown(){
         
        
-        if self.timeToCountDown > 0 && self.timeToCountDown < CountDownTextView.timeIntervalToResend {
+        if self.timeToCountDown > 0 && self.timeToCountDown <= CountDownTextView.timeIntervalToResend {
             
+            self.timeToCountDown -= 1
+     
             return
         }
         
         if self.timeToCountDown <= 0 {
-            self.timeToCountDown = CountDownTextView.timeIntervalToResend
-            self.viewModel.resendEnabled = true
+            withAnimation {
+      
+                self.timeToCountDown = CountDownTextView.timeIntervalToResend
+                self.viewModel.resendEnabled = true
+                self.timer.upstream.connect().cancel()
+            }
         }
+     
         
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {  timer in
-           
-            if self.timeToCountDown <= 0 {
-                timer.invalidate()
-                withAnimation {
-          
-                    self.timeToCountDown = CountDownTextView.timeIntervalToResend
-                    self.viewModel.resendEnabled = true
-                }
-            }
-            else {
-                self.timeToCountDown -= 1
-            }
-          
-        }
     }
 }
