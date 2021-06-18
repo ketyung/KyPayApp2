@@ -48,11 +48,15 @@ extension KyPayUserSyncer {
         
         guard let _ = dataStore.getKyPayUser(by: contact.cnIdentifier)?.first else {
             
+            
+            print("fetching.phone::\(contact.phoneNumber)")
             ARH.shared.fetchUser(phoneNumber: contact.phoneNumber, completion: { [weak self]
                 
                 res in
                 
-                guard let self = self else {
+                guard let sself = self else {
+                    
+                    print("self.nil!!")
                     return
                 }
                 
@@ -63,9 +67,15 @@ extension KyPayUserSyncer {
                         completion?(false)
                     
                     case .success(let user) :
+                        
+                        print("user.phone::\(user.phoneNumber ?? "")")
+                       
                         if user.phoneNumber == contact.phoneNumber {
                             
-                            self.dataStore.saveKyPayUser(by: contact)
+                            sself.dataStore.saveKyPayUser(by: contact)
+                            
+                            print("saved.phone::\(contact.phoneNumber)")
+                           
                             completion?(true)
                         }
                         else {
