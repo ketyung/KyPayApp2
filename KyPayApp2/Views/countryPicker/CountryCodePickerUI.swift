@@ -39,7 +39,10 @@ struct CountryCodePickerUI : View {
             }
             
         }
-        
+        .onAppear{
+            
+            viewModel.phoneNumberIsFirstResponder = false
+        }
     }
 }
 

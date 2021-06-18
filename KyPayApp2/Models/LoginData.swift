@@ -20,5 +20,8 @@ struct LoginData {
     
     var isOTPViewPresented : Bool = false
 
+    var failedSigningIn : Bool = false
+    
+    var signInError : Error? 
 }
 

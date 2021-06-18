@@ -62,8 +62,8 @@ extension EditProfileView {
             
             Form{
                 
-                CocoaTextField("First Name", text: $userViewModel.firstName )
-                .isFirstResponder(true)
+                TextField("First Name", text: $userViewModel.firstName )
+                //.isFirstResponder(true)
                 
                 TextField("Last Name", text: $userViewModel.lastName )
                 

@@ -32,12 +32,16 @@ function processUri(){
     //Log::printRToErrorLog($_SERVER['REQUEST_URI']);
     
     $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    removeStartingSubPathOfURI($uri);
+   
     $uri = explode( '/', $uri );
+//print_r($uri);
     
     $requestMethod = $_SERVER["REQUEST_METHOD"];
     
     $params = extractParams($uri,2);
     
+
     if ($uri[1] == 'user'){
 
         $u = new KyPayUserController( DbConn::conn() , $requestMethod, $params );
@@ -69,6 +73,16 @@ function processUri(){
         
     }
     
+}
+
+
+
+function removeStartingSubPathOfURI(&$uri, $subFolder = "/KyPayApiTestPointV1"){
+    
+    if (str_starts_with($uri, $subFolder )){
+        
+        $uri = str_replace($subFolder, "", $uri);
+    }
 }
 
 
@@ -107,7 +121,7 @@ function checkBasicAuth($header){
         
         $header = str_replace("Basic://", "", $header);
     
-        return (trim($header) == '7625bavaVDf2fnak3lKL908337aland#a2op_j3nankLK');
+        return (trim($header) == '7625bavaVDf2fnak3lKL908337aland#a2op_j3nankLK_63535vvVAf53535AFAF63663_9283737AHGHgsa_92777jah3TAY3a');
     }
     
     return false ;

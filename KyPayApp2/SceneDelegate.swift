@@ -34,7 +34,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
          //+60128126882
          
         // Tester.testAddUserAddr()
-        // Tester.fetchUser(id: "Yon_20NvYxPU")
+        //Tester.fetchUser(id: "Yon_pgP5FOzMeJM2")
          
          //Tester.testFetchUserAddress()
          

@@ -29,6 +29,10 @@ struct LoginView : View {
         if $viewModel.isOTPViewPresented.wrappedValue {
             
             OTPView()
+            .onAppear{
+                 
+                presentSignInErrorIfAny()
+            }
         }
         else {
     
@@ -74,11 +78,6 @@ extension LoginView {
             CountryCodePickerUI(viewModel: viewModel, textFont: .custom(Theme.fontName, size: 16))
             
         }
-        /**
-        .sheet(isPresented: $viewModel.isOTPViewPresented, content: {
-            
-            OTPView()
-        })*/
         .alert(isPresented: $errorAlertPresented){
             
             Alert(title: Text("Error!"),message:Text(errorMessage))
@@ -168,17 +167,21 @@ extension LoginView {
         }
         .onReceive(Just(viewModel.enteredPhoneNumber)) { _ in
             
-            if !keyboardShouldGoOff {
-           
-                if !viewModel.phoneNumberIsFirstResponder {
-                    viewModel.phoneNumberIsFirstResponder = true
-                }
-            }
-            
+            checkIfToContinueFocus()
             limitPhoneNumber()
-            
         }
          
+    }
+    
+    private func checkIfToContinueFocus(){
+        
+        if !keyboardShouldGoOff, !viewModel.isCountryPickerPresented {
+       
+            if !viewModel.phoneNumberIsFirstResponder {
+                viewModel.phoneNumberIsFirstResponder = true
+            }
+        }
+        
     }
     
     
@@ -292,5 +295,19 @@ extension LoginView {
     }
     
     
+}
+
+extension LoginView {
+    
+    private func presentSignInErrorIfAny(){
+        
+        if viewModel.failedSigniningIn, let err = viewModel.signInError {
+            
+            viewModel.failedSigniningIn = false
+            self.errorMessage = err.localizedDescription
+            viewModel.signInError = nil
+            self.errorAlertPresented = true
+        }
+    }
 }
 

@@ -82,6 +82,33 @@ class LoginDataViewModel : NSObject, ObservableObject {
         }
     }
     
+    var failedSigniningIn : Bool {
+        
+        get {
+            
+            loginData.failedSigningIn
+        }
+        
+        set(newVal){
+            
+            loginData.failedSigningIn = newVal
+        }
+    }
+    
+    
+    var signInError : Error? {
+        
+        get {
+            
+            loginData.signInError
+        }
+        
+        set(newVal){
+            
+            loginData.signInError = newVal 
+        }
+    }
+    
 }
 
 

@@ -100,7 +100,9 @@ class ApiRequestHandler : NSObject {
         
     static let shared = ApiRequestHandler()
 
-    private let urlBase = "http://127.0.0.1:808/"
+    private let urlBase =
+        "https://techchee.com/KyPayApiTestPointV1/" //    "http://127.0.0.1:808/"
+    
     
     private var token : String? = nil
     
@@ -110,7 +112,7 @@ class ApiRequestHandler : NSObject {
         
         super.init()
         if !useOta {
-            token = "Basic://7625bavaVDf2fnak3lKL908337aland#a2op_j3nankLK"
+            token = "Basic://7625bavaVDf2fnak3lKL908337aland#a2op_j3nankLK_63535vvVAf53535AFAF63663_9283737AHGHgsa_92777jah3TAY3a"
         }
     }
 }

@@ -52,8 +52,7 @@ extension OTPView {
             Spacer()
             .frame(height:100)
 
-            closeButton()
-          
+           
             Text("Please enter the 6-digit verification code below:")
             .font(.system(size: 20))
             .frame(width: 300)
@@ -64,11 +63,15 @@ extension OTPView {
             
             proceedButton()
             
-            Spacer()
-            .frame(height:30)
-            
             resendText()
             
+           
+            Spacer()
+            .frame(height:100)
+            
+           
+            closeButton()
+          
             firstScreenNavLink()
             homeScreenNavLink()
             
@@ -131,9 +134,15 @@ extension OTPView {
                 
                 if let err = err {
                     
-                    invalidOtpMessage = err.localizedDescription
-                    self.invalidOtpAlertPresented = true
-                    self.activityIndicatorPresented = false
+                    DispatchQueue.main.async {
+                 
+                        loginViewModel.failedSigniningIn = true
+                        loginViewModel.signInError = err
+                        self.activityIndicatorPresented = false
+                        self.invalidOtpMessage = err.localizedDescription
+                        self.invalidOtpAlertPresented = true
+                     
+                    }
                     
                     return
                 }
@@ -193,7 +202,7 @@ extension OTPView {
                 
                 Image(systemName: "x.circle.fill")
                 .resizable()
-                .frame(width:20, height: 20, alignment: .topLeading)
+                .frame(width:30, height: 30, alignment: .topLeading)
                 .foregroundColor(.black)
                 
             }
