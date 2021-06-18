@@ -23,6 +23,7 @@ struct SendView : View {
             
             Text("Send Money")
             .font(.custom(Theme.fontNameBold, size: 40))
+            .onTapGesture {self.endEditing()}
             
             Spacer()
             .frame(height:30)
@@ -43,11 +44,6 @@ struct SendView : View {
             CountryCodePickerUI(viewModel: dataInputViewModel, textFont: .custom(Theme.fontName, size: 15))
         }
         
-        /**
-        .onTapGesture {
-            
-            self.endEditing()
-        }*/
         
     }
 }
@@ -148,7 +144,11 @@ extension SendView {
     
     private func contactButton() -> some View {
         
-        Button(action: {}){
+        Button(action: {
+            
+            self.endEditing()
+            
+        }){
             
             ZStack {
                 
