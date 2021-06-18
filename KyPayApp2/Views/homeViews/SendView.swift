@@ -37,11 +37,17 @@ struct SendView : View {
             
             Spacer()
         }
-        .padding()
+        .padding(.leading, 20)
         .popOver(isPresented: $dataInputViewModel.isCountryPickerPresented){
         
             CountryCodePickerUI(viewModel: dataInputViewModel, textFont: .custom(Theme.fontName, size: 15))
         }
+        
+        /**
+        .onTapGesture {
+            
+            self.endEditing()
+        }*/
         
     }
 }
@@ -91,7 +97,7 @@ extension SendView {
         .font(UIFont.boldSystemFont(ofSize: 26))
         .background(Color.white)
         .frame(width: 200, height: 24)
-        .overlay(VStack{Divider().offset(x: 0, y: 28).foregroundColor(.blue)})
+        .overlay(VStack{Divider().backgroundFill(.red).offset(x: 0, y: 26)})
         
     }
     
@@ -146,13 +152,17 @@ extension SendView {
             
             ZStack {
                 
-                Circle().fill(Color(UIColor(hex:"#5566bbff")!)).frame(width: 40)
+                Ellipse().fill(Color(UIColor(hex:"#990000ff")!)).frame(width: 30)
             
                 Image(systemName: "person.3.fill")
                 .foregroundColor(.white)
             }
-                
             
         }
+    }
+    
+    
+    private func endEditing() {
+        UIApplication.shared.endEditing()
     }
 }

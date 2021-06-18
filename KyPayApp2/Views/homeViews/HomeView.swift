@@ -29,6 +29,11 @@ struct HomeView : View {
         
             TopUpView(isPresented: $control.topUpPresented)
         })
+        
+        .bottomSheet(isPresented: $control.sendMoneyPresented, height: UIScreen.main.bounds.height, showGrayOverlay: true, content:{
+            
+            SendView()
+        })
     }
     
 }
@@ -105,7 +110,11 @@ extension HomeView {
                                    imageTwo: "plus.circle", text: "Top Up")
                     }
                     
-                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/){
+                    Button(action: {
+                        
+                        control.sendMoneyPresented.toggle()
+                        
+                    }){
                         
                         buttonView(color: Color(UIColor(hex:"#F2a642ff")!), imageOne: "dollarsign.circle.fill",
                                    imageOneForegroundColor: Color(UIColor(hex:"#aa0000ff")!),
