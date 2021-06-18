@@ -5,7 +5,7 @@
 //  Created by Chee Ket Yung on 15/06/2021.
 //
 
-import SwiftUI
+import SwiftUIX
 
 
 struct SendView : View {
@@ -72,6 +72,9 @@ extension SendView {
             dialCodeButton()
             
             phoneTextField()
+            .onTapGesture {
+                dataInputViewModel.phoneNumberIsFirstResponder = true
+            }
 
         }
         .frame(height: 30)
@@ -81,14 +84,15 @@ extension SendView {
     
     private func phoneTextField() -> some View {
     
-        TextField("Phone Number", text: $dataInputViewModel.enteredPhoneNumber)
+        CocoaTextField("Phone Number", text: $dataInputViewModel.enteredPhoneNumber)
+        .isFirstResponder(dataInputViewModel.phoneNumberIsFirstResponder)
+        .keyboardType(.numberPad)
         .foregroundColor(.black)
+        .font(UIFont.boldSystemFont(ofSize: 26))
         .background(Color.white)
-        .keyboardType(.decimalPad)
         .frame(width: 200, height: 24)
-        .font(.custom(Theme.fontNameBold, size: 26))
         .overlay(VStack{Divider().offset(x: 0, y: 28).foregroundColor(.blue)})
-    
+        
     }
     
 }
@@ -104,6 +108,7 @@ extension SendView {
             withAnimation{
            
                 dataInputViewModel.isCountryPickerPresented = true
+                dataInputViewModel.phoneNumberIsFirstResponder = false
             }
             
         }){
