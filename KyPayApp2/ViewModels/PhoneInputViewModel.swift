@@ -7,22 +7,22 @@
 
 import Foundation
 
-class LoginDataViewModel : NSObject, ObservableObject {
+class PhoneInputViewModel : NSObject, ObservableObject {
     
     
-    @Published private var loginData : LoginData = LoginData()
+    @Published private var phoneInputData : PhoneInputData = PhoneInputData()
     
     
     var selectedCountry : Country? {
         
         get {
             
-            return loginData.selectedCountry
+            return phoneInputData.selectedCountry
         }
         
         set(newVal){
             
-            loginData.selectedCountry = newVal
+            phoneInputData.selectedCountry = newVal
         }
     }
     
@@ -31,15 +31,15 @@ class LoginDataViewModel : NSObject, ObservableObject {
         
         get {
             
-            return loginData.enteredPhoneNumber
+            return phoneInputData.enteredPhoneNumber
         }
         
         set(newVal){
             
-            loginData.enteredPhoneNumber = newVal
+            phoneInputData.enteredPhoneNumber = newVal
             
-            if loginData.enteredPhoneNumber.count > 12 {
-                loginData.enteredPhoneNumber = String(loginData.enteredPhoneNumber.prefix(12))
+            if phoneInputData.enteredPhoneNumber.count > 12 {
+                phoneInputData.enteredPhoneNumber = String(phoneInputData.enteredPhoneNumber.prefix(12))
             }
         }
     }
@@ -49,12 +49,12 @@ class LoginDataViewModel : NSObject, ObservableObject {
         
         get {
             
-            return loginData.phoneNumberIsFirstResponder
+            return phoneInputData.phoneNumberIsFirstResponder
         }
         
         set(newVal){
             
-            loginData.phoneNumberIsFirstResponder = newVal
+            phoneInputData.phoneNumberIsFirstResponder = newVal
         }
     }
     
@@ -63,12 +63,12 @@ class LoginDataViewModel : NSObject, ObservableObject {
         
         get {
             
-            return loginData.isCountryPickerPresented
+            return phoneInputData.isCountryPickerPresented
         }
         
         set(newVal){
             
-            loginData.isCountryPickerPresented = newVal
+            phoneInputData.isCountryPickerPresented = newVal
         }
     }
     
@@ -77,12 +77,12 @@ class LoginDataViewModel : NSObject, ObservableObject {
         
         get {
             
-            loginData.isOTPViewPresented
+            phoneInputData.isOTPViewPresented
         }
         
         set(newVal){
             
-            loginData.isOTPViewPresented = newVal
+            phoneInputData.isOTPViewPresented = newVal
         }
     }
     
@@ -90,12 +90,12 @@ class LoginDataViewModel : NSObject, ObservableObject {
         
         get {
             
-            loginData.failedSigningIn
+            phoneInputData.failedSigningIn
         }
         
         set(newVal){
             
-            loginData.failedSigningIn = newVal
+            phoneInputData.failedSigningIn = newVal
         }
     }
     
@@ -104,19 +104,19 @@ class LoginDataViewModel : NSObject, ObservableObject {
         
         get {
             
-            loginData.signInError
+            phoneInputData.signInError
         }
         
         set(newVal){
             
-            loginData.signInError = newVal 
+            phoneInputData.signInError = newVal
         }
     }
     
 }
 
 
-extension LoginDataViewModel {
+extension PhoneInputViewModel {
     
     
     func sendOTP(phoneNumber : String, completion : ( (Error?)->Void )? = nil ){
@@ -143,7 +143,7 @@ extension LoginDataViewModel {
                 
                 DispatchQueue.main.async {
           
-                    self.loginData.isOTPViewPresented.toggle()
+                    self.phoneInputData.isOTPViewPresented.toggle()
                 }
             
                 completion(nil)
@@ -156,7 +156,7 @@ extension LoginDataViewModel {
 }
 
 
-extension LoginDataViewModel {
+extension PhoneInputViewModel {
     
     func removeAllUnneeded(){
         

@@ -11,7 +11,7 @@ struct HomeTabbedView : View {
     
     @State private var selectedTab : Int = 0
       
-    @EnvironmentObject private var loginViewModel : LoginDataViewModel
+    @EnvironmentObject private var phoneInputViewModel : PhoneInputViewModel
     
     var body: some View {
     
@@ -49,7 +49,7 @@ extension HomeTabbedView {
        .onAppear{
            // always reset back to zero
            self.selectedTab = 0
-           loginViewModel.removeAllUnneeded()
+           phoneInputViewModel.removeAllUnneeded()
        }
        .navigationBarBackButtonHidden(true)
        .navigationBarHidden(true)

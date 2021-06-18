@@ -13,7 +13,7 @@ struct CountryCodePickerUI : View {
     
     @Environment(\.colorScheme) var colorScheme
     
-    var viewModel : LoginDataViewModel
+    var viewModel : PhoneInputViewModel
 
     var textFont : Font
    

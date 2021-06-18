@@ -10,7 +10,7 @@ import SwiftUIX
 
 struct LoginView : View {
     
-    @EnvironmentObject private var viewModel : LoginDataViewModel
+    @EnvironmentObject private var viewModel : PhoneInputViewModel
     
     @State private var signInButtonDisabled : Bool = false
     

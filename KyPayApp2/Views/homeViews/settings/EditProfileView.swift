@@ -15,7 +15,7 @@ struct EditProfileView : View {
     
     @State private var userViewModel = UserViewModel()
     
-    @ObservedObject private var countryPickerViewModel = LoginDataViewModel()
+    @ObservedObject private var countryPickerViewModel = PhoneInputViewModel()
     
     var body: some View {
         
@@ -28,6 +28,8 @@ struct EditProfileView : View {
                 
             userViewModel.loadUser(viewModel.user)
         }
+        .backButton()
+        
           
     }
 }

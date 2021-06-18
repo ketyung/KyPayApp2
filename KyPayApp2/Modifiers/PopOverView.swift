@@ -35,9 +35,9 @@ struct PopOverView <Content: View>: View {
         ZStack {
             if isPresented {
                 
-                
+
                 Color.black
-                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 100)
+                //.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 100)
                 .opacity(0.35)
                 
                 
@@ -50,7 +50,7 @@ struct PopOverView <Content: View>: View {
                     
                     content
                 }
-                .padding()
+                .padding(2)
                 .background(Color.white)
                 .cornerRadius(10)
                 .frame(width:w , height: h, alignment: .center)

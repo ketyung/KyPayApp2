@@ -62,10 +62,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         //    ContactsListView()
         //CountDownTextView(viewModel: OtpTextViewModel())
-        ContentView().environmentObject(LoginDataViewModel()).environmentObject(UserViewModel())
+        ContentView().environmentObject(PhoneInputViewModel()).environmentObject(UserViewModel())
 
-        //OTPView().environmentObject(LoginDataViewModel()).environmentObject(UserViewModel())
-            //LoginView().environmentObject(LoginDataViewModel()).environmentObject(UserViewModel())
+        //OTPView().environmentObject(PhoneInputViewModel()).environmentObject(UserViewModel())
+            //LoginView().environmentObject(PhoneInputViewModel()).environmentObject(UserViewModel())
 
             //HomeTabbedView().environmentObject(UserViewModel())
         // Use a UIHostingController as window root view controller.

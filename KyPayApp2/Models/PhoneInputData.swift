@@ -1,5 +1,5 @@
 //
-//  LoginData.swift
+//  PhoneInput.swift
 //  KyPayApp2
 //
 //  Created by Chee Ket Yung on 14/06/2021.
@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct LoginData {
+struct PhoneInputData {
     
     var selectedCountry : Country?
     

@@ -11,7 +11,7 @@ import SwiftUIX
 struct SendView : View {
     
     
-    @ObservedObject private var dataInputViewModel = LoginDataViewModel()
+    @ObservedObject private var dataInputViewModel = PhoneInputViewModel()
    
     @State private var showProgressIndicator : Bool = false
     

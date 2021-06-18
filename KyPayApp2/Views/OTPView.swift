@@ -11,7 +11,7 @@ struct OTPView : View {
   
     @EnvironmentObject private var userViewModel : UserViewModel
  
-    @EnvironmentObject private var loginViewModel : LoginDataViewModel
+    @EnvironmentObject private var phoneInputViewModel : PhoneInputViewModel
  
     @ObservedObject private var viewModel = OtpTextViewModel()
     
@@ -136,8 +136,8 @@ extension OTPView {
                     
                     DispatchQueue.main.async {
                  
-                        loginViewModel.failedSigniningIn = true
-                        loginViewModel.signInError = err
+                        phoneInputViewModel.failedSigniningIn = true
+                        phoneInputViewModel.signInError = err
                         self.activityIndicatorPresented = false
                         self.invalidOtpMessage = err.localizedDescription
                         self.invalidOtpAlertPresented = true
@@ -181,7 +181,7 @@ extension OTPView {
             }
             
             self.activityIndicatorPresented = false
-            loginViewModel.removeAllUnneeded()
+            phoneInputViewModel.removeAllUnneeded()
       
         }
     }
@@ -196,7 +196,7 @@ extension OTPView {
             
             Button(action: {
                 withAnimation {
-                    loginViewModel.isOTPViewPresented = false
+                    phoneInputViewModel.isOTPViewPresented = false
                 }
             }){
                 

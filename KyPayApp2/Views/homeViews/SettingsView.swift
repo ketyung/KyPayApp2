@@ -32,7 +32,7 @@ struct SettingsView : View {
     
     @EnvironmentObject private var userViewModel : UserViewModel
    
-    @EnvironmentObject private var loginViewModel : LoginDataViewModel
+    @EnvironmentObject private var phoneInputViewModel : PhoneInputViewModel
     
     @State private var progressViewPresented : Bool = false
     

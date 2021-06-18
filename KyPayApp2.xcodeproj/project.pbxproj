@@ -58,8 +58,8 @@
 		1033C0622676DCAF00D999CE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0612676DCAF00D999CE /* Extensions.swift */; };
 		1033C0642676DCCE00D999CE /* UIColorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0632676DCCE00D999CE /* UIColorExt.swift */; };
 		1033C0692676DD8700D999CE /* CountryCodePickerUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0682676DD8700D999CE /* CountryCodePickerUI.swift */; };
-		1033C06C2676E3FA00D999CE /* LoginDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C06B2676E3FA00D999CE /* LoginDataViewModel.swift */; };
-		1033C06F2676E46F00D999CE /* LoginData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C06E2676E46F00D999CE /* LoginData.swift */; };
+		1033C06C2676E3FA00D999CE /* PhoneInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C06B2676E3FA00D999CE /* PhoneInputViewModel.swift */; };
+		1033C06F2676E46F00D999CE /* PhoneInputData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C06E2676E46F00D999CE /* PhoneInputData.swift */; };
 		1033C0742676E81000D999CE /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0712676E81000D999CE /* RoundedCorner.swift */; };
 		1033C0752676E81000D999CE /* BottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0722676E81000D999CE /* BottomSheet.swift */; };
 		1033C0762676E81000D999CE /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0732676E81000D999CE /* ViewExtension.swift */; };
@@ -96,6 +96,7 @@
 		1033C0C5267B358E00D999CE /* KyPayDb.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0C3267B358E00D999CE /* KyPayDb.xcdatamodeld */; };
 		1033C0C7267B363C00D999CE /* KyPayContactDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0C6267B363C00D999CE /* KyPayContactDataStore.swift */; };
 		1033C0C9267B3C6C00D999CE /* KyPayUserSyncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0C8267B3C6C00D999CE /* KyPayUserSyncer.swift */; };
+		1033C0CB267C9E4300D999CE /* NavigationBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0CA267C9E4300D999CE /* NavigationBackButton.swift */; };
 		94C85EFD927289A72B96857C /* Pods_KyPayApp2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD2A35EA43E8F034705E971 /* Pods_KyPayApp2.framework */; };
 /* End PBXBuildFile section */
 
@@ -175,8 +176,8 @@
 		1033C0612676DCAF00D999CE /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		1033C0632676DCCE00D999CE /* UIColorExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExt.swift; sourceTree = "<group>"; };
 		1033C0682676DD8700D999CE /* CountryCodePickerUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCodePickerUI.swift; sourceTree = "<group>"; };
-		1033C06B2676E3FA00D999CE /* LoginDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDataViewModel.swift; sourceTree = "<group>"; };
-		1033C06E2676E46F00D999CE /* LoginData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginData.swift; sourceTree = "<group>"; };
+		1033C06B2676E3FA00D999CE /* PhoneInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneInputViewModel.swift; sourceTree = "<group>"; };
+		1033C06E2676E46F00D999CE /* PhoneInputData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneInputData.swift; sourceTree = "<group>"; };
 		1033C0712676E81000D999CE /* RoundedCorner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
 		1033C0722676E81000D999CE /* BottomSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomSheet.swift; sourceTree = "<group>"; };
 		1033C0732676E81000D999CE /* ViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
@@ -212,6 +213,7 @@
 		1033C0C4267B358E00D999CE /* KyPayDb.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = KyPayDb.xcdatamodel; sourceTree = "<group>"; };
 		1033C0C6267B363C00D999CE /* KyPayContactDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KyPayContactDataStore.swift; sourceTree = "<group>"; };
 		1033C0C8267B3C6C00D999CE /* KyPayUserSyncer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KyPayUserSyncer.swift; sourceTree = "<group>"; };
+		1033C0CA267C9E4300D999CE /* NavigationBackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBackButton.swift; sourceTree = "<group>"; };
 		1B47377B496C6F0F1022FFD4 /* Pods-KyPayApp2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.debug.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.debug.xcconfig"; sourceTree = "<group>"; };
 		6F523BC3D4353462922B31B9 /* Pods-KyPayApp2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.release.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -492,7 +494,7 @@
 		1033C06A2676E30600D999CE /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				1033C06B2676E3FA00D999CE /* LoginDataViewModel.swift */,
+				1033C06B2676E3FA00D999CE /* PhoneInputViewModel.swift */,
 				1033C0912678292900D999CE /* OtpTextViewModel.swift */,
 				1033C0972678477600D999CE /* UserViewModel.swift */,
 			);
@@ -502,7 +504,7 @@
 		1033C06D2676E44E00D999CE /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				1033C06E2676E46F00D999CE /* LoginData.swift */,
+				1033C06E2676E46F00D999CE /* PhoneInputData.swift */,
 				1033C0802677011400D999CE /* Country.swift */,
 				1033C09326782B5700D999CE /* OtpText.swift */,
 			);
@@ -574,6 +576,7 @@
 				1033C0B22679E01600D999CE /* ShadowedRoundedCorner.swift */,
 				1033C0B6267AC63100D999CE /* NeumorphismModifier.swift */,
 				1033C0BB267AECA200D999CE /* Theme.swift */,
+				1033C0CA267C9E4300D999CE /* NavigationBackButton.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -820,6 +823,7 @@
 				1033C0AC2679A38000D999CE /* Tool.swift in Sources */,
 				1033C0C0267AFD4F00D999CE /* ContactFetcher.swift in Sources */,
 				1033B2952674A82F00D999CE /* UserImg.swift in Sources */,
+				1033C0CB267C9E4300D999CE /* NavigationBackButton.swift in Sources */,
 				1033C09E267850D900D999CE /* SendView.swift in Sources */,
 				1033C0752676E81000D999CE /* BottomSheet.swift in Sources */,
 				1033B2982674A82F00D999CE /* User.swift in Sources */,
@@ -829,10 +833,10 @@
 				1033C0922678292900D999CE /* OtpTextViewModel.swift in Sources */,
 				1033C0982678477600D999CE /* UserViewModel.swift in Sources */,
 				1033B2572674A7F200D999CE /* SceneDelegate.swift in Sources */,
-				1033C06C2676E3FA00D999CE /* LoginDataViewModel.swift in Sources */,
+				1033C06C2676E3FA00D999CE /* PhoneInputViewModel.swift in Sources */,
 				1033C09A26784FC300D999CE /* HomeView.swift in Sources */,
 				1033C0A02678510100D999CE /* RequestView.swift in Sources */,
-				1033C06F2676E46F00D999CE /* LoginData.swift in Sources */,
+				1033C06F2676E46F00D999CE /* PhoneInputData.swift in Sources */,
 				1033C0C7267B363C00D999CE /* KyPayContactDataStore.swift in Sources */,
 				1033C0B32679E01600D999CE /* ShadowedRoundedCorner.swift in Sources */,
 				1033C09426782B5700D999CE /* OtpText.swift in Sources */,
