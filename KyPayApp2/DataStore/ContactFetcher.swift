@@ -35,7 +35,7 @@ class ContactFetcher : NSObject {
             CNContactFormatter.descriptorForRequiredKeys(for: .fullName),
             CNContactPhoneNumbersKey,
             CNContactEmailAddressesKey,
-            CNContactThumbnailImageDataKey,
+           // CNContactThumbnailImageDataKey,
         ] as [Any]
 
     
@@ -94,3 +94,35 @@ class ContactFetcher : NSObject {
     }
 }
 
+extension ContactFetcher {
+    
+    
+    class func getContact(by identifier : String) -> Contact?{
+        
+        let keysToFetch = [
+            CNContactGivenNameKey, CNContactFamilyNameKey,
+            CNContactPhoneNumbersKey,
+            CNContactEmailAddressesKey
+        ]
+      
+        do {
+       
+            let predicate: NSPredicate = CNContact.predicateForContactsInContainer(withIdentifier: identifier)
+            let contacts = try CNContactStore().unifiedContacts(matching: predicate, keysToFetch: keysToFetch as [CNKeyDescriptor])
+    
+            if let contact = contacts.first {
+                
+                print("found::1:\(contact.familyName)")
+                return cnContactToContact(contact)
+                
+            }
+            return nil
+    
+        }
+        catch{
+            
+            print("err:\(error)")
+            return nil
+        }
+    }
+}

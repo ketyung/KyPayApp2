@@ -109,3 +109,51 @@ extension KyPayContactDataStore {
         }
     }
 }
+
+extension KyPayContactDataStore {
+    
+    
+    func total() -> Int{
+        
+        guard let managedObjContext = self.managedObjectContext else { return -1 }
+      
+
+        let myRequest : NSFetchRequest<KyPayUser> = KyPayUser.fetchRequest()
+        
+       
+        do{
+            let count = try managedObjContext.count(for: myRequest)
+
+            return count
+
+        }
+        catch let error{
+            
+            print(error)
+            
+            return -1
+        }
+    }
+    
+    
+    
+    func all() -> [KyPayUser]?{
+        
+        guard let managedObjContext = self.managedObjectContext else { return nil }
+      
+
+        let myRequest : NSFetchRequest<KyPayUser> = KyPayUser.fetchRequest()
+        
+        do{
+            let results = try managedObjContext.fetch(myRequest)
+
+            return results
+
+        }
+        catch let error{
+            print(error)
+            
+            return nil
+        }
+    }
+}

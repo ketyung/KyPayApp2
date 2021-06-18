@@ -15,6 +15,7 @@ struct SendView : View {
    
     @State private var showProgressIndicator : Bool = false
     
+    @State private var syncer = KyPayUserSyncer()
     
     var body: some View {
         
@@ -186,7 +187,6 @@ extension SendView {
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 1 ){
            
-                let syncer = KyPayUserSyncer()
                 syncer.syncNow(completion: {
                     
                     str in

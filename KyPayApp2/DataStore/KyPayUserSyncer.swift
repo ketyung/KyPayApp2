@@ -21,14 +21,11 @@ class KyPayUserSyncer : NSObject {
         
         let contacts = ContactFetcher.getContacts()
         
-        var i = 0
         contacts.forEach{ contact in
             
             self.fetchAndSaveContactIfNotPresent(contact, completion: { succ in
                 
-                if succ {
-                    i += 1
-                }
+                print("saved.contact::\(contact.phoneNumber):\(succ)")
                 
             })
         }
@@ -36,7 +33,9 @@ class KyPayUserSyncer : NSObject {
             
         KDS.shared.saveLastKyPayUserSyncedDate()
         
-        completion?("\(i) \("number of contact(s) synced!".localized)")
+        completion?("contacts synced!".localized)
+        
+        //print("total::\(dataStore.total())")
     }
     
 }
@@ -49,7 +48,7 @@ extension KyPayUserSyncer {
         guard let _ = dataStore.getKyPayUser(by: contact.cnIdentifier)?.first else {
             
             
-            print("fetching.phone::\(contact.phoneNumber)")
+            //print("fetching.phone::\(contact.phoneNumber)")
             ARH.shared.fetchUser(phoneNumber: contact.phoneNumber, completion: { [weak self]
                 
                 res in
@@ -62,19 +61,21 @@ extension KyPayUserSyncer {
                 
                 switch(res) {
                
-                    case .failure(let err) :
-                        print("failed::.err:\(err)")
+                    case .failure(_) :
+                       // print("failed::.err:\(err)")
                         completion?(false)
                     
                     case .success(let user) :
                         
-                        print("user.phone::\(user.phoneNumber ?? "")")
                        
                         if user.phoneNumber == contact.phoneNumber {
+                          
+                            DispatchQueue.main.async {
+                         
+                                sself.dataStore.saveKyPayUser(by: contact)
+                             
+                            }
                             
-                            sself.dataStore.saveKyPayUser(by: contact)
-                            
-                            print("saved.phone::\(contact.phoneNumber)")
                            
                             completion?(true)
                         }
