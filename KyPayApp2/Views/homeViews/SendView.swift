@@ -13,6 +13,8 @@ struct SendView : View {
     
     @ObservedObject private var dataInputViewModel = LoginDataViewModel()
    
+    @State private var showProgressIndicator : Bool = false
+    
     
     var body: some View {
         
@@ -30,7 +32,7 @@ struct SendView : View {
             
             Text("Mobile Phone")
             .font(.custom(Theme.fontName, size: 20))
-            .foregroundColor(Color(UIColor(hex:"#866200ff")!))
+            .foregroundColor(Color(UIColor(hex:"#36A600ff")!))
             
             
             phoneView()
@@ -43,6 +45,7 @@ struct SendView : View {
         
             CountryCodePickerUI(viewModel: dataInputViewModel, textFont: .custom(Theme.fontName, size: 15))
         }
+        .progressView(isShowing: $showProgressIndicator, text: "Synchronizing contacts...", size:  CGSize(width:200, height: 200))
         
         
     }
@@ -147,14 +150,15 @@ extension SendView {
         Button(action: {
             
             self.endEditing()
+            self.syncContact()
             
         }){
             
             ZStack {
                 
-                Ellipse().fill(Color(UIColor(hex:"#990000ff")!)).frame(width: 30)
+                Rectangle().fill(Color(UIColor(hex:"#9999bbff")!)).cornerRadius(6).frame(width: 30)
             
-                Image(systemName: "person.3.fill")
+                Image(systemName: "person.fill")
                 .foregroundColor(.white)
             }
             
@@ -164,5 +168,40 @@ extension SendView {
     
     private func endEditing() {
         UIApplication.shared.endEditing()
+    }
+}
+
+extension SendView {
+    
+    private func syncContact(){
+        
+        
+        if KDS.shared.lastSyncedDateLonger(than: 300){
+       
+            withAnimation{
+                
+                self.showProgressIndicator = true
+            }
+           
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1 ){
+           
+                let syncer = KyPayUserSyncer()
+                syncer.syncNow(completion: {
+                    
+                    str in
+                    
+                    print("str::\(String(describing: str))")
+                  
+                    withAnimation{
+              
+                        self.showProgressIndicator = false
+                  
+                    }
+                })
+            }
+           
+           
+        }
     }
 }

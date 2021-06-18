@@ -20,6 +20,7 @@ extension DateFormatter {
     func jsonDateDecodingStrategy(dateFormat : String ) -> JSONDecoder.DateDecodingStrategy{
     
         self.dateFormat = dateFormat
+        self.locale = Locale(identifier: "en_US_POSIX")
         return .formatted(self)
     }
     

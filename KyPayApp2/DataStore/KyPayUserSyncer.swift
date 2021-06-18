@@ -12,12 +12,14 @@ class KyPayUserSyncer : NSObject {
     private let dataStore = KyPayContactDataStore()
     
     
-    func syncNow(_ contacts : [Contact], completion : ((String?)->Void)? = nil ) {
+    func syncNow( completion : ((String?)->Void)? = nil ) {
         
        /**
           Use this in iOS 15 only, sick!!!!
         await withThrowingTaskGroup (of : [Contact].self) { group in
         }*/
+        
+        let contacts = ContactFetcher.getContacts()
         
         var i = 0
         contacts.forEach{ contact in
@@ -31,10 +33,8 @@ class KyPayUserSyncer : NSObject {
             })
         }
         
-        if ( i > 0 ){
             
-            KDS.shared.saveLastKyPayUserSyncedDate()
-        }
+        KDS.shared.saveLastKyPayUserSyncedDate()
         
         completion?("\(i) \("number of contact(s) synced!".localized)")
     }
@@ -79,6 +79,9 @@ extension KyPayUserSyncer {
             
             return
         }
+        
+        completion?(false)
+ 
 
     }
 }

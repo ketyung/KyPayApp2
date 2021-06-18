@@ -47,10 +47,10 @@ extension ProgressViewModifier {
         ZStack {
             
             Color.black
-            .frame(height: UIScreen.main.bounds.height + 50)
-            .opacity(0.5)
+            //.frame(height: UIScreen.main.bounds.height + 100)
             .edgesIgnoringSafeArea(.all)
-            
+            .opacity(0.4)
+                
             progressView()
         }
     }
@@ -64,7 +64,8 @@ extension ProgressViewModifier {
             
             Text(text)
             .foregroundColor(.black)
-            .font(.body)
+            .font(.custom(Theme.fontName, size: 16))
+            
         }
         .frame(width: size.width, height: size.height)
         .background(Color.white)
