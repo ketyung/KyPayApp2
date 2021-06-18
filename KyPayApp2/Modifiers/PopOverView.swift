@@ -20,41 +20,65 @@ struct PopOverView <Content: View>: View {
     
     private let yOffset : CGFloat
     
+    private let withCloseButton : Bool
+    
     init(isPresented : Binding <Bool>, @ViewBuilder content: () -> Content, notchXOffset : CGFloat = 0,
-         viewXOffset : CGFloat = 0, viewXOffsetMultiplier : CGFloat = 0, yOffset : CGFloat = 0 ){
+         viewXOffset : CGFloat = 0, viewXOffsetMultiplier : CGFloat = 0, yOffset : CGFloat = 0, withCloseButton : Bool = false ){
         
         self._isPresented = isPresented
         self.content = content()
         self.viewXOffset = viewXOffset
         self.viewXOffsetMultiplier = viewXOffsetMultiplier
         self.yOffset = yOffset
+        self.withCloseButton = withCloseButton
     }
    
     var body: some View {
         
         ZStack {
             if isPresented {
-                
-
-                Color.black
-                //.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 100)
-                .opacity(0.35)
-                
-                
-                let w = UIScreen.main.bounds.width - 40
+            
+                let w = UIScreen.main.bounds.width - 20
                 let h : CGFloat = 400
               
-                VStack (spacing: 10){
+                if withCloseButton {
                     
-                    closeButton()
+                    Color.black
+                    .opacity(0.35)
+                    
+                    
+                    VStack (spacing: 10){
+                        
+                        closeButton()
+                        
+                        content
+                    }
+                    .padding(2)
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    .frame(width:w , height: h, alignment: .center)
+                   
+                }
+                else {
+                    
+                    Color.black
+                    .opacity(0.35)
+                    .onTapGesture {
+                        withAnimation{
+                            self.isPresented = false
+                        }
+                    }
+                    
                     
                     content
-                }
-                .padding(2)
-                .background(Color.white)
-                .cornerRadius(10)
-                .frame(width:w , height: h, alignment: .center)
+                    .padding(.top,10).padding(.bottom,4).padding(.leading, 4).padding(.trailing, 4)
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    .frame(width:w , height: h, alignment: .center)
                
+                }
+               
+                
             }
         }
     
@@ -94,12 +118,12 @@ struct PopOverView <Content: View>: View {
 public extension View {
     func popOver<Content: View>(
         isPresented: Binding<Bool>,  notchXOffset : CGFloat = 0, viewXOffset : CGFloat = 0,
-        viewXOffsetMultiplier : CGFloat = 0, yOffset : CGFloat = 0,
+        viewXOffsetMultiplier : CGFloat = 0, yOffset : CGFloat = 0, withCloseButton : Bool = false,
         @ViewBuilder content: @escaping () -> Content
     ) -> some View {
         ZStack {
             self
-            PopOverView(isPresented: isPresented,content: content, notchXOffset : notchXOffset, viewXOffset : viewXOffset, viewXOffsetMultiplier : viewXOffsetMultiplier, yOffset : yOffset)
+            PopOverView(isPresented: isPresented,content: content, notchXOffset : notchXOffset, viewXOffset : viewXOffset, viewXOffsetMultiplier : viewXOffsetMultiplier, yOffset : yOffset, withCloseButton : withCloseButton)
         }
     }
 }
