@@ -24,9 +24,13 @@ extension DateFormatter {
         return .formatted(self)
     }
     
-    func string( from : Date ,dateFormat : String = "yyyy-MM-dd HH:mm:ss"  ) -> String {
-        self.dateFormat = dateFormat
-        return self.string(from: from)
+    static func string( from : Date ,dateFormat : String = "yyyy-MM-dd HH:mm:ss"  ) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        dateFormatter.dateFormat = dateFormat
+        
+        
+        return dateFormatter.string(from: from)
     }
     
     

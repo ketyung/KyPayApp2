@@ -99,8 +99,7 @@ extension KCDataStore {
     
     func saveLastKyPayUserSyncedDate(){
         
-        let date = DateFormatter().string(from: Date())
-        print("saved.last.synced.date::\(date)")
+        let date = DateFormatter.string(from: Date())
         KeychainWrapper.standard.set(date, forKey: KDS.lastKyPayUserSyncedKey)
    
     }
@@ -110,11 +109,11 @@ extension KCDataStore {
         
         if let dateStr = KeychainWrapper.standard.string(forKey: KDS.lastKyPayUserSyncedKey){
        
-            print("dd::\(dateStr)")
            
             if let date = DateFormatter.date(from: dateStr){
                 
-                let dd = date.timeIntervalSinceNow
+                let dd = abs(date.timeIntervalSinceNow)
+                //print("dd::\(dateStr)    \(dd)")
                 return dd > secs
                
             }

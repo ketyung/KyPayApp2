@@ -177,7 +177,7 @@ extension SendView {
     private func syncContact(){
         
         
-        if KDS.shared.lastSyncedDateLonger(than: 300){
+        if KDS.shared.lastSyncedDateLonger(than: 1800){
        
             withAnimation{
                 
@@ -189,9 +189,9 @@ extension SendView {
            
                 syncer.syncNow(completion: {
                     
-                    str in
+                    _ in
                     
-                    print("str::\(String(describing: str))")
+                    //print("str::\(String(describing: str))")
                   
                     withAnimation{
               
