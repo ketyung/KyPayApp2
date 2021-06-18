@@ -107,12 +107,12 @@ extension ContactFetcher {
       
         do {
        
-            let predicate: NSPredicate = CNContact.predicateForContactsInContainer(withIdentifier: identifier)
+            let predicate: NSPredicate = CNContact.predicateForContacts(withIdentifiers: [identifier])
             let contacts = try CNContactStore().unifiedContacts(matching: predicate, keysToFetch: keysToFetch as [CNKeyDescriptor])
     
             if let contact = contacts.first {
                 
-                print("found::1:\(contact.familyName)")
+               // print("found::1:\(contact.familyName)")
                 return cnContactToContact(contact)
                 
             }

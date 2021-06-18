@@ -56,7 +56,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
        // Tester.testFetchAllContacts()
         
-        Tester.testLoopAllContactsInDb()
+        //Tester.testLoopAllContactsInDb()
         
         let contentView =
         

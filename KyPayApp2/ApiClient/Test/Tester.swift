@@ -428,12 +428,11 @@ class Tester {
         let ds = KyPayContactDataStore()
         
         
-        print("t::\(ds.total())")
+       // print("t::\(ds.total())")
         if let contacts = ds.all(){
             
             contacts.forEach{ contact in
                 
-                print("2fetch::\(contact.cnIdentifier ?? "")")
                 if let c = ContactFetcher.getContact(by: contact.cnIdentifier ?? ""){
                     
                     print("c.name::\(c.firstName) \(c.lastName) :\(c.phoneNumber)")
