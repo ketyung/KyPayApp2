@@ -37,6 +37,10 @@ class LoginDataViewModel : NSObject, ObservableObject {
         set(newVal){
             
             loginData.enteredPhoneNumber = newVal
+            
+            if loginData.enteredPhoneNumber.count > 12 {
+                loginData.enteredPhoneNumber = String(loginData.enteredPhoneNumber.prefix(12))
+            }
         }
     }
 

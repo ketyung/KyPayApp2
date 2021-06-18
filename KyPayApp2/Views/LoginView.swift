@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Combine
 import SwiftUIX
 
 struct LoginView : View {
@@ -18,8 +17,6 @@ struct LoginView : View {
     @State private var errorAlertPresented : Bool = false
     
     @State private var errorMessage : String = ""
-    
-    @State private var keyboardShouldGoOff : Bool = false
     
     @State private var yOffset : CGFloat = 0
     
@@ -51,7 +48,7 @@ extension LoginView {
         VStack{
             
             Spacer()
-            .frame(height:280)
+            .frame(height:320)
             
             Text("Welcome")
             .font(.system(.largeTitle, design: .rounded))
@@ -72,7 +69,7 @@ extension LoginView {
         .frame(width: UIScreen.main.bounds.width, height:UIScreen.main.bounds.height + 200)
         .background(Color(UIColor(hex: "#223355ff")!))
         .edgesIgnoringSafeArea(.all)
-        .bottomSheet(isPresented: $viewModel.isCountryPickerPresented, height: UIScreen.main.bounds.height - 20, showGrayOverlay: true){
+        .bottomSheet(isPresented: $viewModel.isCountryPickerPresented, height: UIScreen.main.bounds.height - 120, showGrayOverlay: true){
             
             
             CountryCodePickerUI(viewModel: viewModel, textFont: .custom(Theme.fontName, size: 16))
@@ -81,12 +78,6 @@ extension LoginView {
         .alert(isPresented: $errorAlertPresented){
             
             Alert(title: Text("Error!"),message:Text(errorMessage))
-        }
-        .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardDidShowNotification)) { _ in
-            
-            keyboardShouldGoOff = false
-            yOffset = 100
-            viewModel.phoneNumberIsFirstResponder = true
         }
     }
 }
@@ -165,25 +156,9 @@ extension LoginView {
         .onTapGesture {
             viewModel.phoneNumberIsFirstResponder = true
         }
-        .onReceive(Just(viewModel.enteredPhoneNumber)) { _ in
-            
-            checkIfToContinueFocus()
-            limitPhoneNumber()
-        }
          
     }
-    
-    private func checkIfToContinueFocus(){
-        
-        if !keyboardShouldGoOff, !viewModel.isCountryPickerPresented {
-       
-            if !viewModel.phoneNumberIsFirstResponder {
-                viewModel.phoneNumberIsFirstResponder = true
-            }
-        }
-        
-    }
-    
+
     
     
     private func signInButton() -> some View {
@@ -213,7 +188,6 @@ extension LoginView {
                 withAnimation {
                     
                     viewModel.phoneNumberIsFirstResponder = false
-                    keyboardShouldGoOff = true
                     yOffset = 0
                 }
             }){
