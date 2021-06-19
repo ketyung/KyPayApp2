@@ -73,7 +73,7 @@ $a[] = new SQLWhereCol("first_name", "LIKE", "OR");
 
 
 
-$sql = $dbo->buildFindBySql( $a  );
+$sql = $dbo->buildFindBySql( $a , 'ORDER BY first_name DESC'  );
 echo "<p>sql...x.:: $sql</p>";
 
 

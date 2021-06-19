@@ -72,6 +72,7 @@ create table if not exists kypay_user_wallet (
 
 )ENGINE=INNODB;
 
+create unique index wallet_uidx on kypay_user_wallet(id,type,currency);
 
 drop table kypay_user_payment_tx;
 create table if not exists kypay_user_payment_tx (

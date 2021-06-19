@@ -259,7 +259,7 @@ class SQLBuilder {
 	}
 	
 	
-	public function buildFindBySql(ArrayOfSQLWhereCol $columns){
+	public function buildFindBySql(ArrayOfSQLWhereCol $columns, $orderBy = null ){
 		
 		//print_r($columns);
 		
@@ -298,8 +298,15 @@ class SQLBuilder {
 		$sql .= $sql_fields;
 		
 		
-		return $sql. $this->buildWhereClause($whereClauseCols);	
-	}
+        $sql .= $this->buildWhereClause($whereClauseCols);
+	
+        if (isset($orderBy)) {
+            
+            $sql .= " ".trim($orderBy);
+        }
+        
+        return $sql;
+    }
 	
 	
 	

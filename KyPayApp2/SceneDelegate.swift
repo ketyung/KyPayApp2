@@ -38,7 +38,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
          
          //Tester.testFetchUserAddress()
          
-         //Tester.testAddUserWallet()
+         Tester.testAddUserWallet()
          
          //Tester.testSignIn()//phoneNumber: "+60128126882")
          // Create the SwiftUI view that provides the window contents.
@@ -57,7 +57,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
        // Tester.testFetchAllContacts()
         
         //Tester.testLoopAllContactsInDb()
-        Tester.testRCountries()
+        //Tester.testRCountries()
         
         let contentView =
         

@@ -91,6 +91,18 @@ class KypayUserWalletController extends Controller {
             return $response;
         }
         
+        
+        if ($this->dbObject->doesWalletExist($input['id'], $input['type'], $input['currency'])){
+            
+            $response['body'] = json_encode(array('status'=> -1 , 'id'=>null,
+            'text'=>'Wallet Of The Specified Type Already Exists!'));
+    
+            return $response;
+        
+        }
+        
+        
+        
       
         if ($this->dbObject->insert($input) > 0){
             

@@ -16,15 +16,19 @@ typealias MaritalStatus = RapydSDK.RPDMaritalStatusType
 class WalletHandler : NSObject {
     
 
-    func createWallet(for user : User, completion : ((User)->Void)? = nil ) {
+    func createWallet(for user : User, wallet : UserWallet,
+        address : UserAddress? = nil ,
+        completion : ((User?, Error?)->Void)? = nil ) {
         
         Config.setup()
         
-        let address = RPDAddress()
-        address.name = "a1"
-        address.line1 = "line1"
-        address.country = RPDCountry.country(isoAlpha2: "IL")
-        address.city = "City"
+        let countryCode = user.countryCode ?? "MY"
+        
+        let addr = RPDAddress()
+        addr.name = address?.id ?? "a1"
+        addr.line1 = address?.line1 ?? "line 1"
+        addr.country = RPDCountry.country(isoAlpha2: countryCode)
+        addr.city = address?.city ?? "City"
         
         
         let contact = RPDEWalletContactRequestBuilder(contactType: .personal,
@@ -38,35 +42,27 @@ class WalletHandler : NSObject {
         residence: RPDResidenceType.own,
         maritalStatus: .none,
         identificationType: "PA",
-        address: address,
-        country: RCountry.country(isoAlpha2:"US") )
+        address: addr,
+        country: RCountry.country(isoAlpha2: countryCode) )
         
         
         let usersManager = RPDUsersManager()
         
         usersManager.createUser(phoneNumber: user.phoneNumber ?? "", eWalletType: .person,
             firstName: user.firstName ?? "", lastName: user.lastName ?? "", email: user.email ?? "",
-            eWalletReferenceID: "xxxxx", contact: contact,
-            metadata: ["game": "uncharted"], completionBlock:{
+            eWalletReferenceID: wallet.refId ?? "", contact: contact, metadata: ["game": "uncharted"], completionBlock:{
             
             ruser, error in
             
                 
             guard let error = error else {
         
-                if let completion = completion {
-                    
-                    
-                    completion(user)
-                }
-                
+                completion?(nil, error )
                 return
         
             }
-            
-            print("err:\(error)")
-       
-            
+        
+            completion?(user, nil)
             
         })
         

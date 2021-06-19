@@ -100,9 +100,9 @@ class ApiRequestHandler : NSObject {
         
     static let shared = ApiRequestHandler()
 
-    private let urlBase =
-        "https://techchee.com/KyPayApiTestPointV1/" //    "http://127.0.0.1:808/"
+    private let urlBase = "http://127.0.0.1:808/"
     
+    //    "https://techchee.com/KyPayApiTestPointV1/" //
     
     private var token : String? = nil
     

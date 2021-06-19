@@ -387,20 +387,30 @@ class Tester {
                     print("addedUserWallet!::id::\(rr.returnedObject?.id ?? "")::\(rr.returnedObject?.refId ?? "")")
                     
                     //Tester.fetchWallet(id: rr.returnedObject?.id ?? "", refId: rr.returnedObject?.refId ?? "")
-                    w.id = rr.returnedObject?.id
-                    w.refId = rr.returnedObject?.refId
                     
-                    print("to.fetch.wallet..after 1 sec")
+                    if rr.status == .failed {
+                        
+                        print("create.wallet.error::\(rr.text ?? "")")
+                    }
+                    else {
+                        
+                        w.id = rr.returnedObject?.id
+                        w.refId = rr.returnedObject?.refId
+                        
+                        print("to.fetch.wallet..after 1 sec")
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                            
+                           // w.balance = Double(Float.random(in: (20...60)))
+                            //Tester.updateWallet(w)
+                            //Tester.testDeleteWallet(w)
+                            
+                            Tester.fetchWallet(id: w.id ?? "", refId: w.refId ?? "")
+                            
+                        })
+                    }
                     
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-                        
-                       // w.balance = Double(Float.random(in: (20...60)))
-                        //Tester.updateWallet(w)
-                        //Tester.testDeleteWallet(w)
-                        
-                        Tester.fetchWallet(id: w.id ?? "", refId: w.refId ?? "")
-                        
-                    })
+                   
             
                    
             }
