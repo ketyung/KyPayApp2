@@ -203,6 +203,7 @@ extension SendView {
     
     private func endEditing() {
         UIApplication.shared.endEditing()
+        self.dataInputViewModel.phoneNumberIsFirstResponder = false 
     }
     
     

@@ -49,7 +49,7 @@ extension SendMoneyView {
         CocoaTextField("Amount".localized, text: $amountText)
         .keyboardType(.numberPad)
         .foregroundColor(.black)
-        .font(UIFont.boldSystemFont(ofSize: 26))
+        .font(UIFont.boldSystemFont(ofSize: 36))
         .background(Color.white)
         .frame(width: 200, height: 24)
         .overlay(VStack{Divider().backgroundFill(.red).offset(x: 0, y: 26)})
