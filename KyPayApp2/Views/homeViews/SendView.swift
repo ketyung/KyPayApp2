@@ -196,10 +196,33 @@ extension SendView {
         
         if txInputViewModel.showAlert {
        
-            Text(txInputViewModel.alertMessage)
-            .padding()
-            .font(.custom(Theme.fontName, size: 16))
-            .foregroundColor(Color(UIColor(hex:"#993322ff")!))
+            VStack {
+           
+                Spacer().frame(height: 20)
+                
+                HStack (spacing: 2) {
+                
+                    Image(systemName: "info.circle.fill")
+                    .resizable()
+                    .frame(width:24, height: 24)
+                    .foregroundColor(Color(UIColor(hex:"#aaee55ff")!))
+                    
+                    Text(txInputViewModel.alertMessage)
+                    .padding()
+                    .fixedSize(horizontal: false, vertical: true)
+                    .font(.custom(Theme.fontName, size: 16))
+                    .lineLimit(2)
+                    
+                    
+                }
+                .padding(4)
+                .foregroundColor(Color(UIColor(hex:"#eeee22ff")!))
+                .background(Color(UIColor(hex:"#667799ff")!) )
+                .cornerRadius(4)
+                .frame(width: UIScreen.main.bounds.width - 10, height:30)
+                
+               
+            }
            
         }
         

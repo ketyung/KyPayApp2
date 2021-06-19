@@ -115,8 +115,6 @@ extension TxInputDataViewModel {
         
         txInputData.phoneNumberBeingVerified = true
         
-        print("ve...phone::\(phoneNumber)")
-        
         ARH.shared.fetchUser(phoneNumber: phoneNumber, completion: { [weak self]
             
             res in
@@ -132,8 +130,11 @@ extension TxInputDataViewModel {
                 
                     case .failure(_):
                         
-                        self.txInputData.alertMessage = "The phone number is not a KyPay user".localized
-                        self.txInputData.showAlert = true
+                        withAnimation{
+                       
+                            self.txInputData.alertMessage = "The phone number is not a KyPay user".localized
+                            self.txInputData.showAlert = true
+                        }
                         
                         DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
                             
@@ -146,14 +147,22 @@ extension TxInputDataViewModel {
                     case .success(let usr) :
                         if usr.phoneNumber == phoneNumber {
                             
-                            self.txInputData.phoneNumberVerified = true
-                            self.txInputData.alertMessage = "\(usr.firstName ?? "") \(usr.lastName ?? "")".localized
-                            self.txInputData.showAlert = true
+                            withAnimation{
+                   
+                                self.txInputData.phoneNumberVerified = true
+                                self.txInputData.alertMessage = "\(usr.firstName ?? "") \(usr.lastName ?? "")".localized
+                                self.txInputData.showAlert = true
+                       
+                            }
                         }
                 
                 }
                 
-                self.txInputData.phoneNumberBeingVerified = false
+                withAnimation{
+       
+                    self.txInputData.phoneNumberBeingVerified = false
+                   
+                }
                 
             }
             
