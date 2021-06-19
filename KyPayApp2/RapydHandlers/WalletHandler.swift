@@ -8,7 +8,7 @@
 import Foundation
 import RapydSDK
 
-typealias WalletType = RapydSDK.RPDWalletType
+typealias RWalletType = RapydSDK.RPDWalletType
 typealias Gender = RapydSDK.RPDGenderType
 typealias ResidenceType = RapydSDK.RPDResidenceType
 typealias MaritalStatus = RapydSDK.RPDMaritalStatusType
@@ -48,23 +48,38 @@ class WalletHandler : NSObject {
         
         let usersManager = RPDUsersManager()
         
-        usersManager.createUser(phoneNumber: user.phoneNumber ?? "", eWalletType: .person,
+        usersManager.createUser(phoneNumber: user.phoneNumber ?? "",
+            eWalletType: self.toRWalletType(wallet),
             firstName: user.firstName ?? "", lastName: user.lastName ?? "", email: user.email ?? "",
             eWalletReferenceID: wallet.refId ?? "", contact: contact, metadata: ["game": "uncharted"], completionBlock:{
             
-            ruser, error in
+            _, error in
             
-                
-            guard let error = error else {
+            if let error = error {
         
                 completion?(nil, error )
                 return
-        
             }
         
             completion?(user, nil)
             
         })
+        
+    }
+    
+    
+    private func toRWalletType ( _ wallet : UserWallet) -> RWalletType{
+        
+        if wallet.type == .personal {
+            
+            return RWalletType.person
+        }
+        else if ( wallet.type == .business ){
+            
+            return RWalletType.company
+        }
+        
+        return RWalletType.person
         
     }
     

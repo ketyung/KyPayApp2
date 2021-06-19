@@ -28,6 +28,7 @@ class KypayUserWallet extends KypayDbObject{
     }
     
     
+    // system allows only each user has one specific type of wallet in one specific currency
     function doesWalletExist( $userId , $walletType = 'P', $currency = 'MYR' ){
         
         $a = new ArrayOfSQLWhereCol();
@@ -36,7 +37,7 @@ class KypayUserWallet extends KypayDbObject{
         $a[] = new SQLWhereCol("currency", "=", "AND", $currency);
 
         $res = $this->findByWhere($a, true);
-        if (count($res)){
+        if (count($res) > 0){
             
             $res = null;
             return true ;
@@ -45,6 +46,29 @@ class KypayUserWallet extends KypayDbObject{
         return false;
     
     }
+    
+    function findWalletBy( $userId , $walletType = 'P', $currency = 'MYR' ){
+        
+        $a = new ArrayOfSQLWhereCol();
+        $a[] = new SQLWhereCol("id", "=", "AND", $userId);
+        $a[] = new SQLWhereCol("type", "=", "AND", $walletType);
+        $a[] = new SQLWhereCol("currency", "=", "AND", $currency);
+
+        $res = $this->findByWhere($a, true);
+        if (count($res) > 0){
+            
+            $row = $res[0];
+            $this->loadResultToProperties($row);
+           
+            $res = null;
+            return true ;
+        }
+        
+        return false;
+    
+    }
+   
+    
     
     
     private function genRefId(&$input){

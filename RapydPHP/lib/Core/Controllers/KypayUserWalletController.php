@@ -22,7 +22,8 @@ class KypayUserWalletController extends Controller {
         $param1 = "";
         $param2 = "";
         $param3 = "";
-        
+        $param4 = "";
+       
         if (isset($this->params)) {
             
             if (isset($this->params[0])){
@@ -36,14 +37,46 @@ class KypayUserWalletController extends Controller {
             if (isset($this->params[2])){
                 $param3 = $this->params[2] ;
             }
+            
+            if (isset($this->params[3])){
+                $param4 = $this->params[3] ;
+            }
+
         }
         
+        if ($param1 == 'id' && $param2 != '' && $param3 != '' && $param4 != ''){
+        
+            return $this->getWalletOf($param2, $param3, $param4);
+            
+        }
+        else
         if ($param1 == 'id' && $param2 != '' && $param3 != ''){
             
             return $this->getBy($param2, $param3);
         }
         else {
          
+            return $this->notFoundResponse();
+        }
+    }
+    
+    
+    
+    private function getWalletOf($id, $type, $currency) {
+        
+        if ( $this->dbObject->findWalletBy($id, $type, $currency)){
+            
+            $response['status_code_header'] = 'HTTP/1.1 200 OK';
+            $response['body'] = $this->dbObject->toJson();
+            
+           // Log::printRToErrorLog($response);
+            
+            return $response;
+           
+        }
+        
+        else {
+            
             return $this->notFoundResponse();
         }
     }

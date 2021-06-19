@@ -248,8 +248,6 @@ extension UserViewModel {
                                 
                             }
                             else {
-                            
-        
                                 completion?(false, err)
                             }
                             
@@ -257,8 +255,8 @@ extension UserViewModel {
                             
                             // save the user info
                             KDS.shared.saveUser(usr)
-                            // refresh user in userHolder
                             
+                            // refresh user in userHolder
                             DispatchQueue.main.async {
                            
                                 self.userHolder.user = usr

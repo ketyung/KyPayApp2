@@ -108,6 +108,8 @@
 		1033C191267DC21A00D999CE /* Pods_KyPayApp2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD2A35EA43E8F034705E971 /* Pods_KyPayApp2.framework */; };
 		10B855D9267DC3F400AEF15F /* RapydSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10B855D7267DC3EC00AEF15F /* RapydSDK.framework */; };
 		10B855DA267DC3F400AEF15F /* RapydSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 10B855D7267DC3EC00AEF15F /* RapydSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		10B855DD267DE95300AEF15F /* CurrencyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B855DC267DE95300AEF15F /* CurrencyManager.swift */; };
+		10B855DF267DEACB00AEF15F /* countryCurrency.json in Resources */ = {isa = PBXBuildFile; fileRef = 10B855DE267DEACB00AEF15F /* countryCurrency.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -247,6 +249,8 @@
 		1033C0E1267D984C00D999CE /* DataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataHandler.swift; sourceTree = "<group>"; };
 		1033C0E2267D984C00D999CE /* PaymentHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentHandler.swift; sourceTree = "<group>"; };
 		10B855D7267DC3EC00AEF15F /* RapydSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RapydSDK.framework; sourceTree = "<group>"; };
+		10B855DC267DE95300AEF15F /* CurrencyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyManager.swift; sourceTree = "<group>"; };
+		10B855DE267DEACB00AEF15F /* countryCurrency.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countryCurrency.json; sourceTree = "<group>"; };
 		1B47377B496C6F0F1022FFD4 /* Pods-KyPayApp2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.debug.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.debug.xcconfig"; sourceTree = "<group>"; };
 		6F523BC3D4353462922B31B9 /* Pods-KyPayApp2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.release.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -579,12 +583,14 @@
 		1033C08C26773AC800D999CE /* DataStore */ = {
 			isa = PBXGroup;
 			children = (
+				10B855DE267DEACB00AEF15F /* countryCurrency.json */,
 				1033C0BD267AFCCD00D999CE /* PersistanceController.swift */,
 				1033C08D26773C0600D999CE /* KCDataStore.swift */,
 				1033C0BF267AFD4F00D999CE /* ContactFetcher.swift */,
 				1033C0C3267B358E00D999CE /* KyPayDb.xcdatamodeld */,
 				1033C0C6267B363C00D999CE /* KyPayContactDataStore.swift */,
 				1033C0C8267B3C6C00D999CE /* KyPayUserSyncer.swift */,
+				10B855DC267DE95300AEF15F /* CurrencyManager.swift */,
 			);
 			path = DataStore;
 			sourceTree = "<group>";
@@ -763,6 +769,7 @@
 				1033B2D62674A92D00D999CE /* StrUtil.php in Resources */,
 				1033B2C82674A92D00D999CE /* KypayUserPaymentTx.php in Resources */,
 				1033B2C92674A92D00D999CE /* KypayUserAddress.php in Resources */,
+				10B855DF267DEACB00AEF15F /* countryCurrency.json in Resources */,
 				1033C0832677035100D999CE /* CountryPickerView.bundle in Resources */,
 				1033B2D22674A92D00D999CE /* DotEnv.php in Resources */,
 				1033B2612674A7F300D999CE /* LaunchScreen.storyboard in Resources */,
@@ -910,6 +917,7 @@
 				1033C0E3267D984C00D999CE /* WalletHandler.swift in Sources */,
 				1033C0B5267A2B5B00D999CE /* CountDownTextView.swift in Sources */,
 				1033B2592674A7F200D999CE /* ContentView.swift in Sources */,
+				10B855DD267DE95300AEF15F /* CurrencyManager.swift in Sources */,
 				1033C09C2678509D00D999CE /* SettingsView.swift in Sources */,
 				1033C0BE267AFCCD00D999CE /* PersistanceController.swift in Sources */,
 				1033C0B12679C45C00D999CE /* PopOverView.swift in Sources */,

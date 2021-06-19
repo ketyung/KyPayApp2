@@ -46,7 +46,7 @@ class DataHandler : NSObject {
         
         Config.setup()
        
-        let dataManager:RPDDataManager = RPDDataManager()
+        let dataManager = RPDDataManager()
         dataManager.fetchSupportedCurrencies(completionBlock: { (list, error) in
             
             guard let error = error else {

@@ -371,6 +371,23 @@ class Tester {
     }
     
     
+    static func testRCurrencies(){
+        
+        DataHandler().supportedCurrencies( completion: {
+            
+            cc in
+            
+            cc?.forEach{
+                
+                c in
+                
+                print("cc::\(c.code)::\(c.name ?? "")")
+            }
+            
+        })
+    }
+    
+    
     static func testAddUserWallet(){
         
         var w = UserWallet(id: "Che_Rm92ndZL", balance: 5.00, currency: "MYR", type:.personal)
