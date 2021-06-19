@@ -19,7 +19,7 @@ struct BottomFloatingButton : ViewModifier {
     
     let imageName : String
     
-    let yOffSet : CGFloat = 240
+    let yOffSet : CGFloat = 210
     
     @ViewBuilder
     func body(content: Content) -> some View {

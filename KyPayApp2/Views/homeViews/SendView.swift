@@ -12,14 +12,9 @@ struct SendView : View {
     
     
     @ObservedObject private var dataInputViewModel = PhoneInputViewModel()
-   
-    @State private var showProgressIndicator : Bool = false
+  
+    @ObservedObject private var txInputViewModel = TxInputDataViewModel()
     
-    @State private var syncer = KyPayUserSyncer()
-    
-    @State private var hiddenTextViewPresented : Bool = false
-    
-    @State private var hiddenTextMessage : String = ""
     
     var body: some View {
         
@@ -42,6 +37,7 @@ struct SendView : View {
             
             phoneView()
             
+            hiddenTextView()
             
             Spacer()
         }
@@ -50,8 +46,10 @@ struct SendView : View {
         
             CountryCodePickerUI(viewModel: dataInputViewModel, textFont: .custom(Theme.fontName, size: 15))
         }
-        .progressView(isShowing: $showProgressIndicator, text: "Synchronizing contacts...", size:  CGSize(width:200, height: 200))
+        .progressView(isShowing: $txInputViewModel.showProgressIndicator, text: "Synchronizing contacts...", size:  CGSize(width:200, height: 200))
         .bottomFloatingButton( isPresented: !dataInputViewModel.isCountryPickerPresented, action: {
+            
+            self.verifyPhoneNumberAndProceed()
             
         })
         
@@ -152,24 +150,39 @@ extension SendView {
 extension SendView {
     
     
+    @ViewBuilder
     private func contactButton() -> some View {
         
-        Button(action: {
+        
+        if txInputViewModel.phoneNumberBeingVerified {
             
-            self.endEditing()
-            self.syncContact()
-            
-        }){
-            
-            ZStack {
-                
-                Rectangle().fill(Color(UIColor(hex:"#9999bbff")!)).cornerRadius(6).frame(width: 30)
-            
-                Image(systemName: "person.fill")
-                .foregroundColor(.white)
-            }
+            ActivityIndicator()
+            .frame(width: 30)
+            .foregroundColor(.gray)
             
         }
+        else {
+       
+            
+            Button(action: {
+                
+                self.endEditing()
+                self.syncContact()
+                
+            }){
+                
+                ZStack {
+                    
+                    Rectangle().fill(Color(UIColor(hex:"#9999bbff")!)).cornerRadius(6).frame(width: 30)
+                
+                    Image(systemName: "person.fill")
+                    .foregroundColor(.white)
+                }
+                
+            }
+        }
+        
+       
     }
     
     
@@ -181,12 +194,12 @@ extension SendView {
     @ViewBuilder
     private func hiddenTextView() -> some View {
         
-        if hiddenTextViewPresented {
+        if txInputViewModel.showAlert {
        
-            Text(hiddenTextMessage)
+            Text(txInputViewModel.alertMessage)
             .padding()
-            .font(.custom(Theme.fontName, size: 20))
-            .foregroundColor(Color(UIColor(hex:"339922ff")!))
+            .font(.custom(Theme.fontName, size: 16))
+            .foregroundColor(Color(UIColor(hex:"#993322ff")!))
            
         }
         
@@ -198,32 +211,16 @@ extension SendView {
     
     private func syncContact(){
         
+        txInputViewModel.syncContact()
+    }
+    
+    
+    private func verifyPhoneNumberAndProceed(){
         
-        if KDS.shared.lastSyncedDateLonger(than: 1800){
-       
-            withAnimation{
-                
-                self.showProgressIndicator = true
-            }
-           
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1 ){
-           
-                syncer.syncNow(completion: {
-                    
-                    _ in
-                    
-                    //print("str::\(String(describing: str))")
-                  
-                    withAnimation{
-              
-                        self.showProgressIndicator = false
-                  
-                    }
-                })
-            }
-           
-           
-        }
+        
+        let phoneNumber = "\(dataInputViewModel.selectedCountry?.dialCode ?? "+60")\(dataInputViewModel.enteredPhoneNumber)"
+        
+        txInputViewModel.verifyIfPhoneNumberExists(phoneNumber)
+        
     }
 }
