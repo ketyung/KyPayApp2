@@ -19,5 +19,12 @@ struct TxInputData {
     
     var phoneNumberBeingVerified : Bool = false
     
-    var phoneNumberVerified : Bool = false 
+    var phoneNumberVerified : Bool = false
+    
+    var shouldProceedNext : Bool = false 
+    
+    var txAmount : Double?
+    
+    var selectedUser : User?
+    
 }

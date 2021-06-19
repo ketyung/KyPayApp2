@@ -100,6 +100,7 @@
 		1033C0CD267D6C4200D999CE /* BottomFloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0CC267D6C4200D999CE /* BottomFloatingButton.swift */; };
 		1033C0CF267D767000D999CE /* TxInputData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0CE267D767000D999CE /* TxInputData.swift */; };
 		1033C0D1267D769400D999CE /* TxInputDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0D0267D769400D999CE /* TxInputDataViewModel.swift */; };
+		1033C0D3267D896900D999CE /* SendMoneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0D2267D896900D999CE /* SendMoneyView.swift */; };
 		94C85EFD927289A72B96857C /* Pods_KyPayApp2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD2A35EA43E8F034705E971 /* Pods_KyPayApp2.framework */; };
 /* End PBXBuildFile section */
 
@@ -220,6 +221,7 @@
 		1033C0CC267D6C4200D999CE /* BottomFloatingButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomFloatingButton.swift; sourceTree = "<group>"; };
 		1033C0CE267D767000D999CE /* TxInputData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TxInputData.swift; sourceTree = "<group>"; };
 		1033C0D0267D769400D999CE /* TxInputDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TxInputDataViewModel.swift; sourceTree = "<group>"; };
+		1033C0D2267D896900D999CE /* SendMoneyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMoneyView.swift; sourceTree = "<group>"; };
 		1B47377B496C6F0F1022FFD4 /* Pods-KyPayApp2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.debug.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.debug.xcconfig"; sourceTree = "<group>"; };
 		6F523BC3D4353462922B31B9 /* Pods-KyPayApp2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.release.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -569,6 +571,7 @@
 				1033C0C1267AFFB600D999CE /* ContactsListView.swift */,
 				1033C0B9267AEC3700D999CE /* TopUpView.swift */,
 				1033C09D267850D900D999CE /* SendView.swift */,
+				1033C0D2267D896900D999CE /* SendMoneyView.swift */,
 				1033C09926784FC300D999CE /* HomeView.swift */,
 				1033C0A22678514500D999CE /* HomeTabbedView.swift */,
 			);
@@ -829,6 +832,7 @@
 				1033C0A32678514500D999CE /* HomeTabbedView.swift in Sources */,
 				1033C0A62678A87C00D999CE /* ProgressViewModifier.swift in Sources */,
 				1033C0BA267AEC3700D999CE /* TopUpView.swift in Sources */,
+				1033C0D3267D896900D999CE /* SendMoneyView.swift in Sources */,
 				1033C0AC2679A38000D999CE /* Tool.swift in Sources */,
 				1033C0C0267AFD4F00D999CE /* ContactFetcher.swift in Sources */,
 				1033B2952674A82F00D999CE /* UserImg.swift in Sources */,

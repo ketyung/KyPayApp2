@@ -18,6 +18,31 @@ struct SendView : View {
     
     var body: some View {
         
+        NavigationView {
+        
+            view()
+            .padding(.leading, 20)
+            .navigationBarHidden(true)
+              
+        }
+        .popOver(isPresented: $dataInputViewModel.isCountryPickerPresented){
+        
+            CountryCodePickerUI(viewModel: dataInputViewModel, textFont: .custom(Theme.fontName, size: 15))
+        }
+        .progressView(isShowing: $txInputViewModel.showProgressIndicator, text: "Synchronizing contacts...", size:  CGSize(width:200, height: 200))
+        .bottomFloatingButton( isPresented: !dataInputViewModel.isCountryPickerPresented, action: {
+            
+            self.verifyPhoneNumberAndProceed()
+            
+        })
+        
+    }
+}
+
+extension SendView {
+    
+    private func view() -> some View {
+        
         VStack(alignment: .leading, spacing:20) {
             
             Spacer()
@@ -40,19 +65,9 @@ struct SendView : View {
             hiddenTextView()
             
             Spacer()
-        }
-        .padding(.leading, 20)
-        .popOver(isPresented: $dataInputViewModel.isCountryPickerPresented){
-        
-            CountryCodePickerUI(viewModel: dataInputViewModel, textFont: .custom(Theme.fontName, size: 15))
-        }
-        .progressView(isShowing: $txInputViewModel.showProgressIndicator, text: "Synchronizing contacts...", size:  CGSize(width:200, height: 200))
-        .bottomFloatingButton( isPresented: !dataInputViewModel.isCountryPickerPresented, action: {
             
-            self.verifyPhoneNumberAndProceed()
-            
-        })
-        
+            sendMoneyViewNavLink()
+        }
     }
 }
 
@@ -94,7 +109,7 @@ extension SendView {
     
     private func phoneTextField() -> some View {
     
-        CocoaTextField("Phone Number", text: $dataInputViewModel.enteredPhoneNumber)
+        CocoaTextField("Phone Number".localized, text: $dataInputViewModel.enteredPhoneNumber)
         .isFirstResponder(dataInputViewModel.phoneNumberIsFirstResponder)
         .keyboardType(.numberPad)
         .foregroundColor(.black)
@@ -246,4 +261,10 @@ extension SendView {
         txInputViewModel.verifyIfPhoneNumberExists(phoneNumber)
         
     }
+    
+    private func sendMoneyViewNavLink() -> some View {
+        
+        NavigationLink(destination: SendMoneyView(txInputViewModel: txInputViewModel), isActive : $txInputViewModel.shouldProceedNext){}.hidden(true)
+    }
+
 }

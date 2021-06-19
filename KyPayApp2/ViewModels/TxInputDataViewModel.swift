@@ -56,17 +56,53 @@ class TxInputDataViewModel : NSObject, ObservableObject {
     var phoneNumberBeingVerified : Bool {
         
         get {
-            
             txInputData.phoneNumberBeingVerified
+        }
+    }
+    
+    var shouldProceedNext : Bool {
+        
+        get {
+            
+            txInputData.shouldProceedNext
+        }
+        
+        set(newVal){
+            
+            txInputData.shouldProceedNext = newVal
         }
     }
     
     var phoneNumberVerified : Bool {
         
         get {
-            
             txInputData.phoneNumberVerified
         }
+    }
+    
+    
+    var txAmount : Double {
+        
+        get {
+            
+            txInputData.txAmount ?? 0
+        }
+        
+        set(newVal){
+            
+            txInputData.txAmount = newVal
+        }
+    }
+    
+    
+    var selectedUserName : String {
+        
+        "\(txInputData.selectedUser?.firstName ?? "") \(txInputData.selectedUser?.lastName ?? "")"
+    }
+    
+    var selectedUserPhoneNumber : String {
+        
+        txInputData.selectedUser?.phoneNumber ?? ""
     }
 }
 
@@ -128,9 +164,6 @@ extension TxInputDataViewModel {
         }
         
         
-        
-        
-        
         ARH.shared.fetchUser(phoneNumber: phoneNumber, completion: { [weak self]
             
             res in
@@ -146,6 +179,8 @@ extension TxInputDataViewModel {
                 
                     case .failure(let err):
                         
+                        self.txInputData.selectedUser = nil
+                        self.shouldProceedNext = false
                         if let err = err as? ApiError, err.statusCode == 404 {
                             
                             self.sendFailureMessage("The phone number is not a KyPay user")
@@ -159,12 +194,15 @@ extension TxInputDataViewModel {
                     case .success(let usr) :
                         if usr.phoneNumber == phoneNumber {
                             
+                            self.txInputData.selectedUser = usr
+                            
                             withAnimation{
                    
                                 self.txInputData.phoneNumberVerified = true
                                 self.txInputData.alertMessage = "\(usr.firstName ?? "") \(usr.lastName ?? "")".localized
                                 self.txInputData.showAlert = true
-                       
+                                self.shouldProceedNext = true
+                               
                             }
                         }
                 
