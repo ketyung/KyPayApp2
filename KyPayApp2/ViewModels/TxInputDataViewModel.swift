@@ -113,7 +113,23 @@ extension TxInputDataViewModel {
     
     func verifyIfPhoneNumberExists(_ phoneNumber : String ){
         
-        txInputData.phoneNumberBeingVerified = true
+        withAnimation{
+       
+            txInputData.phoneNumberBeingVerified = true
+        }
+        
+        if !phoneNumber.isValidPhone() {
+            
+            sendFailureMessage("Invalid Phone Number!")
+            withAnimation{
+                txInputData.phoneNumberBeingVerified = false
+            }
+            return
+        }
+        
+        
+        
+        
         
         ARH.shared.fetchUser(phoneNumber: phoneNumber, completion: { [weak self]
             
@@ -128,21 +144,17 @@ extension TxInputDataViewModel {
             
                 switch(res) {
                 
-                    case .failure(_):
+                    case .failure(let err):
                         
-                        withAnimation{
-                       
-                            self.txInputData.alertMessage = "The phone number is not a KyPay user".localized
-                            self.txInputData.showAlert = true
-                        }
-                        
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
+                        if let err = err as? ApiError, err.statusCode == 404 {
                             
-                            withAnimation{
-                                
-                                self.txInputData.showAlert = false
-                            }
-                        })
+                            self.sendFailureMessage("The phone number is not a KyPay user")
+                        }
+                        else {
+                            
+                            self.sendFailureMessage(err.localizedDescription)
+                        }
+                      
                     
                     case .success(let usr) :
                         if usr.phoneNumber == phoneNumber {
@@ -166,6 +178,24 @@ extension TxInputDataViewModel {
                 
             }
             
+        })
+    }
+    
+    
+    private func sendFailureMessage ( _ message : String ){
+        
+        withAnimation{
+       
+            self.txInputData.alertMessage = message.localized
+            self.txInputData.showAlert = true
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
+            
+            withAnimation{
+                
+                self.txInputData.showAlert = false
+            }
         })
     }
 }
