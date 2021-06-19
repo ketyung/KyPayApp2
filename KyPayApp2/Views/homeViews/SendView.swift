@@ -17,6 +17,10 @@ struct SendView : View {
     
     @State private var syncer = KyPayUserSyncer()
     
+    @State private var hiddenTextViewPresented : Bool = false
+    
+    @State private var hiddenTextMessage : String = ""
+    
     var body: some View {
         
         VStack(alignment: .leading, spacing:20) {
@@ -47,7 +51,9 @@ struct SendView : View {
             CountryCodePickerUI(viewModel: dataInputViewModel, textFont: .custom(Theme.fontName, size: 15))
         }
         .progressView(isShowing: $showProgressIndicator, text: "Synchronizing contacts...", size:  CGSize(width:200, height: 200))
-        
+        .bottomFloatingButton( isPresented: !dataInputViewModel.isCountryPickerPresented, action: {
+            
+        })
         
     }
 }
@@ -170,6 +176,22 @@ extension SendView {
     private func endEditing() {
         UIApplication.shared.endEditing()
     }
+    
+    
+    @ViewBuilder
+    private func hiddenTextView() -> some View {
+        
+        if hiddenTextViewPresented {
+       
+            Text(hiddenTextMessage)
+            .padding()
+            .font(.custom(Theme.fontName, size: 20))
+            .foregroundColor(Color(UIColor(hex:"339922ff")!))
+           
+        }
+        
+    }
+    
 }
 
 extension SendView {

@@ -31,6 +31,11 @@ struct OTPView : View {
         NavigationView {
            // let _ = print("otp.presented!")
             otpScreenView()
+            .frame(width: UIScreen.main.bounds.width - 20, height: 450)
+            .cornerRadius(10)
+            .padding(.top, 30).padding(.bottom, 20).padding(.leading, 20).padding(.trailing, 20)
+            
+            
         }
         .alert(isPresented: $invalidOtpAlertPresented){
             Alert(title: Text("Oppps!"),message:Text(invalidOtpMessage))
@@ -53,10 +58,12 @@ extension OTPView {
             .frame(height:100)
 
            
-            Text("Please enter the 6-digit verification code below:")
-            .font(.system(size: 20))
+            Text("Please enter the 6-digit\nverification code below:".localized)
+            .fixedSize(horizontal: false, vertical: true)
+            .lineLimit(2)
+            .font(.custom(Theme.fontName, size: 20))
             .frame(width: 300)
-            
+           
             //otpTextFields()
             
             otpTextField()
@@ -117,7 +124,7 @@ extension OTPView {
             
         }){
             
-            Text("Proceed")
+            Text("Proceed".localized)
         }
         
     }
@@ -158,7 +165,7 @@ extension OTPView {
         }
         else {
             
-            invalidOtpMessage = "Invalid Verification Code!!"
+            invalidOtpMessage = "Invalid Verification Code!!".localized
             self.invalidOtpAlertPresented = true
         }
     }
@@ -232,7 +239,7 @@ extension OTPView {
      
             HStack{
             
-                Text("Code will be resent after")
+                Text("Code will be resent after".localized)
                 CountDownTextView(viewModel: viewModel)
             }
             

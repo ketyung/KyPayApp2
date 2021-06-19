@@ -89,7 +89,7 @@ extension EditProfileView {
     
     private func phoneView() -> some View {
         
-        HStack(spacing:20) {
+        HStack(spacing:2) {
             
             flagButton()
             phoneTextField()
@@ -102,7 +102,7 @@ extension EditProfileView {
         
         CocoaTextField("Phone Number", text: $userViewModel.phoneNumberOnly)
         .font(UIFont.boldSystemFont(ofSize: 20))
-        .width(160)
+        .width(200)
         .height(20)
         .padding()
         .foregroundColor(.black)
@@ -156,7 +156,7 @@ extension EditProfileView {
                 .font(Font.system(size: 18, design: .rounded))
                 .lineLimit(1)
             
-            }
+            }.frame(width:100)
             
         }
         

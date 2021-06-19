@@ -36,8 +36,9 @@ struct CountDownTextView : View {
     var body: some View{
         
         Text(timeForDisplay)
-        .padding()
-        .neumo()
+        .padding(4)
+        .background(.orange)
+        .foregroundColor(.white)
         .cornerRadius(6)
         .onReceive(timer) { _ in
             

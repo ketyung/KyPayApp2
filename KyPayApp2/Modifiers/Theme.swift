@@ -9,8 +9,8 @@ import Foundation
 
 struct Theme {
     
-    static let fontName : String = "Helvetica Neue"
+    static let fontName : String = "Avenir-Medium"
   
-    static let fontNameBold : String = "HelveticaNeue-Bold"
+    static let fontNameBold : String = "Avenir-Black"
   
 }
