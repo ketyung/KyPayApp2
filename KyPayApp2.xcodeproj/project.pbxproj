@@ -101,6 +101,12 @@
 		1033C0CF267D767000D999CE /* TxInputData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0CE267D767000D999CE /* TxInputData.swift */; };
 		1033C0D1267D769400D999CE /* TxInputDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0D0267D769400D999CE /* TxInputDataViewModel.swift */; };
 		1033C0D3267D896900D999CE /* SendMoneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0D2267D896900D999CE /* SendMoneyView.swift */; };
+		1033C0E3267D984C00D999CE /* WalletHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0DF267D984C00D999CE /* WalletHandler.swift */; };
+		1033C0E4267D984C00D999CE /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0E0267D984C00D999CE /* Config.swift */; };
+		1033C0E5267D984C00D999CE /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0E1267D984C00D999CE /* DataHandler.swift */; };
+		1033C0E6267D984C00D999CE /* PaymentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033C0E2267D984C00D999CE /* PaymentHandler.swift */; };
+		1033C0ED267DA02500D999CE /* RapydSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1033C0D6267D969200D999CE /* RapydSDK.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		1033C0EE267DA02500D999CE /* RapydSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1033C0D6267D969200D999CE /* RapydSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		94C85EFD927289A72B96857C /* Pods_KyPayApp2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD2A35EA43E8F034705E971 /* Pods_KyPayApp2.framework */; };
 /* End PBXBuildFile section */
 
@@ -120,6 +126,20 @@
 			remoteInfo = KyPayApp2;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1033C0EC267D9E5300D999CE /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				1033C0EE267DA02500D999CE /* RapydSDK.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0AD2A35EA43E8F034705E971 /* Pods_KyPayApp2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KyPayApp2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -222,6 +242,12 @@
 		1033C0CE267D767000D999CE /* TxInputData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TxInputData.swift; sourceTree = "<group>"; };
 		1033C0D0267D769400D999CE /* TxInputDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TxInputDataViewModel.swift; sourceTree = "<group>"; };
 		1033C0D2267D896900D999CE /* SendMoneyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMoneyView.swift; sourceTree = "<group>"; };
+		1033C0D6267D969200D999CE /* RapydSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RapydSDK.framework; sourceTree = "<group>"; };
+		1033C0D8267D969200D999CE /* RapydSDK_device.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RapydSDK_device.framework; sourceTree = "<group>"; };
+		1033C0DF267D984C00D999CE /* WalletHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletHandler.swift; sourceTree = "<group>"; };
+		1033C0E0267D984C00D999CE /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		1033C0E1267D984C00D999CE /* DataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataHandler.swift; sourceTree = "<group>"; };
+		1033C0E2267D984C00D999CE /* PaymentHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentHandler.swift; sourceTree = "<group>"; };
 		1B47377B496C6F0F1022FFD4 /* Pods-KyPayApp2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.debug.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.debug.xcconfig"; sourceTree = "<group>"; };
 		6F523BC3D4353462922B31B9 /* Pods-KyPayApp2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.release.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -231,6 +257,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1033C0ED267DA02500D999CE /* RapydSDK.framework in Frameworks */,
 				1033C0792676F3C500D999CE /* SwiftUIX in Frameworks */,
 				94C85EFD927289A72B96857C /* Pods_KyPayApp2.framework in Frameworks */,
 			);
@@ -288,6 +315,7 @@
 		1033B2532674A7F200D999CE /* KyPayApp2 */ = {
 			isa = PBXGroup;
 			children = (
+				1033C0DE267D984C00D999CE /* RapydHandlers */,
 				1033C0A42678A7F600D999CE /* Modifiers */,
 				1033C08C26773AC800D999CE /* DataStore */,
 				1033C08926773A3D00D999CE /* Firebase */,
@@ -601,9 +629,46 @@
 			path = settings;
 			sourceTree = "<group>";
 		};
+		1033C0D4267D969200D999CE /* rapyd-sdk-v2.4.1-xcode-12.4 */ = {
+			isa = PBXGroup;
+			children = (
+				1033C0D5267D969200D999CE /* Simulator */,
+				1033C0D7267D969200D999CE /* Device */,
+			);
+			path = "rapyd-sdk-v2.4.1-xcode-12.4";
+			sourceTree = "<group>";
+		};
+		1033C0D5267D969200D999CE /* Simulator */ = {
+			isa = PBXGroup;
+			children = (
+				1033C0D6267D969200D999CE /* RapydSDK.framework */,
+			);
+			path = Simulator;
+			sourceTree = "<group>";
+		};
+		1033C0D7267D969200D999CE /* Device */ = {
+			isa = PBXGroup;
+			children = (
+				1033C0D8267D969200D999CE /* RapydSDK_device.framework */,
+			);
+			path = Device;
+			sourceTree = "<group>";
+		};
+		1033C0DE267D984C00D999CE /* RapydHandlers */ = {
+			isa = PBXGroup;
+			children = (
+				1033C0DF267D984C00D999CE /* WalletHandler.swift */,
+				1033C0E0267D984C00D999CE /* Config.swift */,
+				1033C0E1267D984C00D999CE /* DataHandler.swift */,
+				1033C0E2267D984C00D999CE /* PaymentHandler.swift */,
+			);
+			path = RapydHandlers;
+			sourceTree = "<group>";
+		};
 		55C51AF7366AAFF575FED9C7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1033C0D4267D969200D999CE /* rapyd-sdk-v2.4.1-xcode-12.4 */,
 				0AD2A35EA43E8F034705E971 /* Pods_KyPayApp2.framework */,
 			);
 			name = Frameworks;
@@ -621,6 +686,7 @@
 				1033B24E2674A7F200D999CE /* Frameworks */,
 				1033B24F2674A7F200D999CE /* Resources */,
 				B003BD133D3A3F6DBCD548FC /* [CP] Embed Pods Frameworks */,
+				1033C0EC267D9E5300D999CE /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -828,6 +894,7 @@
 				1033B2972674A82F00D999CE /* UserWallet.swift in Sources */,
 				1033B29A2674A82F00D999CE /* DateFormatterExt.swift in Sources */,
 				1033C090267749F600D999CE /* OTPView.swift in Sources */,
+				1033C0E5267D984C00D999CE /* DataHandler.swift in Sources */,
 				1033C0C2267AFFB600D999CE /* ContactsListView.swift in Sources */,
 				1033C0A32678514500D999CE /* HomeTabbedView.swift in Sources */,
 				1033C0A62678A87C00D999CE /* ProgressViewModifier.swift in Sources */,
@@ -851,6 +918,7 @@
 				1033C09A26784FC300D999CE /* HomeView.swift in Sources */,
 				1033C0A02678510100D999CE /* RequestView.swift in Sources */,
 				1033C06F2676E46F00D999CE /* PhoneInputData.swift in Sources */,
+				1033C0E6267D984C00D999CE /* PaymentHandler.swift in Sources */,
 				1033C0C7267B363C00D999CE /* KyPayContactDataStore.swift in Sources */,
 				1033C0B32679E01600D999CE /* ShadowedRoundedCorner.swift in Sources */,
 				1033C09426782B5700D999CE /* OtpText.swift in Sources */,
@@ -865,12 +933,14 @@
 				1033C0CD267D6C4200D999CE /* BottomFloatingButton.swift in Sources */,
 				1033C08B26773A5000D999CE /* PhoneAuthenticator.swift in Sources */,
 				1033C08526771A7D00D999CE /* SearchBar.swift in Sources */,
+				1033C0E3267D984C00D999CE /* WalletHandler.swift in Sources */,
 				1033C0B5267A2B5B00D999CE /* CountDownTextView.swift in Sources */,
 				1033B2592674A7F200D999CE /* ContentView.swift in Sources */,
 				1033C09C2678509D00D999CE /* SettingsView.swift in Sources */,
 				1033C0BE267AFCCD00D999CE /* PersistanceController.swift in Sources */,
 				1033C0B12679C45C00D999CE /* PopOverView.swift in Sources */,
 				1033C0642676DCCE00D999CE /* UIColorExt.swift in Sources */,
+				1033C0E4267D984C00D999CE /* Config.swift in Sources */,
 				1033C0812677011400D999CE /* Country.swift in Sources */,
 				1033C0622676DCAF00D999CE /* Extensions.swift in Sources */,
 				1033C08E26773C0600D999CE /* KCDataStore.swift in Sources */,
@@ -981,6 +1051,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Debug;
 		};
@@ -1049,6 +1120,11 @@
 				DEVELOPMENT_ASSET_PATHS = "\"KyPayApp2/Preview Content\"";
 				DEVELOPMENT_TEAM = 69FAF79796;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/rapyd-sdk-v2.4.1-xcode-12.4/Simulator",
+					"$(PROJECT_DIR)/rapyd-sdk-v2.4.1-xcode-12.4/Device",
+				);
 				INFOPLIST_FILE = KyPayApp2/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1059,6 +1135,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_WORKSPACE = YES;
 			};
 			name = Debug;
 		};
@@ -1072,6 +1149,11 @@
 				DEVELOPMENT_ASSET_PATHS = "\"KyPayApp2/Preview Content\"";
 				DEVELOPMENT_TEAM = 69FAF79796;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/rapyd-sdk-v2.4.1-xcode-12.4/Simulator",
+					"$(PROJECT_DIR)/rapyd-sdk-v2.4.1-xcode-12.4/Device",
+				);
 				INFOPLIST_FILE = KyPayApp2/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1082,6 +1164,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_WORKSPACE = YES;
 			};
 			name = Release;
 		};

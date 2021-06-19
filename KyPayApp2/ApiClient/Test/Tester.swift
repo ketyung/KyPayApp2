@@ -356,6 +356,20 @@ class Tester {
         })
     }
     
+    static func testRCountries(){
+        
+        DataHandler().supportedCountries(completion: {
+            
+            cc in
+            cc?.forEach{
+                
+                c in
+                
+                print("cc:\(c.id)::\(c.name ?? "")")
+            }
+        })
+    }
+    
     
     static func testAddUserWallet(){
         

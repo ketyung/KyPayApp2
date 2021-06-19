@@ -1,0 +1,11 @@
+framework module RapydSDK {
+  umbrella header "RapydSDK.h"
+
+  export *
+  module * { export * }
+}
+
+module RapydSDK.Swift {
+    header "RapydSDK-Swift.h"
+    requires objc
+}
