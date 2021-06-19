@@ -31,7 +31,9 @@ struct SendMoneyView : View {
             Spacer()
         }
         .padding(.leading, 20)
-        .backButton()
+        .backButton(additionalAction: {
+            self.endEditing()
+        })
         .bottomFloatingButton( isPresented: true, action: {
     
         })

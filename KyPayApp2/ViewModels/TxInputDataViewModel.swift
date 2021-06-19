@@ -201,7 +201,10 @@ extension TxInputDataViewModel {
                                 self.txInputData.phoneNumberVerified = true
                                 self.txInputData.alertMessage = "\(usr.firstName ?? "") \(usr.lastName ?? "")".localized
                                 self.txInputData.showAlert = true
-                                self.shouldProceedNext = true
+                                
+                                if !self.shouldProceedNext {
+                                    self.shouldProceedNext = true
+                                }
                                
                             }
                         }

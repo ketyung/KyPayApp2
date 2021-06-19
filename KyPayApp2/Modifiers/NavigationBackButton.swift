@@ -17,6 +17,8 @@ struct NavigationBackButton : ViewModifier {
     
     let size : CGSize
         
+    let additionalAction : (()->Void)?
+    
     func body(content : Content) -> some View{
     
         if #available(iOS 14, *) {
@@ -30,6 +32,8 @@ struct NavigationBackButton : ViewModifier {
                      .onTapGesture {
                          // code to dismiss the view
                          self.presentation.wrappedValue.dismiss()
+                        additionalAction?()
+                        
                      }
                 }
             })
@@ -41,6 +45,8 @@ struct NavigationBackButton : ViewModifier {
                .foregroundColor(foregroundColor)
                .onTapGesture {
                   self.presentation.wrappedValue.dismiss()
+                    additionalAction?()
+                
                }
             )
         }
@@ -68,9 +74,13 @@ extension NavigationBackButton {
 
 extension View {
     
-    func backButton(imageName : String = "arrow.left.circle",
-                    foregroundColor : Color = Color(UIColor(hex:"#ff9922ff")!), size : CGSize = CGSize(width: 22, height: 22)) -> some View {
+    func backButton(
+        additionalAction : (()->Void)? = nil,
+        imageName : String = "arrow.left.circle",
+        foregroundColor : Color = Color(UIColor(hex:"#ff9922ff")!),
+        size : CGSize = CGSize(width: 22, height: 22)) -> some View {
         
-        return self.modifier(NavigationBackButton(imageName: imageName, foregroundColor: foregroundColor, size : size))
+        return self.modifier(NavigationBackButton(imageName: imageName,
+        foregroundColor: foregroundColor, size : size, additionalAction :additionalAction))
     }
 }

@@ -255,6 +255,7 @@ extension SendView {
     
     private func verifyPhoneNumberAndProceed(){
         
+        self.endEditing()
         
         let phoneNumber = "\(dataInputViewModel.selectedCountry?.dialCode ?? "+60")\(dataInputViewModel.enteredPhoneNumber)"
         
