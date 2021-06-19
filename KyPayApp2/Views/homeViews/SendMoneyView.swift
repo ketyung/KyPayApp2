@@ -47,7 +47,7 @@ extension SendMoneyView {
     private func amountTextField() -> some View {
     
         CocoaTextField("Amount".localized, text: $amountText)
-        .keyboardType(.numberPad)
+        .keyboardType(.decimalPad)
         .foregroundColor(.black)
         .font(UIFont.boldSystemFont(ofSize: 36))
         .background(Color.white)
