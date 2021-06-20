@@ -62,9 +62,13 @@ extension ProgressViewModifier {
             
             CustomActivityIndicator(color: self.color, isRunning:  self.$isShowing)
             
-            Text(text)
-            .foregroundColor(.black)
-            .font(.custom(Theme.fontName, size: 16))
+            if !text.isEmpty {
+          
+                Text(text)
+                .foregroundColor(.black)
+                .font(.custom(Theme.fontName, size: 16))
+              
+            }
             
         }
         .frame(width: size.width, height: size.height)
@@ -80,8 +84,8 @@ extension ProgressViewModifier {
 
 extension View {
     
-    func progressView(isShowing: Binding <Bool>, text : String = "Loading...", size : CGSize =  CGSize(width:120, height:120), color : Color = .orange) -> some View{
+    func progressView(isShowing: Binding <Bool>, text : String = "Loading...", size : CGSize =  CGSize(width:120, height:120), color : Color = .orange, showGrayOverlay : Bool = true) -> some View{
         
-        self.modifier(ProgressViewModifier(isShowing: isShowing, text: text, size: size, color: color))
+        self.modifier(ProgressViewModifier(isShowing: isShowing, text: text, size: size, color: color, showsGrayOverlay: showGrayOverlay))
     }
 }

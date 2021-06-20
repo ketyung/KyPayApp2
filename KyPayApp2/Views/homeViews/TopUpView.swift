@@ -31,7 +31,7 @@ struct TopUpView : View {
         }
         .popOver(isPresented: $pmPopOverPresented){
             
-            PaymentMethodTypesView()
+            PaymentMethodTypesView(isPresented: $pmPopOverPresented)
         }
         .onAppear{
             
@@ -76,16 +76,14 @@ extension TopUpView {
                 }.padding()
                 
                 
-                Button(action :{
+                Button (action: {
                     
                     withAnimation{
-                        
-                        self.pmPopOverPresented = true 
+                        self.pmPopOverPresented = true
                     }
-                    
-                }){
               
-                    
+                }){
+                
                     HStack(spacing:20)  {
                         
                         Image(systemName: "house.circle")
@@ -101,6 +99,7 @@ extension TopUpView {
                     }.padding()
                   
                 }
+                
                 
             }
             

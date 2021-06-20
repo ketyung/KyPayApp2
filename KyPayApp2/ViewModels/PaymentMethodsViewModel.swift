@@ -7,14 +7,19 @@
 
 import Foundation
 import RapydSDK
+import SwiftUI
 
 class PaymentMethodsViewModel : ObservableObject{
     
-    @Published private var paymentMethods : [PaymentMethod] = []
+    @Published private var paymentMethods : [PaymentMethod]?
+    
+    @Published var showLoadingIndicator : Bool = false
+    
+    @Published var selectedPaymentMethod : PaymentMethod?
     
     var supportedPaymentMethods : [PaymentMethod] {
         
-        paymentMethods
+        paymentMethods ?? []
     }
 }
 
@@ -22,10 +27,19 @@ extension PaymentMethodsViewModel {
     
     func fetchSupportedPaymentMethods(countryCode : String){
         
-        if self.paymentMethods.count > 0 {
+        if self.paymentMethods != nil  {
             
             return
         }
+        
+        self.paymentMethods = []
+        
+        withAnimation{
+       
+            self.showLoadingIndicator = true
+        }
+        
+       
         
         DataHandler().supportedPaymentMethods(countryCode:countryCode , completion: {
            [weak self] types, err in
@@ -35,20 +49,30 @@ extension PaymentMethodsViewModel {
                 return
             }
             
+            
             guard let err = err else {
                 
                 if let types = types {
         
-                    types.forEach{
+                    DispatchQueue.main.async {
+                  
+                        types.forEach{
+                            
+                            type in
+                            
+                            let pm = PaymentMethod(type: type.type,  name: type.name, category: type.category, imageURL: type.imageURL, paymentFlowType: type.paymentFlowType)
+                            
+                            self.paymentMethods?.append(pm)
+                        }
                         
-                        type in
+                        self.paymentMethods?.sort(by: {$0.name ?? "" < $1.name ?? ""})
                         
-                        let pm = PaymentMethod(type: type.type,  name: type.name, category: type.category, imageURL: type.imageURL, paymentFlowType: type.paymentFlowType)
-                        
-                        self.paymentMethods.append(pm)
+                        withAnimation{
+                
+                            self.showLoadingIndicator = false
+                        }
                     }
-                    
-                    self.paymentMethods.sort(by: {$0.name ?? "" < $1.name ?? ""})
+                  
                 }
                 return
             }
