@@ -119,7 +119,7 @@ extension WalletHandler {
         })
     }
     
-    func currentWallet(attach user : User, wallet : UserWallet, completion : ((Error?)->Void)? = nil, toPrint : Bool = false ){
+    func currentWallet(attachIfNotPresent user : User, wallet : UserWallet, completion : ((Error?)->Void)? = nil, toPrint : Bool = false ){
         
         Config.setup()
        

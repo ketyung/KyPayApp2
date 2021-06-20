@@ -87,11 +87,13 @@ extension UserWalletViewModel {
             return
         }
         
-        WalletHandler().currentWallet(attach: user, wallet: wallet, completion: {
+        WalletHandler().currentWallet(attachIfNotPresent: user, wallet: wallet, completion: {
             
             err in
             
-            print("curr.wallet.attaching.err::\(err?.localizedDescription ?? "xxx.err")")
+            //print("curr.wallet.attaching.err::\(err?.localizedDescription ?? "xxx.err")")
+            
+            completion?(err)
         })
         
     }
