@@ -6,31 +6,45 @@
 //
 
 import Foundation
+import SwiftUI
 
 class TopUpPaymentViewModel : ObservableObject {
     
-    @Published private var amount : Double?
+    @Published private var amount : Int?
     
     @Published var errorMessage : String?
     
     var topUpAmount : String {
         
         get {
-            "\(amount?.roundTo(places: 2) ?? 0.00)"
+            "\(amount ?? 0)"
         }
         
         set(newVal){
             
-            let amt = newVal.toDouble()
-            if (amt ?? 0)  > 2000 {
+            var amtTxt = newVal
+            
+            if amtTxt.count > 4 {
                 
-                errorMessage = "Maximum amount : 2000"
+                amtTxt =  String(amtTxt.prefix(4))
             }
-            else {
-                
-                amount = amt
-                errorMessage = nil 
+            
+            let amt = Int(amtTxt)
+            
+            withAnimation{
+            
+                if (amt ?? 0)  > 2000 {
+                    
+                    errorMessage = "Maximum amount : <curr> 2000"
+                }
+                else {
+                    
+                    errorMessage = nil
+                }
             }
+            
+            amount = amt
+        
         }
     }
 }

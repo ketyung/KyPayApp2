@@ -38,7 +38,7 @@ struct PaymentMethodTypesView : View {
            //fetchSupportedPaymentMethods()
         }
         .progressView(isShowing: $pmViewModel.showLoadingIndicator, text: "", size: CGSize(width:100,height: 100), showGrayOverlay: false)
-        
+        .navigationBar(title: Text("Select Online Banking / e-Wallet".localized), displayMode: .inline)
     }
 }
 

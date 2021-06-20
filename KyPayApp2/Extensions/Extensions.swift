@@ -93,6 +93,11 @@ extension String {
     func toDouble() -> Double? {
         return NumberFormatter().number(from: self)?.doubleValue
     }
+    
+    func replace(_ word : String, _ with : String) -> String{
+        
+        return self.replacingOccurrences(of: word, with: with)
+    }
 }
 
 extension UIApplication {

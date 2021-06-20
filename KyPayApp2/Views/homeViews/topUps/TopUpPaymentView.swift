@@ -18,7 +18,7 @@ struct TopUpPaymentView : View {
     
     var body : some View {
         
-        VStack {
+        VStack(alignment: .center,spacing: 20) {
             
             paymentMethodView()
             
@@ -28,6 +28,10 @@ struct TopUpPaymentView : View {
             
         }
         .backButton()
+        //.navigationTitle("Enter Amount".localized)
+        .navigationBar(title : Text("Enter Amount".localized), displayMode: .inline)
+        .bottomFloatingButton( isPresented: topUpViewModel.errorMessage == nil, action: {})
+        
     }
     
 }
@@ -38,7 +42,9 @@ extension TopUpPaymentView  {
         
         NavigationLink(destination: PaymentMethodTypesView()){
         
-            HStack {
+            HStack(spacing:20) {
+                
+                Spacer().frame(width:10)
                 
                 KFImage(paymentMethod.imageURL)
                 .resizable()
@@ -48,7 +54,8 @@ extension TopUpPaymentView  {
                 Text(paymentMethod.name ?? "")
                 .font(.custom(Theme.fontName, size: 16))
                 
-            }
+                Spacer()
+            }.padding().foregroundColor(.black).background(Color(UIColor(hex:"#ddeeffff")!))
         }
         
     }
@@ -66,15 +73,20 @@ extension TopUpPaymentView {
                 .font(.custom(Theme.fontNameBold, size: 24))
                
                 TextField("0", text: $topUpViewModel.topUpAmount)
-                .keyboardType(.decimalPad)
+                .keyboardType(.numberPad)
                 .font(.custom(Theme.fontName, size: 50))
                 .foregroundColor(.gray)
                 .frame(width:200)
                 
             }.padding()
             
+            if let err = topUpViewModel.errorMessage {
+                
+                Text(err.replace("<curr>", userViewModel.allowedCurrency))
+                .font(.custom(Theme.fontName, size: 15))
+                .foregroundColor(.red)
+            }
             
-            
-        }
+        }.padding()
     }
 }

@@ -117,6 +117,7 @@
 		10B855EA267EF58C00AEF15F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 10B855E9267EF58C00AEF15F /* Kingfisher */; };
 		10B855EC267F2BF700AEF15F /* TopUpPaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B855EB267F2BF700AEF15F /* TopUpPaymentView.swift */; };
 		10B855EF267F2FD400AEF15F /* TopUpPaymentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B855EE267F2FD400AEF15F /* TopUpPaymentViewModel.swift */; };
+		10B855F1267F39D900AEF15F /* NavigationBarTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B855F0267F39D900AEF15F /* NavigationBarTitle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -264,6 +265,7 @@
 		10B855E6267EF16D00AEF15F /* PaymentMethodsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodsViewModel.swift; sourceTree = "<group>"; };
 		10B855EB267F2BF700AEF15F /* TopUpPaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopUpPaymentView.swift; sourceTree = "<group>"; };
 		10B855EE267F2FD400AEF15F /* TopUpPaymentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopUpPaymentViewModel.swift; sourceTree = "<group>"; };
+		10B855F0267F39D900AEF15F /* NavigationBarTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarTitle.swift; sourceTree = "<group>"; };
 		1B47377B496C6F0F1022FFD4 /* Pods-KyPayApp2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.debug.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.debug.xcconfig"; sourceTree = "<group>"; };
 		6F523BC3D4353462922B31B9 /* Pods-KyPayApp2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.release.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -639,6 +641,7 @@
 				1033C0B6267AC63100D999CE /* NeumorphismModifier.swift */,
 				1033C0BB267AECA200D999CE /* Theme.swift */,
 				1033C0CA267C9E4300D999CE /* NavigationBackButton.swift */,
+				10B855F0267F39D900AEF15F /* NavigationBarTitle.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -936,6 +939,7 @@
 				1033C0C7267B363C00D999CE /* KyPayContactDataStore.swift in Sources */,
 				10B855EF267F2FD400AEF15F /* TopUpPaymentViewModel.swift in Sources */,
 				1033C0B32679E01600D999CE /* ShadowedRoundedCorner.swift in Sources */,
+				10B855F1267F39D900AEF15F /* NavigationBarTitle.swift in Sources */,
 				1033C09426782B5700D999CE /* OtpText.swift in Sources */,
 				1033C0AF2679BB7800D999CE /* EditProfileView.swift in Sources */,
 				1033C0BC267AECA200D999CE /* Theme.swift in Sources */,
