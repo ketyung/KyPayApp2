@@ -115,6 +115,8 @@
 		10B855E5267EF10600AEF15F /* PaymentMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B855E4267EF10600AEF15F /* PaymentMethod.swift */; };
 		10B855E7267EF16D00AEF15F /* PaymentMethodsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B855E6267EF16D00AEF15F /* PaymentMethodsViewModel.swift */; };
 		10B855EA267EF58C00AEF15F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 10B855E9267EF58C00AEF15F /* Kingfisher */; };
+		10B855EC267F2BF700AEF15F /* TopUpPaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B855EB267F2BF700AEF15F /* TopUpPaymentView.swift */; };
+		10B855EF267F2FD400AEF15F /* TopUpPaymentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B855EE267F2FD400AEF15F /* TopUpPaymentViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -260,6 +262,8 @@
 		10B855E2267EEEB400AEF15F /* PaymentMethodTypesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodTypesView.swift; sourceTree = "<group>"; };
 		10B855E4267EF10600AEF15F /* PaymentMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethod.swift; sourceTree = "<group>"; };
 		10B855E6267EF16D00AEF15F /* PaymentMethodsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodsViewModel.swift; sourceTree = "<group>"; };
+		10B855EB267F2BF700AEF15F /* TopUpPaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopUpPaymentView.swift; sourceTree = "<group>"; };
+		10B855EE267F2FD400AEF15F /* TopUpPaymentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopUpPaymentViewModel.swift; sourceTree = "<group>"; };
 		1B47377B496C6F0F1022FFD4 /* Pods-KyPayApp2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.debug.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.debug.xcconfig"; sourceTree = "<group>"; };
 		6F523BC3D4353462922B31B9 /* Pods-KyPayApp2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.release.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -549,6 +553,7 @@
 				1033C0D0267D769400D999CE /* TxInputDataViewModel.swift */,
 				10B855E0267EC76300AEF15F /* UserWalletViewModel.swift */,
 				10B855E6267EF16D00AEF15F /* PaymentMethodsViewModel.swift */,
+				10B855EE267F2FD400AEF15F /* TopUpPaymentViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -611,11 +616,10 @@
 		1033C0A12678510600D999CE /* homeViews */ = {
 			isa = PBXGroup;
 			children = (
+				10B855ED267F2BFB00AEF15F /* topUps */,
 				1033C0AD2679BB6B00D999CE /* settings */,
-				10B855E2267EEEB400AEF15F /* PaymentMethodTypesView.swift */,
 				1033C09F2678510100D999CE /* RequestView.swift */,
 				1033C0C1267AFFB600D999CE /* ContactsListView.swift */,
-				1033C0B9267AEC3700D999CE /* TopUpView.swift */,
 				1033C09D267850D900D999CE /* SendView.swift */,
 				1033C0D2267D896900D999CE /* SendMoneyView.swift */,
 				1033C09926784FC300D999CE /* HomeView.swift */,
@@ -657,6 +661,16 @@
 				1033C0E2267D984C00D999CE /* PaymentHandler.swift */,
 			);
 			path = RapydHandlers;
+			sourceTree = "<group>";
+		};
+		10B855ED267F2BFB00AEF15F /* topUps */ = {
+			isa = PBXGroup;
+			children = (
+				10B855E2267EEEB400AEF15F /* PaymentMethodTypesView.swift */,
+				10B855EB267F2BF700AEF15F /* TopUpPaymentView.swift */,
+				1033C0B9267AEC3700D999CE /* TopUpView.swift */,
+			);
+			path = topUps;
 			sourceTree = "<group>";
 		};
 		55C51AF7366AAFF575FED9C7 /* Frameworks */ = {
@@ -886,6 +900,7 @@
 			files = (
 				1033B2942674A82F00D999CE /* DictionaryExt.swift in Sources */,
 				1033B2962674A82F00D999CE /* UserAddress.swift in Sources */,
+				10B855EC267F2BF700AEF15F /* TopUpPaymentView.swift in Sources */,
 				1033B2552674A7F200D999CE /* AppDelegate.swift in Sources */,
 				1033C0762676E81000D999CE /* ViewExtension.swift in Sources */,
 				1033B2972674A82F00D999CE /* UserWallet.swift in Sources */,
@@ -919,6 +934,7 @@
 				1033C06F2676E46F00D999CE /* PhoneInputData.swift in Sources */,
 				1033C0E6267D984C00D999CE /* PaymentHandler.swift in Sources */,
 				1033C0C7267B363C00D999CE /* KyPayContactDataStore.swift in Sources */,
+				10B855EF267F2FD400AEF15F /* TopUpPaymentViewModel.swift in Sources */,
 				1033C0B32679E01600D999CE /* ShadowedRoundedCorner.swift in Sources */,
 				1033C09426782B5700D999CE /* OtpText.swift in Sources */,
 				1033C0AF2679BB7800D999CE /* EditProfileView.swift in Sources */,

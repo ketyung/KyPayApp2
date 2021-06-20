@@ -175,6 +175,21 @@ class UserViewModel : NSObject, ObservableObject {
         userHolder.user
     }
     
+    
+    private var currency : String?
+    
+    
+    var allowedCurrency : String {
+        
+        guard let currency = self.currency else {
+            
+            self.currency = CurrencyManager.currency(countryCode: user.countryCode ?? "")
+            return self.currency ?? ""
+        }
+        
+        return currency
+    }
+    
 }
 
 extension UserViewModel {

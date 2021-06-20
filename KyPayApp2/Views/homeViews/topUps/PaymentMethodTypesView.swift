@@ -10,8 +10,6 @@ import Kingfisher
 
 struct PaymentMethodTypesView : View {
     
-    @Binding var isPresented : Bool
-    
     @EnvironmentObject private var userViewModel : UserViewModel
    
     @ObservedObject private var pmViewModel = PaymentMethodsViewModel()
@@ -28,10 +26,12 @@ struct PaymentMethodTypesView : View {
                     paymentMethodRow(pm)
                     
                 }
-                
             }
+            .frame(height:500)
+            Spacer()
             
         }
+        .backButton()
         .onAppear{
 
             pmViewModel.fetchSupportedPaymentMethods(countryCode: userViewModel.countryCode)
@@ -49,30 +49,26 @@ extension PaymentMethodTypesView {
     private func paymentMethodRow (_ paymentMethod : PaymentMethod) -> some View {
         
       
-        HStack {
+        NavigationLink(
+            destination: TopUpPaymentView(paymentMethod: paymentMethod))
+        {
        
-            KFImage(paymentMethod.imageURL)
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .frame(width: 40)
+            HStack {
+           
+                KFImage(paymentMethod.imageURL)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 40)
+                   
                
-           
-            
-            Text(paymentMethod.name ?? "")
-            .font(.custom(Theme.fontName, size: 16))
-            .padding()
-           
-        }
-        .onTapGesture {
-            
-            withAnimation {
-           
-                pmViewModel.selectedPaymentMethod = paymentMethod
-                self.isPresented.toggle()
                 
+                Text(paymentMethod.name ?? "")
+                .font(.custom(Theme.fontName, size: 16))
+                .padding()
+               
             }
-      
         }
+       
         
     }
 }

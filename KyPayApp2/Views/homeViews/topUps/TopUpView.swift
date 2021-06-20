@@ -16,27 +16,21 @@ struct TopUpView : View {
     
     @EnvironmentObject private var userViewModel : UserViewModel
    
-    @State private var pmPopOverPresented : Bool = false
-    
     @State private var errorMessage : String?
     
     @State private var errorMessagePresented : Bool = false 
     
     var body: some View {
-        
-       view()
+   
+        NavigationView {
+            
+            view()
+            .navigationBarHidden(true)
+        }
        .progressView(isShowing: $walletViewModel.progressIndicatorPresented, text: "Fetching wallet...".localized)
-       .alert(isPresented: $errorMessagePresented){
-            Alert(title: Text("Oppps!"),message:Text(errorMessage ?? ""))
-        }
-        .popOver(isPresented: $pmPopOverPresented){
-            
-            PaymentMethodTypesView(isPresented: $pmPopOverPresented)
-        }
-        .onAppear{
-            
-            self.fetchWalletIfNotPresent()
-        }
+       .alert(isPresented: $errorMessagePresented){ Alert(title: Text("Oppps!"),message:Text(errorMessage ?? ""))}
+       .onAppear{self.fetchWalletIfNotPresent()}
+        
     }
 }
 
@@ -76,13 +70,7 @@ extension TopUpView {
                 }.padding()
                 
                 
-                Button (action: {
-                    
-                    withAnimation{
-                        self.pmPopOverPresented = true
-                    }
-              
-                }){
+                NavigationLink (destination: PaymentMethodTypesView()){
                 
                     HStack(spacing:20)  {
                         
@@ -91,7 +79,7 @@ extension TopUpView {
                         .frame(width:30, height: 30)
                         .foregroundColor(.orange)
                     
-                        Text("Online Banking".localized)
+                        Text("Online Banking / e-Wallet".localized)
                         .font(.custom(Theme.fontName, size: 16))
                         
                         Spacer()
@@ -99,7 +87,6 @@ extension TopUpView {
                     }.padding()
                   
                 }
-                
                 
             }
             
