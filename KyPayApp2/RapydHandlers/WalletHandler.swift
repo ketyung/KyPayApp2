@@ -84,3 +84,55 @@ class WalletHandler : NSObject {
     }
     
 }
+
+extension WalletHandler {
+    
+    
+    func detachWallet(){
+        
+        Config.setup()
+       
+        RPDUser.detachUser()
+    }
+    
+    func attachWallet(user : User, wallet : UserWallet, completion : ((Error?)->Void)? = nil ){
+        
+        Config.setup()
+       
+        let ruser : RPDUser = RPDUser()
+        ruser.phoneNumber = user.phoneNumber ?? ""
+        ruser.email = user.email ?? ""
+        ruser.eWalletReferenceID = wallet.refId ?? ""
+        
+                    
+        let userManager:RPDUsersManager = RPDUsersManager()
+        userManager.attachUser(ruser, completionBlock: { _, error in
+          // Enter your code here.
+            
+            guard let err = error else {
+                
+                return
+            }
+            
+            completion?(err)
+            
+        })
+    }
+    
+    func currentWallet(attach user : User, wallet : UserWallet, completion : ((Error?)->Void)? = nil, toPrint : Bool = false ){
+        
+        Config.setup()
+       
+        if let ruser = RPDUser.currentUser() {
+  
+            if toPrint {
+           
+                print("RPD.user::\(ruser.firstName ?? "") \(ruser.lastName ?? "") : wallet.id::\(ruser.eWalletReferenceID ?? "xxx")")
+            }
+        }
+        else {
+            
+            self.attachWallet(user: user, wallet: wallet, completion: completion)
+        }
+    }
+}

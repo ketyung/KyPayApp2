@@ -77,62 +77,79 @@ extension UserWalletViewModel {
         let walletType = user.allowedWalletTypes.first ?? .personal
         let currency = CurrencyManager.currency(countryCode: user.countryCode ?? "MY") ?? "MYR"
         
-        guard let _ = KDS.shared.getWallet(type: walletType ,
-        currency: currency ) else {
+        guard let wallet = KDS.shared.getWallet(type: walletType , currency: currency ) else {
             
             self.showingProgressIndicator = true
             
-            ARH.shared.fetchUserWallet(id: user.id ?? "", type: walletType, currency: currency, completion: {
-              
-                [weak self]
-                res in
-                
-                guard let self = self else {
-                    return
-                }
-                
-                switch(res) {
-                
-                    case .failure(let err) :
-                        
-                        
-                        if let err = err as? ApiError, err.statusCode == 404 {
-                            
-                            // to create wallet if not exists
-                            self.createWalletIfNotPresent(user: user, walletType: walletType, currency: currency,
-                                                          completion: completion)
-                        }
-                        else {
-                        
-                            completion?(err)
-                        
-                        }
-                        
-                    case .success(let rs) :
-                    
-                        KDS.shared.saveWallet(rs)
-                        
-                        print("wallet.saved::\(rs.id ?? ""):\(rs.refId ?? ""):\(rs.balance ?? 0)")
-                        
-                        completion?(nil)
-                }
-                
-                DispatchQueue.main.async {
-               
-                    self.showingProgressIndicator = false
-                   
-                }
-                
-            })
+            self.fetchWalletRemotely(user: user, walletType:walletType, currency: currency, completion: completion)
             
             
             return
         }
+        
+        WalletHandler().currentWallet(attach: user, wallet: wallet, completion: {
+            
+            err in
+            
+            print("curr.wallet.attaching.err::\(err?.localizedDescription ?? "xxx.err")")
+        })
+        
     }
 }
 
 
 extension UserWalletViewModel {
+    
+    
+    func fetchWalletRemotely(user : User,
+                             walletType : UserWallet.WalletType,
+                             currency : String,
+                             completion :((Error?) -> Void)? = nil){
+        
+        ARH.shared.fetchUserWallet(id: user.id ?? "", type: walletType, currency: currency, completion: {
+          
+            [weak self]
+            res in
+            
+            guard let self = self else {
+                return
+            }
+            
+            switch(res) {
+            
+                case .failure(let err) :
+                    
+                    
+                    if let err = err as? ApiError, err.statusCode == 404 {
+                        
+                        // to create wallet if not exists
+                        self.createWalletIfNotPresent(user: user, walletType: walletType, currency: currency,
+                                                      completion: completion)
+                    }
+                    else {
+                    
+                        completion?(err)
+                    
+                    }
+                    
+                case .success(let rs) :
+                
+                    KDS.shared.saveWallet(rs)
+                    
+                    
+                    self.createRapydWallet(user: user, wallet: rs)
+                                  
+                    completion?(nil)
+            }
+            
+            DispatchQueue.main.async {
+           
+                self.showingProgressIndicator = false
+               
+            }
+            
+        })
+    }
     
     
     func createWalletIfNotPresent(user : User,
@@ -163,8 +180,10 @@ extension UserWalletViewModel {
                    
                         KDS.shared.saveWallet(createdWallet)
                  
-                        print("wallet.created::\(createdWallet.id ?? ""):\(createdWallet.refId ?? ""):\(createdWallet.balance ?? 0)")
+                       // print("wallet.created::\(createdWallet.id ?? ""):\(createdWallet.refId ?? ""):\(createdWallet.balance ?? 0)")
           
+                        self.createRapydWallet(user: user, wallet: createdWallet)
+                        
                         completion?(nil)
                     }
                     else {
@@ -182,5 +201,39 @@ extension UserWalletViewModel {
             }
             
         })
+    }
+    
+}
+
+extension UserWalletViewModel {
+    
+    
+    private func createRapydWallet( user : User, wallet : UserWallet){
+        
+        
+        let walletHandler = WalletHandler()
+    
+        walletHandler.attachWallet(user: user, wallet: wallet, completion: {
+            
+            err in
+            
+            guard let _ = err else {
+                
+                return
+            }
+       
+            //  create the wallet if cannot attach
+            walletHandler.createWallet(for: user, wallet: wallet, completion: {
+                
+                _, err in
+                
+                guard let err = err else { return }
+                
+                print("Create.wallet.from.Rapyd.err:\(err)")
+                
+            })
+        })
+        
+       
     }
 }
