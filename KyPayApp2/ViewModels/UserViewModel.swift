@@ -195,6 +195,7 @@ extension UserViewModel {
             try Auth.auth().signOut()
     
             KDS.shared.removeUser()
+            KDS.shared.removeAllWallets()
             
             DispatchQueue.main.async {
                 

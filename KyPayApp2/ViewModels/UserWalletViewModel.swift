@@ -84,7 +84,12 @@ extension UserWalletViewModel {
             
             ARH.shared.fetchUserWallet(id: user.id ?? "", type: walletType, currency: currency, completion: {
               
+                [weak self]
                 res in
+                
+                guard let self = self else {
+                    return
+                }
                 
                 switch(res) {
                 
@@ -136,10 +141,14 @@ extension UserWalletViewModel {
                                   completion :((Error?) -> Void)? = nil){
         
         let wallet = UserWallet(id: user.id ?? "", balance : 0, currency: currency, type: walletType)
-        ARH.shared.addUserWallet(wallet, returnType: UserWallet.self, completion: {
+        ARH.shared.addUserWallet(wallet, returnType: UserWallet.self, completion: { [weak self]
             
             res in
         
+            guard let self = self else
+            {
+                return
+            }
             
             switch(res) {
             

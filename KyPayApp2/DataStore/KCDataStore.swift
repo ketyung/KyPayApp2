@@ -97,6 +97,19 @@ extension KCDataStore {
     }
     
     
+    func removeAllWallets(){
+        
+        KeychainWrapper.standard.allKeys().forEach{
+            key in
+            
+            if key.hasPrefix(KDS.walleyKeyPrefix){
+                
+                remove(key)
+            }
+            
+        }
+    }
+    
 }
 
 
