@@ -111,6 +111,10 @@
 		10B855DD267DE95300AEF15F /* CurrencyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B855DC267DE95300AEF15F /* CurrencyManager.swift */; };
 		10B855DF267DEACB00AEF15F /* countryCurrency.json in Resources */ = {isa = PBXBuildFile; fileRef = 10B855DE267DEACB00AEF15F /* countryCurrency.json */; };
 		10B855E1267EC76300AEF15F /* UserWalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B855E0267EC76300AEF15F /* UserWalletViewModel.swift */; };
+		10B855E3267EEEB400AEF15F /* PaymentMethodTypesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B855E2267EEEB400AEF15F /* PaymentMethodTypesView.swift */; };
+		10B855E5267EF10600AEF15F /* PaymentMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B855E4267EF10600AEF15F /* PaymentMethod.swift */; };
+		10B855E7267EF16D00AEF15F /* PaymentMethodsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B855E6267EF16D00AEF15F /* PaymentMethodsViewModel.swift */; };
+		10B855EA267EF58C00AEF15F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 10B855E9267EF58C00AEF15F /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -253,6 +257,9 @@
 		10B855DC267DE95300AEF15F /* CurrencyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyManager.swift; sourceTree = "<group>"; };
 		10B855DE267DEACB00AEF15F /* countryCurrency.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countryCurrency.json; sourceTree = "<group>"; };
 		10B855E0267EC76300AEF15F /* UserWalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserWalletViewModel.swift; sourceTree = "<group>"; };
+		10B855E2267EEEB400AEF15F /* PaymentMethodTypesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodTypesView.swift; sourceTree = "<group>"; };
+		10B855E4267EF10600AEF15F /* PaymentMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethod.swift; sourceTree = "<group>"; };
+		10B855E6267EF16D00AEF15F /* PaymentMethodsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodsViewModel.swift; sourceTree = "<group>"; };
 		1B47377B496C6F0F1022FFD4 /* Pods-KyPayApp2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.debug.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.debug.xcconfig"; sourceTree = "<group>"; };
 		6F523BC3D4353462922B31B9 /* Pods-KyPayApp2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.release.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -262,6 +269,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				10B855EA267EF58C00AEF15F /* Kingfisher in Frameworks */,
 				1033C0792676F3C500D999CE /* SwiftUIX in Frameworks */,
 				10B855D9267DC3F400AEF15F /* RapydSDK.framework in Frameworks */,
 				1033C191267DC21A00D999CE /* Pods_KyPayApp2.framework in Frameworks */,
@@ -540,6 +548,7 @@
 				1033C0972678477600D999CE /* UserViewModel.swift */,
 				1033C0D0267D769400D999CE /* TxInputDataViewModel.swift */,
 				10B855E0267EC76300AEF15F /* UserWalletViewModel.swift */,
+				10B855E6267EF16D00AEF15F /* PaymentMethodsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -551,6 +560,7 @@
 				1033C0802677011400D999CE /* Country.swift */,
 				1033C09326782B5700D999CE /* OtpText.swift */,
 				1033C0CE267D767000D999CE /* TxInputData.swift */,
+				10B855E4267EF10600AEF15F /* PaymentMethod.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -602,7 +612,7 @@
 			isa = PBXGroup;
 			children = (
 				1033C0AD2679BB6B00D999CE /* settings */,
-				1033C09B2678509D00D999CE /* SettingsView.swift */,
+				10B855E2267EEEB400AEF15F /* PaymentMethodTypesView.swift */,
 				1033C09F2678510100D999CE /* RequestView.swift */,
 				1033C0C1267AFFB600D999CE /* ContactsListView.swift */,
 				1033C0B9267AEC3700D999CE /* TopUpView.swift */,
@@ -632,6 +642,7 @@
 		1033C0AD2679BB6B00D999CE /* settings */ = {
 			isa = PBXGroup;
 			children = (
+				1033C09B2678509D00D999CE /* SettingsView.swift */,
 				1033C0AE2679BB7800D999CE /* EditProfileView.swift */,
 			);
 			path = settings;
@@ -678,6 +689,7 @@
 			name = KyPayApp2;
 			packageProductDependencies = (
 				1033C0782676F3C500D999CE /* SwiftUIX */,
+				10B855E9267EF58C00AEF15F /* Kingfisher */,
 			);
 			productName = KyPayApp2;
 			productReference = 1033B2512674A7F200D999CE /* KyPayApp2.app */;
@@ -752,6 +764,7 @@
 			mainGroup = 1033B2482674A7F200D999CE;
 			packageReferences = (
 				1033C0772676F3C500D999CE /* XCRemoteSwiftPackageReference "SwiftUIX" */,
+				10B855E8267EF58C00AEF15F /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 1033B2522674A7F200D999CE /* Products */;
 			projectDirPath = "";
@@ -878,11 +891,13 @@
 				1033B2972674A82F00D999CE /* UserWallet.swift in Sources */,
 				1033B29A2674A82F00D999CE /* DateFormatterExt.swift in Sources */,
 				1033C090267749F600D999CE /* OTPView.swift in Sources */,
+				10B855E7267EF16D00AEF15F /* PaymentMethodsViewModel.swift in Sources */,
 				1033C0E5267D984C00D999CE /* DataHandler.swift in Sources */,
 				1033C0C2267AFFB600D999CE /* ContactsListView.swift in Sources */,
 				1033C0A32678514500D999CE /* HomeTabbedView.swift in Sources */,
 				1033C0A62678A87C00D999CE /* ProgressViewModifier.swift in Sources */,
 				1033C0BA267AEC3700D999CE /* TopUpView.swift in Sources */,
+				10B855E3267EEEB400AEF15F /* PaymentMethodTypesView.swift in Sources */,
 				1033C0D3267D896900D999CE /* SendMoneyView.swift in Sources */,
 				1033C0AC2679A38000D999CE /* Tool.swift in Sources */,
 				1033C0C0267AFD4F00D999CE /* ContactFetcher.swift in Sources */,
@@ -915,6 +930,7 @@
 				1033B2992674A82F00D999CE /* UserPaymentTx.swift in Sources */,
 				1033C0C9267B3C6C00D999CE /* KyPayUserSyncer.swift in Sources */,
 				1033B2932674A82F00D999CE /* Tester.swift in Sources */,
+				10B855E5267EF10600AEF15F /* PaymentMethod.swift in Sources */,
 				1033C0CD267D6C4200D999CE /* BottomFloatingButton.swift in Sources */,
 				1033C08B26773A5000D999CE /* PhoneAuthenticator.swift in Sources */,
 				1033C08526771A7D00D999CE /* SearchBar.swift in Sources */,
@@ -1311,6 +1327,14 @@
 				minimumVersion = 0.0.7;
 			};
 		};
+		10B855E8267EF58C00AEF15F /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.3.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1318,6 +1342,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1033C0772676F3C500D999CE /* XCRemoteSwiftPackageReference "SwiftUIX" */;
 			productName = SwiftUIX;
+		};
+		10B855E9267EF58C00AEF15F /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 10B855E8267EF58C00AEF15F /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 

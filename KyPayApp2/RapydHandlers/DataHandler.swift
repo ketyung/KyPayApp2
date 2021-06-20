@@ -66,3 +66,25 @@ class DataHandler : NSObject {
         
     }
 }
+
+
+extension DataHandler {
+    
+    
+    func supportedPaymentMethods ( countryCode : String , completion : (([RPDSupportedPaymentMethodType]?, Error?)->Void)? = nil ){
+        
+        Config.setup()
+        
+        RPDPaymentMethodManager().fetchPaymentMethod(byCountry:
+        RPDCountry.country(isoAlpha2: countryCode)) { types, error in
+
+            guard let err = error else {
+                
+                completion?(types,nil)
+                return 
+            }
+            
+            completion?(nil, err)
+        }
+    }
+}

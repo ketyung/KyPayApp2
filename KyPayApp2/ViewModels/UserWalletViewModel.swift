@@ -83,17 +83,13 @@ extension UserWalletViewModel {
             
             self.fetchWalletRemotely(user: user, walletType:walletType, currency: currency, completion: completion)
             
-            
             return
         }
         
-        WalletHandler().currentWallet(attachIfNotPresent: user, wallet: wallet, completion: {
-            
-            err in
-            
-            //print("curr.wallet.attaching.err::\(err?.localizedDescription ?? "xxx.err")")
-            
+        WalletHandler().currentWallet(attachIfNotPresent: user, wallet: wallet, completion: { err in
+
             completion?(err)
+            //print("curr.wallet.attaching.err::\(err?.localizedDescription ?? "xxx.err")")
         })
         
     }
@@ -108,9 +104,7 @@ extension UserWalletViewModel {
                              currency : String,
                              completion :((Error?) -> Void)? = nil){
         
-        ARH.shared.fetchUserWallet(id: user.id ?? "", type: walletType, currency: currency, completion: {
-          
-            [weak self]
+        ARH.shared.fetchUserWallet(id: user.id ?? "", type: walletType, currency: currency, completion: {[weak self]
             res in
             
             guard let self = self else {
@@ -225,9 +219,7 @@ extension UserWalletViewModel {
             }
        
             //  create the wallet if cannot attach
-            walletHandler.createWallet(for: user, wallet: wallet, completion: {
-                
-                _, err in
+            walletHandler.createWallet(for: user, wallet: wallet, completion: { err in
                 
                 guard let err = err else { return }
                 

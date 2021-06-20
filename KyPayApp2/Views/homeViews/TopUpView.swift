@@ -16,6 +16,7 @@ struct TopUpView : View {
     
     @EnvironmentObject private var userViewModel : UserViewModel
    
+    @State private var pmPopOverPresented : Bool = false
     
     @State private var errorMessage : String?
     
@@ -27,6 +28,10 @@ struct TopUpView : View {
        .progressView(isShowing: $walletViewModel.progressIndicatorPresented, text: "Fetching wallet...".localized)
        .alert(isPresented: $errorMessagePresented){
             Alert(title: Text("Oppps!"),message:Text(errorMessage ?? ""))
+        }
+        .popOver(isPresented: $pmPopOverPresented){
+            
+            PaymentMethodTypesView()
         }
         .onAppear{
             
@@ -71,20 +76,31 @@ extension TopUpView {
                 }.padding()
                 
                 
-                
-                HStack(spacing:20)  {
+                Button(action :{
                     
-                    Image(systemName: "house.circle")
-                    .resizable()
-                    .frame(width:30, height: 30)
-                    .foregroundColor(.orange)
-                
-                    Text("Online Banking".localized)
-                    .font(.custom(Theme.fontName, size: 16))
+                    withAnimation{
+                        
+                        self.pmPopOverPresented = true 
+                    }
                     
-                    Spacer()
-                      
-                }.padding()
+                }){
+              
+                    
+                    HStack(spacing:20)  {
+                        
+                        Image(systemName: "house.circle")
+                        .resizable()
+                        .frame(width:30, height: 30)
+                        .foregroundColor(.orange)
+                    
+                        Text("Online Banking".localized)
+                        .font(.custom(Theme.fontName, size: 16))
+                        
+                        Spacer()
+                          
+                    }.padding()
+                  
+                }
                 
             }
             

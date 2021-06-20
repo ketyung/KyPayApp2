@@ -18,7 +18,7 @@ class WalletHandler : NSObject {
 
     func createWallet(for user : User, wallet : UserWallet,
         address : UserAddress? = nil ,
-        completion : ((User?, Error?)->Void)? = nil ) {
+        completion : ((Error?)->Void)? = nil ) {
         
         Config.setup()
         
@@ -57,11 +57,11 @@ class WalletHandler : NSObject {
             
             if let error = error {
         
-                completion?(nil, error )
+                completion?(error )
                 return
             }
         
-            completion?(user, nil)
+            completion?(nil)
             
         })
         
