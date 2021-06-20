@@ -48,6 +48,8 @@ extension TopUpPaymentView  {
                 
                 KFImage(paymentMethod.imageURL)
                 .resizable()
+                .cacheMemoryOnly()
+                .fade(duration: 0.25)
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 34)
                 
