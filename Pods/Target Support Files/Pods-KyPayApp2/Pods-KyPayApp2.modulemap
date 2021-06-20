@@ -1,0 +1,6 @@
+framework module Pods_KyPayApp2 {
+  umbrella header "Pods-KyPayApp2-umbrella.h"
+
+  export *
+  module * { export * }
+}
