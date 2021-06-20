@@ -39,5 +39,22 @@ struct User : Codable {
     var countryCode : String?
     var lastStatTime : Date?
     var lastUpdated : Date?
+    
+    var allowedWalletTypes : [UserWallet.WalletType] {
+        
+        let accType = accountType ?? .personal
+        switch(accType) {
+        
+            case .personal :
+                return [.personal]
+            
+            case .business :
+                return [.business, .personal]
+            
+            default :
+                return [.personal]
+            
+        }
+    }
 
 }

@@ -25,6 +25,11 @@ struct ApiError : Error {
         
         return ""
     }
+    
+    public var localizedDescription : String {
+        
+        return description.localized
+    }
 }
 
 
@@ -620,6 +625,17 @@ extension ApiRequestHandler {
                            completion:  ((Result<UserWallet, Error>)->Void)? = nil ){
         
         fetch(module: "userWallet", param: "id/\(id)/\(refId)" , decode: UserWallet.self, completion: completion)
+    }
+    
+    
+    func fetchUserWallet (id : String, type : UserWallet.WalletType , currency : String,
+                           completion:  ((Result<UserWallet, Error>)->Void)? = nil ){
+        
+        let param = "id/\(id)/\(type.rawValue)/\(currency)"
+        
+        //print("fetching.wallet.param::\(param)")
+        fetch(module: "userWallet", param: param ,
+              decode: UserWallet.self, completion: completion)
     }
     
 }

@@ -29,7 +29,7 @@ struct SendView : View {
         
             CountryCodePickerUI(viewModel: dataInputViewModel, textFont: .custom(Theme.fontName, size: 15))
         }
-        .progressView(isShowing: $txInputViewModel.showProgressIndicator, text: "Synchronizing contacts...", size:  CGSize(width:200, height: 200))
+        .progressView(isShowing: $txInputViewModel.showProgressIndicator, text: "Syncing contacts...", size:  CGSize(width:200, height: 200))
         .bottomFloatingButton( isPresented: !dataInputViewModel.isCountryPickerPresented, action: {
             
             self.verifyPhoneNumberAndProceed()

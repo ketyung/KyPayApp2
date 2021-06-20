@@ -12,7 +12,32 @@ struct TopUpView : View {
     
     @Binding var isPresented : Bool
     
+    @ObservedObject private var walletViewModel = UserWalletViewModel()
+    
+    @EnvironmentObject private var userViewModel : UserViewModel
+   
+    
+    @State private var errorMessage : String?
+    
+    @State private var errorMessagePresented : Bool = false 
+    
     var body: some View {
+        
+       view()
+       .progressView(isShowing: $walletViewModel.progressIndicatorPresented, text: "Fetching wallet...".localized)
+       .alert(isPresented: $errorMessagePresented){
+            Alert(title: Text("Oppps!"),message:Text(errorMessage ?? ""))
+        }
+        .onAppear{
+            
+            self.fetchWalletIfNotPresent()
+        }
+    }
+}
+
+extension TopUpView {
+    
+    private func view() -> some View {
         
         VStack(spacing: 20){
             
@@ -96,4 +121,26 @@ extension TopUpView {
         }
         
     }
+    
+    
+    private func fetchWalletIfNotPresent(){
+        
+        walletViewModel.fetchWalletIfNotPresent(user: userViewModel.user, completion: {
+            
+            err in
+            
+            guard let err = err else {
+                
+                return
+            }
+            
+            withAnimation{
+                
+                self.errorMessagePresented = true
+                self.errorMessage = err.localizedDescription
+            }
+        })
+        
+    }
+    
 }

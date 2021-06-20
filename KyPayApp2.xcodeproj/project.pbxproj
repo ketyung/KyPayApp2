@@ -110,6 +110,7 @@
 		10B855DA267DC3F400AEF15F /* RapydSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 10B855D7267DC3EC00AEF15F /* RapydSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		10B855DD267DE95300AEF15F /* CurrencyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B855DC267DE95300AEF15F /* CurrencyManager.swift */; };
 		10B855DF267DEACB00AEF15F /* countryCurrency.json in Resources */ = {isa = PBXBuildFile; fileRef = 10B855DE267DEACB00AEF15F /* countryCurrency.json */; };
+		10B855E1267EC76300AEF15F /* UserWalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B855E0267EC76300AEF15F /* UserWalletViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -251,6 +252,7 @@
 		10B855D7267DC3EC00AEF15F /* RapydSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RapydSDK.framework; sourceTree = "<group>"; };
 		10B855DC267DE95300AEF15F /* CurrencyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyManager.swift; sourceTree = "<group>"; };
 		10B855DE267DEACB00AEF15F /* countryCurrency.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countryCurrency.json; sourceTree = "<group>"; };
+		10B855E0267EC76300AEF15F /* UserWalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserWalletViewModel.swift; sourceTree = "<group>"; };
 		1B47377B496C6F0F1022FFD4 /* Pods-KyPayApp2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.debug.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.debug.xcconfig"; sourceTree = "<group>"; };
 		6F523BC3D4353462922B31B9 /* Pods-KyPayApp2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.release.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -537,6 +539,7 @@
 				1033C0912678292900D999CE /* OtpTextViewModel.swift */,
 				1033C0972678477600D999CE /* UserViewModel.swift */,
 				1033C0D0267D769400D999CE /* TxInputDataViewModel.swift */,
+				10B855E0267EC76300AEF15F /* UserWalletViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -908,6 +911,7 @@
 				1033C0D1267D769400D999CE /* TxInputDataViewModel.swift in Sources */,
 				1033C0B7267AC63100D999CE /* NeumorphismModifier.swift in Sources */,
 				1033C096267846E500D999CE /* FirstSignInView.swift in Sources */,
+				10B855E1267EC76300AEF15F /* UserWalletViewModel.swift in Sources */,
 				1033B2992674A82F00D999CE /* UserPaymentTx.swift in Sources */,
 				1033C0C9267B3C6C00D999CE /* KyPayUserSyncer.swift in Sources */,
 				1033B2932674A82F00D999CE /* Tester.swift in Sources */,

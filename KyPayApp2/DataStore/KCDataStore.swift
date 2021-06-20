@@ -67,6 +67,39 @@ extension KCDataStore {
     
 }
 
+
+extension KCDataStore {
+    
+    private static let walleyKeyPrefix = "Wallet_K7773bAV3fAVBAtye_"
+    
+    func saveWallet ( _ wallet : UserWallet ){
+        
+        let key = "\(KDS.walleyKeyPrefix)\(wallet.type ?? .personal)\(wallet.currency ?? "MYR")"
+        
+        save(wallet, key: key)
+        
+    }
+    
+    
+    func getWallet( type : UserWallet.WalletType, currency : String ) -> UserWallet?{
+        
+        let key = "\(KDS.walleyKeyPrefix)\(type)\(currency)"
+        
+        return load(key, type: UserWallet.self)
+    }
+    
+    
+    func removeWallet( type : UserWallet.WalletType, currency : String )
+    {
+        
+        let key = "\(KDS.walleyKeyPrefix)\(type)\(currency)"
+        remove(key)
+    }
+    
+    
+}
+
+
 extension KCDataStore {
     
     private static let fbVerificationIDKey = "FbVerID_8736363bVZAv3t36VAV39NBgad_09OP"
