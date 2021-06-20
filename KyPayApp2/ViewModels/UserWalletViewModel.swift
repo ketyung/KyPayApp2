@@ -91,13 +91,11 @@ extension UserWalletViewModel {
                     case .failure(let err) :
                         
                         
-                        if var err = err as? ApiError, err.statusCode == 404 {
+                        if let err = err as? ApiError, err.statusCode == 404 {
                             
                             // to create wallet if not exists
-                            err.errorText = "Wallet Not Found!"
-        
-                            completion?(err)
-                        
+                            self.createWalletIfNotPresent(user: user, walletType: walletType, currency: currency,
+                                                          completion: completion)
                         }
                         else {
                         
@@ -110,6 +108,8 @@ extension UserWalletViewModel {
                         KDS.shared.saveWallet(rs)
                         
                         print("wallet.saved::\(rs.id ?? ""):\(rs.refId ?? ""):\(rs.balance ?? 0)")
+                        
+                        completion?(nil)
                 }
                 
                 DispatchQueue.main.async {
@@ -123,5 +123,55 @@ extension UserWalletViewModel {
             
             return
         }
+    }
+}
+
+
+extension UserWalletViewModel {
+    
+    
+    func createWalletIfNotPresent(user : User,
+                                  walletType : UserWallet.WalletType,
+                                  currency : String,
+                                  completion :((Error?) -> Void)? = nil){
+        
+        let wallet = UserWallet(id: user.id ?? "", balance : 0, currency: currency, type: walletType)
+        ARH.shared.addUserWallet(wallet, returnType: UserWallet.self, completion: {
+            
+            res in
+        
+            
+            switch(res) {
+            
+                case .failure(let err) :
+                    
+                    completion?(err)
+                    
+        
+                case .success(let rs) :
+                    
+                    if let createdWallet = rs.returnedObject {
+                   
+                        KDS.shared.saveWallet(createdWallet)
+                 
+                        print("wallet.created::\(createdWallet.id ?? ""):\(createdWallet.refId ?? ""):\(createdWallet.balance ?? 0)")
+          
+                        completion?(nil)
+                    }
+                    else {
+                        
+                        completion?(ApiError(errorText: "Returned Wallet Object is nil!".localized, statusCode: -1))
+                    }
+                    
+                 
+            }
+            
+            DispatchQueue.main.async {
+           
+                self.showingProgressIndicator = false
+               
+            }
+            
+        })
     }
 }
