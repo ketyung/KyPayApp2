@@ -101,8 +101,12 @@ extension PaymentMethodTypesView {
     }
     
     private func placeHolderView() -> some View {
-        
-        ActivityIndicator().frame(width:30, height: 30)
+        ZStack {
+   
+            Circle().fill(Color(UIColor(hex:"#ffaa22ff")!)).frame(width: 32, height: 32)
+            
+            ActivityIndicator().frame(width:24, height: 24).tintColor(.white)
+        }
     }
     
     private func topUpPaymentLink() -> some View {
