@@ -13,5 +13,8 @@ struct TopUpPayment {
     
     var errorMessage : String?
     
+    var currency : String?
+    
     var paymentMethod : PaymentMethod?
+
 }

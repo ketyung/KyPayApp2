@@ -15,6 +15,8 @@ typealias MaritalStatus = RapydSDK.RPDMaritalStatusType
 
 class WalletHandler : NSObject {
     
+    private let genericMetaData =  ["game": "uncharted"]
+    
 
     func createWallet(for user : User, wallet : UserWallet,
         address : UserAddress? = nil ,
@@ -51,7 +53,7 @@ class WalletHandler : NSObject {
         usersManager.createUser(phoneNumber: user.phoneNumber ?? "",
             eWalletType: self.toRWalletType(wallet),
             firstName: user.firstName ?? "", lastName: user.lastName ?? "", email: user.email ?? "",
-            eWalletReferenceID: wallet.refId ?? "", contact: contact, metadata: ["game": "uncharted"], completionBlock:{
+            eWalletReferenceID: wallet.refId ?? "", contact: contact, metadata: genericMetaData, completionBlock:{
             
             _, error in
             
@@ -95,7 +97,7 @@ extension WalletHandler {
         RPDUser.detachUser()
     }
     
-    func attachWallet(user : User, wallet : UserWallet, completion : ((Error?)->Void)? = nil ){
+    func attachWallet(user : User, wallet : UserWallet, completion : ((String?, Error?)->Void)? = nil ){
         
         Config.setup()
        
@@ -103,7 +105,7 @@ extension WalletHandler {
         ruser.phoneNumber = user.phoneNumber ?? ""
         ruser.email = user.email ?? ""
         ruser.eWalletReferenceID = wallet.refId ?? ""
-        
+    
                     
         let userManager:RPDUsersManager = RPDUsersManager()
         userManager.attachUser(ruser, completionBlock: { _, error in
@@ -114,25 +116,82 @@ extension WalletHandler {
                 return
             }
             
-            completion?(err)
+            completion?(nil, err)
             
         })
     }
     
-    func currentWallet(attachIfNotPresent user : User, wallet : UserWallet, completion : ((Error?)->Void)? = nil, toPrint : Bool = false ){
+    func currentWallet(attachIfNotPresent user : User, wallet : UserWallet, completion : ((String?, Error?)->Void)? = nil,
+    toPrint : Bool = false ){
         
         Config.setup()
        
         if let ruser = RPDUser.currentUser() {
   
             if toPrint {
-           
-                print("RPD.user::\(ruser.firstName ?? "") \(ruser.lastName ?? "") : wallet.id::\(ruser.eWalletReferenceID ?? "xxx")")
+                
+                print("RPD.user::.id::\(ruser.id ?? "")::\(ruser.firstName ?? "") \(ruser.lastName ?? "") : wallet.refId::\(ruser.eWalletReferenceID ?? "xxx") ::balance::")
             }
+            
+            completion?(ruser.eWalletReferenceID, nil)
+            
         }
         else {
             
             self.attachWallet(user: user, wallet: wallet, completion: completion)
         }
+    }
+}
+
+extension WalletHandler {
+    
+    
+    func add(amount : Double, currency : String, paymentMethod : PaymentMethod,
+               completion : ((PaymentSuccess?, Error?)->Void)? = nil ){
+        
+        Config.setup()
+        
+        let pm = paymentMethod.rpdPaymentMethod
+        
+        //print("using.paymentMethod.type::\(pm.type ?? "xxxx")")
+        
+        RPDPaymentMethodManager().fetchPaymentMethodRequiredFields(type: pm.type ?? "") { fields, error in
+            
+            if let err = error {
+                
+                print("fetchPaymentMethodRequiredFields.err::\(err)")
+                return
+            }
+            
+            let ewallet1 = RPDEWallet(ID: RPDUser.currentUser()?.id ?? "xxx",
+            paymentValue: Decimal(amount), paymentType: RPDEWallet.EWalletPaymentType.amount)
+            
+            
+            let pmMgr = RPDPaymentManager()
+            pmMgr.createPayment(amount: Decimal(amount), currency:RPDCurrency.currency(with: currency),
+            paymentMethodRequiredFields: fields, paymentMethodID: pm.type, eWallets: [ewallet1], completionBlock: {
+                
+                payment, err in
+                
+                guard let err = err else {
+                    
+                   var pms = PaymentSuccess()
+                   pms.amount = Double(truncating: (payment?.amount ?? 0) as NSNumber)
+                   pms.curreny = payment?.currency?.code ?? ""
+                   pms.dateCreated = payment?.createdAt
+                   
+                   completion?(pms, nil)
+                   return
+                }
+                
+                completion?(nil, err)
+               
+                print("error.making.payment::\(err)")
+                
+                
+            })
+          
+        }
+       
     }
 }

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import RapydSDK
 
 struct PaymentMethod {
     
@@ -23,4 +23,15 @@ struct PaymentMethod {
     var paymentFlowType : String?
     
     var currencies : [String]?
+}
+
+extension PaymentMethod {
+    
+    var rpdPaymentMethod : RPDPaymentMethod {
+        
+        let rpdpm = RPDPaymentMethod()
+        rpdpm.type = self.type
+        return rpdpm
+        
+    }
 }

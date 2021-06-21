@@ -40,11 +40,3 @@ class PaymentHandler : NSObject {
     }
 }
 
-extension PaymentHandler {
-    
-    
-    func topUpCurrentWallet(amount : Double, currency : String, paymentMethod : PaymentMethod){
-        
-      
-    }
-}

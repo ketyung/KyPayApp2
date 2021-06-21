@@ -12,6 +12,9 @@ class TopUpPaymentViewModel : ObservableObject {
     
     @Published private var topUpPayment = TopUpPayment()
     
+    @Published private var showingProgressIndicator : Bool = false
+    
+    
     var errorMessage : String? {
         
         get {
@@ -30,6 +33,19 @@ class TopUpPaymentViewModel : ObservableObject {
         set(newVal){
             
             topUpPayment.paymentMethod = newVal
+        }
+    }
+    
+    var currency : String {
+        
+        get {
+            
+            topUpPayment.currency ?? "MYR"
+        }
+        
+        set(newVal){
+            
+            topUpPayment.currency = newVal
         }
     }
     
@@ -66,5 +82,54 @@ class TopUpPaymentViewModel : ObservableObject {
             topUpPayment.amount = amt
         
         }
+    }
+    
+    var progressIndicatorPresented : Bool {
+        
+        get {
+            
+            showingProgressIndicator
+        }
+        
+        set(newVal){
+            
+            showingProgressIndicator = newVal
+        }
+    }
+}
+
+
+
+extension TopUpPaymentViewModel {
+    
+    func add() {
+        
+        
+        if let amount = topUpPayment.amount , let currency = topUpPayment.currency, let paymentMethod = topUpPayment.paymentMethod {
+      
+            self.showingProgressIndicator = true
+          
+            
+            WalletHandler().add(amount: Double(amount), currency: currency, paymentMethod: paymentMethod, completion: {
+            
+                [weak self] payment, error in
+                
+                guard let self = self else { return }
+                
+                guard let err = error else {
+                    
+                    self.showingProgressIndicator = false
+                    
+                    return
+                }
+                
+                self.topUpPayment.errorMessage = err.localizedDescription
+                self.showingProgressIndicator = false
+                
+            })
+        }
+        
+       
+        
     }
 }

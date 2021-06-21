@@ -28,8 +28,18 @@ struct TopUpPaymentView : View {
         .backButton()
         //.navigationTitle("Enter Amount".localized)
         .navigationBar(title : Text("Enter Amount".localized), displayMode: .inline)
-        .bottomFloatingButton( isPresented: topUpViewModel.errorMessage == nil, action: {})
-        
+        .bottomFloatingButton( isPresented: topUpViewModel.errorMessage == nil, action: {
+            
+            self.topUpNow()
+        })
+        .progressView(isShowing: $topUpViewModel.progressIndicatorPresented, text: "")
+    }
+    
+    
+    private func topUpNow(){
+        topUpViewModel.currency = userViewModel.allowedCurrency
+        topUpViewModel.add()
+ 
     }
     
 }
@@ -102,4 +112,7 @@ extension TopUpPaymentView {
             
         }.padding()
     }
+    
 }
+
+

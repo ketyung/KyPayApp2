@@ -88,7 +88,7 @@ extension UserWalletViewModel {
             return
         }
         
-        WalletHandler().currentWallet(attachIfNotPresent: user, wallet: wallet, completion: { err in
+        WalletHandler().currentWallet(attachIfNotPresent: user, wallet: wallet, completion: { refId, err in
 
             completion?(err)
             //print("curr.wallet.attaching.err::\(err?.localizedDescription ?? "xxx.err")")
@@ -213,7 +213,7 @@ extension UserWalletViewModel {
     
         walletHandler.attachWallet(user: user, wallet: wallet, completion: {
             
-            err in
+            refId, err in
             
             guard let _ = err else {
                 
@@ -233,3 +233,4 @@ extension UserWalletViewModel {
        
     }
 }
+
