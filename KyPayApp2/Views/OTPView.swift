@@ -5,7 +5,7 @@
 //  Created by Chee Ket Yung on 14/06/2021.
 //
 
-import SwiftUI
+import SwiftUIX
 
 struct OTPView : View {
   
@@ -31,18 +31,17 @@ struct OTPView : View {
         NavigationView {
            // let _ = print("otp.presented!")
             otpScreenView()
-            .frame(width: UIScreen.main.bounds.width - 20, height: 450)
+            .frame(width: UIScreen.main.bounds.width - 20, height: 400)
             .cornerRadius(10)
-            .padding(.top, 30).padding(.bottom, 20).padding(.leading, 20).padding(.trailing, 20)
-            
-            
+            .padding(.top, 10).padding(.bottom, 30).padding(.leading, 20).padding(.trailing, 20)
+    
         }
         .alert(isPresented: $invalidOtpAlertPresented){
             Alert(title: Text("Oppps!"),message:Text(invalidOtpMessage))
         }
         .progressView(isShowing: $activityIndicatorPresented, text : "Signing in ...")
         .navigationBarBackButtonHidden(true)
-    
+        .navigationBarHidden(true)
     }
 }
 
@@ -52,19 +51,15 @@ extension OTPView {
     private func otpScreenView() -> some View {
         
         VStack(spacing:20){
-            
-            
+                    
             Spacer()
-            .frame(height:100)
+            .frame(height:30)
 
-           
             Text("Please enter the 6-digit\nverification code below:".localized)
             .fixedSize(horizontal: false, vertical: true)
             .lineLimit(2)
             .font(.custom(Theme.fontName, size: 20))
             .frame(width: 300)
-           
-            //otpTextFields()
             
             otpTextField()
             
@@ -72,11 +67,9 @@ extension OTPView {
             
             resendText()
             
-           
             Spacer()
-            .frame(height:100)
+            .frame(height:30)
             
-           
             closeButton()
           
             firstScreenNavLink()
@@ -84,10 +77,8 @@ extension OTPView {
             
             Spacer()
         }
-        .background(Color(UIColor(hex:"#DDDDDDff")!))
-        .frame(width: UIScreen.main.bounds.width)
-        .edgesIgnoringSafeArea(.all)
-       
+        .padding()
+        .background(Color(UIColor(hex:"#ccddddff")!))
      
     }
 }
@@ -98,16 +89,15 @@ extension OTPView {
     
     private func otpTextField() -> some View {
         
-        TextField("", text: $viewModel.text)
+        CocoaTextField("", text: $viewModel.text)
+        .font(UIFont.boldSystemFont(ofSize: 30))
+        .isFirstResponder(true)
         .keyboardType(.numberPad)
         .textContentType(.oneTimeCode)
-        .font(.custom(Theme.fontName, size: 30), weight: .bold)
         .frame(width: 200, height: 40)
         .multilineTextAlignment(.center)
         .foregroundColor(.black)
         .background(Color.white)
-        
-       
     }
     
 }

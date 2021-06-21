@@ -55,20 +55,7 @@ extension TopUpView {
             
             ScrollView(/*@START_MENU_TOKEN@*/.vertical/*@END_MENU_TOKEN@*/, showsIndicators: false){
                 
-                
-                HStack(spacing:20) {
-                    
-                    Image(systemName: "creditcard.circle")
-                    .resizable()
-                    .frame(width:30, height: 30)
-                    .foregroundColor(.green)
-                
-                    Text("Cards".localized)
-                    .font(.custom(Theme.fontName, size: 16))
-                    
-                    Spacer()
-                }.padding()
-                
+             
                 
                 NavigationLink (destination: PaymentMethodTypesView()){
                 
@@ -87,6 +74,22 @@ extension TopUpView {
                     }.padding()
                   
                 }
+                
+                
+                
+                HStack(spacing:20) {
+                    
+                    Image(systemName: "creditcard.circle")
+                    .resizable()
+                    .frame(width:30, height: 30)
+                    .foregroundColor(.green)
+                
+                    Text("Cards".localized)
+                    .font(.custom(Theme.fontName, size: 16))
+                    
+                    Spacer()
+                }.padding()
+                
                 
             }
             

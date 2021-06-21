@@ -24,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         //Tester.testAddPayment()
          
-         Tester.testAddUser()
+         //Tester.testAddUser()
          
          
          //Tester.testSignOut()

@@ -70,7 +70,7 @@ extension TopUpPaymentView  {
     
     private func placeHolderView() -> some View {
         
-        Image("wallet").resizable().frame(width:26).aspectRatio(contentMode: .fit)
+        Image("wallet").resizable().frame(width:26, height: 20).aspectRatio(contentMode: .fit)
     }
 }
 
