@@ -1,9 +1,9 @@
-create database kypay_db;
+create database if not exists kypay_db;
 use kypay_db;
 
 grant all on kypay_db.* to 'kypay_dbusr'@'localhost' identified by 'bH562fRWeRtyA#n673';
 
-drop table kypay_user;
+drop table if exists kypay_user;
 create table if not exists kypay_user (
 
 	id varchar(32) default 'x' NOT null,
@@ -27,7 +27,7 @@ create index email_idx on kypay_user (email);
 
 alter table kypay_user add last_updated datetime;
 
-drop table kypay_user_address;
+drop table if exists kypay_user_address;
 create table if not exists kypay_user_address (
     
     id varchar(32) default 'x' NOT null,
@@ -45,7 +45,7 @@ create table if not exists kypay_user_address (
 
 alter table kypay_user_address add last_updated datetime;
 
-drop table kypay_user_img;
+drop table if exists kypay_user_img;
 create table if not exists kypay_user_img (
 
     id varchar(32) default 'x' NOT null,
@@ -58,7 +58,7 @@ create table if not exists kypay_user_img (
 
 )ENGINE=INNODB;
 
-drop table kypay_user_wallet;
+drop table if exists kypay_user_wallet;
 create table if not exists kypay_user_wallet (
     
     id varchar(32) default 'x' NOT null,
@@ -74,7 +74,7 @@ create table if not exists kypay_user_wallet (
 
 create unique index wallet_uidx on kypay_user_wallet(id,type,currency);
 
-drop table kypay_user_payment_tx;
+drop table if exists kypay_user_payment_tx;
 create table if not exists kypay_user_payment_tx (
     
     id varchar(32) default 'x' NOT null,

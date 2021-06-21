@@ -10,11 +10,9 @@ import Kingfisher
 
 struct TopUpPaymentView : View {
 
-    let paymentMethod : PaymentMethod
-    
     @EnvironmentObject private var userViewModel : UserViewModel
 
-    @ObservedObject private var topUpViewModel = TopUpPaymentViewModel()
+    @EnvironmentObject private var topUpViewModel : TopUpPaymentViewModel
     
     var body : some View {
         
@@ -40,20 +38,20 @@ extension TopUpPaymentView  {
     
     private func paymentMethodView() -> some View {
         
-        NavigationLink(destination: PaymentMethodTypesView()){
+        NavigationLink(destination: PaymentMethodTypesView(isPopBack: true)){
         
             HStack(spacing:20) {
                 
                 Spacer().frame(width:10)
                 
-                KFImage(paymentMethod.imageURL)
+                KFImage(topUpViewModel.paymentMethod?.imageURL)
                 .resizable()
                 .cacheMemoryOnly()
                 .fade(duration: 0.25)
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 34)
                 
-                Text(paymentMethod.name ?? "")
+                Text(topUpViewModel.paymentMethod?.name ?? "")
                 .font(.custom(Theme.fontName, size: 16))
                 
                 Spacer()
@@ -74,7 +72,7 @@ extension TopUpPaymentView {
                 Text(userViewModel.allowedCurrency)
                 .font(.custom(Theme.fontNameBold, size: 24))
                
-                TextField("0", text: $topUpViewModel.topUpAmount)
+                TextField("0", text: $topUpViewModel.amount)
                 .keyboardType(.numberPad)
                 .font(.custom(Theme.fontName, size: 50))
                 .foregroundColor(.gray)

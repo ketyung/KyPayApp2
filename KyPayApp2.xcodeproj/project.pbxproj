@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		10154F3A268033B600DB78C4 /* TopUpPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10154F39268033B600DB78C4 /* TopUpPayment.swift */; };
 		1033B2552674A7F200D999CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033B2542674A7F200D999CE /* AppDelegate.swift */; };
 		1033B2572674A7F200D999CE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033B2562674A7F200D999CE /* SceneDelegate.swift */; };
 		1033B2592674A7F200D999CE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033B2582674A7F200D999CE /* ContentView.swift */; };
@@ -153,6 +154,7 @@
 
 /* Begin PBXFileReference section */
 		0AD2A35EA43E8F034705E971 /* Pods_KyPayApp2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KyPayApp2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		10154F39268033B600DB78C4 /* TopUpPayment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopUpPayment.swift; sourceTree = "<group>"; };
 		1033B2512674A7F200D999CE /* KyPayApp2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KyPayApp2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1033B2542674A7F200D999CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1033B2562674A7F200D999CE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -568,6 +570,7 @@
 				1033C09326782B5700D999CE /* OtpText.swift */,
 				1033C0CE267D767000D999CE /* TxInputData.swift */,
 				10B855E4267EF10600AEF15F /* PaymentMethod.swift */,
+				10154F39268033B600DB78C4 /* TopUpPayment.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -931,6 +934,7 @@
 				1033C0CF267D767000D999CE /* TxInputData.swift in Sources */,
 				1033C0982678477600D999CE /* UserViewModel.swift in Sources */,
 				1033B2572674A7F200D999CE /* SceneDelegate.swift in Sources */,
+				10154F3A268033B600DB78C4 /* TopUpPayment.swift in Sources */,
 				1033C06C2676E3FA00D999CE /* PhoneInputViewModel.swift in Sources */,
 				1033C09A26784FC300D999CE /* HomeView.swift in Sources */,
 				1033C0A02678510100D999CE /* RequestView.swift in Sources */,

@@ -10,14 +10,34 @@ import SwiftUI
 
 class TopUpPaymentViewModel : ObservableObject {
     
-    @Published private var amount : Int?
+    @Published private var topUpPayment = TopUpPayment()
     
-    @Published var errorMessage : String?
-    
-    var topUpAmount : String {
+    var errorMessage : String? {
         
         get {
-            "\(amount ?? 0)"
+            
+            topUpPayment.errorMessage 
+        }
+    }
+    
+    var paymentMethod : PaymentMethod? {
+        
+        get {
+            
+            topUpPayment.paymentMethod
+        }
+        
+        set(newVal){
+            
+            topUpPayment.paymentMethod = newVal
+        }
+    }
+    
+    
+    var amount : String {
+        
+        get {
+            "\(topUpPayment.amount ?? 0)"
         }
         
         set(newVal){
@@ -35,15 +55,15 @@ class TopUpPaymentViewModel : ObservableObject {
             
                 if (amt ?? 0)  > 2000 {
                     
-                    errorMessage = "Maximum amount : <curr> 2000"
+                    topUpPayment.errorMessage = "Maximum amount : <curr> 2000"
                 }
                 else {
                     
-                    errorMessage = nil
+                    topUpPayment.errorMessage = nil
                 }
             }
             
-            amount = amt
+            topUpPayment.amount = amt
         
         }
     }

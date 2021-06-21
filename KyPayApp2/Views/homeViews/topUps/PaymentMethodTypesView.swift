@@ -12,7 +12,17 @@ struct PaymentMethodTypesView : View {
     
     @EnvironmentObject private var userViewModel : UserViewModel
    
+    @EnvironmentObject private var topUpViewModel : TopUpPaymentViewModel
+    
     @ObservedObject private var pmViewModel = PaymentMethodsViewModel()
+    
+    var isPopBack : Bool = false
+    
+    @State private var pushToPayment : Bool = false
+    
+    
+    @Environment(\.presentationMode) private var presentation
+    
     
     var body: some View {
         
@@ -30,6 +40,7 @@ struct PaymentMethodTypesView : View {
             .frame(height:500)
             Spacer()
             
+            topUpPaymentLink()
         }
         .backButton()
         .onAppear{
@@ -46,31 +57,53 @@ struct PaymentMethodTypesView : View {
 extension PaymentMethodTypesView {
     
     
+    @ViewBuilder
     private func paymentMethodRow (_ paymentMethod : PaymentMethod) -> some View {
         
-      
-        NavigationLink(
-            destination: TopUpPaymentView(paymentMethod: paymentMethod))
-        {
-       
-            HStack {
-           
-                KFImage(paymentMethod.imageURL)
-                .resizable()
-                .cacheMemoryOnly()
-                .fade(duration: 0.25)
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 40)
-                   
-               
-                
-                Text(paymentMethod.name ?? "")
-                .font(.custom(Theme.fontName, size: 16))
-                .padding()
-               
+    
+        Button(action :{
+   
+            topUpViewModel.paymentMethod = paymentMethod
+            
+            if isPopBack {
+                self.presentation.dismiss()
             }
+            else {
+                
+                self.pushToPayment = true
+            }
+            
+        }){
+            
+            toPaymentMethodView(paymentMethod)
         }
-       
+            
+    }
+    
+    
+    private func toPaymentMethodView(_ paymentMethod : PaymentMethod) -> some View {
         
+        HStack {
+       
+            KFImage(paymentMethod.imageURL)
+            .resizable()
+            .cacheMemoryOnly()
+            .fade(duration: 0.25)
+            .aspectRatio(contentMode: .fit)
+            .frame(width: 40)
+               
+           
+            
+            Text(paymentMethod.name ?? "")
+            .font(.custom(Theme.fontName, size: 16))
+            .padding()
+           
+        }
+    }
+    
+    
+    private func topUpPaymentLink() -> some View {
+        
+        NavigationLink(destination: TopUpPaymentView(), isActive : $pushToPayment){}.hidden(true)
     }
 }
