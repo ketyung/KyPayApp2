@@ -5,7 +5,7 @@
 //  Created by Chee Ket Yung on 20/06/2021.
 //
 
-import SwiftUI
+import SwiftUIX
 import Kingfisher
 
 struct PaymentMethodTypesView : View {
@@ -14,15 +14,13 @@ struct PaymentMethodTypesView : View {
    
     @EnvironmentObject private var topUpViewModel : TopUpPaymentViewModel
     
-    @ObservedObject private var pmViewModel = PaymentMethodsViewModel()
+    @EnvironmentObject private var pmViewModel : PaymentMethodsViewModel
     
     var isPopBack : Bool = false
     
     @State private var pushToPayment : Bool = false
     
-    
     @Environment(\.presentationMode) private var presentation
-    
     
     var body: some View {
         
@@ -87,6 +85,7 @@ extension PaymentMethodTypesView {
        
             KFImage(paymentMethod.imageURL)
             .resizable()
+            .placeholder(placeHolderView)
             .cacheMemoryOnly()
             .fade(duration: 0.25)
             .aspectRatio(contentMode: .fit)
@@ -101,6 +100,10 @@ extension PaymentMethodTypesView {
         }
     }
     
+    private func placeHolderView() -> some View {
+        
+        ActivityIndicator().frame(width:30, height: 30)
+    }
     
     private func topUpPaymentLink() -> some View {
         

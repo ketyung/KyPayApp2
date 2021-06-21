@@ -46,6 +46,7 @@ extension TopUpPaymentView  {
                 
                 KFImage(topUpViewModel.paymentMethod?.imageURL)
                 .resizable()
+                .placeholder(placeHolderView)
                 .cacheMemoryOnly()
                 .fade(duration: 0.25)
                 .aspectRatio(contentMode: .fit)
@@ -55,9 +56,21 @@ extension TopUpPaymentView  {
                 .font(.custom(Theme.fontName, size: 16))
                 
                 Spacer()
+                
+                Image(systemName: "arrowtriangle.forward.fill")
+                .resizable()
+                .frame(width: 20, height:20)
+                .foregroundColor(.gray)
+                
             }.padding().foregroundColor(.black).background(Color(UIColor(hex:"#ddeeffff")!))
         }
         
+    }
+    
+    
+    private func placeHolderView() -> some View {
+        
+        Image("wallet").resizable().frame(width:26).aspectRatio(contentMode: .fit)
     }
 }
 
