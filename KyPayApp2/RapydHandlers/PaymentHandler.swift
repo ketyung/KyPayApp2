@@ -11,6 +11,8 @@ import RapydSDK
 
 class PaymentHandler : NSObject {
     
+    
+    
     func pay(to walletID : String, amount : Decimal){
         
         let currency = RPDCurrency()
@@ -35,5 +37,14 @@ class PaymentHandler : NSObject {
             
            }
        }
+    }
+}
+
+extension PaymentHandler {
+    
+    
+    func topUpCurrentWallet(amount : Double, currency : String, paymentMethod : PaymentMethod){
+        
+      
     }
 }
