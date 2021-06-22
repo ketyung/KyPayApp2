@@ -88,10 +88,14 @@ extension UserWalletViewModel {
             return
         }
         
-        WalletHandler().currentWallet(attachIfNotPresent: user, wallet: wallet, completion: { refId, err in
+        WalletHandler().currentWallet(attachIfNotPresent: user, wallet: wallet, completion: { [weak self] ids, err in
 
-            completion?(err)
-            //print("curr.wallet.attaching.err::\(err?.localizedDescription ?? "xxx.err")")
+            guard let self = self else { return }
+            
+            // update to remote wallet
+            self.updateWalletRemotely(wallet, ids: ids, completion: completion)
+            //completion?(err)
+            
             
         })
         
@@ -150,6 +154,34 @@ extension UserWalletViewModel {
         })
     }
     
+    
+    private func updateWalletRemotely(_ wallet : UserWallet, ids : WalletIDs? ,  completion :((Error?) -> Void)? = nil){
+        
+        
+        var updatedWallet = wallet
+        updatedWallet.serviceContactId = ids?.contactId
+        updatedWallet.serviceAddrId = ids?.addrId
+        updatedWallet.serviceWalletId = ids?.walletId
+        
+        ARH.shared.updateUserWallet(updatedWallet, returnType: UserWallet.self,  completion: {
+            
+            res in
+            
+            switch(res) {
+            
+                case .failure(let err) :
+                    completion?(err)
+                    
+                case .success(_) :
+                    completion?(nil)
+                    
+            }
+        })
+    }
+    
+}
+
+extension UserWalletViewModel {
     
     func createWalletIfNotPresent(user : User,
                                   walletType : UserWallet.WalletType,
@@ -212,19 +244,24 @@ extension UserWalletViewModel {
         
         let walletHandler = WalletHandler()
     
-        walletHandler.attachWallet(user: user, wallet: wallet, completion: {
-            
-            ids, err in
+        walletHandler.attachWallet(user: user, wallet: wallet, completion: { [weak self ] ids, err in
+            guard let self = self else { return }
             
             guard let _ = err else {
                 
+                self.updateWalletRemotely(wallet, ids: ids)
                 return
             }
        
             //  create the wallet if cannot attach
-            walletHandler.createWallet(for: user, wallet: wallet, completion: {ids, err in
-                
-                guard let err = err else { return }
+            walletHandler.createWallet(for: user, wallet: wallet, completion: {[weak self] ids, err in
+                guard let self = self else { return }
+               
+                guard let err = err else {
+                    
+                    self.updateWalletRemotely(wallet, ids: ids)
+                    return
+                }
                 
                 print("Create.wallet.from.Rapyd.err:\(err)")
                 
