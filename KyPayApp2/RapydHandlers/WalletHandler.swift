@@ -13,13 +13,34 @@ typealias Gender = RapydSDK.RPDGenderType
 typealias ResidenceType = RapydSDK.RPDResidenceType
 typealias MaritalStatus = RapydSDK.RPDMaritalStatusType
 
+
+struct WalletIDs {
+    
+    var walletId : String?
+    
+    var addrId : String?
+    
+    var contactId : String?
+    
+    var refId : String?
+    
+    
+    fileprivate init(from rpdUser : RPDUser){
+        
+        self.walletId = rpdUser.id
+        self.addrId = rpdUser.contacts?.dataList?.first?.address?.ID
+        self.contactId = rpdUser.contacts?.dataList?.first?.ID
+        self.refId = rpdUser.eWalletReferenceID
+    }
+}
+
 class WalletHandler : NSObject {
     
     private let genericMetaData =  ["game": "uncharted"]
     
 
     func createWallet(for user : User, wallet : UserWallet,
-        address : UserAddress? = nil ,completion : ((Error?)->Void)? = nil ) {
+        address : UserAddress? = nil ,completion : ((WalletIDs?, Error?)->Void)? = nil ) {
         
         Config.setup()
         
@@ -29,10 +50,10 @@ class WalletHandler : NSObject {
         let walletRefId = wallet.refIdForService ?? ""
         
         let addr = RPDAddress()
-        addr.name = address?.id ?? ""
-        addr.line1 = address?.line1 ?? ""
+        addr.name = address?.id ?? "xxx"
+        addr.line1 = address?.line1 ?? "line 1"
         addr.country = RPDCountry.country(isoAlpha2: countryCode)
-        addr.city = address?.city ?? ""
+        addr.city = address?.city ?? "City"
         
         
         let contact = RPDEWalletContactRequestBuilder(contactType: .personal,
@@ -58,15 +79,25 @@ class WalletHandler : NSObject {
             eWalletReferenceID: walletRefId ,
             contact: contact, metadata: genericMetaData, completionBlock:{
             
-            _, error in
+            usr, error in
             
             if let error = error {
         
-                completion?(error )
+                completion?(nil,  error )
                 return
             }
-        
-            completion?(nil)
+                
+            if let usr = usr {
+            
+                let wids = WalletIDs(from: usr)
+            
+                completion?(wids, nil)
+                
+            }
+            else {
+                
+                completion?(nil,nil)
+            }
             
         })
         
@@ -137,7 +168,7 @@ extension WalletHandler {
         RPDUser.detachUser()
     }
     
-    func attachWallet(user : User, wallet : UserWallet, completion : ((String?, Error?)->Void)? = nil ){
+    func attachWallet(user : User, wallet : UserWallet, completion : ((WalletIDs?, Error?)->Void)? = nil ){
         
         Config.setup()
        
@@ -148,21 +179,34 @@ extension WalletHandler {
     
                     
         let userManager:RPDUsersManager = RPDUsersManager()
-        userManager.attachUser(ruser, completionBlock: { _, error in
+        userManager.attachUser(ruser, completionBlock: { usr, error in
           // Enter your code here.
             
             guard let err = error else {
+            
+                if let usr = usr  {
+                
+                    let walletIDs = WalletIDs(from: usr) 
+                    completion?(walletIDs, nil)
+                    
+                }
+                else {
+                    
+                    completion?(nil, nil)
+                }
                 
                 return
             }
             
             
-            completion?(nil, err)
+            completion?(nil,err)
+        
+            
             
         })
     }
     
-    func currentWallet(attachIfNotPresent user : User, wallet : UserWallet, completion : ((String?, Error?)->Void)? = nil,
+    func currentWallet(attachIfNotPresent user : User, wallet : UserWallet, completion : ((WalletIDs?, Error?)->Void)? = nil,
     toPrint : Bool = false ){
         
         Config.setup()
@@ -174,7 +218,9 @@ extension WalletHandler {
                 print("RPD.user::.id::\(ruser.id ?? "")::\(ruser.firstName ?? "") \(ruser.lastName ?? "") : wallet.refId::\(ruser.eWalletReferenceID ?? "xxx") ::balance::")
             }
             
-            completion?(ruser.eWalletReferenceID, nil)
+            let walletIDs = WalletIDs(from: ruser)
+            
+            completion?(walletIDs, nil)
             
         }
         else {

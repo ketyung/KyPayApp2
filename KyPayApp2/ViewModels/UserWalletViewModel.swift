@@ -214,7 +214,7 @@ extension UserWalletViewModel {
     
         walletHandler.attachWallet(user: user, wallet: wallet, completion: {
             
-            refId, err in
+            ids, err in
             
             guard let _ = err else {
                 
@@ -222,7 +222,7 @@ extension UserWalletViewModel {
             }
        
             //  create the wallet if cannot attach
-            walletHandler.createWallet(for: user, wallet: wallet, completion: { err in
+            walletHandler.createWallet(for: user, wallet: wallet, completion: {ids, err in
                 
                 guard let err = err else { return }
                 

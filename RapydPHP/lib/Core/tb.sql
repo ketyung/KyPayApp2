@@ -72,6 +72,13 @@ create table if not exists kypay_user_wallet (
 
 )ENGINE=INNODB;
 
+
+alter table kypay_user_wallet add service_wallet_id varchar(255) after type;
+alter table kypay_user_wallet add service_contact_id varchar(255) after type;
+alter table kypay_user_wallet add service_addr_id varchar(255) after type;
+
+
+
 create unique index wallet_uidx on kypay_user_wallet(id,type,currency);
 
 drop table if exists kypay_user_payment_tx;

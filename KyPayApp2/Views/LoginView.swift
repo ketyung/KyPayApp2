@@ -51,7 +51,7 @@ extension LoginView {
             .frame(height:320)
             
             Text("Welcome")
-            .font(.system(.largeTitle, design: .rounded))
+            .font(.custom(Theme.fontNameBold, size:36))
             .foregroundColor(.systemYellow)
             
             signInPanel()
@@ -67,7 +67,7 @@ extension LoginView {
             Spacer()
         }
         .frame(width: UIScreen.main.bounds.width, height:UIScreen.main.bounds.height + 200)
-        .background(Color(UIColor(hex: "#223355ff")!))
+        .background(Color(UIColor(hex: "#8899aaff")!))
         .edgesIgnoringSafeArea(.all)
         .bottomSheet(isPresented: $viewModel.isCountryPickerPresented, height: UIScreen.main.bounds.height - 120, showGrayOverlay: true){
             
@@ -170,9 +170,8 @@ extension LoginView {
         }){
             
             Text("Continue".localized)
-            .foregroundColor(.offWhite)
-            .font(Font.system(size: 20, design: .rounded))
-              
+            .foregroundColor(Color(UIColor(hex:"#333333ff")!))
+            .font(.custom(Theme.fontName, size: 20))
         }
         
     }
@@ -260,14 +259,6 @@ extension LoginView {
         
         return UIImage(named: "CountryPickerView.bundle/Images/MY")
     }
-    
-    
-    private func limitPhoneNumber(_ upper: Int = 10 ) {
-        if viewModel.enteredPhoneNumber.count > upper {
-            viewModel.enteredPhoneNumber = String(viewModel.enteredPhoneNumber.prefix(upper))
-        }
-    }
-    
     
 }
 

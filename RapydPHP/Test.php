@@ -1,5 +1,5 @@
 <?php
-require_once "CollectRequest.php";
+require_once "lib/Rapyd/CollectRequest.php";
 
 $r = new CollectRequest();
 $data = $r->getSupportedCountries();

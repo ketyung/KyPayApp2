@@ -28,6 +28,9 @@ class UserViewModel : NSObject, ObservableObject {
     
     @Published private var userHolder = UserHolder()
     
+    @Published var firstSignIn : Bool = false
+    
+    
     var id : String {
         
         get {
@@ -160,7 +163,11 @@ class UserViewModel : NSObject, ObservableObject {
     
     var hasSignedIn : Bool {
         
-       
+        
+        if firstSignIn {
+            return firstSignIn
+        }
+        
         if let user = KDS.shared.getUser() , let auser = Auth.auth().currentUser {
             
             return auser.phoneNumber == user.phoneNumber

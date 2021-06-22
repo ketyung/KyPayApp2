@@ -26,6 +26,12 @@ struct UserWallet : Codable {
     
     var type : WalletType?
     
+    var serviceAddrId : String?
+    
+    var serviceContactId : String?
+   
+    var serviceWalletId : String?
+
     var lastUpdated : Date?
     
     var refIdForService : String? {

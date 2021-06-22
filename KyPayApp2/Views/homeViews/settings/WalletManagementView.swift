@@ -27,7 +27,7 @@ struct WalletManagementView : View {
               
                     //walletViewModel.createRapydWallet(user: userViewModel.user, wallet: createdWallet)
                   
-                    WalletHandler().createWallet(for: userViewModel.user, wallet: createdWallet, completion: { err in
+                    WalletHandler().createWallet(for: userViewModel.user, wallet: createdWallet, completion: { ids, err in
                         
                         guard let err = err else {
                             
@@ -74,11 +74,11 @@ struct WalletManagementView : View {
 
                     WalletHandler().attachWallet(user: userViewModel.user, wallet: createdWallet, completion: {
                         
-                        refId, err in
+                        ids, err in
                         
                         guard let err = err else {
                             
-                            print("attaching.wallet::\(refId ?? "")")
+                            print("attaching.wallet::id::\(ids?.walletId ?? "")::cid::\(ids?.contactId ?? "")")
                             return
                         }
                         

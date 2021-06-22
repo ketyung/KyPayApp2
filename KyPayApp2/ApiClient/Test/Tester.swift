@@ -208,7 +208,7 @@ class Tester {
     
     static func testAddUser(){
         
-        let u = User(id: "", firstName: "Jason", lastName: "Yong", dob: DateFormatter.date(from: "1975-10-20 00:00:00"), email: "xxman9090@gmail.com", phoneNumber: "+60128126882", stat: .signedOut )
+        let u = User(id: "", firstName: "Claire", lastName: "Chan", dob: DateFormatter.date(from: "1986-11-30 00:00:00"), email: "claire8686@gmail.com", phoneNumber: "+60138236868", stat: .signedOut )
         
         
         ARH.shared.addUser(u,

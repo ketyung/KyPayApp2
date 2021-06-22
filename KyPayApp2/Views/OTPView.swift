@@ -72,7 +72,6 @@ extension OTPView {
             
             closeButton()
           
-            firstScreenNavLink()
             homeScreenNavLink()
             
             Spacer()
@@ -164,19 +163,12 @@ extension OTPView {
     private func determineScreenToPush( _ firstSignIn : Bool ){
         
         withAnimation{
-  
-            if firstSignIn {
-                
-                self.pushToFirstSignIn = true
-                self.pushToHome = false
-                
-            }
-            else {
             
-                self.pushToFirstSignIn = false
-                self.pushToHome = true
-            }
+            self.userViewModel.firstSignIn = firstSignIn
             
+            
+            self.pushToHome = true
+
             self.activityIndicatorPresented = false
             phoneInputViewModel.removeAllUnneeded()
       
@@ -207,8 +199,6 @@ extension OTPView {
             Spacer()
         }
         .hidden(!viewModel.resendEnabled)
-        
-       
     }
     
     
@@ -239,12 +229,6 @@ extension OTPView {
 }
 
 extension OTPView {
-    
-    private func firstScreenNavLink() -> some View {
-        
-        NavigationLink(destination: FirstSignInView(), isActive : $pushToFirstSignIn){}.hidden(true)
-    }
-    
     
     private func homeScreenNavLink() -> some View {
         

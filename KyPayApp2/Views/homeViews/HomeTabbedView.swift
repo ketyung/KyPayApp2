@@ -12,11 +12,17 @@ struct HomeTabbedView : View {
     @State private var selectedTab : Int = 0
       
     @EnvironmentObject private var phoneInputViewModel : PhoneInputViewModel
+   
+    @EnvironmentObject private var userViewModel : UserViewModel
+    
     
     var body: some View {
     
         tabbedView()
+        .bottomSheet(isPresented: $userViewModel.firstSignIn, height: UIScreen.main.bounds.height + 80, showGrayOverlay: false){
         
+            FirstSignInView()
+        }
     }
 }
 

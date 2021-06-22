@@ -15,4 +15,5 @@ class CollectRequest extends RapydRequest{
 		return $object;
 	}
 }
+
 ?>
