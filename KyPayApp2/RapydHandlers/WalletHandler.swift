@@ -19,26 +19,28 @@ class WalletHandler : NSObject {
     
 
     func createWallet(for user : User, wallet : UserWallet,
-        address : UserAddress? = nil ,
-        completion : ((Error?)->Void)? = nil ) {
+        address : UserAddress? = nil ,completion : ((Error?)->Void)? = nil ) {
         
         Config.setup()
         
         let countryCode = user.countryCode ?? "MY"
+        let phoneNumber = user.phoneNumber ?? ""
+        let email = user.email ?? ""
+        let walletRefId = wallet.refIdForService ?? ""
         
         let addr = RPDAddress()
-        addr.name = address?.id ?? "a1"
-        addr.line1 = address?.line1 ?? "line 1"
+        addr.name = address?.id ?? ""
+        addr.line1 = address?.line1 ?? ""
         addr.country = RPDCountry.country(isoAlpha2: countryCode)
-        addr.city = address?.city ?? "City"
+        addr.city = address?.city ?? ""
         
         
         let contact = RPDEWalletContactRequestBuilder(contactType: .personal,
-        firstName: user.firstName ?? "", lastName: user.lastName ?? "", email: user.email ?? "",
-        phoneNumber: user.phoneNumber ?? "", businessDetails: nil,
+        firstName: user.firstName ?? "", lastName: user.lastName ?? "", email: email,
+        phoneNumber: phoneNumber, businessDetails: nil,
         dateOfBirth: user.dob ,
-        middleName: "mn",
-        secondLastName: "sln",
+        middleName: "",
+        secondLastName: "",
         identificationNumber: "100",
         gender: RPDGenderType.male,
         residence: RPDResidenceType.own,
@@ -50,10 +52,11 @@ class WalletHandler : NSObject {
         
         let usersManager = RPDUsersManager()
         
-        usersManager.createUser(phoneNumber: user.phoneNumber ?? "",
-            eWalletType: self.toRWalletType(wallet),
-            firstName: user.firstName ?? "", lastName: user.lastName ?? "", email: user.email ?? "",
-            eWalletReferenceID: wallet.refIdForService ?? "", contact: contact, metadata: genericMetaData, completionBlock:{
+        usersManager.createUser(phoneNumber: phoneNumber,
+            eWalletType: self.toRWalletType(wallet), firstName: user.firstName ?? "",
+            lastName: user.lastName ?? "", email: email,
+            eWalletReferenceID: walletRefId ,
+            contact: contact, metadata: genericMetaData, completionBlock:{
             
             _, error in
             
@@ -71,10 +74,32 @@ class WalletHandler : NSObject {
     
     
     
+    func updateWallet(with user : User, wallet : UserWallet) {
+        
+        let userManager: RPDUsersManager = RPDUsersManager()
+        userManager.updateUser(firstName: user.firstName ?? "" ,
+                               lastName: user.lastName ?? "",email: user.email ?? "",
+                               eWalletReferenceID: wallet.refIdForService ?? "",metadata: genericMetaData) { user, error in
+            
+            guard let err = error else {
+                if let user = user {
+                    print("updated::\(user.firstName ?? ""), refId::\(user.eWalletReferenceID ?? "")")
+                }
+                return
+            }
+            
+            
+            print("updating.wallet.err:\(err)")
+           
+        }
+    }
+    
+    
     func deleteWallet(){
         
         let userManager:RPDUsersManager = RPDUsersManager()
-        userManager.deleteUser(completionBlock: { (error) in
+    
+        userManager.deleteUser(completionBlock: { error in
            
             guard let err = error else {
                 

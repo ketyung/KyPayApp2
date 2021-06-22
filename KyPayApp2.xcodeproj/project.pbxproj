@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		10154F3A268033B600DB78C4 /* TopUpPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10154F39268033B600DB78C4 /* TopUpPayment.swift */; };
+		10310ADC2681839100A071B7 /* WalletManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10310ADB2681839100A071B7 /* WalletManagementView.swift */; };
 		1033B2552674A7F200D999CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033B2542674A7F200D999CE /* AppDelegate.swift */; };
 		1033B2572674A7F200D999CE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033B2562674A7F200D999CE /* SceneDelegate.swift */; };
 		1033B2592674A7F200D999CE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033B2582674A7F200D999CE /* ContentView.swift */; };
@@ -156,6 +157,7 @@
 /* Begin PBXFileReference section */
 		0AD2A35EA43E8F034705E971 /* Pods_KyPayApp2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KyPayApp2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		10154F39268033B600DB78C4 /* TopUpPayment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopUpPayment.swift; sourceTree = "<group>"; };
+		10310ADB2681839100A071B7 /* WalletManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletManagementView.swift; sourceTree = "<group>"; };
 		1033B2512674A7F200D999CE /* KyPayApp2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KyPayApp2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1033B2542674A7F200D999CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1033B2562674A7F200D999CE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -657,6 +659,7 @@
 			children = (
 				1033C09B2678509D00D999CE /* SettingsView.swift */,
 				1033C0AE2679BB7800D999CE /* EditProfileView.swift */,
+				10310ADB2681839100A071B7 /* WalletManagementView.swift */,
 			);
 			path = settings;
 			sourceTree = "<group>";
@@ -953,6 +956,7 @@
 				1033C0BC267AECA200D999CE /* Theme.swift in Sources */,
 				1033C0D1267D769400D999CE /* TxInputDataViewModel.swift in Sources */,
 				1033C0B7267AC63100D999CE /* NeumorphismModifier.swift in Sources */,
+				10310ADC2681839100A071B7 /* WalletManagementView.swift in Sources */,
 				1033C096267846E500D999CE /* FirstSignInView.swift in Sources */,
 				10B855E1267EC76300AEF15F /* UserWalletViewModel.swift in Sources */,
 				1033B2992674A82F00D999CE /* UserPaymentTx.swift in Sources */,

@@ -33,7 +33,7 @@ struct UserWallet : Codable {
         let w = UserWallet(id: id ?? "", refId: refId ?? "")
         
         if let encoded = try? JSONEncoder().encode(w) {
-            print("encoded::\(encoded)")
+            //let str = String(decoding: encoded, as: UTF8.self)
             return encoded.base64EncodedString()
         }
         
