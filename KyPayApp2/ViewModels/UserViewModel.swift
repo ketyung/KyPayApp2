@@ -216,8 +216,8 @@ extension UserViewModel {
        
             try Auth.auth().signOut()
             
-            //WalletHandler().detachWallet()
-            WalletHandler().deleteWallet()
+            WalletHandler().detachWallet()
+            //WalletHandler().deleteWallet()
             
             KDS.shared.removeUser()
             KDS.shared.removeAllWallets()

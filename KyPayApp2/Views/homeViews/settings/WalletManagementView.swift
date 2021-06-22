@@ -59,14 +59,7 @@ struct WalletManagementView : View {
                 
                 Text("Update Wallet")
             }
-            Button(action: {
-                
-                self.promptDelete = true
-                
-            }){
-                
-                Text("Delete Wallet")
-            }
+          
             
             Button(action: {
                 
@@ -103,13 +96,6 @@ struct WalletManagementView : View {
             }
 
             
-        }
-        .alert(isPresented: $promptDelete){
-            
-            Alert(title: Text("Delete Now?"),
-                primaryButton: .default(Text("OK")) {
-                    WalletHandler().deleteWallet()
-                },secondaryButton: .cancel())
         }
         
         //WalletHandler().deleteWallet()

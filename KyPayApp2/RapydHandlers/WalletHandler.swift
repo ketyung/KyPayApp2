@@ -107,6 +107,8 @@ class WalletHandler : NSObject {
     
     func updateWallet(with user : User, wallet : UserWallet) {
         
+        Config.setup()
+       
         let userManager: RPDUsersManager = RPDUsersManager()
         userManager.updateUser(firstName: user.firstName ?? "" ,
                                lastName: user.lastName ?? "",email: user.email ?? "",
@@ -126,19 +128,51 @@ class WalletHandler : NSObject {
     }
     
     
-    func deleteWallet(){
+    private func deleteWallet(){
+        
+        Config.setup()
+       
+       // let contactId = RPDUser.currentUser()?.contacts?.dataList?.first?.ID
         
         let userManager:RPDUsersManager = RPDUsersManager()
     
         userManager.deleteUser(completionBlock: { error in
            
             guard let err = error else {
+   
+                print("user.deleted.trying.delete.contact:: ")
+                
+                /**
+                if let contactId = contactId {
+                    
+                    RPDEWalletContactsManager().delete(contactWithID: contactId , completionBlock: {
+                        
+                        resp, err in
+                        
+                        guard let err = err else {
+                            
+                            return
+                        }
+                        
+                        print("deleting.contact.err::\(err)")
+                        
+                        
+                    })
+                   
+                }
+                 */
                 
                 return
             }
             
             print("deleting.wallet.error:\(err)")
         })
+   
+        
+        
+        
+        
+      
     }
     
     private func toRWalletType ( _ wallet : UserWallet) -> RWalletType{
