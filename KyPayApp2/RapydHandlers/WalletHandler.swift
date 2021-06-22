@@ -53,7 +53,7 @@ class WalletHandler : NSObject {
         usersManager.createUser(phoneNumber: user.phoneNumber ?? "",
             eWalletType: self.toRWalletType(wallet),
             firstName: user.firstName ?? "", lastName: user.lastName ?? "", email: user.email ?? "",
-            eWalletReferenceID: wallet.refId ?? "", contact: contact, metadata: genericMetaData, completionBlock:{
+            eWalletReferenceID: wallet.refIdForService ?? "", contact: contact, metadata: genericMetaData, completionBlock:{
             
             _, error in
             
@@ -69,6 +69,21 @@ class WalletHandler : NSObject {
         
     }
     
+    
+    
+    func deleteWallet(){
+        
+        let userManager:RPDUsersManager = RPDUsersManager()
+        userManager.deleteUser(completionBlock: { (error) in
+           
+            guard let err = error else {
+                
+                return
+            }
+            
+            print("deleting.wallet.error:\(err)")
+        })
+    }
     
     private func toRWalletType ( _ wallet : UserWallet) -> RWalletType{
         
@@ -115,6 +130,7 @@ extension WalletHandler {
                 
                 return
             }
+            
             
             completion?(nil, err)
             

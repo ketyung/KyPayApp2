@@ -92,6 +92,7 @@ extension UserWalletViewModel {
 
             completion?(err)
             //print("curr.wallet.attaching.err::\(err?.localizedDescription ?? "xxx.err")")
+            
         })
         
     }

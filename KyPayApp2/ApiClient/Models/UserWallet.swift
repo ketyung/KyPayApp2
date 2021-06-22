@@ -27,4 +27,16 @@ struct UserWallet : Codable {
     var type : WalletType?
     
     var lastUpdated : Date?
+    
+    var refIdForService : String? {
+        
+        let w = UserWallet(id: id ?? "", refId: refId ?? "")
+        
+        if let encoded = try? JSONEncoder().encode(w) {
+            print("encoded::\(encoded)")
+            return encoded.base64EncodedString()
+        }
+        
+        return nil 
+    }
 }
