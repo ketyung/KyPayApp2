@@ -293,10 +293,15 @@ extension WalletHandler {
         
             guard let self = self else {return}
             
+            
             if error == nil {
                 
                 let currUser = RPDUser.currentUser()
                 let eWallet1 = RPDEWallet(ID: currUser?.id ?? "" , paymentValue: 10, paymentType: .amount)
+                
+                
+                
+                
                // let paymentFees = RPDPaymentFees(transactionFee:
                 //RPDPaymentFeeRelativeChange(feeType: .absolute, calcType: .gross, value: 400), fxFee:RPDPaymentFee(calcType: .gross, value: 10))
             
@@ -304,9 +309,7 @@ extension WalletHandler {
                 if var pmfields = paymentMethodRequiredFields {
                    
                     self.setFieldsForCard(&pmfields, card: card)
-    
-                    //let paymentMethod = RPDPaymentMethod(withPaymentMethodFields: pmfields)
-                
+                    
                     RPDPaymentManager().createPayment(amount: Decimal(amount),
                         currency: RPDCurrency.currency(with: currency),
                         paymentMethodRequiredFields: pmfields,
@@ -329,7 +332,41 @@ extension WalletHandler {
                             
                             completion?(nil, err)
                         }
+                
+                    
+                    /**
+                    let paymentMethod = RPDPaymentMethod(withPaymentMethodFields: pmfields)
+                             
+                    
+                        let paymentRequest = RPDPaymentRequest()
+                        
+                        paymentRequest.paymentMethod = paymentMethod
+                        
+                        paymentRequest.paymentMethodOptions = pmfields.paymentMethodOptions
+                        
+                        paymentRequest.amount = Double(amount)
+                        paymentRequest.currency = RPDCurrency.currency(with: currency)
+                        
+                        paymentRequest.addEWallet(eWallet1)
+                        
+                        let paymentManager = RPDPaymentManager()
+                        paymentManager.createPayment(paymentRequest: paymentRequest, completionBlock: { (payment, error) in
+                            
+                            if error != nil {
+                                
+                                print("Create Payment Failed: \(error!)")
+                                
+                            } else {
+                                
+                                print("Create Payment Succeeded::\(payment?.ID ?? "")::\(payment?.amount ?? 0)")
+                            }
+                        })*/
                     }
+    
+                
+                /** */
+                
+                   
                  
                 }
                 
