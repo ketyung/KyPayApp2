@@ -276,12 +276,20 @@ extension WalletHandler {
         
         //print("using.paymentMethod.type::\(pm.type ?? "xxxx")")
         
-        RPDPaymentMethodManager().fetchPaymentMethodRequiredFields(type: pm.type ?? "") { fields, error in
+        RPDPaymentMethodManager().fetchPaymentMethodRequiredFields(type: pm.type ?? "") {[weak self] pmfields, error in
+            
+            guard let self = self else { return }
             
             if let err = error {
                 
                 print("fetchPaymentMethodRequiredFields.err::\(err)")
                 return
+            }
+            
+            if var pmfields = pmfields {
+                
+                self.setFieldsForOnlineBanking(&pmfields)
+                //self.setFieldsForCard(&pmfields)
             }
             
             let ewallet1 = RPDEWallet(ID: RPDUser.currentUser()?.id ?? "xxx",
@@ -290,7 +298,7 @@ extension WalletHandler {
             
             let pmMgr = RPDPaymentManager()
             pmMgr.createPayment(amount: Decimal(amount), currency:RPDCurrency.currency(with: currency),
-            paymentMethodRequiredFields: fields, paymentMethodID: pm.type, eWallets: [ewallet1], completionBlock: {
+            paymentMethodRequiredFields: pmfields, paymentMethodID: pm.type, eWallets: [ewallet1], completionBlock: {
                 
                 payment, err in
                 
@@ -314,5 +322,50 @@ extension WalletHandler {
           
         }
        
+    }
+    
+    
+    private func setFieldsForOnlineBanking (_ pmfields : inout RPDPaymentMethodRequiredFields ){
+        
+        let user = RPDUser.currentUser()
+        
+        
+        pmfields.fields.forEach {
+            switch $0.name {
+                case "first_name":
+                    $0.value = user?.firstName ?? ""
+                case "last_name":
+                    $0.value = user?.lastName ?? ""
+                case "email":
+                    $0.value = user?.email ?? ""
+                case "complete_payment_url":
+                    $0.value = "https://google.com/success"
+                case "error_payment_url":
+                    $0.value = "https://google.com/error"
+                default:
+                    break
+            }
+        }
+        
+    }
+    
+    
+    private func setFieldsForCard (_ pmfields : inout RPDPaymentMethodRequiredFields ){
+        
+        pmfields.fields.forEach {
+            switch $0.name {
+                case "number":
+                    $0.value = "4111111111111111"
+                case "expiration_month":
+                    $0.value = "10"
+                case "expiration_year":
+                    $0.value = "22"
+                case "cvv":
+                    $0.value = "123"
+                default:
+                    break
+            }
+        }
+        
     }
 }
