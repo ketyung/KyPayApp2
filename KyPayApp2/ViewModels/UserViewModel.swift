@@ -391,6 +391,8 @@ extension UserViewModel {
                        
                             self.userHolder.user = ruser
                         }
+                        
+                        self.firstSignIn = false
                        
                     }
                    

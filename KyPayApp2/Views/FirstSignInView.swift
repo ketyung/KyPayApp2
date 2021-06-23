@@ -16,7 +16,7 @@ struct FirstSignInView : View {
     
     @State private var errorMessage : String?
     
-    
+    @State private var pushToHome : Bool = false
     
     var body : some View {
         
@@ -42,6 +42,8 @@ struct FirstSignInView : View {
             proceedButton()
             
             Spacer()
+            
+            homeScreenNavLink()
         }
         .alert(isPresented: $errorPresented){ Alert(title: Text("Oppps!"),message:Text(errorMessage ?? ""))}
       
@@ -82,7 +84,14 @@ extension FirstSignInView {
                         self.errorMessage = err.localizedDescription
                         self.errorPresented = true
                     }
+                    return
                 }
+                
+                withAnimation{
+                    
+                    self.pushToHome = true 
+                }
+                
                
             })
         }){
@@ -96,5 +105,11 @@ extension FirstSignInView {
          
             }
         }
+    }
+    
+    
+    private func homeScreenNavLink() -> some View {
+        
+        NavigationLink(destination: ContentView(), isActive : $pushToHome){}.hidden(true)
     }
 }
