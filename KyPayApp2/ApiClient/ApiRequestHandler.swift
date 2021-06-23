@@ -10,7 +10,7 @@ import Foundation
 typealias ARH = ApiRequestHandler
 
 
-struct ApiError : Error {
+struct ApiError : LocalizedError, CustomStringConvertible {
     
     var errorText : String?
     
@@ -18,17 +18,12 @@ struct ApiError : Error {
     
     public var description: String {
         
-        if let error = errorText {
-            
-            return error
-        }
-        
-        return ""
+        "\(errorText ?? "Unknown error".localized)"
     }
-    
-    public var localizedDescription : String {
+
+    public var errorDescription : String {
         
-        return description.localized
+        errorText ?? "Unknown error".localized
     }
 }
 

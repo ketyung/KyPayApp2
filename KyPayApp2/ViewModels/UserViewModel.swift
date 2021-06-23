@@ -308,7 +308,14 @@ extension UserViewModel {
 
 extension UserViewModel {
     
-    struct FirstSignInError : LocalizedError {
+    struct FirstSignInError : LocalizedError, CustomStringConvertible {
+       
+        
+        var description: String {
+            
+            errorText ?? ""
+        }
+        
         
         var errorText : String?
         
@@ -316,6 +323,7 @@ extension UserViewModel {
             
             errorText ?? ""
         }
+        
     }
     
     

@@ -113,3 +113,10 @@ extension UIApplication {
         sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
+
+extension LocalizedError where Self: CustomStringConvertible {
+
+   var errorDescription: String? {
+      return description
+   }
+}
