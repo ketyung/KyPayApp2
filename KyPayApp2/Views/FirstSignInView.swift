@@ -72,11 +72,15 @@ extension FirstSignInView {
                 
                 err in
                 
-                withAnimation{
-                    
-                    self.errorMessage = err?.localizedDescription
-                    self.errorPresented = true 
+                if let err = err {
+               
+                    withAnimation{
+                        
+                        self.errorMessage = err.localizedDescription
+                        self.errorPresented = true
+                    }
                 }
+               
             })
         }){
             if viewModel.showingProgressIndicator {

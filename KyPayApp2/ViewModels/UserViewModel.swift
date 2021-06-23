@@ -308,11 +308,11 @@ extension UserViewModel {
 
 extension UserViewModel {
     
-    struct FirstSignInError : Error {
+    struct FirstSignInError : LocalizedError {
         
         var errorText : String?
         
-        var localizedDescription : String {
+        public var errorDescription : String {
             
             errorText ?? ""
         }
