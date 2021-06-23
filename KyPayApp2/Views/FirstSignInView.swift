@@ -9,13 +9,6 @@ import SwiftUIX
 
 struct FirstSignInView : View {
     
-    enum FocusOn  {
-        
-        case firstName
-        case lastName
-        case email
-    }
-    
     
     @EnvironmentObject private var viewModel : UserViewModel
     
@@ -23,7 +16,6 @@ struct FirstSignInView : View {
     
     @State private var errorMessage : String?
     
-    @State private var focusOn : FocusOn = .firstName
     
     
     var body : some View {
@@ -35,19 +27,13 @@ struct FirstSignInView : View {
             
             Form{
                 
-                CocoaTextField("First Name", text: $viewModel.firstName )
-                .isFirstResponder(focusOn == .firstName)
-                .onTapGesture {focusOn = .firstName}
+                TextField("First Name", text: $viewModel.firstName )
                 
-                CocoaTextField("Last Name", text: $viewModel.lastName )
-                .isFirstResponder(focusOn == .lastName)
-                .onTapGesture {focusOn = .lastName}
+                TextField("Last Name", text: $viewModel.lastName )
                    
-                CocoaTextField("Email", text: $viewModel.email )
-                .isFirstResponder(focusOn == .email)
-                .onTapGesture {focusOn = .email}
+                TextField("Email", text: $viewModel.email )
                     
-                
+    
                 DatePicker("Date Of Birth", selection: $viewModel.dob, displayedComponents: .date)
             }
             .frame(height:400)
