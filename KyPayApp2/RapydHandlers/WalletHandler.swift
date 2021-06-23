@@ -303,7 +303,7 @@ extension WalletHandler {
                 // let paymentFees = RPDPaymentFees(transactionFee:
                 //RPDPaymentFeeRelativeChange(feeType: .absolute, calcType: .gross, value: 400), fxFee:RPDPaymentFee(calcType: .gross, value: 10))
                 
-                let paymentMethodID = """
+                    /**"""
                 {"type": "us_visa_card",
                 "fields": {
                     "number": "4111111111111111",
@@ -312,7 +312,12 @@ extension WalletHandler {
                     "cvv": "123",
                     "name": "John Doe"
                 }}
-                """
+                """*/
+               // print("pmm.id::\(paymentMethodID)")
+               
+                
+                let paymentMethodID =
+                    "{\r\n    \"type\": \"us_visa_card\",\r\n       \"fields\": {\r\n        \"number\": \"4111111111111111\",\r\n        \"expiration_month\": \"10\",\r\n        \"expiration_year\": \"22\",\r\n        \"cvv\": \"123\",\r\n        \"name\": \"John Doe\"\r\n    }\r\n}"
                 
                 if var pmfields = paymentMethodRequiredFields {
                    
