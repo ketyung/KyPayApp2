@@ -54,6 +54,14 @@ extension Bundle {
   }
 }
 
+extension Date {
+    
+    func isMoreThan(years : Int) -> Bool {
+        
+        return self.timeIntervalSinceNow > -(Double(3600*24*365*years))
+    }
+}
+
 
 
 extension String {

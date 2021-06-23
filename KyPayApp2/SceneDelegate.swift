@@ -68,8 +68,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         //    ContactsListView()
         //CountDownTextView(viewModel: OtpTextViewModel())
-        ContentView().environmentObject(PhoneInputViewModel()).environmentObject(UserViewModel())
+        //ContentView().environmentObject(PhoneInputViewModel()).environmentObject(UserViewModel())
+        FirstSignInView().environmentObject(PhoneInputViewModel()).environmentObject(UserViewModel())
 
+        
         //OTPView().environmentObject(PhoneInputViewModel()).environmentObject(UserViewModel())
             //LoginView().environmentObject(PhoneInputViewModel()).environmentObject(UserViewModel())
 

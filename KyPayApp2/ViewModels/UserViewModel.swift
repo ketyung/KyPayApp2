@@ -30,6 +30,7 @@ class UserViewModel : NSObject, ObservableObject {
     
     @Published var firstSignIn : Bool = false
     
+    @Published var showingProgressIndicator : Bool = false
     
     var id : String {
         
@@ -164,15 +165,20 @@ class UserViewModel : NSObject, ObservableObject {
     var hasSignedIn : Bool {
         
         
-        if firstSignIn {
-            return firstSignIn
+        if let auser = Auth.auth().currentUser  {
+        
+            if firstSignIn {
+                
+                return firstSignIn
+            }
+            
+            if let user = KDS.shared.getUser() {
+                
+                return auser.phoneNumber == user.phoneNumber
+            }
+            
         }
         
-        if let user = KDS.shared.getUser() , let auser = Auth.auth().currentUser {
-            
-            return auser.phoneNumber == user.phoneNumber
-        }
-     
         return false
    
     }
@@ -295,6 +301,97 @@ extension UserViewModel {
                 })
                
             }
+            
+        })
+    }
+}
+
+extension UserViewModel {
+    
+    struct FirstSignInError : Error {
+        
+        var errorText : String?
+        
+        var localizedDescription : String {
+            
+            errorText ?? ""
+        }
+    }
+    
+    
+    
+    
+    func add(completion : ((Error?)-> Void)? = nil ){
+        
+        self.showingProgressIndicator = true
+        
+        
+        if self.firstName.trim().isEmpty {
+    
+            completion?(FirstSignInError(errorText: "First Name is blank!".localized))
+            self.showingProgressIndicator = false
+            return
+            
+        }
+      
+        
+        if self.lastName.trim().isEmpty {
+    
+            completion?(FirstSignInError(errorText: "Last Name is blank!".localized))
+            self.showingProgressIndicator = false
+            return
+            
+        }
+    
+        if !self.email.isValidEmail() {
+    
+            completion?(FirstSignInError(errorText: "Invalid email!".localized))
+            self.showingProgressIndicator = false
+            return
+            
+        }
+    
+        if !self.dob.isMoreThan(years: 12){
+            
+            completion?(FirstSignInError(errorText: "You must be 12yo & above!".localized))
+            self.showingProgressIndicator = false
+            return
+        }
+        
+        ARH.shared.addUser(user, returnType: User.self, completion: { [weak self]
+        
+            res in
+        
+            guard let self = self else {return}
+            
+            switch(res) {
+     
+                case .failure(let err) :
+                
+                    completion?(err)
+                
+                case .success(let usr ) :
+                
+                
+                    if let ruser = usr.returnedObject {
+                   
+                        KDS.shared.saveUser(ruser)
+                        
+                        // refresh user in userHolder
+                        DispatchQueue.main.async {
+                       
+                            self.userHolder.user = ruser
+                        }
+                       
+                    }
+                   
+                    
+                    completion?(nil)
+                
+            }
+            
+            self.showingProgressIndicator = false
+        
             
         })
     }

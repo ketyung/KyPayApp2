@@ -11,6 +11,10 @@ struct FirstSignInView : View {
     
     @EnvironmentObject private var viewModel : UserViewModel
     
+    @State private var errorPresented : Bool = false
+    
+    @State private var errorMessage : String?
+    
     var body : some View {
         
         VStack(spacing: 20){
@@ -36,6 +40,8 @@ struct FirstSignInView : View {
             
             Spacer()
         }
+        .alert(isPresented: $errorPresented){ Alert(title: Text("Oppps!"),message:Text(errorMessage ?? ""))}
+      
     }
 }
 
@@ -62,9 +68,26 @@ extension FirstSignInView {
         
         Button(action: {
             
+            viewModel.add(completion: {
+                
+                err in
+                
+                withAnimation{
+                    
+                    self.errorMessage = err?.localizedDescription
+                    self.errorPresented = true 
+                }
+            })
         }){
-            
-            Text("Proceed")
+            if viewModel.showingProgressIndicator {
+                
+                ActivityIndicator()
+            }
+            else {
+     
+                Text("Proceed".localized)
+         
+            }
         }
     }
 }
