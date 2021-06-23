@@ -35,5 +35,8 @@ class WalletRequest extends RapydRequest{
             echo "Error: $e";
         }
     }
+    
+    
+    
 }
 ?>

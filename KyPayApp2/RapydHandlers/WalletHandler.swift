@@ -287,9 +287,10 @@ extension WalletHandler {
              completion : ((PaymentSuccess?, Error?)->Void)? = nil){
         
         
-        RPDPaymentMethodManager().fetchPaymentMethodRequiredFields(type: /** paymentMethod.rpdPaymentMethod.type ?? */ "il_visa_card"){
+        RPDPaymentMethodManager().fetchPaymentMethodRequiredFields(type: "us_visa_card"){
             [weak self]  paymentMethodRequiredFields, error in
             
+        
             guard let self = self else {return}
             
             if error == nil {
@@ -304,18 +305,17 @@ extension WalletHandler {
                    
                     self.setFieldsForCard(&pmfields, card: card)
     
-                    let paymentMethodID = "card_il_visa_card"
-                    
+                    //let paymentMethod = RPDPaymentMethod(withPaymentMethodFields: pmfields)
+                
                     RPDPaymentManager().createPayment(amount: Decimal(amount),
                         currency: RPDCurrency.currency(with: currency),
                         paymentMethodRequiredFields: pmfields,
-                        paymentMethodID: paymentMethodID,
+                        paymentMethodID: "card_823894ee89c52be00e76d2be10116672" ,
                         eWallets: [eWallet1], completePaymentURL: WalletHandler.completionURL, errorPaymentURL: WalletHandler.errorURL,
                         description: nil,expirationAt: nil, merchantReferenceID: nil,requestedCurrency: nil,
                         isCapture: true, statementDescriptor: nil,address: nil,customerID: nil,
                         receiptEmail: currUser?.email ?? "",showIntermediateReturnPage: nil,isEscrow: nil,releaseEscrowDays: nil,
-                        paymentFees: nil,
-                        metadata: self.genericMetaData){ payment, error in
+                        paymentFees: nil, metadata: self.genericMetaData){ payment, error in
                             guard let err = error else {
                                 
                                var pms = PaymentSuccess()
