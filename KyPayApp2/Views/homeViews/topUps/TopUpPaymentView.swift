@@ -39,7 +39,6 @@ struct TopUpPaymentView : View {
     private func topUpNow(){
         topUpViewModel.currency = userViewModel.allowedCurrency
         topUpViewModel.add()
- 
     }
     
 }

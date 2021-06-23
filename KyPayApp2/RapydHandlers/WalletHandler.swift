@@ -266,6 +266,11 @@ extension WalletHandler {
 
 extension WalletHandler {
     
+    static let completionURL : String = "https://google.com/success"
+    
+    static let errorURL : String = "https://google.com/error"
+    
+    
     
     func add(amount : Double, currency : String, paymentMethod : PaymentMethod,
                completion : ((PaymentSuccess?, Error?)->Void)? = nil ){
@@ -274,34 +279,44 @@ extension WalletHandler {
         
         let pm = paymentMethod.rpdPaymentMethod
         
-        //print("using.paymentMethod.type::\(pm.type ?? "xxxx")")
         
-        RPDPaymentMethodManager().fetchPaymentMethodRequiredFields(type: pm.type ?? "") {[weak self] pmfields, error in
+        var pmfields = RPDPaymentMethodRequiredFields()
+        self.setFieldsForOnlineBanking(&pmfields)
+        
+        
+        let currentUser = RPDUser.currentUser()
+        let ewallet1 = RPDEWallet(ID: currentUser?.id ?? "xxx",
+        paymentValue: Decimal(amount), paymentType: RPDEWallet.EWalletPaymentType.amount)
+        
+        
+        let pmMgr = RPDPaymentManager()
+        
+        let paymentMethodID = "other_\(pm.type ?? "")"
+      
+        print("paymentMthod.id::\(paymentMethodID)")
+        
+        pmMgr.createPayment(amount: Decimal(amount),
+            currency: RPDCurrency.currency(with: currency),
+            paymentMethodRequiredFields:pmfields,
+            paymentMethodID: paymentMethodID ,
+            eWallets: [ewallet1],
+            completePaymentURL: WalletHandler.completionURL,
+            errorPaymentURL: WalletHandler.errorURL,
+            description: nil,
+            expirationAt: nil,
+            merchantReferenceID: nil,
+            requestedCurrency: nil,
+            isCapture: true,
+            statementDescriptor: nil,
+            address: nil,
+            customerID: nil,
+            receiptEmail: currentUser?.email ,
+            showIntermediateReturnPage: nil,
+            isEscrow: nil,
+            releaseEscrowDays: nil,
+            paymentFees: nil,
+            metadata: self.genericMetaData, completionBlock: { payment, err in
             
-            guard let self = self else { return }
-            
-            if let err = error {
-                
-                print("fetchPaymentMethodRequiredFields.err::\(err)")
-                return
-            }
-            
-            if var pmfields = pmfields {
-                
-                self.setFieldsForOnlineBanking(&pmfields)
-                //self.setFieldsForCard(&pmfields)
-            }
-            
-            let ewallet1 = RPDEWallet(ID: RPDUser.currentUser()?.id ?? "xxx",
-            paymentValue: Decimal(amount), paymentType: RPDEWallet.EWalletPaymentType.amount)
-            
-            
-            let pmMgr = RPDPaymentManager()
-            pmMgr.createPayment(amount: Decimal(amount), currency:RPDCurrency.currency(with: currency),
-            paymentMethodRequiredFields: pmfields, paymentMethodID: pm.type, eWallets: [ewallet1], completionBlock: {
-                
-                payment, err in
-                
                 guard let err = err else {
                     
                    var pms = PaymentSuccess()
@@ -315,12 +330,10 @@ extension WalletHandler {
                 
                 completion?(nil, err)
                
-                print("error.making.payment::\(err)")
-                
-                
-            })
-          
-        }
+            
+        })
+      
+    
        
     }
     
@@ -328,7 +341,6 @@ extension WalletHandler {
     private func setFieldsForOnlineBanking (_ pmfields : inout RPDPaymentMethodRequiredFields ){
         
         let user = RPDUser.currentUser()
-        
         
         pmfields.fields.forEach {
             switch $0.name {
@@ -339,9 +351,9 @@ extension WalletHandler {
                 case "email":
                     $0.value = user?.email ?? ""
                 case "complete_payment_url":
-                    $0.value = "https://google.com/success"
+                    $0.value = WalletHandler.completionURL
                 case "error_payment_url":
-                    $0.value = "https://google.com/error"
+                    $0.value = WalletHandler.errorURL
                 default:
                     break
             }

@@ -59,7 +59,7 @@ extension PaymentMethodsViewModel {
                         types.forEach{
                             
                             type in
-                            
+                        
                             let pm = PaymentMethod(type: type.type,  name: type.name, category: type.category, imageURL: type.imageURL, paymentFlowType: type.paymentFlowType)
                             
                             self.paymentMethods?.append(pm)

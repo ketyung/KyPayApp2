@@ -119,9 +119,11 @@ extension TopUpPaymentViewModel {
                 guard let err = error else {
                     
                     self.showingProgressIndicator = false
-                    
                     return
                 }
+                
+                print("add.xx.error.making.payment@.:\(String(describing: err))")
+           
                 
                 self.topUpPayment.errorMessage = err.localizedDescription
                 self.showingProgressIndicator = false
