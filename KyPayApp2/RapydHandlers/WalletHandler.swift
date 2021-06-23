@@ -349,8 +349,6 @@ extension WalletHandler {
         
         let pm = paymentMethod.rpdPaymentMethod
         
-        print("pm.token::\(pm.token ?? "xxx.tok.xxxx")")
-        
         RPDPaymentMethodManager().fetchPaymentMethodRequiredFields(type: pm.type ?? "xxxx") {
             [weak self] pmfields, error in
             guard let self = self else { return }
@@ -363,6 +361,7 @@ extension WalletHandler {
             if var pmfields = pmfields {
             
                 self.setFieldsForOnlineBanking(&pmfields)
+        
                 
                 let currentUser = RPDUser.currentUser()
                 let ewallet1 = RPDEWallet(ID: currentUser?.id ?? "xxx",
@@ -371,28 +370,15 @@ extension WalletHandler {
                 
                 let pmMgr = RPDPaymentManager()
                 
-                let paymentMethodID = "\(pm.type ?? "")"
+                let paymentMethodID = "other_\(pm.type ?? "")"
 
                 pmMgr.createPayment(amount: Decimal(amount),
                     currency: RPDCurrency.currency(with: currency),
-                    paymentMethodRequiredFields:pmfields,
-                    paymentMethodID: paymentMethodID ,
-                    eWallets: [ewallet1],
-                    completePaymentURL: WalletHandler.completionURL,
-                    errorPaymentURL: WalletHandler.errorURL,
-                    description: nil,
-                    expirationAt: nil,
-                    merchantReferenceID: nil,
-                    requestedCurrency: nil,
-                    isCapture: true,
-                    statementDescriptor: nil,
-                    address: nil,
-                    customerID: nil,
-                    receiptEmail: currentUser?.email ,
-                    showIntermediateReturnPage: nil,
-                    isEscrow: nil,
-                    releaseEscrowDays: nil,
-                    paymentFees: nil,
+                    paymentMethodRequiredFields:pmfields,paymentMethodID: paymentMethodID ,
+                    eWallets: [ewallet1],completePaymentURL: WalletHandler.completionURL,errorPaymentURL: WalletHandler.errorURL,
+                    description: nil,expirationAt: nil,merchantReferenceID: nil,requestedCurrency: nil,isCapture: true,
+                    statementDescriptor: nil,address: nil,customerID: nil,receiptEmail: currentUser?.email ,
+                    showIntermediateReturnPage: nil,isEscrow: nil,releaseEscrowDays: nil,paymentFees: nil,
                     metadata: self.genericMetaData, completionBlock: { payment, err in
                     
                         guard let err = err else {
@@ -420,8 +406,8 @@ extension WalletHandler {
         
         let user = RPDUser.currentUser()
         
-        
         pmfields.fields.forEach {
+            
             
             switch $0.name {
                 case "first_name":

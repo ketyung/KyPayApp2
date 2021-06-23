@@ -121,7 +121,9 @@
 		10B855EF267F2FD400AEF15F /* TopUpPaymentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B855EE267F2FD400AEF15F /* TopUpPaymentViewModel.swift */; };
 		10B855F1267F39D900AEF15F /* NavigationBarTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B855F0267F39D900AEF15F /* NavigationBarTitle.swift */; };
 		10B855F3268081E400AEF15F /* PaymentSuccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B855F2268081E400AEF15F /* PaymentSuccess.swift */; };
-		10B855F52681BDAC00AEF15F /* WalletContactRequest.php in Resources */ = {isa = PBXBuildFile; fileRef = 10B855F42681BDAC00AEF15F /* WalletContactRequest.php */; };
+		10B855F52681BDAC00AEF15F /* WalletRequest.php in Resources */ = {isa = PBXBuildFile; fileRef = 10B855F42681BDAC00AEF15F /* WalletRequest.php */; };
+		10B855F726830C9600AEF15F /* PaymentSuccess.php in Resources */ = {isa = PBXBuildFile; fileRef = 10B855F626830C9600AEF15F /* PaymentSuccess.php */; };
+		10B855F926830E8F00AEF15F /* PaymentFailed.php in Resources */ = {isa = PBXBuildFile; fileRef = 10B855F826830E8F00AEF15F /* PaymentFailed.php */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -273,7 +275,9 @@
 		10B855EE267F2FD400AEF15F /* TopUpPaymentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopUpPaymentViewModel.swift; sourceTree = "<group>"; };
 		10B855F0267F39D900AEF15F /* NavigationBarTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarTitle.swift; sourceTree = "<group>"; };
 		10B855F2268081E400AEF15F /* PaymentSuccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSuccess.swift; sourceTree = "<group>"; };
-		10B855F42681BDAC00AEF15F /* WalletContactRequest.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = WalletContactRequest.php; sourceTree = "<group>"; };
+		10B855F42681BDAC00AEF15F /* WalletRequest.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = WalletRequest.php; sourceTree = "<group>"; };
+		10B855F626830C9600AEF15F /* PaymentSuccess.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = PaymentSuccess.php; sourceTree = "<group>"; };
+		10B855F826830E8F00AEF15F /* PaymentFailed.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = PaymentFailed.php; sourceTree = "<group>"; };
 		1B47377B496C6F0F1022FFD4 /* Pods-KyPayApp2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.debug.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.debug.xcconfig"; sourceTree = "<group>"; };
 		6F523BC3D4353462922B31B9 /* Pods-KyPayApp2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.release.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -427,6 +431,8 @@
 				1033B29D2674A92D00D999CE /* bootstrap.php */,
 				1033B29E2674A92D00D999CE /* Test2.php */,
 				1033B29F2674A92D00D999CE /* Test.php */,
+				10B855F626830C9600AEF15F /* PaymentSuccess.php */,
+				10B855F826830E8F00AEF15F /* PaymentFailed.php */,
 				1033B2C12674A92D00D999CE /* ObtainTK.php */,
 				1033B2A02674A92D00D999CE /* public */,
 				1033B2A22674A92D00D999CE /* lib */,
@@ -525,7 +531,7 @@
 			children = (
 				1033B2BF2674A92D00D999CE /* RapydRequest.php */,
 				1033B2C02674A92D00D999CE /* CollectRequest.php */,
-				10B855F42681BDAC00AEF15F /* WalletContactRequest.php */,
+				10B855F42681BDAC00AEF15F /* WalletRequest.php */,
 			);
 			path = Rapyd;
 			sourceTree = "<group>";
@@ -814,7 +820,7 @@
 				1033B2D62674A92D00D999CE /* StrUtil.php in Resources */,
 				1033B2C82674A92D00D999CE /* KypayUserPaymentTx.php in Resources */,
 				1033B2C92674A92D00D999CE /* KypayUserAddress.php in Resources */,
-				10B855F52681BDAC00AEF15F /* WalletContactRequest.php in Resources */,
+				10B855F52681BDAC00AEF15F /* WalletRequest.php in Resources */,
 				10B855DF267DEACB00AEF15F /* countryCurrency.json in Resources */,
 				1033C0832677035100D999CE /* CountryPickerView.bundle in Resources */,
 				1033B2D22674A92D00D999CE /* DotEnv.php in Resources */,
@@ -826,6 +832,7 @@
 				1033B2DB2674A92D00D999CE /* RapydRequest.php in Resources */,
 				1033B2C32674A92D00D999CE /* Test2.php in Resources */,
 				1033B2CE2674A92D00D999CE /* Controller.php in Resources */,
+				10B855F926830E8F00AEF15F /* PaymentFailed.php in Resources */,
 				1033B2CB2674A92D00D999CE /* KypayUserImg.php in Resources */,
 				1033B2922674A82F00D999CE /* T.json in Resources */,
 				1033B2DA2674A92D00D999CE /* DbObject.php in Resources */,
@@ -834,6 +841,7 @@
 				1033B25B2674A7F300D999CE /* Assets.xcassets in Resources */,
 				1033B2C42674A92D00D999CE /* Test.php in Resources */,
 				1033B2D42674A92D00D999CE /* EncUtil.php in Resources */,
+				10B855F726830C9600AEF15F /* PaymentSuccess.php in Resources */,
 				1033B2D82674A92D00D999CE /* SQLBuilder.php in Resources */,
 				1033B2DF2674AC3800D999CE /* KyPayUserPaymentTxController.php in Resources */,
 				1033B2D52674A92D00D999CE /* KeyManager.php in Resources */,
