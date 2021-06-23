@@ -298,39 +298,44 @@ extension WalletHandler {
                 let eWallet1 = RPDEWallet(ID: currUser?.id ?? "" , paymentValue: 10, paymentType: .amount)
                // let paymentFees = RPDPaymentFees(transactionFee:
                 //RPDPaymentFeeRelativeChange(feeType: .absolute, calcType: .gross, value: 400), fxFee:RPDPaymentFee(calcType: .gross, value: 10))
-          
-                if var paymentMethodRequiredFields = paymentMethodRequiredFields {
+            
+                
+                if var pmfields = paymentMethodRequiredFields {
                    
-                    self.setFieldsForCard(&paymentMethodRequiredFields, card: card)
-                }
-                
-                
-                let paymentMethodID = "card_92929292992"
-                
-                RPDPaymentManager().createPayment(amount: Decimal(amount),
-                    currency: RPDCurrency.currency(with: currency),
-                    paymentMethodRequiredFields: paymentMethodRequiredFields,
-                    paymentMethodID: paymentMethodID,
-                    eWallets: [eWallet1], completePaymentURL: WalletHandler.completionURL, errorPaymentURL: WalletHandler.errorURL,
-                    description: nil,expirationAt: nil, merchantReferenceID: nil,requestedCurrency: nil,
-                    isCapture: true, statementDescriptor: nil,address: nil,customerID: nil,
-                    receiptEmail: currUser?.email ?? "",showIntermediateReturnPage: nil,isEscrow: nil,releaseEscrowDays: nil,
-                    paymentFees: nil,
-                    metadata: self.genericMetaData){ payment, error in
-                        guard let err = error else {
+                    self.setFieldsForCard(&pmfields, card: card)
+    
+                    let paymentMethodID = "card_il_visa_card"
+                    
+                    RPDPaymentManager().createPayment(amount: Decimal(amount),
+                        currency: RPDCurrency.currency(with: currency),
+                        paymentMethodRequiredFields: pmfields,
+                        paymentMethodID: paymentMethodID,
+                        eWallets: [eWallet1], completePaymentURL: WalletHandler.completionURL, errorPaymentURL: WalletHandler.errorURL,
+                        description: nil,expirationAt: nil, merchantReferenceID: nil,requestedCurrency: nil,
+                        isCapture: true, statementDescriptor: nil,address: nil,customerID: nil,
+                        receiptEmail: currUser?.email ?? "",showIntermediateReturnPage: nil,isEscrow: nil,releaseEscrowDays: nil,
+                        paymentFees: nil,
+                        metadata: self.genericMetaData){ payment, error in
+                            guard let err = error else {
+                                
+                               var pms = PaymentSuccess()
+                               pms.amount = Double(truncating: (payment?.amount ?? 0) as NSNumber)
+                               pms.curreny = payment?.currency?.code ?? ""
+                               pms.dateCreated = payment?.createdAt
+                               
+                               completion?(pms, nil)
+                               return
+                            }
                             
-                           var pms = PaymentSuccess()
-                           pms.amount = Double(truncating: (payment?.amount ?? 0) as NSNumber)
-                           pms.curreny = payment?.currency?.code ?? ""
-                           pms.dateCreated = payment?.createdAt
-                           
-                           completion?(pms, nil)
-                           return
+                            completion?(nil, err)
                         }
-                        
-                        completion?(nil, err)
+                    }
+                 
                 }
-            }
+                
+              
+                
+              
         }
         
     }
@@ -344,57 +349,71 @@ extension WalletHandler {
         
         let pm = paymentMethod.rpdPaymentMethod
         
-        
-        var pmfields = RPDPaymentMethodRequiredFields()
-        self.setFieldsForOnlineBanking(&pmfields)
-        
-        
-        let currentUser = RPDUser.currentUser()
-        let ewallet1 = RPDEWallet(ID: currentUser?.id ?? "xxx",
-        paymentValue: Decimal(amount), paymentType: RPDEWallet.EWalletPaymentType.amount)
-        
-        
-        let pmMgr = RPDPaymentManager()
-        
-        let paymentMethodID = "\(pm.type ?? "")"
-
-        pmMgr.createPayment(amount: Decimal(amount),
-            currency: RPDCurrency.currency(with: currency),
-            paymentMethodRequiredFields:pmfields,
-            paymentMethodID: paymentMethodID ,
-            eWallets: [ewallet1],
-            completePaymentURL: WalletHandler.completionURL,
-            errorPaymentURL: WalletHandler.errorURL,
-            description: nil,
-            expirationAt: nil,
-            merchantReferenceID: nil,
-            requestedCurrency: nil,
-            isCapture: true,
-            statementDescriptor: nil,
-            address: nil,
-            customerID: nil,
-            receiptEmail: currentUser?.email ,
-            showIntermediateReturnPage: nil,
-            isEscrow: nil,
-            releaseEscrowDays: nil,
-            paymentFees: nil,
-            metadata: self.genericMetaData, completionBlock: { payment, err in
+        RPDPaymentMethodManager().fetchPaymentMethodRequiredFields(type: pm.type ?? "xxxx") {
+            [weak self] pmfields, error in
+            guard let self = self else { return }
             
-                guard let err = err else {
-                    
-                   var pms = PaymentSuccess()
-                   pms.amount = Double(truncating: (payment?.amount ?? 0) as NSNumber)
-                   pms.curreny = payment?.currency?.code ?? ""
-                   pms.dateCreated = payment?.createdAt
-                   
-                   completion?(pms, nil)
-                   return
-                }
+            if error != nil {
                 
-                completion?(nil, err)
-               
+                print("fetch.fields;err:\(String(describing: error))")
+            }
             
-        })
+            if var pmfields = pmfields {
+            
+                self.setFieldsForOnlineBanking(&pmfields)
+            }
+            
+            
+            
+            let currentUser = RPDUser.currentUser()
+            let ewallet1 = RPDEWallet(ID: currentUser?.id ?? "xxx",
+            paymentValue: Decimal(amount), paymentType: RPDEWallet.EWalletPaymentType.amount)
+            
+            
+            let pmMgr = RPDPaymentManager()
+            
+            let paymentMethodID = "\(pm.type ?? "")"
+
+            pmMgr.createPayment(amount: Decimal(amount),
+                currency: RPDCurrency.currency(with: currency),
+                paymentMethodRequiredFields:pmfields,
+                paymentMethodID: paymentMethodID ,
+                eWallets: [ewallet1],
+                completePaymentURL: WalletHandler.completionURL,
+                errorPaymentURL: WalletHandler.errorURL,
+                description: nil,
+                expirationAt: nil,
+                merchantReferenceID: nil,
+                requestedCurrency: nil,
+                isCapture: true,
+                statementDescriptor: nil,
+                address: nil,
+                customerID: nil,
+                receiptEmail: currentUser?.email ,
+                showIntermediateReturnPage: nil,
+                isEscrow: nil,
+                releaseEscrowDays: nil,
+                paymentFees: nil,
+                metadata: self.genericMetaData, completionBlock: { payment, err in
+                
+                    guard let err = err else {
+                        
+                       var pms = PaymentSuccess()
+                       pms.amount = Double(truncating: (payment?.amount ?? 0) as NSNumber)
+                       pms.curreny = payment?.currency?.code ?? ""
+                       pms.dateCreated = payment?.createdAt
+                       
+                       completion?(pms, nil)
+                       return
+                    }
+                    
+                    completion?(nil, err)
+                   
+                
+            })
+         
+        }
+        
       
     
        
@@ -405,7 +424,9 @@ extension WalletHandler {
         
         let user = RPDUser.currentUser()
         
+        
         pmfields.fields.forEach {
+            
             switch $0.name {
                 case "first_name":
                     $0.value = user?.firstName ?? ""
@@ -428,15 +449,19 @@ extension WalletHandler {
 private func setFieldsForCard (_ pmfields : inout RPDPaymentMethodRequiredFields, card : Card ){
         
         pmfields.fields.forEach {
+            
             switch $0.name {
                 case "number":
                     $0.value = card.number
                 case "expiration_month":
                     $0.value = card.expirationMonth
+                    
                 case "expiration_year":
                     $0.value = card.expirationYear
+                    
                 case "cvv":
                     $0.value = card.cvv
+                    
                 default:
                     break
             }

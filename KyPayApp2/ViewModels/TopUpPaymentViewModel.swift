@@ -110,7 +110,7 @@ extension TopUpPaymentViewModel {
       
             self.showingProgressIndicator = true
           
-            walletHandler.add(amount: Double(amount), currency: currency, paymentMethod: paymentMethod, completion: {
+            walletHandler.add(card : Card(), amount: Double(amount), currency: currency, paymentMethod: paymentMethod, completion: {
             
                 [weak self] payment, error in
                 
