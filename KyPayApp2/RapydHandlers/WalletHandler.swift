@@ -349,6 +349,8 @@ extension WalletHandler {
         
         let pm = paymentMethod.rpdPaymentMethod
         
+        print("pm.token::\(pm.token ?? "xxx.tok.xxxx")")
+        
         RPDPaymentMethodManager().fetchPaymentMethodRequiredFields(type: pm.type ?? "xxxx") {
             [weak self] pmfields, error in
             guard let self = self else { return }
@@ -361,62 +363,56 @@ extension WalletHandler {
             if var pmfields = pmfields {
             
                 self.setFieldsForOnlineBanking(&pmfields)
-            }
-            
-            
-            
-            let currentUser = RPDUser.currentUser()
-            let ewallet1 = RPDEWallet(ID: currentUser?.id ?? "xxx",
-            paymentValue: Decimal(amount), paymentType: RPDEWallet.EWalletPaymentType.amount)
-            
-            
-            let pmMgr = RPDPaymentManager()
-            
-            let paymentMethodID = "\(pm.type ?? "")"
+                
+                let currentUser = RPDUser.currentUser()
+                let ewallet1 = RPDEWallet(ID: currentUser?.id ?? "xxx",
+                paymentValue: Decimal(amount), paymentType: RPDEWallet.EWalletPaymentType.amount)
+                
+                
+                let pmMgr = RPDPaymentManager()
+                
+                let paymentMethodID = "\(pm.type ?? "")"
 
-            pmMgr.createPayment(amount: Decimal(amount),
-                currency: RPDCurrency.currency(with: currency),
-                paymentMethodRequiredFields:pmfields,
-                paymentMethodID: paymentMethodID ,
-                eWallets: [ewallet1],
-                completePaymentURL: WalletHandler.completionURL,
-                errorPaymentURL: WalletHandler.errorURL,
-                description: nil,
-                expirationAt: nil,
-                merchantReferenceID: nil,
-                requestedCurrency: nil,
-                isCapture: true,
-                statementDescriptor: nil,
-                address: nil,
-                customerID: nil,
-                receiptEmail: currentUser?.email ,
-                showIntermediateReturnPage: nil,
-                isEscrow: nil,
-                releaseEscrowDays: nil,
-                paymentFees: nil,
-                metadata: self.genericMetaData, completionBlock: { payment, err in
-                
-                    guard let err = err else {
-                        
-                       var pms = PaymentSuccess()
-                       pms.amount = Double(truncating: (payment?.amount ?? 0) as NSNumber)
-                       pms.curreny = payment?.currency?.code ?? ""
-                       pms.dateCreated = payment?.createdAt
-                       
-                       completion?(pms, nil)
-                       return
-                    }
+                pmMgr.createPayment(amount: Decimal(amount),
+                    currency: RPDCurrency.currency(with: currency),
+                    paymentMethodRequiredFields:pmfields,
+                    paymentMethodID: paymentMethodID ,
+                    eWallets: [ewallet1],
+                    completePaymentURL: WalletHandler.completionURL,
+                    errorPaymentURL: WalletHandler.errorURL,
+                    description: nil,
+                    expirationAt: nil,
+                    merchantReferenceID: nil,
+                    requestedCurrency: nil,
+                    isCapture: true,
+                    statementDescriptor: nil,
+                    address: nil,
+                    customerID: nil,
+                    receiptEmail: currentUser?.email ,
+                    showIntermediateReturnPage: nil,
+                    isEscrow: nil,
+                    releaseEscrowDays: nil,
+                    paymentFees: nil,
+                    metadata: self.genericMetaData, completionBlock: { payment, err in
                     
-                    completion?(nil, err)
-                   
-                
-            })
+                        guard let err = err else {
+                            
+                           var pms = PaymentSuccess()
+                           pms.amount = Double(truncating: (payment?.amount ?? 0) as NSNumber)
+                           pms.curreny = payment?.currency?.code ?? ""
+                           pms.dateCreated = payment?.createdAt
+                           
+                           completion?(pms, nil)
+                           return
+                        }
+                        
+                        completion?(nil, err)
+                    
+                })
+            }
          
         }
-        
-      
     
-       
     }
     
     
