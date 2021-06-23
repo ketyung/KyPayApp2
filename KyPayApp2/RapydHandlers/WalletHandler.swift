@@ -278,9 +278,9 @@ extension WalletHandler {
 
 extension WalletHandler {
     
-    static let completionURL : String = "https://google.com/success"
+    static let completionURL : String = "https://techchee.com/KyPaySuccess"
     
-    static let errorURL : String = "https://google.com/error"
+    static let errorURL : String = "https://techchee.com/KyPayFailed"
     
     
     func add(card : Card, amount : Double, currency : String, paymentMethod : PaymentMethod,
@@ -351,12 +351,13 @@ extension WalletHandler {
         
         RPDPaymentMethodManager().fetchPaymentMethodRequiredFields(type: pm.type ?? "xxxx") {
             [weak self] pmfields, error in
+            
+            if error != nil {print("fetch.fields;err:\(String(describing: error))")
+                return}
+            
             guard let self = self else { return }
             
-            if error != nil {
-                
-                print("fetch.fields;err:\(String(describing: error))")
-            }
+            
             
             if var pmfields = pmfields {
             
@@ -372,6 +373,7 @@ extension WalletHandler {
                 
                 let paymentMethodID = "other_\(pm.type ?? "")"
 
+                
                 pmMgr.createPayment(amount: Decimal(amount),
                     currency: RPDCurrency.currency(with: currency),
                     paymentMethodRequiredFields:pmfields,paymentMethodID: paymentMethodID ,
