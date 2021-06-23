@@ -164,13 +164,14 @@ class UserViewModel : NSObject, ObservableObject {
     
     var hasSignedIn : Bool {
         
-        
+    
         if let auser = Auth.auth().currentUser  {
-        
+    
             if firstSignIn {
                 
                 return firstSignIn
             }
+          
             
             if let user = KDS.shared.getUser() {
                 
