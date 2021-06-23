@@ -13,6 +13,18 @@ typealias Gender = RapydSDK.RPDGenderType
 typealias ResidenceType = RapydSDK.RPDResidenceType
 typealias MaritalStatus = RapydSDK.RPDMaritalStatusType
 
+struct Card {
+        
+    var number : String = "4111111111111111"
+    
+    var cvv : String = "123"
+    
+    var expirationYear : Int = 22
+    
+    var expirationMonth : Int = 10
+    
+}
+
 
 struct WalletIDs {
     
@@ -271,6 +283,59 @@ extension WalletHandler {
     static let errorURL : String = "https://google.com/error"
     
     
+    func add(card : Card, amount : Double, currency : String, paymentMethod : PaymentMethod,
+             completion : ((PaymentSuccess?, Error?)->Void)? = nil){
+        
+        
+        RPDPaymentMethodManager().fetchPaymentMethodRequiredFields(type: /** paymentMethod.rpdPaymentMethod.type ?? */ "il_visa_card"){
+            [weak self]  paymentMethodRequiredFields, error in
+            
+            guard let self = self else {return}
+            
+            if error == nil {
+                
+                let currUser = RPDUser.currentUser()
+                let eWallet1 = RPDEWallet(ID: currUser?.id ?? "" , paymentValue: 10, paymentType: .amount)
+               // let paymentFees = RPDPaymentFees(transactionFee:
+                //RPDPaymentFeeRelativeChange(feeType: .absolute, calcType: .gross, value: 400), fxFee:RPDPaymentFee(calcType: .gross, value: 10))
+          
+                if var paymentMethodRequiredFields = paymentMethodRequiredFields {
+                   
+                    self.setFieldsForCard(&paymentMethodRequiredFields, card: card)
+                }
+                
+                
+                let paymentMethodID = "card_92929292992"
+                
+                RPDPaymentManager().createPayment(amount: Decimal(amount),
+                    currency: RPDCurrency.currency(with: currency),
+                    paymentMethodRequiredFields: paymentMethodRequiredFields,
+                    paymentMethodID: paymentMethodID,
+                    eWallets: [eWallet1], completePaymentURL: WalletHandler.completionURL, errorPaymentURL: WalletHandler.errorURL,
+                    description: nil,expirationAt: nil, merchantReferenceID: nil,requestedCurrency: nil,
+                    isCapture: true, statementDescriptor: nil,address: nil,customerID: nil,
+                    receiptEmail: currUser?.email ?? "",showIntermediateReturnPage: nil,isEscrow: nil,releaseEscrowDays: nil,
+                    paymentFees: nil,
+                    metadata: self.genericMetaData){ payment, error in
+                        guard let err = error else {
+                            
+                           var pms = PaymentSuccess()
+                           pms.amount = Double(truncating: (payment?.amount ?? 0) as NSNumber)
+                           pms.curreny = payment?.currency?.code ?? ""
+                           pms.dateCreated = payment?.createdAt
+                           
+                           completion?(pms, nil)
+                           return
+                        }
+                        
+                        completion?(nil, err)
+                }
+            }
+        }
+        
+    }
+    
+    
     
     func add(amount : Double, currency : String, paymentMethod : PaymentMethod,
                completion : ((PaymentSuccess?, Error?)->Void)? = nil ){
@@ -291,10 +356,8 @@ extension WalletHandler {
         
         let pmMgr = RPDPaymentManager()
         
-        let paymentMethodID = "other_\(pm.type ?? "")"
-      
-        print("paymentMthod.id::\(paymentMethodID)")
-        
+        let paymentMethodID = "\(pm.type ?? "")"
+
         pmMgr.createPayment(amount: Decimal(amount),
             currency: RPDCurrency.currency(with: currency),
             paymentMethodRequiredFields:pmfields,
@@ -362,18 +425,18 @@ extension WalletHandler {
     }
     
     
-    private func setFieldsForCard (_ pmfields : inout RPDPaymentMethodRequiredFields ){
+private func setFieldsForCard (_ pmfields : inout RPDPaymentMethodRequiredFields, card : Card ){
         
         pmfields.fields.forEach {
             switch $0.name {
                 case "number":
-                    $0.value = "4111111111111111"
+                    $0.value = card.number
                 case "expiration_month":
-                    $0.value = "10"
+                    $0.value = card.expirationMonth
                 case "expiration_year":
-                    $0.value = "22"
+                    $0.value = card.expirationYear
                 case "cvv":
-                    $0.value = "123"
+                    $0.value = card.cvv
                 default:
                     break
             }

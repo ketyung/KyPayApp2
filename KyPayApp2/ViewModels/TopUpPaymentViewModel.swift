@@ -14,6 +14,7 @@ class TopUpPaymentViewModel : ObservableObject {
     
     @Published private var showingProgressIndicator : Bool = false
     
+    private let walletHandler = WalletHandler()
     
     var errorMessage : String? {
         
@@ -109,8 +110,7 @@ extension TopUpPaymentViewModel {
       
             self.showingProgressIndicator = true
           
-            
-            WalletHandler().add(amount: Double(amount), currency: currency, paymentMethod: paymentMethod, completion: {
+            walletHandler.add(amount: Double(amount), currency: currency, paymentMethod: paymentMethod, completion: {
             
                 [weak self] payment, error in
                 
