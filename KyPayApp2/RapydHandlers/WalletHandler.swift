@@ -300,11 +300,19 @@ extension WalletHandler {
                 let eWallet1 = RPDEWallet(ID: currUser?.id ?? "" , paymentValue: 10, paymentType: .amount)
                 
                 
-                
-                
-               // let paymentFees = RPDPaymentFees(transactionFee:
+                // let paymentFees = RPDPaymentFees(transactionFee:
                 //RPDPaymentFeeRelativeChange(feeType: .absolute, calcType: .gross, value: 400), fxFee:RPDPaymentFee(calcType: .gross, value: 10))
-            
+                
+                let paymentMethodID = """
+                {"type": "us_visa_card",
+                "fields": {
+                    "number": "4111111111111111",
+                    "expiration_month": "10",
+                    "expiration_year": "22",
+                    "cvv": "123",
+                    "name": "John Doe"
+                }}
+                """
                 
                 if var pmfields = paymentMethodRequiredFields {
                    
@@ -313,7 +321,7 @@ extension WalletHandler {
                     RPDPaymentManager().createPayment(amount: Decimal(amount),
                         currency: RPDCurrency.currency(with: currency),
                         paymentMethodRequiredFields: pmfields,
-                        paymentMethodID: "card_823894ee89c52be00e76d2be10116672" ,
+                        paymentMethodID: paymentMethodID ,
                         eWallets: [eWallet1], completePaymentURL: WalletHandler.completionURL, errorPaymentURL: WalletHandler.errorURL,
                         description: nil,expirationAt: nil, merchantReferenceID: nil,requestedCurrency: nil,
                         isCapture: true, statementDescriptor: nil,address: nil,customerID: nil,
@@ -408,9 +416,8 @@ extension WalletHandler {
                 
                 let pmMgr = RPDPaymentManager()
                 
-                let paymentMethodID = "other_\(pm.type ?? "")"
-
-                
+                let paymentMethodID = "xxx"
+                    
                 pmMgr.createPayment(amount: Decimal(amount),
                     currency: RPDCurrency.currency(with: currency),
                     paymentMethodRequiredFields:pmfields,paymentMethodID: paymentMethodID ,
