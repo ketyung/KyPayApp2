@@ -64,6 +64,7 @@ class WalletHandler : NSObject {
     private lazy var customerHandler = CustomerHandler()
     
 
+    // also need to create a customer
     func createWallet(for user : User, wallet : UserWallet,
         address : UserAddress? = nil ,completion : ((WalletIDs?, Error?)->Void)? = nil ) {
         
@@ -113,10 +114,30 @@ class WalletHandler : NSObject {
             }
                 
             if let usr = usr {
+                
+                if let custId = wallet.serviceCustId {
+               
+                    var wids = WalletIDs(from: usr)
+                    wids.custId = custId
+                    completion?(wids, nil)
+                }
+                else {
+                    
+                    // we create the customer here ...
+                    self.customerHandler.createCustomer(for: user, wallet: wallet, completion: {
+                        walletIDs , error  in
+                        
+                        guard let err = error else {
+                            
+                            completion?(walletIDs, nil)
+                            return
+                        }
+                        
+                        completion?(nil, err)
+                    })
+                    
+                }
             
-                let wids = WalletIDs(from: usr)
-            
-                completion?(wids, nil)
                 
             }
             else {
