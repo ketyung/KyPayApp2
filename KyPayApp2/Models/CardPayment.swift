@@ -15,4 +15,19 @@ struct CardPayment {
     
     var expiryDate : String?
     
+    var cardType : String.CardType {
+        
+        if let number = number {
+            
+            return number.replace(" ", "").getCreditCardType()
+        }
+        
+        return .none
+    }
+    
+    var isSupportedCardType : Bool {
+        
+        (cardType == .master || cardType == .visa)
+    }
+    
 }

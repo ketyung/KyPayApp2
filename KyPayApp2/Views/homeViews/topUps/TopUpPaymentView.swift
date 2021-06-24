@@ -24,6 +24,8 @@ struct TopUpPaymentView : View {
             
             amountView()
             
+            balanceView()
+            
             Spacer()
             
         }
@@ -65,6 +67,7 @@ extension TopUpPaymentView  {
                 
                 KFImage(topUpViewModel.paymentMethod?.imageURL)
                 .resizable()
+                .loadDiskFileSynchronously()
                 .placeholder(placeHolderView)
                 .cacheMemoryOnly()
                 .fade(duration: 0.25)
@@ -76,12 +79,12 @@ extension TopUpPaymentView  {
                 
                 Spacer()
                 
-                Image(systemName: "arrowtriangle.forward.fill")
+                Image(systemName: "arrow.forward.circle")
                 .resizable()
                 .frame(width: 20, height:20)
                 .foregroundColor(.gray)
                 
-            }.padding().foregroundColor(.black).background(Color(UIColor(hex:"#ddeeffff")!))
+            }.padding().foregroundColor(.black).background(Color(UIColor(hex:"#eeeeffff")!))
         }
         
     }
@@ -125,3 +128,23 @@ extension TopUpPaymentView {
 }
 
 
+extension TopUpPaymentView {
+    
+    
+    private func balanceView() -> some View {
+        
+        HStack {
+            
+            Text("Current Balance:".localized).font(.custom(Theme.fontNameBold, size: 16))
+            
+            Text("\(walletViewModel.currency)").font(.custom(Theme.fontNameBold, size: 16))
+  
+            Text("\(walletViewModel.balance)").font(.custom(Theme.fontName, size: 16))
+      
+        }
+        .padding()
+        .background(Color(UIColor(hex:"#ddddddff")!))
+        .cornerRadius(6)
+        
+    }
+}

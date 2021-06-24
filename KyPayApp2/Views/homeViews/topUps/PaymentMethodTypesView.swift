@@ -86,6 +86,7 @@ extension PaymentMethodTypesView {
        
             KFImage(paymentMethod.imageURL)
             .resizable()
+            .loadDiskFileSynchronously()
             .placeholder(placeHolderView)
             .cacheMemoryOnly()
             .fade(duration: 0.25)

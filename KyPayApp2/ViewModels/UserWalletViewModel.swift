@@ -58,6 +58,24 @@ class UserWalletViewModel : ObservableObject {
     }
     
     
+    var balance : String {
+        
+        get {
+            
+            "\((walletHolder.wallet.balance ?? 0).roundTo(places: 2))"
+        }
+    }
+    
+    var currency : String {
+        
+        get{
+            
+            walletHolder.wallet.currency ?? "MYR"
+        }
+    }
+    
+    
+    
     var type : UserWallet.WalletType {
         
         get {

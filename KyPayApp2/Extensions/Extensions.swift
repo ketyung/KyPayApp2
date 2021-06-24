@@ -125,3 +125,67 @@ extension LocalizedError where Self: CustomStringConvertible {
       return description
    }
 }
+
+
+extension String {
+    
+    enum CardType : String {
+        
+        case master
+        case visa
+        case amex
+        case diners
+        case discover
+        case jcb
+        case none
+    }
+    
+    
+    func isMatch(_ Regex: String) -> Bool {
+        
+        do {
+            let regex = try NSRegularExpression(pattern: Regex)
+            let results = regex.matches(in: self, range: NSRange(self.startIndex..., in: self))
+            return results.map {
+                String(self[Range($0.range, in: self)!])
+            }.count > 0
+        } catch {
+            return false
+        }
+        
+    }
+    
+    func getCreditCardType() -> CardType {
+        
+        let VISA_Regex = "^4[0-9]{6,}$"
+        let MasterCard_Regex = "^5[1-5][0-9]{5,}|222[1-9][0-9]{3,}|22[3-9][0-9]{4,}|2[3-6][0-9]{5,}|27[01][0-9]{4,}|2720[0-9]{3,}$"
+        let AmericanExpress_Regex = "^3[47][0-9]{5,}$"
+        let DinersClub_Regex = "^3(?:0[0-5]|[68][0-9])[0-9]{4,}$"
+        let Discover_Regex = "^6(?:011|5[0-9]{2})[0-9]{3,}$"
+        let JCB_Regex = "^(?:2131|1800|35[0-9]{3})[0-9]{3,}$"
+        
+        if self.isMatch(VISA_Regex) {
+            return .visa
+        }
+        else if self.isMatch(MasterCard_Regex) {
+            return .master
+        }
+        else if self.isMatch(AmericanExpress_Regex) {
+            return .amex
+        }
+        else if self.isMatch(DinersClub_Regex) {
+            return .diners
+        }
+        else if self.isMatch(Discover_Regex) {
+            return .discover
+        }
+        else if self.isMatch(JCB_Regex) {
+            return .jcb
+        }
+        else {
+            return .none
+        }
+        
+    }
+    
+}

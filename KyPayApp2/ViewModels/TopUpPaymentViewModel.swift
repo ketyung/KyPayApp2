@@ -74,6 +74,13 @@ class TopUpPaymentViewModel : ObservableObject {
                     
                     topUpPayment.errorMessage = "Maximum amount : <curr> 2000"
                 }
+                
+                else if (amt ?? 0) < 5 {
+                    
+                    topUpPayment.errorMessage = "Manimum amount : <curr> 5"
+              
+                }
+                
                 else {
                     
                     topUpPayment.errorMessage = nil

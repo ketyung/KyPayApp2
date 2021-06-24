@@ -11,6 +11,8 @@ class CardPaymentViewModel : ObservableObject {
     
     @Published private var cardPayment = CardPayment()
     
+    @Published var errorMessage : String? = nil
+    
     var number : String {
         
         get {
@@ -28,6 +30,15 @@ class CardPaymentViewModel : ObservableObject {
             }
             
             cardPayment.number = num
+            
+            if !cardPayment.isSupportedCardType {
+                
+                errorMessage = "Only VISA and Master allowed!".localized
+            }
+            else {
+                
+                errorMessage = nil 
+            }
         }
     }
     
