@@ -111,3 +111,25 @@ extension CustomerHandler {
     
 }
 
+
+extension CustomerHandler {
+    
+    func delete(customerId : String){
+        
+        Config.setup()
+        
+        RPDCustomerManager().deleteCustomer(withID: customerId) { response, err in
+                    
+            guard let err = err else  {
+            
+                if let deleteResponse = response {
+                                                                    
+                    print("deleted??..\(deleteResponse.ID ?? "xxxx") \(deleteResponse.isDeleted)")
+                }
+                return
+            }
+            
+            print("deleting.cus::err:\(err)")
+        }
+    }
+}

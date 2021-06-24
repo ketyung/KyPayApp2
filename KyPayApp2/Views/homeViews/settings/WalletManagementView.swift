@@ -18,6 +18,10 @@ struct WalletManagementView : View {
 
     @State private var walletHandler = WalletHandler()
     
+    @State private var custHandler = CustomerHandler()
+    
+    @State private var custId : String = ""
+    
     var body : some View {
         
         VStack(spacing: 50){
@@ -72,7 +76,9 @@ struct WalletManagementView : View {
             
                         guard let err = err else {
                             
-                            print("attaching.wallet::id::\(ids?.walletId ?? "")::cid::\(ids?.contactId ?? "")")
+                            print("attaching.wallet::id::\(ids?.walletId ?? "")::cust.id::\(ids?.custId ?? "")")
+                            
+                            self.custId = ids?.custId ?? "xxxx"
                             return
                         }
                         
@@ -89,13 +95,21 @@ struct WalletManagementView : View {
             
             Button(action: {
                 
-                WalletHandler().detachWallet()
+                self.walletHandler.detachWallet()
                 
             }){
                 
                 Text("Detach Wallet")
             }
 
+            
+            Button(action: {
+                
+                self.custHandler.delete(customerId: self.custId)
+                
+            }){
+                Text("delete cust")
+            }
             
         }
         
