@@ -17,23 +17,38 @@ struct CardPaymentView : View {
             
             Spacer().frame(height: 30)
             
-            HStack(spacing:10) {
-                Image(systemName: "creditcard")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 26)
-                .foregroundColor(.gray)
-          
-                TextField("Card Number".localized, text: $cardViewModel.number)
-                .keyboardType(.numberPad)
+            
+            VStack(alignment: .leading){
+                
+                Text("Card Number".localized).font(.custom(Theme.fontName, size: 16))
+                
+                HStack(spacing:10) {
+                    Image(systemName: "creditcard")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 26)
+                    .foregroundColor(.gray)
+              
+                    TextField("Card Number".localized, text: $cardViewModel.number)
+                    .keyboardType(.numberPad)
+                }
+               
             }
             
             
             HStack {
                 
-                TextField("MM/YY", text : $cardViewModel.expiryDate).keyboardType(.numberPad)
+                VStack(alignment: .leading) {
+                    Text("Valid till".localized).font(.custom(Theme.fontName, size: 16))
+                    TextField("MM/YY", text : $cardViewModel.expiryDate).keyboardType(.numberPad)
+                }
                 
-                TextField("CVV", text : $cardViewModel.cvv).keyboardType(.numberPad)
+                
+                VStack(alignment: .leading) {
+                
+                    Text("CVV".localized).font(.custom(Theme.fontName, size: 16))
+                    TextField("CVV", text : $cardViewModel.cvv).keyboardType(.numberPad)
+                }
                 
             }
             
