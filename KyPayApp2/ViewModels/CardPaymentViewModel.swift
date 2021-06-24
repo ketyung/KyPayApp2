@@ -73,4 +73,12 @@ class CardPaymentViewModel : ObservableObject {
             cardPayment.cvv = newVal
         }
     }
+    
+    
+    var asCard : Card {
+        
+        get{
+            cardPayment.asCard
+        }
+    }
 }

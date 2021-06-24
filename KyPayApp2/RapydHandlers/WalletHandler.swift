@@ -23,6 +23,22 @@ struct Card {
     
     var expirationMonth : Int = 10
     
+    var cardType : String.CardType = .none
+    
+    var paymentTypeBasedOnCardType : String {
+        
+        switch(cardType){
+            
+            case .visa :
+                return "us_visa_card"
+            
+            case .master :
+                return "us_master_card"
+                
+            default :
+                return ""
+        }
+    }
 }
 
 
@@ -293,11 +309,11 @@ extension WalletHandler {
     static let errorURL : String = "https://techchee.com/KyPayFailed"
     
     
-    func add(card : Card, amount : Double, currency : String,
-             cardType : String = "us_visa_card" , customerId : String ,
+    func add(card : Card, amount : Double, currency : String, customerId : String ,
              completion : ((PaymentSuccess?, Error?)->Void)? = nil){
                 
-        customerHandler.obtainPaymentMethodID(for: customerId, type: cardType, completion: {
+        let pmtype = card.paymentTypeBasedOnCardType 
+        customerHandler.obtainPaymentMethodID(for: customerId, type: pmtype, completion: {
 
             [weak self] paymentMethodID, error in
             
@@ -310,7 +326,7 @@ extension WalletHandler {
             
             if let paymentMethodID = paymentMethodID {
            
-                self.add(card: card, amount: amount, currency: currency, cardType: cardType,
+                self.add(card: card, amount: amount, currency: currency, cardType: pmtype,
                 paymentMethodID: paymentMethodID, completion: completion)
              
             }

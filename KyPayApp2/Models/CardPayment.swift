@@ -30,4 +30,31 @@ struct CardPayment {
         (cardType == .master || cardType == .visa)
     }
     
+    
+    var asCard : Card {
+        
+        var card = Card()
+        
+        if let number = number {
+            
+            card.number = number.replace(" ", "")
+        }
+        
+        card.cardType = self.cardType
+        card.cvv = self.cvv ?? ""
+        
+        let exps = self.expiryDate?.components(separatedBy: "/")
+        
+        if let month = exps?.first {
+            
+            card.expirationMonth = Int(month) ?? 0
+        }
+        
+        if let year = exps?[safe:1] {
+            
+            card.expirationYear = Int(year) ?? 0
+        }
+        
+        return card
+    }
 }

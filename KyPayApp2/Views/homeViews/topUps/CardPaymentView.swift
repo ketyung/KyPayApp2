@@ -13,6 +13,8 @@ struct CardPaymentView : View {
     
     @EnvironmentObject private var walletViewModel : UserWalletViewModel
    
+    @State private var custHandler = CustomerHandler()
+    
     var body: some View {
         
         view()
@@ -34,6 +36,14 @@ struct CardPaymentView : View {
             print("c.cid::\(custId)")
             //topUpViewModel.currency = userViewModel.allowedCurrency
             //topUpViewModel.add(customerId: custId)
+            
+            let type = cardViewModel.asCard.paymentTypeBasedOnCardType
+            custHandler.obtainPaymentMethodID(for: custId, type: type , completion:{
+              
+                pmid , err in
+                
+                print("obtained.pid.for.type::\(type)::\(pmid ?? "xxx.none")")
+            })
         }
         else {
             print("nil.cust.id!!!")
