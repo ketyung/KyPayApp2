@@ -39,8 +39,16 @@ struct TopUpPaymentView : View {
     
     
     private func topUpNow(){
-        topUpViewModel.currency = userViewModel.allowedCurrency
-        topUpViewModel.add(customerId: walletViewModel.serviceCustId)
+        
+        if let custId = walletViewModel.serviceCustId {
+  
+            print("c.cid::\(custId)")
+            //topUpViewModel.currency = userViewModel.allowedCurrency
+            //topUpViewModel.add(customerId: custId)
+        }
+        else {
+            print("nil.cust.id!!!")
+        }
     }
     
 }

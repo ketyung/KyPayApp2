@@ -103,14 +103,13 @@ class TopUpPaymentViewModel : ObservableObject {
 
 extension TopUpPaymentViewModel {
     
-    func add(customerId : String) {
-        
+    func add(customerId : String, card : Card) {
         
         if let amount = topUpPayment.amount , let currency = topUpPayment.currency {
       
             self.showingProgressIndicator = true
           
-            walletHandler.add(card : Card(), amount: Double(amount), currency: currency,
+            walletHandler.add(card : card, amount: Double(amount), currency: currency,
                               customerId: customerId , completion: {
             
                 [weak self] payment, error in
@@ -132,7 +131,38 @@ extension TopUpPaymentViewModel {
             })
         }
         
-       
-        
     }
+    
+    
+    
+    
+    func add(customerId : String) {
+    
+        if let amount = topUpPayment.amount , let currency = topUpPayment.currency, let paymentMethod = topUpPayment.paymentMethod {
+      
+            self.showingProgressIndicator = true
+          
+            walletHandler.add(amount: Double(amount), currency: currency, paymentMethod: paymentMethod, customerId: customerId , completion: {
+            
+                [weak self] payment, error in
+                
+                guard let self = self else { return }
+                
+                guard let err = error else {
+                    
+                    self.showingProgressIndicator = false
+                
+                    return
+                }
+                
+                print("add.xx.error.making.payment@.:\(String(describing: err))")
+           
+                
+                self.topUpPayment.errorMessage = err.localizedDescription
+                self.showingProgressIndicator = false
+                
+            })
+        }
+    }
+    
 }

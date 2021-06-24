@@ -13,6 +13,8 @@ class UserWalletViewModel : ObservableObject {
     
     @Published private var showingProgressIndicator : Bool = false
     
+    private lazy var walletHandler = WalletHandler()
+    
     var id : String {
         
         get {
@@ -40,11 +42,11 @@ class UserWalletViewModel : ObservableObject {
     }
     
     
-    var serviceCustId : String {
+    var serviceCustId : String? {
         
         get {
             
-            wallet.serviceCustId ?? ""
+            wallet.serviceCustId 
         }
 
     }
@@ -98,14 +100,13 @@ extension UserWalletViewModel {
             return
         }
         
-        WalletHandler().currentWallet(attachIfNotPresent: user, wallet: wallet, completion: { [weak self] ids, err in
+        self.walletHandler.currentWallet(attachIfNotPresent: user, wallet: wallet, completion: { [weak self] ids, err in
 
             guard let self = self else { return }
             
             // update to remote wallet
             self.updateWalletRemotely(wallet, ids: ids, completion: completion)
-            //completion?(err)
-            
+            //completion?(err
             
         })
         
@@ -252,8 +253,6 @@ extension UserWalletViewModel {
     
     private func createRapydWallet( user : User, wallet : UserWallet){
         
-        
-        let walletHandler = WalletHandler()
     
         walletHandler.attachWallet(user: user, wallet: wallet, completion: { [weak self ] ids, err in
             guard let self = self else { return }
@@ -265,7 +264,7 @@ extension UserWalletViewModel {
             }
        
             //  create the wallet if cannot attach
-            walletHandler.createWallet(for: user, wallet: wallet, completion: {[weak self] ids, err in
+            self.walletHandler.createWallet(for: user, wallet: wallet, completion: {[weak self] ids, err in
                 guard let self = self else { return }
                
                 guard let err = err else {
