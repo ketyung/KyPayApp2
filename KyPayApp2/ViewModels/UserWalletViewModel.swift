@@ -7,9 +7,15 @@
 
 import Foundation
 
+private struct UserWalletHolder{
+    
+    var wallet : UserWallet = UserWallet()
+}
+
+
 class UserWalletViewModel : ObservableObject {
     
-    @Published private var wallet = UserWallet()
+    @Published private var walletHolder = UserWalletHolder()
     
     @Published private var showingProgressIndicator : Bool = false
     
@@ -18,12 +24,12 @@ class UserWalletViewModel : ObservableObject {
     var id : String {
         
         get {
-            wallet.id ?? ""
+            walletHolder.wallet.id ?? ""
         }
         
         set(newVal){
             
-            wallet.id = newVal
+            walletHolder.wallet.id = newVal
         }
     }
     
@@ -32,12 +38,12 @@ class UserWalletViewModel : ObservableObject {
         
         get {
             
-            wallet.refId ?? ""
+            walletHolder.wallet.refId ?? ""
         }
         
         set(newVal){
             
-            wallet.refId = newVal
+            walletHolder.wallet.refId = newVal
         }
     }
     
@@ -46,7 +52,7 @@ class UserWalletViewModel : ObservableObject {
         
         get {
             
-            wallet.serviceCustId 
+            walletHolder.wallet.serviceCustId
         }
 
     }
@@ -55,12 +61,12 @@ class UserWalletViewModel : ObservableObject {
     var type : UserWallet.WalletType {
         
         get {
-            wallet.type ?? .personal
+            walletHolder.wallet.type ?? .personal
         }
         
         set(newVal){
             
-            wallet.type = newVal
+            walletHolder.wallet.type = newVal
         }
     }
     
@@ -105,8 +111,8 @@ extension UserWalletViewModel {
             guard let self = self else { return }
             
             // update to remote wallet
-            self.updateWalletRemotely(wallet, ids: ids, completion: completion)
-            //completion?(err
+            //print("curr.wallet::\(wallet)")
+            self.updateWalletRemotelyIfNeeded(wallet, ids: ids, completion: completion)
             
         })
         
@@ -117,10 +123,8 @@ extension UserWalletViewModel {
 extension UserWalletViewModel {
     
     
-    private func fetchWalletRemotely(user : User,
-                             walletType : UserWallet.WalletType,
-                             currency : String,
-                             completion :((Error?) -> Void)? = nil){
+    private func fetchWalletRemotely(user : User, walletType : UserWallet.WalletType,currency : String,
+                                     completion :((Error?) -> Void)? = nil){
         
         ARH.shared.fetchUserWallet(id: user.id ?? "", type: walletType, currency: currency, completion: {[weak self]
             res in
@@ -143,13 +147,15 @@ extension UserWalletViewModel {
                     else {
                     
                         completion?(err)
-                    
                     }
                     
                 case .success(let rs) :
                 
                     KDS.shared.saveWallet(rs)
-                    
+                    // set to wallet in session
+                    DispatchQueue.main.async {
+                        self.walletHolder.wallet = rs
+                    }
                     
                     self.createRapydWallet(user: user, wallet: rs)
                                   
@@ -166,29 +172,49 @@ extension UserWalletViewModel {
     }
     
     
-    private func updateWalletRemotely(_ wallet : UserWallet, ids : WalletIDs? ,  completion :((Error?) -> Void)? = nil){
-        
+    private func updateWalletRemotelyIfNeeded(_ wallet : UserWallet, ids : WalletIDs? ,  completion :((Error?) -> Void)? = nil){
         
         var updatedWallet = wallet
-        updatedWallet.serviceContactId = ids?.contactId
-        updatedWallet.serviceAddrId = ids?.addrId
-        updatedWallet.serviceWalletId = ids?.walletId
-        updatedWallet.serviceCustId = ids?.custId
         
-        ARH.shared.updateUserWallet(updatedWallet, returnType: UserWallet.self,  completion: {
-            
-            res in
-            
-            switch(res) {
-            
-                case .failure(let err) :
-                    completion?(err)
-                    
-                case .success(_) :
-                    completion?(nil)
-                    
-            }
-        })
+        var toUpdateRemote = false
+        
+        if let contactId = ids?.contactId, updatedWallet.serviceContactId == nil {
+            updatedWallet.serviceContactId = contactId
+            toUpdateRemote = true
+        }
+        if let addrId = ids?.addrId,  updatedWallet.serviceAddrId == nil {
+            updatedWallet.serviceAddrId = addrId
+            toUpdateRemote = true
+        }
+        if let walletId = ids?.walletId, updatedWallet.serviceWalletId == nil {
+            updatedWallet.serviceWalletId = walletId
+            toUpdateRemote = true
+        }
+        if let custId = ids?.custId, updatedWallet.serviceCustId == nil {
+            updatedWallet.serviceCustId = custId
+            toUpdateRemote = true
+        }
+        
+        DispatchQueue.main.async {
+            self.walletHolder.wallet = updatedWallet
+        }
+     
+       
+        if toUpdateRemote  {
+            // update the wallet in session
+            ARH.shared.updateUserWallet(updatedWallet, returnType: UserWallet.self,  completion: { res in
+                
+                switch(res) {
+                
+                    case .failure(let err) :
+                        completion?(err)
+                        
+                    case .success(_) :
+                        completion?(nil)
+                }
+            })
+        }
+        
     }
     
 }
@@ -222,10 +248,13 @@ extension UserWalletViewModel {
                     if let createdWallet = rs.returnedObject {
                    
                         KDS.shared.saveWallet(createdWallet)
-                 
-                       // print("wallet.created::\(createdWallet.id ?? ""):\(createdWallet.refId ?? ""):\(createdWallet.balance ?? 0)")
-          
+                        
                         self.createRapydWallet(user: user, wallet: createdWallet)
+                        
+                        // update the wallet in session
+                        DispatchQueue.main.async {
+                            self.walletHolder.wallet = wallet
+                        }
                         
                         completion?(nil)
                     }
@@ -259,7 +288,7 @@ extension UserWalletViewModel {
             
             guard let _ = err else {
                 
-                self.updateWalletRemotely(wallet, ids: ids)
+                self.updateWalletRemotelyIfNeeded(wallet, ids: ids)
                 return
             }
        
@@ -269,11 +298,11 @@ extension UserWalletViewModel {
                
                 guard let err = err else {
                     
-                    self.updateWalletRemotely(wallet, ids: ids)
+                    self.updateWalletRemotelyIfNeeded(wallet, ids: ids)
                     return
                 }
                 
-                print("Create.wallet.from.Rapyd.err:\(err)")
+                print("Create.walletHolder.wallet.from.Rapyd.err:\(err)")
                 
             })
         })
