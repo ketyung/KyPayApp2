@@ -116,7 +116,7 @@ extension UserWalletViewModel {
 extension UserWalletViewModel {
     
     
-    func fetchWalletRemotely(user : User,
+    private func fetchWalletRemotely(user : User,
                              walletType : UserWallet.WalletType,
                              currency : String,
                              completion :((Error?) -> Void)? = nil){
@@ -194,7 +194,7 @@ extension UserWalletViewModel {
 
 extension UserWalletViewModel {
     
-    func createWalletIfNotPresent(user : User,
+    private func createWalletIfNotPresent(user : User,
                                   walletType : UserWallet.WalletType,
                                   currency : String,
                                   completion :((Error?) -> Void)? = nil){

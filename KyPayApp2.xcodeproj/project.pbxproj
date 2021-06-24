@@ -125,6 +125,9 @@
 		10B855F726830C9600AEF15F /* PaymentSuccess.php in Resources */ = {isa = PBXBuildFile; fileRef = 10B855F626830C9600AEF15F /* PaymentSuccess.php */; };
 		10B855F926830E8F00AEF15F /* PaymentFailed.php in Resources */ = {isa = PBXBuildFile; fileRef = 10B855F826830E8F00AEF15F /* PaymentFailed.php */; };
 		10B855FB2684037700AEF15F /* CustomerHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B855FA2684037700AEF15F /* CustomerHandler.swift */; };
+		10B855FD2684274D00AEF15F /* CardPaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B855FC2684274D00AEF15F /* CardPaymentView.swift */; };
+		10B855FF268427AF00AEF15F /* CardPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B855FE268427AF00AEF15F /* CardPayment.swift */; };
+		10B85601268427FA00AEF15F /* CardPaymentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B85600268427FA00AEF15F /* CardPaymentViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -280,6 +283,9 @@
 		10B855F626830C9600AEF15F /* PaymentSuccess.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = PaymentSuccess.php; sourceTree = "<group>"; };
 		10B855F826830E8F00AEF15F /* PaymentFailed.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = PaymentFailed.php; sourceTree = "<group>"; };
 		10B855FA2684037700AEF15F /* CustomerHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerHandler.swift; sourceTree = "<group>"; };
+		10B855FC2684274D00AEF15F /* CardPaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardPaymentView.swift; sourceTree = "<group>"; };
+		10B855FE268427AF00AEF15F /* CardPayment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardPayment.swift; sourceTree = "<group>"; };
+		10B85600268427FA00AEF15F /* CardPaymentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardPaymentViewModel.swift; sourceTree = "<group>"; };
 		1B47377B496C6F0F1022FFD4 /* Pods-KyPayApp2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.debug.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.debug.xcconfig"; sourceTree = "<group>"; };
 		6F523BC3D4353462922B31B9 /* Pods-KyPayApp2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.release.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -573,6 +579,7 @@
 				10B855E0267EC76300AEF15F /* UserWalletViewModel.swift */,
 				10B855E6267EF16D00AEF15F /* PaymentMethodsViewModel.swift */,
 				10B855EE267F2FD400AEF15F /* TopUpPaymentViewModel.swift */,
+				10B85600268427FA00AEF15F /* CardPaymentViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -587,6 +594,7 @@
 				10B855E4267EF10600AEF15F /* PaymentMethod.swift */,
 				10154F39268033B600DB78C4 /* TopUpPayment.swift */,
 				10B855F2268081E400AEF15F /* PaymentSuccess.swift */,
+				10B855FE268427AF00AEF15F /* CardPayment.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -692,6 +700,7 @@
 			children = (
 				10B855E2267EEEB400AEF15F /* PaymentMethodTypesView.swift */,
 				10B855EB267F2BF700AEF15F /* TopUpPaymentView.swift */,
+				10B855FC2684274D00AEF15F /* CardPaymentView.swift */,
 				1033C0B9267AEC3700D999CE /* TopUpView.swift */,
 			);
 			path = topUps;
@@ -975,6 +984,7 @@
 				10310ADC2681839100A071B7 /* WalletManagementView.swift in Sources */,
 				1033C096267846E500D999CE /* FirstSignInView.swift in Sources */,
 				10B855E1267EC76300AEF15F /* UserWalletViewModel.swift in Sources */,
+				10B85601268427FA00AEF15F /* CardPaymentViewModel.swift in Sources */,
 				1033B2992674A82F00D999CE /* UserPaymentTx.swift in Sources */,
 				1033C0C9267B3C6C00D999CE /* KyPayUserSyncer.swift in Sources */,
 				1033B2932674A82F00D999CE /* Tester.swift in Sources */,
@@ -987,6 +997,7 @@
 				1033B2592674A7F200D999CE /* ContentView.swift in Sources */,
 				10B855DD267DE95300AEF15F /* CurrencyManager.swift in Sources */,
 				1033C09C2678509D00D999CE /* SettingsView.swift in Sources */,
+				10B855FF268427AF00AEF15F /* CardPayment.swift in Sources */,
 				1033C0BE267AFCCD00D999CE /* PersistanceController.swift in Sources */,
 				1033C0B12679C45C00D999CE /* PopOverView.swift in Sources */,
 				1033C0642676DCCE00D999CE /* UIColorExt.swift in Sources */,
@@ -996,6 +1007,7 @@
 				1033C08E26773C0600D999CE /* KCDataStore.swift in Sources */,
 				1033C0742676E81000D999CE /* RoundedCorner.swift in Sources */,
 				1033C0A82678A8CD00D999CE /* CustomActivityIndicator.swift in Sources */,
+				10B855FD2684274D00AEF15F /* CardPaymentView.swift in Sources */,
 				1033C0692676DD8700D999CE /* CountryCodePickerUI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
