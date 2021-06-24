@@ -51,3 +51,59 @@ class CustomerHandler {
     }
 }
 
+extension CustomerHandler {
+    
+    
+    func obtainPaymentMethodID(for customerId : String, type : String,
+                               completion : ((String?, Error?) -> Void)? = nil ){
+        
+        RPDCustomerManager().listPaymentMethods(ofCustomer: customerId, type: type,
+        startingAfter: nil, endingBeforer: nil, limit: nil) { [weak self]
+            paymentMethodResponse, error in
+                                                            
+            if let paymentMethodResponse = paymentMethodResponse, paymentMethodResponse.count > 0 {
+                
+                if let pid = paymentMethodResponse.first?.ID{
+                    
+                    completion?(pid, nil)
+                    return
+                }
+                
+                completion?(nil, error)
+            }
+            else {
+                
+                guard let self = self else { return }
+                
+                self.addPaymentMethod(for: customerId, type: type)
+            }
+        }
+        
+    }
+    
+    func addPaymentMethod(for customerId : String, type : String,
+                          completion : ((String?, Error?) -> Void)? = nil ) {
+    
+        RPDCustomerManager().addPaymentMethod(type: type,
+        customerID: customerId,requiredFields: nil,token: nil,address: nil,metadata: nil)
+        {   paymentMethodData, error in
+        
+            guard let err = error else {
+            
+                
+                if let paymentMethodData = paymentMethodData {
+               
+                    completion?(paymentMethodData.ID, nil)
+                }
+                
+                return
+            }
+            
+            completion?(nil, err)
+            
+        }
+    }
+    
+    
+}
+
