@@ -162,6 +162,7 @@ extension UserWalletViewModel {
         updatedWallet.serviceContactId = ids?.contactId
         updatedWallet.serviceAddrId = ids?.addrId
         updatedWallet.serviceWalletId = ids?.walletId
+        updatedWallet.serviceCustId = ids?.custId
         
         ARH.shared.updateUserWallet(updatedWallet, returnType: UserWallet.self,  completion: {
             
