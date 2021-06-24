@@ -14,6 +14,8 @@ class CustomerHandler {
     func createCustomer(for user : User, wallet : UserWallet?, address : UserAddress? = nil,
                         completion : ((WalletIDs?, Error?) -> Void)? = nil ) {
         
+            Config.setup()
+        
             let name = "\(user.firstName ?? "") \(user.lastName ?? "")"
             let addr = RPDAddress()
             addr.name = name
@@ -57,6 +59,8 @@ extension CustomerHandler {
     func obtainPaymentMethodID(for customerId : String, type : String,
                                completion : ((String?, Error?) -> Void)? = nil ){
         
+        Config.setup()
+        
         RPDCustomerManager().listPaymentMethods(ofCustomer: customerId, type: type,
         startingAfter: nil, endingBeforer: nil, limit: nil) { [weak self]
             paymentMethodResponse, error in
@@ -83,6 +87,8 @@ extension CustomerHandler {
     
     func addPaymentMethod(for customerId : String, type : String,
                           completion : ((String?, Error?) -> Void)? = nil ) {
+        
+        Config.setup()
     
         RPDCustomerManager().addPaymentMethod(type: type,
         customerID: customerId,requiredFields: nil,token: nil,address: nil,metadata: nil)

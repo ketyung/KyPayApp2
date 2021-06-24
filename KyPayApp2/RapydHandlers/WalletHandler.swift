@@ -198,7 +198,7 @@ extension WalletHandler {
         RPDUser.detachUser()
     }
     
-    func attachWallet(user : User, wallet : UserWallet, completion : ((WalletIDs?, Error?)->Void)? = nil ){
+    func attachWallet(user : User, wallet : UserWallet,completion : ((WalletIDs?, Error?)->Void)? = nil ){
         
         Config.setup()
        
