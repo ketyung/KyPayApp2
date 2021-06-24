@@ -22,14 +22,12 @@ class CustomerHandler {
             addr.line1 = address?.line1 ?? "Line 1"
             addr.city = address?.city ?? "Kota Kinabalu"
                     
-            
-            let paymentMethod = RPDMinimalPaymentMethod(type: "rapyd_sbox_test", requiredFields: nil, metadata: nil)
-            
-            
+           // let paymentMethod = RPDMinimalPaymentMethod(type: "us_credit_card", requiredFields: nil, metadata: nil)
+        
             RPDCustomerManager().createCustomer(withName: name,
                 email: user.email ?? "xxx@mail.com",phoneNumber: user.phoneNumber ?? "92929292929",
                 addresses: [addr],businessVATID: nil,couponID: nil,
-                invoicePrefix: "myinvoce",paymentMethod: paymentMethod,
+                invoicePrefix: "myinvoce",paymentMethod: nil,
                 eWalletID: wallet?.serviceWalletId,description: nil,metadata: ["go" : "1"]){ customer , error in
                         
                 guard let err = error else {

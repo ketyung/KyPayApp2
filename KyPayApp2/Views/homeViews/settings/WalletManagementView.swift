@@ -16,6 +16,7 @@ struct WalletManagementView : View {
 
     @State private var promptDelete : Bool = false
 
+    @State private var walletHandler = WalletHandler()
     
     var body : some View {
         
@@ -27,7 +28,7 @@ struct WalletManagementView : View {
               
                     //walletViewModel.createRapydWallet(user: userViewModel.user, wallet: createdWallet)
                   
-                    WalletHandler().createWallet(for: userViewModel.user, wallet: createdWallet, completion: { ids, err in
+                    self.walletHandler.createWallet(for: userViewModel.user, wallet: createdWallet, completion: { ids, err in
                         
                         guard let err = err else {
                             
@@ -52,7 +53,7 @@ struct WalletManagementView : View {
                 
                 if let createdWallet = KDS.shared.getWallet(type: userViewModel.user.allowedWalletTypes.first ?? .personal, currency: userViewModel.allowedCurrency) {
                         
-                    WalletHandler().updateWallet(with: userViewModel.user, wallet: createdWallet)
+                    self.walletHandler.updateWallet(with: userViewModel.user, wallet: createdWallet)
                 }
                 
             }){
@@ -65,10 +66,10 @@ struct WalletManagementView : View {
                 
                 if let createdWallet = KDS.shared.getWallet(type: userViewModel.user.allowedWalletTypes.first ?? .personal, currency: userViewModel.allowedCurrency) {
 
-                    WalletHandler().attachWallet(user: userViewModel.user, wallet: createdWallet, completion: {
+                    self.walletHandler.attachWallet(user: userViewModel.user, wallet: createdWallet, completion: {
                         
                         ids, err in
-                        
+            
                         guard let err = err else {
                             
                             print("attaching.wallet::id::\(ids?.walletId ?? "")::cid::\(ids?.contactId ?? "")")

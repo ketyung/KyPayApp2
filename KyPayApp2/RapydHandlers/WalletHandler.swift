@@ -234,6 +234,8 @@ extension WalletHandler {
                         var walletIDs = WalletIDs(from: usr)
                         walletIDs.custId = custId
                         completion?(walletIDs, nil)
+                        
+                        print("attaching.wallet.id::\(walletIDs.custId ?? "xxxx")")
                     }
                     else {
                         // add customer here if no customer id present ...
@@ -244,6 +246,8 @@ extension WalletHandler {
                 }
                 else {
                     
+                    print("attaching.wallet.with.nil.usr")
+             
                     completion?(nil, nil)
                 }
                 
