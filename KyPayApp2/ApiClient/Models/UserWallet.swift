@@ -50,11 +50,10 @@ struct UserWallet : Codable {
     
     var walletIDs : WalletIDs {
         
-        var w = WalletIDs(custId: self.serviceCustId)
-        w.addrId = self.serviceAddrId
-        w.contactId = self.serviceContactId
-        w.walletId = self.serviceWalletId
-        w.refId = self.refId
+        let w = WalletIDs(
+            addrId: self.serviceAddrId, contactId: self.serviceContactId, custId: self.serviceCustId,
+            refId: self.refId, walletId: self.serviceWalletId)
+        
         return w 
     }
     

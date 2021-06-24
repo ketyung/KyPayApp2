@@ -11,7 +11,7 @@ import RapydSDK
 class CustomerHandler {
     
     
-    func createCustomer(for user : User, wallet : UserWallet?, address : UserAddress?,
+    func createCustomer(for user : User, wallet : UserWallet?, address : UserAddress? = nil,
                         completion : ((WalletIDs?, Error?) -> Void)? = nil ) {
         
             let name = "\(user.firstName ?? "") \(user.lastName ?? "")"

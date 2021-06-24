@@ -27,9 +27,7 @@ struct Card {
 
 
 struct WalletIDs {
-    
-    var walletId : String?
-    
+
     var addrId : String?
     
     var contactId : String?
@@ -38,9 +36,15 @@ struct WalletIDs {
     
     var refId : String?
     
-    init(custId : String?){
+    var walletId : String?
+    
+    init(addrId : String?, contactId : String?, custId : String?, refId : String? , walletId : String?){
         
         self.custId = custId
+        self.addrId = addrId
+        self.contactId = contactId
+        self.refId = refId
+        self.walletId = walletId
     }
     
     
@@ -56,6 +60,8 @@ struct WalletIDs {
 class WalletHandler : NSObject {
     
     private let genericMetaData =  ["game": "uncharted"]
+    
+    private lazy var customerHandler = CustomerHandler()
     
 
     func createWallet(for user : User, wallet : UserWallet,
@@ -203,15 +209,35 @@ extension WalletHandler {
     
                     
         let userManager:RPDUsersManager = RPDUsersManager()
-        userManager.attachUser(ruser, completionBlock: { usr, error in
-          // Enter your code here.
+        userManager.attachUser(ruser, completionBlock: { [weak self] usr, error in
+         
+            guard let self = self else { return }
             
             guard let err = error else {
             
                 if let usr = usr  {
                 
-                    let walletIDs = WalletIDs(from: usr) 
-                    completion?(walletIDs, nil)
+                    if let custId = wallet.serviceCustId {
+                        
+                        var walletIDs = WalletIDs(from: usr)
+                        walletIDs.custId = custId
+                        completion?(walletIDs, nil)
+                    }
+                    else {
+                        // add customer here if no customer id present ...
+                        self.customerHandler.createCustomer(for: user, wallet: wallet, completion: {
+                            walletIDs , error  in
+                            
+                            guard let err = error else {
+                                
+                                completion?(walletIDs, nil)
+                                return
+                            }
+                            
+                            completion?(nil, err)
+                        })
+                        
+                    }
                     
                 }
                 else {
