@@ -14,7 +14,7 @@ class TopUpPaymentViewModel : ObservableObject {
     
     @Published private var showingProgressIndicator : Bool = false
     
-    private let walletHandler = WalletHandler()
+    private lazy var walletHandler = WalletHandler()
     
     var errorMessage : String? {
         
@@ -103,14 +103,15 @@ class TopUpPaymentViewModel : ObservableObject {
 
 extension TopUpPaymentViewModel {
     
-    func add() {
+    func add(customerId : String) {
         
         
-        if let amount = topUpPayment.amount , let currency = topUpPayment.currency, let paymentMethod = topUpPayment.paymentMethod {
+        if let amount = topUpPayment.amount , let currency = topUpPayment.currency {
       
             self.showingProgressIndicator = true
           
-            walletHandler.add(card : Card(), amount: Double(amount), currency: currency, paymentMethod: paymentMethod, completion: {
+            walletHandler.add(card : Card(), amount: Double(amount), currency: currency,
+                              customerId: customerId , completion: {
             
                 [weak self] payment, error in
                 

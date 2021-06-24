@@ -289,25 +289,50 @@ extension WalletHandler {
     static let errorURL : String = "https://techchee.com/KyPayFailed"
     
     
-    func add(card : Card, amount : Double, currency : String, paymentMethod : PaymentMethod,
+    func add(card : Card, amount : Double, currency : String,
+             cardType : String = "us_visa_card" , customerId : String ,
              completion : ((PaymentSuccess?, Error?)->Void)? = nil){
+                
+        customerHandler.obtainPaymentMethodID(for: customerId, type: cardType, completion: {
+
+            [weak self] paymentMethodID, error in
+            
+            if error != nil {
+                completion?(nil, error)
+                return
+            }
+            
+            guard let self = self else { return }
+            
+            if let paymentMethodID = paymentMethodID {
+           
+                self.add(card: card, amount: amount, currency: currency, cardType: cardType,
+                paymentMethodID: paymentMethodID, completion: completion)
+             
+            }
+            else {
+                
+                print("Error!!!...unable.2.obtain::paymentMethodID")
+            }
+            
+        })
+        
+    }
+    
+    
+    private func add(card : Card, amount : Double, currency : String, cardType : String,
+                     paymentMethodID : String, completion : ((PaymentSuccess?, Error?)->Void)? = nil ){
         
         
-        RPDPaymentMethodManager().fetchPaymentMethodRequiredFields(type: "us_visa_card"){
-            [weak self]  paymentMethodRequiredFields, error in
-            
-        
-            guard let self = self else {return}
-            
-            
+        RPDPaymentMethodManager().fetchPaymentMethodRequiredFields(type: cardType ){ [weak self]
+            paymentMethodRequiredFields, error in
+    
+            guard let self = self else { return }
+           
             if error == nil {
                 
                 let currUser = RPDUser.currentUser()
                 let eWallet1 = RPDEWallet(ID: currUser?.id ?? "" , paymentValue: 10, paymentType: .amount)
-                
-                
-                let paymentMethodID =
-                    "{\r\n    \"type\": \"us_visa_card\",\r\n       \"fields\": {\r\n        \"number\": \"4111111111111111\",\r\n        \"expiration_month\": \"10\",\r\n        \"expiration_year\": \"22\",\r\n        \"cvv\": \"123\",\r\n        \"name\": \"John Doe\"\r\n    }\r\n}"
                 
                 if var pmfields = paymentMethodRequiredFields {
                    
@@ -338,42 +363,76 @@ extension WalletHandler {
                         }
                 
                     }
-                
-                   
-                 
+            
                 }
-                
-              
-                
-              
-        }
         
+                
+        }
+
     }
+    
+    
+    /**
+     
+     
+     
+     
+     */
     
     
     
     func add(amount : Double, currency : String, paymentMethod : PaymentMethod,
-               completion : ((PaymentSuccess?, Error?)->Void)? = nil ){
+             customerId : String ,completion : ((PaymentSuccess?, Error?)->Void)? = nil ){
         
         Config.setup()
         
         let pm = paymentMethod.rpdPaymentMethod
         
-        RPDPaymentMethodManager().fetchPaymentMethodRequiredFields(type: pm.type ?? "xxxx") {
-            [weak self] pmfields, error in
+        self.customerHandler.obtainPaymentMethodID(for: customerId, type: pm.type ?? "", completion: {
+            [weak self] paymentMethodID, error in
             
-            if error != nil {print("fetch.fields;err:\(String(describing: error))")
-                return}
+            if error != nil {
+                completion?(nil, error)
+                return
+            }
             
             guard let self = self else { return }
+        
             
+            if let paymentMethodID = paymentMethodID {
+           
+                self.add(amount: amount, currency: currency, type: pm.type ?? "",
+                paymentMethodID: paymentMethodID, completion: completion)
+
+            }
+            else {
+                
+                print("Error!!!...unable.2.obtain::paymentMethodID")
+            }
             
+        })
+            
+    }
+    
+    
+    private func add (amount : Double, currency : String, type : String, paymentMethodID : String,
+    completion : ((PaymentSuccess?, Error?)->Void)? = nil ){
+        
+        RPDPaymentMethodManager().fetchPaymentMethodRequiredFields(type: type) { [weak self]
+            pmfields, error in
+            
+            if error != nil {
+                completion?(nil, error)
+                return
+            }
+            
+            guard let self = self else { return }
+        
             
             if var pmfields = pmfields {
             
                 self.setFieldsForOnlineBanking(&pmfields)
         
-                
                 let currentUser = RPDUser.currentUser()
                 let ewallet1 = RPDEWallet(ID: currentUser?.id ?? "xxx",
                 paymentValue: Decimal(amount), paymentType: RPDEWallet.EWalletPaymentType.amount)
@@ -381,7 +440,6 @@ extension WalletHandler {
                 
                 let pmMgr = RPDPaymentManager()
                 
-                let paymentMethodID = "xxx"
                     
                 pmMgr.createPayment(amount: Decimal(amount),
                     currency: RPDCurrency.currency(with: currency),
@@ -409,7 +467,6 @@ extension WalletHandler {
             }
          
         }
-    
     }
     
 }

@@ -40,6 +40,16 @@ class UserWalletViewModel : ObservableObject {
     }
     
     
+    var serviceCustId : String {
+        
+        get {
+            
+            wallet.serviceCustId ?? ""
+        }
+
+    }
+    
+    
     var type : UserWallet.WalletType {
         
         get {

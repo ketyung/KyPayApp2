@@ -13,6 +13,8 @@ struct TopUpPaymentView : View {
     @EnvironmentObject private var userViewModel : UserViewModel
 
     @EnvironmentObject private var topUpViewModel : TopUpPaymentViewModel
+   
+    @EnvironmentObject private var walletViewModel : UserWalletViewModel
     
     var body : some View {
         
@@ -38,7 +40,7 @@ struct TopUpPaymentView : View {
     
     private func topUpNow(){
         topUpViewModel.currency = userViewModel.allowedCurrency
-        topUpViewModel.add()
+        topUpViewModel.add(customerId: walletViewModel.serviceCustId)
     }
     
 }
