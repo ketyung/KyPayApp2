@@ -30,6 +30,8 @@ struct UserWallet : Codable {
     
     var serviceContactId : String?
    
+    var serviceCustId : String?
+   
     var serviceWalletId : String?
 
     var lastUpdated : Date?
@@ -45,4 +47,15 @@ struct UserWallet : Codable {
         
         return nil 
     }
+    
+    var walletIDs : WalletIDs {
+        
+        var w = WalletIDs(custId: self.serviceCustId)
+        w.addrId = self.serviceAddrId
+        w.contactId = self.serviceContactId
+        w.walletId = self.serviceWalletId
+        w.refId = self.refId
+        return w 
+    }
+    
 }

@@ -124,6 +124,7 @@
 		10B855F52681BDAC00AEF15F /* WalletRequest.php in Resources */ = {isa = PBXBuildFile; fileRef = 10B855F42681BDAC00AEF15F /* WalletRequest.php */; };
 		10B855F726830C9600AEF15F /* PaymentSuccess.php in Resources */ = {isa = PBXBuildFile; fileRef = 10B855F626830C9600AEF15F /* PaymentSuccess.php */; };
 		10B855F926830E8F00AEF15F /* PaymentFailed.php in Resources */ = {isa = PBXBuildFile; fileRef = 10B855F826830E8F00AEF15F /* PaymentFailed.php */; };
+		10B855FB2684037700AEF15F /* CustomerHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B855FA2684037700AEF15F /* CustomerHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -278,6 +279,7 @@
 		10B855F42681BDAC00AEF15F /* WalletRequest.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = WalletRequest.php; sourceTree = "<group>"; };
 		10B855F626830C9600AEF15F /* PaymentSuccess.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = PaymentSuccess.php; sourceTree = "<group>"; };
 		10B855F826830E8F00AEF15F /* PaymentFailed.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = PaymentFailed.php; sourceTree = "<group>"; };
+		10B855FA2684037700AEF15F /* CustomerHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerHandler.swift; sourceTree = "<group>"; };
 		1B47377B496C6F0F1022FFD4 /* Pods-KyPayApp2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.debug.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.debug.xcconfig"; sourceTree = "<group>"; };
 		6F523BC3D4353462922B31B9 /* Pods-KyPayApp2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.release.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -677,6 +679,7 @@
 			isa = PBXGroup;
 			children = (
 				1033C0DF267D984C00D999CE /* WalletHandler.swift */,
+				10B855FA2684037700AEF15F /* CustomerHandler.swift */,
 				1033C0E0267D984C00D999CE /* Config.swift */,
 				1033C0E1267D984C00D999CE /* DataHandler.swift */,
 				1033C0E2267D984C00D999CE /* PaymentHandler.swift */,
@@ -922,6 +925,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				10B855FB2684037700AEF15F /* CustomerHandler.swift in Sources */,
 				1033B2942674A82F00D999CE /* DictionaryExt.swift in Sources */,
 				1033B2962674A82F00D999CE /* UserAddress.swift in Sources */,
 				10B855EC267F2BF700AEF15F /* TopUpPaymentView.swift in Sources */,

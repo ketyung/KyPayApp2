@@ -34,7 +34,14 @@ struct WalletIDs {
     
     var contactId : String?
     
+    var custId : String?
+    
     var refId : String?
+    
+    init(custId : String?){
+        
+        self.custId = custId
+    }
     
     
     fileprivate init(from rpdUser : RPDUser){
@@ -144,46 +151,17 @@ class WalletHandler : NSObject {
         
         Config.setup()
        
-       // let contactId = RPDUser.currentUser()?.contacts?.dataList?.first?.ID
-        
         let userManager:RPDUsersManager = RPDUsersManager()
     
         userManager.deleteUser(completionBlock: { error in
            
             guard let err = error else {
    
-                print("user.deleted.trying.delete.contact:: ")
-                
-                /**
-                if let contactId = contactId {
-                    
-                    RPDEWalletContactsManager().delete(contactWithID: contactId , completionBlock: {
-                        
-                        resp, err in
-                        
-                        guard let err = err else {
-                            
-                            return
-                        }
-                        
-                        print("deleting.contact.err::\(err)")
-                        
-                        
-                    })
-                   
-                }
-                 */
-                
                 return
             }
             
             print("deleting.wallet.error:\(err)")
         })
-   
-        
-        
-        
-        
       
     }
     
@@ -300,22 +278,6 @@ extension WalletHandler {
                 let eWallet1 = RPDEWallet(ID: currUser?.id ?? "" , paymentValue: 10, paymentType: .amount)
                 
                 
-                // let paymentFees = RPDPaymentFees(transactionFee:
-                //RPDPaymentFeeRelativeChange(feeType: .absolute, calcType: .gross, value: 400), fxFee:RPDPaymentFee(calcType: .gross, value: 10))
-                
-                    /**"""
-                {"type": "us_visa_card",
-                "fields": {
-                    "number": "4111111111111111",
-                    "expiration_month": "10",
-                    "expiration_year": "22",
-                    "cvv": "123",
-                    "name": "John Doe"
-                }}
-                """*/
-               // print("pmm.id::\(paymentMethodID)")
-               
-                
                 let paymentMethodID =
                     "{\r\n    \"type\": \"us_visa_card\",\r\n       \"fields\": {\r\n        \"number\": \"4111111111111111\",\r\n        \"expiration_month\": \"10\",\r\n        \"expiration_year\": \"22\",\r\n        \"cvv\": \"123\",\r\n        \"name\": \"John Doe\"\r\n    }\r\n}"
                 
@@ -327,7 +289,8 @@ extension WalletHandler {
                         currency: RPDCurrency.currency(with: currency),
                         paymentMethodRequiredFields: pmfields,
                         paymentMethodID: paymentMethodID ,
-                        eWallets: [eWallet1], completePaymentURL: WalletHandler.completionURL, errorPaymentURL: WalletHandler.errorURL,
+                        eWallets: [eWallet1], completePaymentURL: WalletHandler.completionURL,
+                        errorPaymentURL: WalletHandler.errorURL,
                         description: nil,expirationAt: nil, merchantReferenceID: nil,requestedCurrency: nil,
                         isCapture: true, statementDescriptor: nil,address: nil,customerID: nil,
                         receiptEmail: currUser?.email ?? "",showIntermediateReturnPage: nil,isEscrow: nil,releaseEscrowDays: nil,
@@ -346,38 +309,7 @@ extension WalletHandler {
                             completion?(nil, err)
                         }
                 
-                    
-                    /**
-                    let paymentMethod = RPDPaymentMethod(withPaymentMethodFields: pmfields)
-                             
-                    
-                        let paymentRequest = RPDPaymentRequest()
-                        
-                        paymentRequest.paymentMethod = paymentMethod
-                        
-                        paymentRequest.paymentMethodOptions = pmfields.paymentMethodOptions
-                        
-                        paymentRequest.amount = Double(amount)
-                        paymentRequest.currency = RPDCurrency.currency(with: currency)
-                        
-                        paymentRequest.addEWallet(eWallet1)
-                        
-                        let paymentManager = RPDPaymentManager()
-                        paymentManager.createPayment(paymentRequest: paymentRequest, completionBlock: { (payment, error) in
-                            
-                            if error != nil {
-                                
-                                print("Create Payment Failed: \(error!)")
-                                
-                            } else {
-                                
-                                print("Create Payment Succeeded::\(payment?.ID ?? "")::\(payment?.amount ?? 0)")
-                            }
-                        })*/
                     }
-    
-                
-                /** */
                 
                    
                  
@@ -452,6 +384,9 @@ extension WalletHandler {
     
     }
     
+}
+
+extension WalletHandler {
     
     private func setFieldsForOnlineBanking (_ pmfields : inout RPDPaymentMethodRequiredFields ){
         
@@ -479,7 +414,7 @@ extension WalletHandler {
     }
     
     
-private func setFieldsForCard (_ pmfields : inout RPDPaymentMethodRequiredFields, card : Card ){
+   private func setFieldsForCard (_ pmfields : inout RPDPaymentMethodRequiredFields, card : Card ){
         
         pmfields.fields.forEach {
             

@@ -20,6 +20,14 @@ class KypayUserWallet extends KypayDbObject{
     
     public $type;
     
+    public $serviceAddrId;
+    
+    public $serviceContactId;
+    
+    public $serviceCustId;
+    
+    public $serviceWalletId;
+    
     public $lastUpdated;
     
     public function __construct($db)

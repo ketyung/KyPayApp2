@@ -75,6 +75,7 @@ create table if not exists kypay_user_wallet (
 
 alter table kypay_user_wallet add service_wallet_id varchar(255) after type;
 alter table kypay_user_wallet add service_contact_id varchar(255) after type;
+alter table kypay_user_wallet add service_cust_id varchar(255) after service_contact_id;
 alter table kypay_user_wallet add service_addr_id varchar(255) after type;
 
 
