@@ -35,7 +35,8 @@ struct PaymentMethodTypesView : View {
                     
                 }
             }
-            .frame(height:500)
+            .frame(height:UIScreen.main.bounds.height - 240)
+            
             Spacer()
             
             topUpPaymentLink()
@@ -47,7 +48,7 @@ struct PaymentMethodTypesView : View {
            //fetchSupportedPaymentMethods()
         }
         .progressView(isShowing: $pmViewModel.showLoadingIndicator, text: "", size: CGSize(width:100,height: 100), showGrayOverlay: false)
-        .navigationBar(title: Text("Select Online Banking / e-Wallet".localized), displayMode: .inline)
+        .navigationBar(title: Text("Select Online Banking".localized), displayMode: .inline)
     }
 }
 

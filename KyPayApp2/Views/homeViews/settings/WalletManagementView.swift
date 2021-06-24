@@ -111,6 +111,30 @@ struct WalletManagementView : View {
                 Text("delete cust")
             }
             
+            
+            Button(action: {
+                
+                //my_cimb_bank
+                
+                self.custHandler.obtainPaymentMethodID(for: "cus_9e0963b6e0db22f4e5d21e80db70952b" , type: "my_cimb_bank",
+                completion: { pid, err  in
+                
+                    guard let err = err else {
+                        
+                        print("obtained::payment.method.id::\(String(describing: pid))")
+                        return
+                    }
+                
+                
+                    print("err.obtaining.paymentid::\(err)")
+                
+                })
+            })
+            {
+                
+                Text("Obtain payment method id")
+            }
+            
         }
         
         //WalletHandler().deleteWallet()

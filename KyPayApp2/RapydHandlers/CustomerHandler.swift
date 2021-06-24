@@ -62,7 +62,8 @@ extension CustomerHandler {
         RPDCustomerManager().listPaymentMethods(ofCustomer: customerId, type: type,
         startingAfter: nil, endingBeforer: nil, limit: nil) { [weak self]
             paymentMethodResponse, error in
-                                                            
+                        
+           // print("p.paymentMethodResponse::\(String(describing: paymentMethodResponse))")
             if let paymentMethodResponse = paymentMethodResponse, paymentMethodResponse.count > 0 {
                 
                 if let pid = paymentMethodResponse.first?.ID{

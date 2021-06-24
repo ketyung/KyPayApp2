@@ -58,7 +58,12 @@ struct CardPaymentView : View {
         .padding()
         .navigationBar(title : Text("Pay By Card".localized), displayMode: .inline)
         .backButton()
-       
+        .onTapGesture {self.endEditing()}
     }
     
+    
+    
+    private func endEditing() {
+        UIApplication.shared.endEditing()
+    }
 }

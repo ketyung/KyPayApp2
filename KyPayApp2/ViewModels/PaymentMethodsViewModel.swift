@@ -52,17 +52,20 @@ extension PaymentMethodsViewModel {
             
             guard let err = err else {
                 
-                if let types = types {
+                // filter for banks only, exclude other e-Wallets
+                if let types = types?.filter({$0.category == "bank_redirect"}) {
         
                     DispatchQueue.main.async {
                   
                         types.forEach{
                             
                             type in
-                        
+                            
                             let pm = PaymentMethod(type: type.type,  name: type.name, category: type.category, imageURL: type.imageURL, paymentFlowType: type.paymentFlowType)
                             
                             self.paymentMethods?.append(pm)
+                     
+                            
                         }
                         
                         self.paymentMethods?.sort(by: {$0.name ?? "" < $1.name ?? ""})

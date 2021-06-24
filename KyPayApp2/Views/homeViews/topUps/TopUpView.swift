@@ -65,7 +65,7 @@ extension TopUpView {
                         .frame(width:30, height: 30)
                         .foregroundColor(.orange)
                     
-                        Text("Online Banking / e-Wallet".localized)
+                        Text("Online Banking".localized)
                         .font(.custom(Theme.fontName, size: 16))
                         
                         Spacer()
