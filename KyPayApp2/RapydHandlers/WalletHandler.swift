@@ -124,18 +124,9 @@ class WalletHandler : NSObject {
                 else {
                     
                     // we create the customer here ...
-                    self.customerHandler.createCustomer(for: user, wallet: wallet, completion: {
-                        walletIDs , error  in
-                        
-                        guard let err = error else {
-                            
-                            completion?(walletIDs, nil)
-                            return
-                        }
-                        
-                        completion?(nil, err)
-                    })
-                    
+                    // add customer here if no customer id present ...
+                    self.createCustomer(user: user, wallet: wallet, from: "createWallet", completion: completion)
+                 
                 }
             
                 
@@ -246,17 +237,7 @@ extension WalletHandler {
                     }
                     else {
                         // add customer here if no customer id present ...
-                        self.customerHandler.createCustomer(for: user, wallet: wallet, completion: {
-                            walletIDs , error  in
-                            
-                            guard let err = error else {
-                                
-                                completion?(walletIDs, nil)
-                                return
-                            }
-                            
-                            completion?(nil, err)
-                        })
+                        self.createCustomer(user: user, wallet: wallet, from: "attachWallet", completion: completion)
                         
                     }
                     
@@ -482,5 +463,33 @@ extension WalletHandler {
             }
         }
         
+    }
+}
+
+
+extension WalletHandler {
+    
+    
+    private func createCustomer( user : User, wallet : UserWallet,
+                                 from message : String? = nil,
+                                 completion : ((WalletIDs?, Error?)->Void)? = nil){
+        
+        self.customerHandler.createCustomer(for: user, wallet: wallet, completion: {
+            walletIDs , error  in
+            
+            guard let err = error else {
+                
+                completion?(walletIDs, nil)
+                
+                if let message = message {
+                    
+                    print("creatingCustomer::\(walletIDs?.custId ?? "")::from::\(message)")
+                }
+                return
+            }
+            
+            completion?(nil, err)
+        })
+      
     }
 }
