@@ -312,7 +312,7 @@ extension WalletHandler {
     func add(card : Card, amount : Double, currency : String, customerId : String ,
              completion : ((PaymentSuccess?, Error?)->Void)? = nil){
                 
-        let pmtype = card.paymentTypeBasedOnCardType 
+        let pmtype = card.paymentTypeBasedOnCardType
         customerHandler.obtainPaymentMethodID(for: customerId, type: pmtype, completion: {
 
             [weak self] paymentMethodID, error in
@@ -390,16 +390,9 @@ extension WalletHandler {
         }
 
     }
-    
-    
-    /**
-     
-     
-     
-     
-     */
-    
-    
+}
+
+extension WalletHandler {
     
     func add(amount : Double, currency : String, paymentMethod : PaymentMethod,
              customerId : String ,completion : ((PaymentSuccess?, Error?)->Void)? = nil ){

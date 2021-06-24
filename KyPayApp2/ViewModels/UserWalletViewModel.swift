@@ -234,8 +234,10 @@ extension UserWalletViewModel {
         }
         
     }
-    
+
 }
+
+
 
 extension UserWalletViewModel {
     
@@ -329,3 +331,78 @@ extension UserWalletViewModel {
     }
 }
 
+
+
+
+extension UserWalletViewModel {
+    
+    private func updateWalletRemotely(by adding : Double, for user : User, completion : ((Error?) -> Void)? = nil ){
+        
+        let newBalance = self.walletHolder.wallet.balance ?? 0 + adding
+        let walletToBeUpdated = UserWallet(id : self.walletHolder.wallet.id , refId:  self.walletHolder.wallet.refId, balance: newBalance)
+        
+        // update wallet in session
+        DispatchQueue.main.async {
+       
+            self.walletHolder.wallet.balance = newBalance
+        }
+        
+        let walletType = user.allowedWalletTypes.first ?? .personal
+        let currency = CurrencyManager.currency(countryCode: user.countryCode ?? "MY") ?? "MYR"
+        
+        // update wallet in KDS
+        if var savedWallet = KDS.shared.getWallet(type: walletType, currency: currency){
+            
+            savedWallet.balance = newBalance
+            KDS.shared.saveWallet(savedWallet)
+        }
+        
+        // Now update remotely
+        ARH.shared.updateUserWallet(walletToBeUpdated, returnType: UserWallet.self,  completion: { res in
+            
+            switch(res) {
+            
+                case .failure(let err) :
+                    completion?(err)
+                    
+                case .success(_) :
+                    completion?(nil)
+            }
+        })
+        
+    }
+    
+    
+    func add(amount : Double, card: Card, for user : User, completion : ((Error?)->Void)? = nil ){
+        
+        if let custId = self.serviceCustId {
+  
+            let currency = CurrencyManager.currency(countryCode: user.countryCode ?? "MY") ?? "MYR"
+            
+            self.walletHandler.add(card: card, amount: amount, currency: currency, customerId: custId, completion: {
+                pmsucc , error in
+                
+                
+                guard let err = error else {
+                    
+                    self.updateWalletRemotely(by: pmsucc?.amount ?? 0, for: user, completion: {
+                        
+                        err in
+                    
+                        completion?(err)
+                    })
+                    
+                    return
+                }
+                
+                
+                completion?(err)
+                
+            })
+            
+        }
+        
+        
+    }
+    
+}
