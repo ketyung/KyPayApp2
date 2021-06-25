@@ -458,7 +458,7 @@ extension WalletHandler {
                     currency: RPDCurrency.currency(with: currency),
                     paymentMethodRequiredFields:pmfields,paymentMethodID: paymentMethodID ,
                     eWallets: [ewallet1],completePaymentURL: WalletHandler.completionURL,errorPaymentURL: WalletHandler.errorURL,
-                    description: nil,expirationAt: nil,merchantReferenceID: nil,requestedCurrency: nil,isCapture: true,
+                    description: nil,expirationAt: nil,merchantReferenceID: nil,requestedCurrency: nil,isCapture:nil,
                     statementDescriptor: nil,address: nil,customerID: nil,receiptEmail: currentUser?.email ,
                     showIntermediateReturnPage: nil,isEscrow: nil,releaseEscrowDays: nil,paymentFees: nil,
                     metadata: self.genericMetaData, completionBlock: { payment, err in
@@ -508,6 +508,8 @@ extension WalletHandler {
                     break
             }
         }
+        
+        //print("set.online.banking.param::\(pmfields.fields)")
         
     }
     
