@@ -364,7 +364,7 @@ extension UserWalletViewModel {
     }
     
     
-    private func updateWalletRemotely(by adding : Double, for user : User,
+    func updateWalletRemotely(by adding : Double, for user : User,
                                       method : String,
                                       completion : ((Error?) -> Void)? = nil ){
         
@@ -454,20 +454,8 @@ extension UserWalletViewModel {
                 
                 guard let err = error else {
                     
-                   // print("tpUpd.remotely::\(amount)")
-                  
-                    /**
-                    self.updateWalletRemotely(by: amount, for: user,
-                    method: paymentMethod.rpdPaymentMethod.type ?? "", completion: {
-                        
-                        err in
                     
-                        completion?(err)
-                    })*/
-                    
-                    print("try.no.update.remote!")
                     completion?(nil)
-                    
                     return
                 }
                 

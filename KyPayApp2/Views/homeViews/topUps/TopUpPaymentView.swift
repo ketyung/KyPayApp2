@@ -22,15 +22,11 @@ struct TopUpPaymentView : View {
     
     @State private var errorPresented : Bool = false
     
+    @State private var pushToNext : Bool = false
+    
     var body : some View {
         
-        if topUpViewModel.paymentSuccess{
-            
-            TopUpSucessView()
-        }
-        else {
-            view()
-        }
+        view()
     }
     
     
@@ -45,6 +41,8 @@ struct TopUpPaymentView : View {
             balanceView()
             
             Spacer()
+            
+            nextScreenNavLink()
             
         }
         .backButton()
@@ -67,14 +65,36 @@ struct TopUpPaymentView : View {
         
         if let paymentMethod = topUpViewModel.paymentMethod, let amount =  Double(topUpViewModel.amount), amount > 5 {
        
-            walletViewModel.add(amount: amount, paymentMethod:paymentMethod , for: userViewModel.user,
+            let user = userViewModel.user
+            walletViewModel.add(amount: amount, paymentMethod:paymentMethod ,for: user,
             completion: {
                 err in
                 
                 guard let err = err else {
                     
+                    /**
+                    walletViewModel.updateWalletRemotely(by: amount, for: user,
+                    method: paymentMethod.rpdPaymentMethod.type ?? "", completion: { err in
+                    
+                        guard let err = err else {
+                            
+                            self.inProgress = false
+                            self.switchToPaymentSuccess()
+                        
+                            return
+                        }
+                        
+                        self.errorMessage = err.localizedDescription
+                        self.errorPresented = true
+                        self.inProgress = false
+                      
+                        
+                    })*/
+
                     self.inProgress = false
                     self.switchToPaymentSuccess()
+                   
+                    
                     return
                 }
                 
@@ -102,7 +122,7 @@ struct TopUpPaymentView : View {
             DispatchQueue.main.async {
        
                 self.topUpViewModel.paymentSuccess = true
-           
+                self.pushToNext = true
             }
         }
     }
@@ -205,5 +225,10 @@ extension TopUpPaymentView {
  
     private func endEditing() {
         UIApplication.shared.endEditing()
+    }
+    
+    private func nextScreenNavLink() -> some View {
+        
+        NavigationLink(destination: TopUpSucessView(topUpViewModel: topUpViewModel, walletViewModel:  walletViewModel), isActive : $pushToNext){}.hidden(true)
     }
 }

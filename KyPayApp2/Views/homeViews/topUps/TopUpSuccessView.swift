@@ -10,9 +10,9 @@ import SwiftUI
 struct TopUpSucessView : View {
     
     
-    @EnvironmentObject private var topUpViewModel : TopUpPaymentViewModel
+    var topUpViewModel : TopUpPaymentViewModel
    
-    @EnvironmentObject private var walletViewModel : UserWalletViewModel
+    var walletViewModel : UserWalletViewModel
    
     
     var body : some View {

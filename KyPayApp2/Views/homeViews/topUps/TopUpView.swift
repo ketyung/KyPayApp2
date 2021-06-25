@@ -31,9 +31,9 @@ struct TopUpView : View {
        .progressView(isShowing: $walletViewModel.progressIndicatorPresented, text: "Fetching wallet...".localized)
        .alert(isPresented: $errorMessagePresented){ Alert(title: Text("Oppps!"),message:Text(errorMessage ?? ""))}
        .onAppear{self.fetchWalletIfNotPresent()}
-       .environmentObject(TopUpPaymentViewModel())
        .environmentObject(PaymentMethodsViewModel())
-        
+       .environmentObject(TopUpPaymentViewModel())
+       
     }
 }
 
