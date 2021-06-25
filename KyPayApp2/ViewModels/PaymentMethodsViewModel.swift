@@ -17,12 +17,40 @@ class PaymentMethodsViewModel : ObservableObject{
     
     @Published var selectedPaymentMethod : PaymentMethod?
     
+    private lazy var cachedPMDs = CPMDS()
+    
     var supportedPaymentMethods : [PaymentMethod] {
         
         paymentMethods ?? []
     }
 }
 
+extension PaymentMethodsViewModel {
+    
+    
+    private func fetchFromCachedDb(countryCode : String) -> [PaymentMethod]{
+        
+        var pms : [PaymentMethod] = []
+        
+        print("total.saved.pms::\(cachedPMDs.total())")
+        
+        if let cpms = cachedPMDs.all(by :countryCode) {
+            
+            cpms.forEach{
+                
+                cpm in
+                
+                pms.append(PaymentMethod(type: cpm.type, country: cpm.country, name: cpm.name, category: cpm.category, imageURL: URL(string: cpm.imageURL ?? ""), paymentFlowType: cpm.paymentFlowType, currencies: nil))
+            }
+        }
+        
+        return pms
+    
+    }
+}
+
+
+    
 extension PaymentMethodsViewModel {
     
     func fetchSupportedPaymentMethods(countryCode : String){
@@ -32,7 +60,14 @@ extension PaymentMethodsViewModel {
             return
         }
         
-        self.paymentMethods = []
+        self.paymentMethods = self.fetchFromCachedDb(countryCode: countryCode)
+        
+        if (self.paymentMethods?.count ?? 0) > 0 {
+            
+            self.paymentMethods?.sort(by: {$0.name ?? "" < $1.name ?? ""})
+           
+            return
+        }
         
         withAnimation{
        
@@ -61,10 +96,15 @@ extension PaymentMethodsViewModel {
                             
                             type in
                             
-                            let pm = PaymentMethod(type: type.type,  name: type.name, category: type.category, imageURL: type.imageURL, paymentFlowType: type.paymentFlowType)
+                            let pm = PaymentMethod(type: type.type,  country : countryCode, name: type.name, category: type.category, imageURL: type.imageURL, paymentFlowType: type.paymentFlowType)
                             
                             self.paymentMethods?.append(pm)
-                     
+                            
+                            DispatchQueue.main.async {
+                            
+                                self.cachedPMDs.savePaymentMethod(by: pm)
+                                
+                            }
                             
                         }
                         

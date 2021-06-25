@@ -129,6 +129,7 @@
 		10B855FF268427AF00AEF15F /* CardPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B855FE268427AF00AEF15F /* CardPayment.swift */; };
 		10B85601268427FA00AEF15F /* CardPaymentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B85600268427FA00AEF15F /* CardPaymentViewModel.swift */; };
 		10B8560326855E5C00AEF15F /* TopUpSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8560226855E5C00AEF15F /* TopUpSuccessView.swift */; };
+		10B856052685831400AEF15F /* CachedPaymentMethodDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B856042685831400AEF15F /* CachedPaymentMethodDataStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -288,6 +289,7 @@
 		10B855FE268427AF00AEF15F /* CardPayment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardPayment.swift; sourceTree = "<group>"; };
 		10B85600268427FA00AEF15F /* CardPaymentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardPaymentViewModel.swift; sourceTree = "<group>"; };
 		10B8560226855E5C00AEF15F /* TopUpSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopUpSuccessView.swift; sourceTree = "<group>"; };
+		10B856042685831400AEF15F /* CachedPaymentMethodDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedPaymentMethodDataStore.swift; sourceTree = "<group>"; };
 		1B47377B496C6F0F1022FFD4 /* Pods-KyPayApp2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.debug.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.debug.xcconfig"; sourceTree = "<group>"; };
 		6F523BC3D4353462922B31B9 /* Pods-KyPayApp2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.release.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -638,6 +640,7 @@
 				1033C0BF267AFD4F00D999CE /* ContactFetcher.swift */,
 				1033C0C3267B358E00D999CE /* KyPayDb.xcdatamodeld */,
 				1033C0C6267B363C00D999CE /* KyPayContactDataStore.swift */,
+				10B856042685831400AEF15F /* CachedPaymentMethodDataStore.swift */,
 				1033C0C8267B3C6C00D999CE /* KyPayUserSyncer.swift */,
 				10B855DC267DE95300AEF15F /* CurrencyManager.swift */,
 			);
@@ -956,6 +959,7 @@
 				1033C0D3267D896900D999CE /* SendMoneyView.swift in Sources */,
 				1033C0AC2679A38000D999CE /* Tool.swift in Sources */,
 				1033C0C0267AFD4F00D999CE /* ContactFetcher.swift in Sources */,
+				10B856052685831400AEF15F /* CachedPaymentMethodDataStore.swift in Sources */,
 				1033B2952674A82F00D999CE /* UserImg.swift in Sources */,
 				1033C0CB267C9E4300D999CE /* NavigationBackButton.swift in Sources */,
 				1033C09E267850D900D999CE /* SendView.swift in Sources */,

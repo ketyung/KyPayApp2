@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20D64" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CachedPaymentMethod" representedClassName="CachedPaymentMethod" syncable="YES" codeGenerationType="class">
+        <attribute name="category" optional="YES" attributeType="String"/>
+        <attribute name="country" optional="YES" attributeType="String"/>
+        <attribute name="imageURL" optional="YES" attributeType="String"/>
+        <attribute name="lastUpdated" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="paymentFlowType" optional="YES" attributeType="String"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="KyPayUser" representedClassName="KyPayUser" syncable="YES" codeGenerationType="class">
         <attribute name="cnIdentifier" optional="YES" attributeType="String"/>
         <attribute name="firstName" optional="YES" attributeType="String"/>
@@ -8,5 +17,6 @@
     </entity>
     <elements>
         <element name="KyPayUser" positionX="-63" positionY="-18" width="128" height="89"/>
+        <element name="CachedPaymentMethod" positionX="-63" positionY="9" width="128" height="134"/>
     </elements>
 </model>

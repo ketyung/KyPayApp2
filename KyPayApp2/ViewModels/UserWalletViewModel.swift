@@ -448,10 +448,7 @@ extension UserWalletViewModel {
             
             
             self.walletHandler.add(amount: amount, currency: currency,
-                                   paymentMethod: paymentMethod,
-                                   customerId: custId, completion: {
-                pmsucc , error in
-                
+                paymentMethod: paymentMethod,customerId: custId, completion: { pmsucc , error in
                 
                 guard let err = error else {
                     
