@@ -336,10 +336,41 @@ extension UserWalletViewModel {
 
 extension UserWalletViewModel {
     
-    private func updateWalletRemotely(by adding : Double, for user : User, completion : ((Error?) -> Void)? = nil ){
+    
+    private func addPaymentTxRemotely ( amount : Double , currency : String, user : User, walletRefId : String,
+                                        method : String,
+                                        completion : ((Error?) -> Void)? = nil ){
+        
+        let pmTx = UserPaymentTx(uid : user.id ?? "", toUid:  user.id ?? "", toUidType: .none,
+                                 walletRefId: walletRefId, amount:  amount, currency: currency,
+                                 method: method, stat: .success)
+        
+        ARH.shared.addUserPaymentTx(pmTx, returnType: UserPaymentTx.self,  completion: {
+            
+            res in
+            
+            switch(res) {
+            
+                case .failure(let err) :
+                    completion?(err)
+                
+                case .success(_) :
+                    completion?(nil)
+                
+            }
+            
+        })
+        
+    }
+    
+    
+    private func updateWalletRemotely(by adding : Double, for user : User,
+                                      method : String,
+                                      completion : ((Error?) -> Void)? = nil ){
         
         let newBalance = self.walletHolder.wallet.balance ?? 0 + adding
-        let walletToBeUpdated = UserWallet(id : self.walletHolder.wallet.id , refId:  self.walletHolder.wallet.refId, balance: newBalance)
+        let walletToBeUpdated = UserWallet(id : self.walletHolder.wallet.id , refId:
+        self.walletHolder.wallet.refId, balance: newBalance)
         
         // update wallet in session
         DispatchQueue.main.async {
@@ -366,7 +397,9 @@ extension UserWalletViewModel {
                     completion?(err)
                     
                 case .success(_) :
-                    completion?(nil)
+                    // record a payment tx remotely
+                    self.addPaymentTxRemotely(amount: adding, currency: currency, user: user,
+                    walletRefId: walletToBeUpdated.refId ?? "", method: method, completion: completion)
             }
         })
         
@@ -385,7 +418,47 @@ extension UserWalletViewModel {
                 
                 guard let err = error else {
                     
-                    self.updateWalletRemotely(by: pmsucc?.amount ?? 0, for: user, completion: {
+                    self.updateWalletRemotely(by: pmsucc?.amount ?? 0, for: user,
+                                              method: card.paymentTypeBasedOnCardType,
+                                              completion: {
+                        
+                        err in
+                    
+                        completion?(err)
+                    })
+                    
+                    return
+                }
+                
+                
+                completion?(err)
+                
+            })
+            
+        }
+        
+        
+    }
+    
+    
+    
+    func add(amount : Double, paymentMethod : PaymentMethod, for user : User, completion : ((Error?)->Void)? = nil ){
+        
+        if let custId = self.serviceCustId {
+  
+            let currency = CurrencyManager.currency(countryCode: user.countryCode ?? "MY") ?? "MYR"
+            
+            
+            self.walletHandler.add(amount: amount, currency: currency,
+                                   paymentMethod: paymentMethod,
+                                   customerId: custId, completion: {
+                pmsucc , error in
+                
+                
+                guard let err = error else {
+                    
+                    self.updateWalletRemotely(by: pmsucc?.amount ?? 0, for: user,
+                    method: paymentMethod.rpdPaymentMethod.type ?? "", completion: {
                         
                         err in
                     

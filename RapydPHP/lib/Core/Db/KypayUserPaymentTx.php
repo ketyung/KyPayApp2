@@ -16,6 +16,10 @@ class KypayUserPaymentTx extends KypayDbObject {
     
     public $toUidType;
     
+    public $txType;
+    
+    public $walletRefId;
+    
     public float $amount;
     
     public $currency;

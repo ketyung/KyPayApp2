@@ -27,6 +27,15 @@ struct UserPaymentTx : Codable{
         case none = "N"
     }
     
+    
+    enum TxType : String, Codable {
+        
+        case walletTopUp = "WT"
+        case sendMoney = "SM"
+        case receiveMoney = "RM"
+        case payBill = "PB"
+    }
+    
     var id : String?
     
     var uid : String?
@@ -34,6 +43,10 @@ struct UserPaymentTx : Codable{
     var toUid : String?
     
     var toUidType : UidType?
+    
+    var txType : TxType?
+    
+    var walletRefId : String?
     
     var amount : Double?
     
