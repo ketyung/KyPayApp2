@@ -62,7 +62,7 @@ class UserWalletViewModel : ObservableObject {
         
         get {
             
-            "\((walletHolder.wallet.balance ?? 0).roundTo(places: 2))"
+            "\((walletHolder.wallet.balance ?? 0).twoDecimalString)"
         }
     }
     
@@ -420,6 +420,7 @@ extension UserWalletViewModel {
                 
                 guard let err = error else {
                     
+                    
                     self.updateWalletRemotely(by: amount, for: user,
                     method: card.paymentTypeBasedOnCardType,completion: { err in
                     
@@ -453,13 +454,19 @@ extension UserWalletViewModel {
                 
                 guard let err = error else {
                     
-                    self.updateWalletRemotely(by: pmsucc?.amount ?? 0, for: user,
+                   // print("tpUpd.remotely::\(amount)")
+                  
+                    /**
+                    self.updateWalletRemotely(by: amount, for: user,
                     method: paymentMethod.rpdPaymentMethod.type ?? "", completion: {
                         
                         err in
                     
                         completion?(err)
-                    })
+                    })*/
+                    
+                    print("try.no.update.remote!")
+                    completion?(nil)
                     
                     return
                 }

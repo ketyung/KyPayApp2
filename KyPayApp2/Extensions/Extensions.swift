@@ -26,6 +26,12 @@ extension Double {
     func deg2rad() -> Double {
         return self * .pi / 180
     }
+    
+    
+    var twoDecimalString:String {
+        return String(format: "%.2f", self)
+    }
+
 }
 
 

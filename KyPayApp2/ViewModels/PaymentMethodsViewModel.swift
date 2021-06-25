@@ -32,7 +32,7 @@ extension PaymentMethodsViewModel {
         
         var pms : [PaymentMethod] = []
         
-        print("total.saved.pms::\(cachedPMDs.total())")
+      //  print("total.saved.pms::\(cachedPMDs.total())")
         
         if let cpms = cachedPMDs.all(by :countryCode) {
             
