@@ -27,6 +27,10 @@ struct TopUpPaymentView : View {
     var body : some View {
         
         view()
+        .popOver(isPresented: $pushToSuccess, content: {
+            
+            TopUpSucessView()
+        })
     }
     
     
@@ -50,10 +54,7 @@ struct TopUpPaymentView : View {
             self.topUpNow()
         })
         .progressView(isShowing: $inProgress, text: "")
-        .popOver(isPresented: $pushToSuccess, content: {
-            
-            TopUpSucessView()
-        })
+       
     }
     
     
@@ -71,8 +72,12 @@ struct TopUpPaymentView : View {
                 
                 guard let err = err else {
                     
-                    self.switchToPaymentSuccess()
-                  
+                    self.inProgress = false
+               //     self.switchToPaymentSuccess()
+                 
+                    self.errorMessage = "Success!"
+                    self.errorPresented = true
+                   
                     return
                 }
                 
