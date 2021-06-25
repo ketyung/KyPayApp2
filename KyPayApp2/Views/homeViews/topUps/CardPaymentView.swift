@@ -15,31 +15,67 @@ struct CardPaymentView : View {
    
     @EnvironmentObject private var userViewModel : UserViewModel
     
+    @EnvironmentObject private var topUpViewModel : TopUpPaymentViewModel
+   
+    @State private var errorMessage : String?
+    
+    @State private var errorPresented : Bool = false
+    
+    @State private var inProgress : Bool = false
+    
     
     var body: some View {
         
-        view()
-        .navigationBar(title : Text("Pay By Card".localized), displayMode: .inline)
-        .backButton()
-        .bottomFloatingButton( isPresented: cardViewModel.errorMessage == nil, action: {
+        if topUpViewModel.paymentSuccess {
             
-            self.topUpNow()
-            
-        })
-        .onTapGesture {self.endEditing()}
+           TopUpSucessView()
+        }
+        else {
+       
+            view()
+           
+        }
+        
     }
     
     
     private func topUpNow(){
+        
+        self.endEditing()
+        self.inProgress = true 
         
         // tp continue tomorrow
         walletViewModel.add(amount: 10, card: cardViewModel.asCard,  for: userViewModel.user, completion: {
             
             err in
             
+            guard let err = err else {
+                
+                self.inProgress = false
+                self.switchToPaymentSuccess()
+                return
+            }
+            
+            
+            self.errorMessage = err.localizedDescription
+            self.errorPresented = true
+            self.inProgress = false
+            
         })
     }
    
+    
+    private func switchToPaymentSuccess(){
+        
+        withAnimation(Animation.easeIn(duration: 0.7).delay(0.5)) {
+            
+            DispatchQueue.main.async {
+       
+                self.topUpViewModel.paymentSuccess = true
+           
+            }
+        }
+    }
 }
 
 extension CardPaymentView {
@@ -92,6 +128,13 @@ extension CardPaymentView {
             Spacer()
             
         }.padding()
+        .navigationBar(title : Text("Pay By Card".localized), displayMode: .inline)
+        .backButton()
+        .bottomFloatingButton( isPresented: cardViewModel.errorMessage == nil, action: {
+            self.topUpNow()
+        })
+        .progressView(isShowing: $inProgress, text: "")
+        .onTapGesture {self.endEditing()}
     
     }
     

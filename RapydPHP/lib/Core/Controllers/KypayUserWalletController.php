@@ -133,9 +133,7 @@ class KypayUserWalletController extends Controller {
             return $response;
         
         }
-        
-        
-        
+    
       
         if ($this->dbObject->insert($input) > 0){
             
@@ -195,8 +193,9 @@ class KypayUserWalletController extends Controller {
             return $response;
         }
         
-       
-       
+        //error_log("update....x.walet::");
+        //Log::printRToErrorLog($input);
+        
         if ($this->dbObject->update($input) > 0){
             
             $obj = array('id'=>$input['id'], 'ref_id'=>$input['ref_id']);
@@ -214,6 +213,7 @@ class KypayUserWalletController extends Controller {
         
     }
     
+
     
     protected function deleteDbObject(){
         

@@ -368,7 +368,8 @@ extension UserWalletViewModel {
                                       method : String,
                                       completion : ((Error?) -> Void)? = nil ){
         
-        let newBalance = self.walletHolder.wallet.balance ?? 0 + adding
+        let newBalance = (self.walletHolder.wallet.balance ?? 0) + adding
+        
         let walletToBeUpdated = UserWallet(id : self.walletHolder.wallet.id , refId:
         self.walletHolder.wallet.refId, balance: newBalance)
         

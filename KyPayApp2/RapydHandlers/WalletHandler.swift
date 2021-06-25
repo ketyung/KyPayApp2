@@ -365,7 +365,7 @@ extension WalletHandler {
                         eWallets: [eWallet1], completePaymentURL: WalletHandler.completionURL,
                         errorPaymentURL: WalletHandler.errorURL,
                         description: nil,expirationAt: nil, merchantReferenceID: nil,requestedCurrency: nil,
-                        isCapture: true, statementDescriptor: nil,address: nil,customerID: nil,
+                        isCapture: nil, statementDescriptor: nil,address: nil,customerID: nil, 
                         receiptEmail: currUser?.email ?? "",showIntermediateReturnPage: nil,isEscrow: nil,releaseEscrowDays: nil,
                         paymentFees: nil, metadata: self.genericMetaData){ payment, error in
                             guard let err = error else {
