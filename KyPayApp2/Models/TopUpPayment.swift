@@ -16,5 +16,7 @@ struct TopUpPayment {
     var currency : String?
     
     var paymentMethod : PaymentMethod?
+    
+    var paymentSuccess : Bool?
 
 }

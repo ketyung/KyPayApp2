@@ -16,8 +16,6 @@ struct TopUpPaymentView : View {
    
     @EnvironmentObject private var walletViewModel : UserWalletViewModel
     
-    @State private var pushToSuccess : Bool = false
-    
     @State private var inProgress : Bool = false
     
     @State private var errorMessage : String?
@@ -27,10 +25,6 @@ struct TopUpPaymentView : View {
     var body : some View {
         
         view()
-        .popOver(isPresented: $pushToSuccess, content: {
-            
-            TopUpSucessView()
-        })
     }
     
     
@@ -101,9 +95,11 @@ struct TopUpPaymentView : View {
         
         withAnimation(Animation.easeIn(duration: 0.7).delay(0.5)) {
             
-            self.pushToSuccess = true
-            
-            print("success....switchToPaymentSuccess#")
+            DispatchQueue.main.async {
+       
+                self.topUpViewModel.paymentSuccess = true
+           
+            }
         }
     }
     

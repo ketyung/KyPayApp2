@@ -104,10 +104,24 @@ class TopUpPaymentViewModel : ObservableObject {
             showingProgressIndicator = newVal
         }
     }
+    
+    
+    var paymentSuccess : Bool {
+        
+        get {
+            
+            topUpPayment.paymentSuccess ?? false
+        }
+        
+        set(newVal){
+            
+            topUpPayment.paymentSuccess = newVal
+        }
+    }
 }
 
 
-
+/**
 extension TopUpPaymentViewModel {
     
     func add(customerId : String, card : Card) {
@@ -173,3 +187,4 @@ extension TopUpPaymentViewModel {
     }
     
 }
+ */
