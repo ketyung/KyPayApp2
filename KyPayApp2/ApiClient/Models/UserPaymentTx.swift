@@ -48,6 +48,8 @@ struct UserPaymentTx : Codable{
     
     var walletRefId : String?
     
+    var toWalletRefId : String? // use for when wallet send to another wallet
+    
     var amount : Double?
     
     var currency : String?

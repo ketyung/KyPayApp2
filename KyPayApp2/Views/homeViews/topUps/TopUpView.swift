@@ -12,7 +12,7 @@ struct TopUpView : View {
     
     @Binding var isPresented : Bool
     
-    @ObservedObject private var walletViewModel = UserWalletViewModel()
+    @EnvironmentObject private var walletViewModel : UserWalletViewModel
     
     @EnvironmentObject private var userViewModel : UserViewModel
    
@@ -32,8 +32,8 @@ struct TopUpView : View {
        .alert(isPresented: $errorMessagePresented){ Alert(title: Text("Oppps!"),message:Text(errorMessage ?? ""))}
        .onAppear{self.fetchWalletIfNotPresent()}
        .environmentObject(TopUpPaymentViewModel())
-       .environmentObject(PaymentMethodsViewModel()).environmentObject(walletViewModel)
-    
+       .environmentObject(PaymentMethodsViewModel())
+        
     }
 }
 

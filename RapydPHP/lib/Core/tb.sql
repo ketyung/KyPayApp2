@@ -105,5 +105,7 @@ alter table kypay_user_payment_tx modify method varchar(64);
 
 alter table kypay_user_payment_tx add wallet_ref_id varchar(16) after to_uid_type;
 
+alter table kypay_user_payment_tx add to_wallet_ref_id varchar(16) after wallet_ref_id;
+
 alter table kypay_user_payment_tx add tx_type enum('WT', 'SM', 'RM', 'PB') after to_uid_type;
 

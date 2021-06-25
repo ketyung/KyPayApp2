@@ -24,7 +24,13 @@ struct TopUpPaymentView : View {
     
     var body : some View {
         
-        view()
+        if topUpViewModel.paymentSuccess{
+            
+            TopUpSucessView()
+        }
+        else {
+            view()
+        }
     }
     
     
@@ -58,6 +64,7 @@ struct TopUpPaymentView : View {
         
         self.inProgress = true
         
+        
         if let paymentMethod = topUpViewModel.paymentMethod, let amount =  Double(topUpViewModel.amount), amount > 5 {
        
             walletViewModel.add(amount: amount, paymentMethod:paymentMethod , for: userViewModel.user,
@@ -68,8 +75,6 @@ struct TopUpPaymentView : View {
                     
                     self.inProgress = false
                     self.switchToPaymentSuccess()
-                 
-                    
                     return
                 }
                 
@@ -87,7 +92,6 @@ struct TopUpPaymentView : View {
             self.inProgress = false
         
         }
-       
     }
     
     

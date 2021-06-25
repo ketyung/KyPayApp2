@@ -23,6 +23,8 @@ struct HomeTabbedView : View {
         
             FirstSignInView()
         }
+        .environmentObject(UserWalletViewModel())
+        
     }
 }
 
