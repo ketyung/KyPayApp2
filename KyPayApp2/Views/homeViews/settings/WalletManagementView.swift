@@ -10,8 +10,8 @@ import RapydSDK
 
 struct WalletManagementView : View {
     
-    @ObservedObject private var walletViewModel = UserWalletViewModel()
-   
+    @EnvironmentObject private var walletViewModel : UserWalletViewModel
+    
     @EnvironmentObject private var userViewModel : UserViewModel
 
     @State private var promptDelete : Bool = false
@@ -25,6 +25,33 @@ struct WalletManagementView : View {
     var body : some View {
         
         VStack(spacing: 50){
+            
+            
+            Button(action: {
+                
+                let paymentMethod = PaymentMethod(type : "my_cimb_bank")
+                
+                print("trying...\(paymentMethod.rpdPaymentMethod.type ?? "xxx")")
+                walletViewModel.add(amount: 5, paymentMethod:paymentMethod , for: userViewModel.user,
+                completion: {
+                    err in
+                    
+                    guard let err = err else {
+              
+                        print("testing.....x...top.up.succ!!!!")
+                  
+                        return
+                    }
+                    print("aaa...xerrr.top.up::\(err)")
+              
+                    
+                })
+                
+            }){
+                
+                Text("Test Top up RM5")
+            }
+            
             
             Button(action : {
               
@@ -136,7 +163,31 @@ struct WalletManagementView : View {
             }
             
         }
-        
+        .onAppear{
+            
+            self.fetchWalletIfNotPresent()
+        }
         //WalletHandler().deleteWallet()
+    }
+}
+
+
+extension WalletManagementView {
+    
+    private func fetchWalletIfNotPresent(){
+        
+        walletViewModel.fetchWalletIfNotPresent(user: userViewModel.user, completion: {
+            
+            err in
+            
+            guard let err = err else {
+                
+                return
+            }
+            
+            print("fetch.wallet.err:\(err)")
+        
+        })
+        
     }
 }

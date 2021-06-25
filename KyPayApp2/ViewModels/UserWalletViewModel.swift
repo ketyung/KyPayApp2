@@ -469,7 +469,10 @@ extension UserWalletViewModel {
             })
             
         }
-        
+        else {
+            
+            print("no.cust.id!!!")
+        }
         
     }
     
