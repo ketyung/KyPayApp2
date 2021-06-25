@@ -26,6 +26,12 @@ struct TopUpPaymentView : View {
     
     var body : some View {
         
+        view()
+    }
+    
+    
+    private func view() -> some View {
+        
         VStack(alignment: .center,spacing: 20) {
             
             paymentMethodView()
@@ -36,24 +42,27 @@ struct TopUpPaymentView : View {
             
             Spacer()
             
-            topUpSuccessLink()
         }
         .backButton()
         .alert(isPresented: $errorPresented){ Alert(title: Text("Oppps!"),message:Text(errorMessage ?? ""))}
         .navigationBar(title : Text("Enter Amount".localized), displayMode: .inline)
         .bottomFloatingButton( isPresented: topUpViewModel.errorMessage == nil, action: {
-            
             self.topUpNow()
         })
         .progressView(isShowing: $inProgress, text: "")
-        
+        .popOver(isPresented: $pushToSuccess, content: {
+            
+            TopUpSucessView()
+        })
     }
     
     
     private func topUpNow(){
     
+        self.endEditing()
+        
         self.inProgress = true
-    
+        
         if let paymentMethod = topUpViewModel.paymentMethod, let amount =  Double(topUpViewModel.amount), amount > 5 {
        
             walletViewModel.add(amount: amount, paymentMethod:paymentMethod , for: userViewModel.user,
@@ -62,10 +71,8 @@ struct TopUpPaymentView : View {
                 
                 guard let err = err else {
                     
-                    withAnimation{
-                        
-                        self.pushToSuccess = true
-                    }
+                    self.switchToPaymentSuccess()
+                  
                     return
                 }
                 
@@ -84,6 +91,17 @@ struct TopUpPaymentView : View {
         
         }
        
+    }
+    
+    
+    private func switchToPaymentSuccess(){
+        
+        withAnimation(Animation.easeIn(duration: 0.7).delay(0.5)) {
+            
+            self.pushToSuccess = true
+            
+            print("success....switchToPaymentSuccess#")
+        }
     }
     
 }
@@ -181,9 +199,8 @@ extension TopUpPaymentView {
         
     }
     
-    
-    private func topUpSuccessLink() -> some View {
-        
-        NavigationLink(destination: TopUpSucessView(), isActive : $pushToSuccess){}.hidden(true)
+ 
+    private func endEditing() {
+        UIApplication.shared.endEditing()
     }
 }

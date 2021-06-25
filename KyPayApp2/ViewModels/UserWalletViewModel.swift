@@ -337,12 +337,12 @@ extension UserWalletViewModel {
 extension UserWalletViewModel {
     
     
-    private func addPaymentTxRemotely ( amount : Double , currency : String, user : User, walletRefId : String,
-                                        method : String,
+    private func addPaymentTxRemotely ( amount : Double , currency : String, user : User,
+                                        walletRefId : String, method : String, txType : UserPaymentTx.TxType,
                                         completion : ((Error?) -> Void)? = nil ){
         
         let pmTx = UserPaymentTx(uid : user.id ?? "", toUid:  user.id ?? "", toUidType: .none,
-                                 walletRefId: walletRefId, amount:  amount, currency: currency,
+                                 txType : txType, walletRefId: walletRefId, amount:  amount, currency: currency,
                                  method: method, stat: .success)
         
         ARH.shared.addUserPaymentTx(pmTx, returnType: UserPaymentTx.self,  completion: {
@@ -399,7 +399,8 @@ extension UserWalletViewModel {
                 case .success(_) :
                     // record a payment tx remotely
                     self.addPaymentTxRemotely(amount: adding, currency: currency, user: user,
-                    walletRefId: walletToBeUpdated.refId ?? "", method: method, completion: completion)
+                    walletRefId: walletToBeUpdated.refId ?? "", method: method,
+                    txType: .walletTopUp, completion: completion)
             }
         })
         
@@ -413,16 +414,13 @@ extension UserWalletViewModel {
             let currency = CurrencyManager.currency(countryCode: user.countryCode ?? "MY") ?? "MYR"
             
             self.walletHandler.add(card: card, amount: amount, currency: currency, customerId: custId, completion: {
-                pmsucc , error in
+                _ , error in
                 
                 
                 guard let err = error else {
                     
-                    self.updateWalletRemotely(by: pmsucc?.amount ?? 0, for: user,
-                                              method: card.paymentTypeBasedOnCardType,
-                                              completion: {
-                        
-                        err in
+                    self.updateWalletRemotely(by: amount, for: user,
+                    method: card.paymentTypeBasedOnCardType,completion: { err in
                     
                         completion?(err)
                     })
