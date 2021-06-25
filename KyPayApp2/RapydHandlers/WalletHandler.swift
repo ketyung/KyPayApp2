@@ -464,6 +464,9 @@ extension WalletHandler {
                     metadata: self.genericMetaData, completionBlock: { payment, err in
                     
                         guard let err = err else {
+                    
+                            print("::::...xxx..payment?.redirectURL::\(String(describing: payment?.redirectURL))")
+                            
                             
                            var pms = PaymentSuccess()
                            pms.amount = Double(truncating: (payment?.amount ?? 0) as NSNumber)
