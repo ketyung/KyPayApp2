@@ -66,6 +66,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let contentView =
         
+        //    TopUpSucessView().environmentObject(TopUpPaymentViewModel()).environmentObject(UserWalletViewModel())
+        
+            
         //    ContactsListView()
         //CountDownTextView(viewModel: OtpTextViewModel())
         ContentView().environmentObject(PhoneInputViewModel()).environmentObject(UserViewModel())

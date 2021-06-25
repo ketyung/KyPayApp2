@@ -16,6 +16,14 @@ struct TopUpPaymentView : View {
    
     @EnvironmentObject private var walletViewModel : UserWalletViewModel
     
+    @State private var pushToSuccess : Bool = false
+    
+    @State private var inProgress : Bool = false
+    
+    @State private var errorMessage : String?
+    
+    @State private var errorPresented : Bool = false
+    
     var body : some View {
         
         VStack(alignment: .center,spacing: 20) {
@@ -28,29 +36,54 @@ struct TopUpPaymentView : View {
             
             Spacer()
             
+            topUpSuccessLink()
         }
         .backButton()
-        //.navigationTitle("Enter Amount".localized)
+        .alert(isPresented: $errorPresented){ Alert(title: Text("Oppps!"),message:Text(errorMessage ?? ""))}
         .navigationBar(title : Text("Enter Amount".localized), displayMode: .inline)
         .bottomFloatingButton( isPresented: topUpViewModel.errorMessage == nil, action: {
             
             self.topUpNow()
         })
-        .progressView(isShowing: $topUpViewModel.progressIndicatorPresented, text: "")
+        .progressView(isShowing: $inProgress, text: "")
+        
     }
     
     
     private func topUpNow(){
-        
-        if let custId = walletViewModel.serviceCustId {
-  
-            print("c.cid::\(custId)")
-            //topUpViewModel.currency = userViewModel.allowedCurrency
-            //topUpViewModel.add(customerId: custId)
+    
+        self.inProgress = true
+    
+        if let paymentMethod = topUpViewModel.paymentMethod, let amount =  Double(topUpViewModel.amount), amount > 20 {
+       
+            walletViewModel.add(amount: amount, paymentMethod:paymentMethod , for: userViewModel.user,
+            completion: {
+                err in
+                
+                guard let err = err else {
+                    
+                    withAnimation{
+                        
+                        self.pushToSuccess = true
+                    }
+                    return
+                }
+                
+                
+                self.errorMessage = err.localizedDescription
+                self.errorPresented = true
+                self.inProgress = false
+                
+            })
         }
         else {
-            print("nil.cust.id!!!")
+            
+            self.errorMessage = "Invalid Payment Method or Invalid Amount!".localized
+            self.errorPresented = true
+            self.inProgress = false
+        
         }
+       
     }
     
 }
@@ -146,5 +179,11 @@ extension TopUpPaymentView {
         .background(Color(UIColor(hex:"#ddddddff")!))
         .cornerRadius(6)
         
+    }
+    
+    
+    private func topUpSuccessLink() -> some View {
+        
+        NavigationLink(destination: TopUpSucessView(), isActive : $pushToSuccess){}.hidden(true)
     }
 }

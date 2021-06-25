@@ -128,6 +128,7 @@
 		10B855FD2684274D00AEF15F /* CardPaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B855FC2684274D00AEF15F /* CardPaymentView.swift */; };
 		10B855FF268427AF00AEF15F /* CardPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B855FE268427AF00AEF15F /* CardPayment.swift */; };
 		10B85601268427FA00AEF15F /* CardPaymentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B85600268427FA00AEF15F /* CardPaymentViewModel.swift */; };
+		10B8560326855E5C00AEF15F /* TopUpSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8560226855E5C00AEF15F /* TopUpSuccessView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -286,6 +287,7 @@
 		10B855FC2684274D00AEF15F /* CardPaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardPaymentView.swift; sourceTree = "<group>"; };
 		10B855FE268427AF00AEF15F /* CardPayment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardPayment.swift; sourceTree = "<group>"; };
 		10B85600268427FA00AEF15F /* CardPaymentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardPaymentViewModel.swift; sourceTree = "<group>"; };
+		10B8560226855E5C00AEF15F /* TopUpSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopUpSuccessView.swift; sourceTree = "<group>"; };
 		1B47377B496C6F0F1022FFD4 /* Pods-KyPayApp2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.debug.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.debug.xcconfig"; sourceTree = "<group>"; };
 		6F523BC3D4353462922B31B9 /* Pods-KyPayApp2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.release.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -700,6 +702,7 @@
 			children = (
 				10B855E2267EEEB400AEF15F /* PaymentMethodTypesView.swift */,
 				10B855EB267F2BF700AEF15F /* TopUpPaymentView.swift */,
+				10B8560226855E5C00AEF15F /* TopUpSuccessView.swift */,
 				10B855FC2684274D00AEF15F /* CardPaymentView.swift */,
 				1033C0B9267AEC3700D999CE /* TopUpView.swift */,
 			);
@@ -1007,6 +1010,7 @@
 				1033C08E26773C0600D999CE /* KCDataStore.swift in Sources */,
 				1033C0742676E81000D999CE /* RoundedCorner.swift in Sources */,
 				1033C0A82678A8CD00D999CE /* CustomActivityIndicator.swift in Sources */,
+				10B8560326855E5C00AEF15F /* TopUpSuccessView.swift in Sources */,
 				10B855FD2684274D00AEF15F /* CardPaymentView.swift in Sources */,
 				1033C0692676DD8700D999CE /* CountryCodePickerUI.swift in Sources */,
 			);

@@ -470,7 +470,7 @@ extension UserWalletViewModel {
                 
                 
                 completion?(err)
-                
+                                    
             })
             
         }
