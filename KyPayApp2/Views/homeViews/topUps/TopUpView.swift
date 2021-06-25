@@ -20,6 +20,7 @@ struct TopUpView : View {
     
     @State private var errorMessagePresented : Bool = false 
     
+    
     var body: some View {
    
         NavigationView {
@@ -31,6 +32,7 @@ struct TopUpView : View {
        .alert(isPresented: $errorMessagePresented){ Alert(title: Text("Oppps!"),message:Text(errorMessage ?? ""))}
        .onAppear{self.fetchWalletIfNotPresent()}
        .environmentObject(TopUpPaymentViewModel()).environmentObject(PaymentMethodsViewModel()).environmentObject(walletViewModel)
+       
     }
 }
 

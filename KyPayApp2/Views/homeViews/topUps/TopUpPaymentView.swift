@@ -73,11 +73,9 @@ struct TopUpPaymentView : View {
                 guard let err = err else {
                     
                     self.inProgress = false
-               //     self.switchToPaymentSuccess()
+                    self.switchToPaymentSuccess()
                  
-                    self.errorMessage = "Success!"
-                    self.errorPresented = true
-                   
+                    
                     return
                 }
                 

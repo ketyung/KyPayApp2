@@ -44,6 +44,8 @@ struct SettingsView : View {
     
     @State private var pushToLogin = false
     
+    @State private var topUpPresented = true
+    
     var body : some View {
         
         settingsView()
@@ -86,7 +88,7 @@ extension SettingsView {
             
                 Section(header: Text("Settings")) {
             
-                    NavigationLink(destination: WalletManagementView(), label: {
+                    NavigationLink(destination: TopUpView(isPresented: $topUpPresented), label: {
                         SettingRowView(title: "Your Wallet", systemImageName: "dollarsign.circle", imageForegroundColor: .purple)
                     })
                  
