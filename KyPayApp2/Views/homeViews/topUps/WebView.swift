@@ -9,7 +9,7 @@
 import SwiftUI
 import WebKit
 
-struct PaymentRedirectWebView : UIViewRepresentable {
+struct WebView : UIViewRepresentable {
     
     let url : URL?
 

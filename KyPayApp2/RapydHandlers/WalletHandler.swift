@@ -471,6 +471,8 @@ extension WalletHandler {
                     
                         guard let err = err else {
                     
+                            print("payment?.completePaymentURL::\(String(describing: payment?.completePaymentURL))")
+                            
                            var pms = PaymentData()
                            pms.amount = Double(truncating: (payment?.amount ?? 0) as NSNumber)
                            pms.curreny = payment?.currency?.code ?? ""

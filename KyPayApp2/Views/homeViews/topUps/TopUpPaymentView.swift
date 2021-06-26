@@ -77,7 +77,6 @@ struct TopUpPaymentView : View {
                    
                     self.topUpViewModel.redirectURL = pmdata?.redirectURL
                     
-                    print("self.topUpViewModel.redirectURL::\(String(describing: self.topUpViewModel.redirectURL))")
                     self.topUpViewModel.servicePaymentId = pmdata?.id
                     
                     withAnimation {
@@ -206,6 +205,6 @@ extension TopUpPaymentView {
     
     private func nextScreenNavLink() -> some View {
         
-        NavigationLink(destination: PaymentRedirectWebView(url: topUpViewModel.redirectURL), isActive : $pushToNext){}.hidden(true)
+        NavigationLink(destination: PaymentRedirectView(url: topUpViewModel.redirectURL), isActive : $pushToNext){}.hidden(true)
     }
 }
