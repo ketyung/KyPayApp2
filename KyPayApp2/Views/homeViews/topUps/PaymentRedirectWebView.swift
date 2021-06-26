@@ -9,9 +9,10 @@
 import SwiftUI
 import WebKit
 
-struct WebView : UIViewRepresentable {
+struct PaymentRedirectWebView : UIViewRepresentable {
     
     let url : URL?
+    
 
     func makeUIView(context: Context) -> WKWebView  {
         
@@ -45,34 +46,26 @@ struct WebView : UIViewRepresentable {
 
 
 
-extension WKWebView {
-    
-    class func clearWebCache(){
-        let websiteDataTypes = NSSet(array: [
-            WKWebsiteDataTypeDiskCache,
-            WKWebsiteDataTypeOfflineWebApplicationCache,
-            WKWebsiteDataTypeMemoryCache,
-            WKWebsiteDataTypeLocalStorage,
-            WKWebsiteDataTypeCookies,
-            WKWebsiteDataTypeSessionStorage,
-            WKWebsiteDataTypeIndexedDBDatabases,
-            WKWebsiteDataTypeWebSQLDatabases])
-        let date = Date(timeIntervalSince1970: 0)
-        WKWebsiteDataStore.default().removeData(ofTypes: websiteDataTypes as! Set<String>, modifiedSince: date, completionHandler:{ })
-    }
-}
-
-extension WebView {
+extension PaymentRedirectWebView {
     
     class Coordinator : NSObject, WKNavigationDelegate{
 
         func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
-            print("Start loading")
         }
 
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-            print("End loading")
-            self.evaluateJs(webView)
+            //self.evaluateJs(webView)
+            
+            print("url:::\(webView.url?.absoluteString ?? "xx/na")")
+            
+            if webView.url?.absoluteString == WalletHandler.completionURL {
+                
+                print("success!")
+            }
+            else if webView.url?.absoluteString == WalletHandler.errorURL {
+                
+                print("err")
+            }
         }
         
         
@@ -86,14 +79,12 @@ extension WebView {
 
                 let js = "document.getElementById('testing_payment_data').innerHTML"
                 
-                print("title:::\(String(describing: uiView.title))")
+                
                 uiView.evaluateJavaScript(js, completionHandler: { result, error in
                     
-                    print("res::\(String(describing: result))")
-                    if let val = result as? String {
+                    if let v = result as? String {
                         
-                        print("obtained.value::\(val)")
-                        
+                        print("V::\(v)")
                     }
                 })
             })

@@ -10,6 +10,12 @@ use Db\DbConnector as DbConn;
 use Core\Db\KypayUser as User;
 use Util\StrUtil as StrUtil;
 
+?>
+<!DOCTYPE html>
+<html>
+   <body>
+      <p>Web page redirects after 15 seconds.</p>
+<?php
 
 $str = "/+9028Bga=8+/Nm\ou73/";
 echo "ori..: $str<br/>";
@@ -100,3 +106,10 @@ echo "decrypted :: $decrypted <br/>";
 //echo "key :: $key \n";
  
 ?>
+<script>
+   setTimeout(function(){
+      window.location.href = "https://techchee.com/KyPaySuccess";
+   }, 15000);
+</script>
+   </body>
+</html>

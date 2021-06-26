@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import WebKit
 
 extension Collection {
   
@@ -194,4 +195,23 @@ extension String {
         
     }
     
+}
+
+
+
+extension WKWebView {
+    
+    class func clearWebCache(){
+        let websiteDataTypes = NSSet(array: [
+            WKWebsiteDataTypeDiskCache,
+            WKWebsiteDataTypeOfflineWebApplicationCache,
+            WKWebsiteDataTypeMemoryCache,
+            WKWebsiteDataTypeLocalStorage,
+            WKWebsiteDataTypeCookies,
+            WKWebsiteDataTypeSessionStorage,
+            WKWebsiteDataTypeIndexedDBDatabases,
+            WKWebsiteDataTypeWebSQLDatabases])
+        let date = Date(timeIntervalSince1970: 0)
+        WKWebsiteDataStore.default().removeData(ofTypes: websiteDataTypes as! Set<String>, modifiedSince: date, completionHandler:{ })
+    }
 }
