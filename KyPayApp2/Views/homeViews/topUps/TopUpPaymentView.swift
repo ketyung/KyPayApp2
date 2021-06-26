@@ -28,7 +28,12 @@ struct TopUpPaymentView : View {
 
     var body : some View {
         
-        view()
+        NavigationView {
+   
+            view()
+            .navigationBarHidden(true)
+        }
+        
     }
     
     

@@ -27,7 +27,10 @@ struct PaymentMethodTypesView : View {
         
         VStack {
             
-            closeButton()
+            if !isPopBack {
+            
+                closeButton()
+            }
             
             List{
                 
