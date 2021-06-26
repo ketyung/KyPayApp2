@@ -18,26 +18,6 @@ struct HomeView : View {
     var body : some View {
         
         view()
-        .bottomSheet(isPresented: $control.topUpPresented, height: UIScreen.main.bounds.height, showGrayOverlay: true, content:{
-        
-            TopUpView(control: $control)
-        })
-      
-        .bottomSheet(isPresented: $control.paymentMethodSelectorPresented, height: UIScreen.main.bounds.height, showGrayOverlay: true, content:{
-            
-            PaymentMethodTypesView(control: $control)
-            
-        })
-            
-        .bottomSheet(isPresented: $control.topUpPaymentPresented, height: UIScreen.main.bounds.height, showGrayOverlay: true, content:{
-                  
-            TopUpPaymentView(control: $control)
-        })
-            
-        .bottomSheet(isPresented: $control.sendMoneyPresented, height: UIScreen.main.bounds.height, showGrayOverlay: true, content:{
-            
-            SendView()
-        })
         .environmentObject(TopUpPaymentViewModel())
         .environmentObject(PaymentMethodsViewModel())
        
@@ -66,6 +46,28 @@ extension HomeView {
         }
         .padding()
         .frame(width:UIScreen.main.bounds.width )
+        .bottomSheet(isPresented: $control.topUpPresented, height: UIScreen.main.bounds.height, showGrayOverlay: true, content:{
+        
+            TopUpView(control: $control)
+        })
+      
+        .bottomSheet(isPresented: $control.paymentMethodSelectorPresented, height: UIScreen.main.bounds.height, showGrayOverlay: true, content:{
+            
+            PaymentMethodTypesView(control: $control)
+            
+        })
+            
+        .bottomSheet(isPresented: $control.topUpPaymentPresented, height: UIScreen.main.bounds.height, showGrayOverlay: true, content:{
+                  
+            TopUpPaymentView(control: $control)
+        })
+            
+        .bottomSheet(isPresented: $control.sendMoneyPresented, height: UIScreen.main.bounds.height, showGrayOverlay: true, content:{
+            
+            SendView()
+        })
+       
+        
     }
 }
 
