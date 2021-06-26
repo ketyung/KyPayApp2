@@ -378,6 +378,7 @@ extension WalletHandler {
                                pms.dateCreated = payment?.createdAt
                                pms.status = .created
                                pms.redirectURL = payment?.redirectURL
+                               pms.id = payment?.ID
                                 
                                 
                                completion?(pms, nil)
@@ -476,7 +477,9 @@ extension WalletHandler {
                            pms.dateCreated = payment?.createdAt
                            pms.status = .created
                            pms.redirectURL = payment?.redirectURL
-                    
+                           pms.id = payment?.ID
+                            
+                            
                            completion?(pms, nil)
                            return
                         }

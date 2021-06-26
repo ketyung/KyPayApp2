@@ -14,15 +14,53 @@ struct PaymentRedirectWebView : UIViewRepresentable {
     let url : URL?
 
     func makeUIView(context: Context) -> WKWebView  {
-        return WKWebView(frame: CGRect(x:10, y:0, width: UIScreen.main.bounds.width - 20 , height : UIScreen.main.bounds.height))
+        
+        let configuration = WKWebViewConfiguration()
+        
+        let w =  WKWebView(frame:.zero, configuration: configuration)
+        w.contentMode = .scaleAspectFit
+        w.sizeToFit()
+        w.autoresizesSubviews = true
+    
+        if let url = url  {
+        
+            w.load( URLRequest(url: url ) )
+        }
+        return w
     }
     
     func updateUIView(_ uiView: WKWebView, context: Context) {
         
-        if let url = url  {
-        
-            uiView.load( URLRequest(url: url ) )
-        }
+        /**
+        uiView.evaluateJavaScript("document.readyState", completionHandler: { result, error in
+
+            if result == nil || error != nil {
+                return
+            }
+
+            uiView.evaluateJavaScript("document.body.style.width=400px;")
+      
+            let js = "document.getElementsByTagName('div')[0].offsetWidth"
+                           
+            
+            uiView.evaluateJavaScript(js, completionHandler: { result, error in
+                if let width = result as? CGFloat {
+                    
+                    print("offset.width::\(width)::\(uiView.frame.width)")
+                    
+                }
+            })
+        })*/
     }
     
 }
+
+/**
+extension PaymentRedirectWebView {
+    
+    class Coordinator {
+        
+        
+    }
+}
+ */

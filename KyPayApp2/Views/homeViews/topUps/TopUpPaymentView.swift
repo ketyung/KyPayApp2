@@ -78,6 +78,8 @@ struct TopUpPaymentView : View {
                     self.topUpViewModel.redirectURL = pmdata?.redirectURL
                     
                     print("self.topUpViewModel.redirectURL::\(String(describing: self.topUpViewModel.redirectURL))")
+                    self.topUpViewModel.servicePaymentId = pmdata?.id
+                    
                     withAnimation {
                         
                         self.pushToNext = true

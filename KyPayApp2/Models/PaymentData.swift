@@ -10,6 +10,8 @@ import Foundation
 struct PaymentData {
     
     
+    var id : String?
+    
     enum Status : String {
         
         case created

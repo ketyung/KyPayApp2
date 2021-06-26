@@ -132,6 +132,20 @@ class TopUpPaymentViewModel : ObservableObject {
             topUpPayment.redirectURL = newVal
         }
     }
+    
+    
+    var servicePaymentId : String? {
+        
+        get {
+            
+            topUpPayment.servicePaymentId 
+        }
+        
+        set(newVal){
+            
+            topUpPayment.servicePaymentId = newVal
+        }
+    }
 }
 
 
