@@ -205,6 +205,9 @@ extension TopUpPaymentView {
     
     private func nextScreenNavLink() -> some View {
         
-        NavigationLink(destination: PaymentRedirectView(url: topUpViewModel.redirectURL), isActive : $pushToNext){}.hidden(true)
+        NavigationLink(destination:
+        PaymentRedirectView(url: topUpViewModel.redirectURL,
+        topUpViewModel: topUpViewModel, walletViewModel: walletViewModel),
+        isActive : $pushToNext){}.hidden(true)
     }
 }

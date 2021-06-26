@@ -26,7 +26,7 @@ struct CardPaymentView : View {
     
     var body: some View {
         
-        if topUpViewModel.paymentSuccess {
+        if topUpViewModel.paymentStatus == .success {
             
            TopUpSucessView(topUpViewModel: topUpViewModel, walletViewModel: walletViewModel)
         }

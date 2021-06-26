@@ -9,6 +9,18 @@ import Foundation
 
 struct TopUpPayment {
     
+    
+    enum Status : Int {
+        
+        case success
+        
+        case created
+        
+        case failure
+        
+        case none 
+    }
+    
     var amount : Int?
     
     var errorMessage : String?
@@ -17,7 +29,7 @@ struct TopUpPayment {
     
     var paymentMethod : PaymentMethod?
     
-    var paymentSuccess : Bool?
+    var paymentStatus : Status?
     
     var redirectURL : URL?
 

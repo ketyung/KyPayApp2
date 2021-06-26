@@ -7,8 +7,9 @@
 
 import Foundation
 import SwiftUI
+import WebKit
 
-class TopUpPaymentViewModel : ObservableObject {
+class TopUpPaymentViewModel : NSObject, ObservableObject {
     
     @Published private var topUpPayment = TopUpPayment()
     
@@ -106,16 +107,16 @@ class TopUpPaymentViewModel : ObservableObject {
     }
     
     
-    var paymentSuccess : Bool {
+    var paymentStatus : TopUpPayment.Status {
         
         get {
             
-            topUpPayment.paymentSuccess ?? false
+            topUpPayment.paymentStatus ?? .none
         }
         
         set(newVal){
             
-            topUpPayment.paymentSuccess = newVal
+            topUpPayment.paymentStatus = newVal
         }
     }
     
@@ -146,6 +147,30 @@ class TopUpPaymentViewModel : ObservableObject {
             topUpPayment.servicePaymentId = newVal
         }
     }
+}
+
+
+extension TopUpPaymentViewModel : WKNavigationDelegate{
+    
+    
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+    }
+
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        //self.evaluateJs(webView)
+        
+        if webView.url?.absoluteString == WalletHandler.completionURL {
+            
+            self.paymentStatus = .success
+        }
+        else if webView.url?.absoluteString == WalletHandler.errorURL {
+            
+            self.paymentStatus = .failure
+        }
+        
+        print("self.paymentStatus::\(self.paymentStatus)::\(self.servicePaymentId ?? "xxxx")::\(self.paymentMethod?.type ?? "")")
+    }
+    
 }
 
 

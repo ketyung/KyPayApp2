@@ -486,7 +486,9 @@ extension WalletHandler {
                            pms.status = .created
                            pms.redirectURL = payment?.redirectURL
                            pms.id = payment?.ID
-                            
+                        
+                            /** For testing url redirection */
+                            //pms.redirectURL = URL(string: "http://127.0.0.1:808/KyPay/Test.php")
                             
                            completion?(pms, nil)
                            return

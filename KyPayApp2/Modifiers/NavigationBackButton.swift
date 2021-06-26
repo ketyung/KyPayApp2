@@ -31,7 +31,11 @@ struct NavigationBackButton : ViewModifier {
                      .foregroundColor(foregroundColor)
                      .onTapGesture {
                          // code to dismiss the view
-                         self.presentation.wrappedValue.dismiss()
+                        //self.presentation.wrappedValue.dismiss()
+                        
+                        self.presentation.dismiss()
+                        
+                        
                         additionalAction?()
                         
                      }

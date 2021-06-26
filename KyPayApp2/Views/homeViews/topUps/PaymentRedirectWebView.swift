@@ -13,6 +13,8 @@ struct PaymentRedirectWebView : UIViewRepresentable {
     
     let url : URL?
     
+    let topUpViewModel : TopUpPaymentViewModel
+   
 
     func makeUIView(context: Context) -> WKWebView  {
         
@@ -27,7 +29,7 @@ struct PaymentRedirectWebView : UIViewRepresentable {
         w.contentMode = .scaleAspectFit
         w.sizeToFit()
         w.autoresizesSubviews = true
-        w.navigationDelegate = context.coordinator
+        w.navigationDelegate = topUpViewModel
         
         if let url = url  {
         
@@ -45,8 +47,8 @@ struct PaymentRedirectWebView : UIViewRepresentable {
 }
 
 
-
-extension PaymentRedirectWebView {
+/**
+ extension PaymentRedirectWebView {
     
     class Coordinator : NSObject, WKNavigationDelegate{
 
@@ -94,5 +96,6 @@ extension PaymentRedirectWebView {
     func makeCoordinator() -> Coordinator {
         Coordinator()
     }
-}
+}*/
+
 
