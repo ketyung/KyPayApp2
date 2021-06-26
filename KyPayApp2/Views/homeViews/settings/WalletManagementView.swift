@@ -34,7 +34,7 @@ struct WalletManagementView : View {
                 print("trying...\(paymentMethod.rpdPaymentMethod.type ?? "xxx")")
                 walletViewModel.add(amount: 5, paymentMethod:paymentMethod , for: userViewModel.user,
                 completion: {
-                    err in
+                    _, err in
                     
                     guard let err = err else {
               

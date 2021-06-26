@@ -120,7 +120,7 @@
 		10B855EC267F2BF700AEF15F /* TopUpPaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B855EB267F2BF700AEF15F /* TopUpPaymentView.swift */; };
 		10B855EF267F2FD400AEF15F /* TopUpPaymentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B855EE267F2FD400AEF15F /* TopUpPaymentViewModel.swift */; };
 		10B855F1267F39D900AEF15F /* NavigationBarTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B855F0267F39D900AEF15F /* NavigationBarTitle.swift */; };
-		10B855F3268081E400AEF15F /* PaymentSuccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B855F2268081E400AEF15F /* PaymentSuccess.swift */; };
+		10B855F3268081E400AEF15F /* PaymentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B855F2268081E400AEF15F /* PaymentData.swift */; };
 		10B855F52681BDAC00AEF15F /* WalletRequest.php in Resources */ = {isa = PBXBuildFile; fileRef = 10B855F42681BDAC00AEF15F /* WalletRequest.php */; };
 		10B855F726830C9600AEF15F /* PaymentSuccess.php in Resources */ = {isa = PBXBuildFile; fileRef = 10B855F626830C9600AEF15F /* PaymentSuccess.php */; };
 		10B855F926830E8F00AEF15F /* PaymentFailed.php in Resources */ = {isa = PBXBuildFile; fileRef = 10B855F826830E8F00AEF15F /* PaymentFailed.php */; };
@@ -130,6 +130,7 @@
 		10B85601268427FA00AEF15F /* CardPaymentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B85600268427FA00AEF15F /* CardPaymentViewModel.swift */; };
 		10B8560326855E5C00AEF15F /* TopUpSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8560226855E5C00AEF15F /* TopUpSuccessView.swift */; };
 		10B856052685831400AEF15F /* CachedPaymentMethodDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B856042685831400AEF15F /* CachedPaymentMethodDataStore.swift */; };
+		10B856072686ADB000AEF15F /* PaymentRedirectWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B856062686ADB000AEF15F /* PaymentRedirectWebView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -280,7 +281,7 @@
 		10B855EB267F2BF700AEF15F /* TopUpPaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopUpPaymentView.swift; sourceTree = "<group>"; };
 		10B855EE267F2FD400AEF15F /* TopUpPaymentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopUpPaymentViewModel.swift; sourceTree = "<group>"; };
 		10B855F0267F39D900AEF15F /* NavigationBarTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarTitle.swift; sourceTree = "<group>"; };
-		10B855F2268081E400AEF15F /* PaymentSuccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSuccess.swift; sourceTree = "<group>"; };
+		10B855F2268081E400AEF15F /* PaymentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentData.swift; sourceTree = "<group>"; };
 		10B855F42681BDAC00AEF15F /* WalletRequest.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = WalletRequest.php; sourceTree = "<group>"; };
 		10B855F626830C9600AEF15F /* PaymentSuccess.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = PaymentSuccess.php; sourceTree = "<group>"; };
 		10B855F826830E8F00AEF15F /* PaymentFailed.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = PaymentFailed.php; sourceTree = "<group>"; };
@@ -290,6 +291,7 @@
 		10B85600268427FA00AEF15F /* CardPaymentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardPaymentViewModel.swift; sourceTree = "<group>"; };
 		10B8560226855E5C00AEF15F /* TopUpSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopUpSuccessView.swift; sourceTree = "<group>"; };
 		10B856042685831400AEF15F /* CachedPaymentMethodDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedPaymentMethodDataStore.swift; sourceTree = "<group>"; };
+		10B856062686ADB000AEF15F /* PaymentRedirectWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentRedirectWebView.swift; sourceTree = "<group>"; };
 		1B47377B496C6F0F1022FFD4 /* Pods-KyPayApp2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.debug.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.debug.xcconfig"; sourceTree = "<group>"; };
 		6F523BC3D4353462922B31B9 /* Pods-KyPayApp2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.release.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -597,7 +599,7 @@
 				1033C0CE267D767000D999CE /* TxInputData.swift */,
 				10B855E4267EF10600AEF15F /* PaymentMethod.swift */,
 				10154F39268033B600DB78C4 /* TopUpPayment.swift */,
-				10B855F2268081E400AEF15F /* PaymentSuccess.swift */,
+				10B855F2268081E400AEF15F /* PaymentData.swift */,
 				10B855FE268427AF00AEF15F /* CardPayment.swift */,
 			);
 			path = Models;
@@ -706,6 +708,7 @@
 				10B855E2267EEEB400AEF15F /* PaymentMethodTypesView.swift */,
 				10B855EB267F2BF700AEF15F /* TopUpPaymentView.swift */,
 				10B8560226855E5C00AEF15F /* TopUpSuccessView.swift */,
+				10B856062686ADB000AEF15F /* PaymentRedirectWebView.swift */,
 				10B855FC2684274D00AEF15F /* CardPaymentView.swift */,
 				1033C0B9267AEC3700D999CE /* TopUpView.swift */,
 			);
@@ -976,7 +979,7 @@
 				1033C06C2676E3FA00D999CE /* PhoneInputViewModel.swift in Sources */,
 				1033C09A26784FC300D999CE /* HomeView.swift in Sources */,
 				1033C0A02678510100D999CE /* RequestView.swift in Sources */,
-				10B855F3268081E400AEF15F /* PaymentSuccess.swift in Sources */,
+				10B855F3268081E400AEF15F /* PaymentData.swift in Sources */,
 				1033C06F2676E46F00D999CE /* PhoneInputData.swift in Sources */,
 				1033C0E6267D984C00D999CE /* PaymentHandler.swift in Sources */,
 				1033C0C7267B363C00D999CE /* KyPayContactDataStore.swift in Sources */,
@@ -986,6 +989,7 @@
 				1033C09426782B5700D999CE /* OtpText.swift in Sources */,
 				1033C0AF2679BB7800D999CE /* EditProfileView.swift in Sources */,
 				1033C0BC267AECA200D999CE /* Theme.swift in Sources */,
+				10B856072686ADB000AEF15F /* PaymentRedirectWebView.swift in Sources */,
 				1033C0D1267D769400D999CE /* TxInputDataViewModel.swift in Sources */,
 				1033C0B7267AC63100D999CE /* NeumorphismModifier.swift in Sources */,
 				10310ADC2681839100A071B7 /* WalletManagementView.swift in Sources */,

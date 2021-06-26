@@ -18,5 +18,7 @@ struct TopUpPayment {
     var paymentMethod : PaymentMethod?
     
     var paymentSuccess : Bool?
+    
+    var redirectURL : URL?
 
 }

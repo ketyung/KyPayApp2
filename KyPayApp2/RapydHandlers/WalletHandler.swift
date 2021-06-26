@@ -310,7 +310,7 @@ extension WalletHandler {
     
     
     func add(card : Card, amount : Double, currency : String, customerId : String ,
-             completion : ((PaymentSuccess?, Error?)->Void)? = nil){
+             completion : ((PaymentData?, Error?)->Void)? = nil){
                 
         let pmtype = card.paymentTypeBasedOnCardType
         customerHandler.obtainPaymentMethodID(for: customerId, type: pmtype, completion: {
@@ -327,7 +327,8 @@ extension WalletHandler {
             if let paymentMethodID = paymentMethodID {
            
                 self.add(card: card, amount: amount, currency: currency, cardType: pmtype,
-                paymentMethodID: paymentMethodID, completion: completion)
+                paymentMethodID: paymentMethodID, customerId: customerId,
+                completion: completion)
              
             }
             else {
@@ -341,7 +342,8 @@ extension WalletHandler {
     
     
     private func add(card : Card, amount : Double, currency : String, cardType : String,
-                     paymentMethodID : String, completion : ((PaymentSuccess?, Error?)->Void)? = nil ){
+                     paymentMethodID : String, customerId : String,
+                     completion : ((PaymentData?, Error?)->Void)? = nil ){
         
         
         RPDPaymentMethodManager().fetchPaymentMethodRequiredFields(type: cardType ){ [weak self]
@@ -365,16 +367,19 @@ extension WalletHandler {
                         eWallets: [eWallet1], completePaymentURL: WalletHandler.completionURL,
                         errorPaymentURL: WalletHandler.errorURL,
                         description: nil,expirationAt: nil, merchantReferenceID: nil,requestedCurrency: nil,
-                        isCapture: nil, statementDescriptor: nil,address: nil,customerID: nil, 
+                        isCapture: nil, statementDescriptor: nil,address: nil,customerID: customerId,
                         receiptEmail: currUser?.email ?? "",showIntermediateReturnPage: nil,isEscrow: nil,releaseEscrowDays: nil,
                         paymentFees: nil, metadata: self.genericMetaData){ payment, error in
                             guard let err = error else {
                                 
-                               var pms = PaymentSuccess()
+                               var pms = PaymentData()
                                pms.amount = Double(truncating: (payment?.amount ?? 0) as NSNumber)
                                pms.curreny = payment?.currency?.code ?? ""
                                pms.dateCreated = payment?.createdAt
-                               
+                               pms.status = .created
+                               pms.redirectURL = payment?.redirectURL
+                                
+                                
                                completion?(pms, nil)
                                return
                             }
@@ -395,7 +400,7 @@ extension WalletHandler {
 extension WalletHandler {
     
     func add(amount : Double, currency : String, paymentMethod : PaymentMethod,
-             customerId : String ,completion : ((PaymentSuccess?, Error?)->Void)? = nil ){
+             customerId : String ,completion : ((PaymentData?, Error?)->Void)? = nil ){
         
         Config.setup()
         
@@ -415,7 +420,7 @@ extension WalletHandler {
             if let paymentMethodID = paymentMethodID {
            
                 self.add(amount: amount, currency: currency, type: pm.type ?? "",
-                paymentMethodID: paymentMethodID, completion: completion)
+                paymentMethodID: paymentMethodID, customerId: customerId, completion: completion)
 
             }
             else {
@@ -428,8 +433,8 @@ extension WalletHandler {
     }
     
     
-    private func add (amount : Double, currency : String, type : String, paymentMethodID : String,
-    completion : ((PaymentSuccess?, Error?)->Void)? = nil ){
+    private func add (amount : Double, currency : String, type : String, paymentMethodID : String, customerId : String,
+    completion : ((PaymentData?, Error?)->Void)? = nil ){
         
         RPDPaymentMethodManager().fetchPaymentMethodRequiredFields(type: type) { [weak self]
             pmfields, error in
@@ -459,22 +464,19 @@ extension WalletHandler {
                     paymentMethodRequiredFields:pmfields,paymentMethodID: paymentMethodID ,
                     eWallets: [ewallet1],completePaymentURL: WalletHandler.completionURL,errorPaymentURL: WalletHandler.errorURL,
                     description: nil,expirationAt: nil,merchantReferenceID: nil,requestedCurrency: nil,isCapture:nil,
-                    statementDescriptor: nil,address: nil,customerID: nil,receiptEmail: currentUser?.email ,
+                    statementDescriptor: nil,address: nil,customerID: customerId,receiptEmail: currentUser?.email ,
                     showIntermediateReturnPage: nil,isEscrow: nil,releaseEscrowDays: nil,paymentFees: nil,
                     metadata: self.genericMetaData, completionBlock: { payment, err in
                     
                         guard let err = err else {
                     
-                            print("::::...xxx..payment?.redirectURL::\(String(describing: payment?.redirectURL))")
-                            
-                            
-                           var pms = PaymentSuccess()
+                           var pms = PaymentData()
                            pms.amount = Double(truncating: (payment?.amount ?? 0) as NSNumber)
                            pms.curreny = payment?.currency?.code ?? ""
                            pms.dateCreated = payment?.createdAt
-                           
-                        //   print("topup.success:.amt::\(payment?.amount ?? 0):::\(pms.amount ?? 0)")
-                            
+                           pms.status = .created
+                           pms.redirectURL = payment?.redirectURL
+                    
                            completion?(pms, nil)
                            return
                         }

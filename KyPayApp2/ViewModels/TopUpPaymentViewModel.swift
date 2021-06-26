@@ -118,6 +118,20 @@ class TopUpPaymentViewModel : ObservableObject {
             topUpPayment.paymentSuccess = newVal
         }
     }
+    
+    
+    var redirectURL : URL? {
+        
+        get {
+            
+            topUpPayment.redirectURL
+        }
+        
+        set(newVal){
+            
+            topUpPayment.redirectURL = newVal
+        }
+    }
 }
 
 

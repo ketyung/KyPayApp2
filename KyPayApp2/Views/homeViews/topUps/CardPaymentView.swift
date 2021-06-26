@@ -47,12 +47,14 @@ struct CardPaymentView : View {
         // tp continue tomorrow
         walletViewModel.add(amount: 10, card: cardViewModel.asCard,  for: userViewModel.user, completion: {
             
-            err in
+            pmdata, err in
             
             guard let err = err else {
                 
                 self.inProgress = false
-                self.switchToPaymentSuccess()
+                
+                self.topUpViewModel.redirectURL = pmdata?.redirectURL
+                
                 return
             }
             
@@ -65,17 +67,6 @@ struct CardPaymentView : View {
     }
    
     
-    private func switchToPaymentSuccess(){
-        
-        withAnimation(Animation.easeIn(duration: 0.7).delay(0.5)) {
-            
-            DispatchQueue.main.async {
-       
-                self.topUpViewModel.paymentSuccess = true
-           
-            }
-        }
-    }
 }
 
 extension CardPaymentView {

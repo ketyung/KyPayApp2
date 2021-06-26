@@ -68,32 +68,20 @@ struct TopUpPaymentView : View {
             let user = userViewModel.user
             walletViewModel.add(amount: amount, paymentMethod:paymentMethod ,for: user,
             completion: {
-                err in
+                pmdata, err in
                 
                 guard let err = err else {
                     
-                    /**
-                    walletViewModel.updateWalletRemotely(by: amount, for: user,
-                    method: paymentMethod.rpdPaymentMethod.type ?? "", completion: { err in
-                    
-                        guard let err = err else {
-                            
-                            self.inProgress = false
-                            self.switchToPaymentSuccess()
-                        
-                            return
-                        }
-                        
-                        self.errorMessage = err.localizedDescription
-                        self.errorPresented = true
-                        self.inProgress = false
-                      
-                        
-                    })*/
-
+                
                     self.inProgress = false
-                    self.switchToPaymentSuccess()
                    
+                    self.topUpViewModel.redirectURL = pmdata?.redirectURL
+                    
+                    print("self.topUpViewModel.redirectURL::\(String(describing: self.topUpViewModel.redirectURL))")
+                    withAnimation {
+                        
+                        self.pushToNext = true
+                    }
                     
                     return
                 }
@@ -111,19 +99,6 @@ struct TopUpPaymentView : View {
             self.errorPresented = true
             self.inProgress = false
         
-        }
-    }
-    
-    
-    private func switchToPaymentSuccess(){
-        
-        withAnimation(Animation.easeIn(duration: 0.7).delay(0.5)) {
-            
-            DispatchQueue.main.async {
-       
-                self.topUpViewModel.paymentSuccess = true
-                self.pushToNext = true
-            }
         }
     }
     
@@ -229,6 +204,6 @@ extension TopUpPaymentView {
     
     private func nextScreenNavLink() -> some View {
         
-        NavigationLink(destination: TopUpSucessView(topUpViewModel: topUpViewModel, walletViewModel:  walletViewModel), isActive : $pushToNext){}.hidden(true)
+        NavigationLink(destination: PaymentRedirectWebView(url: topUpViewModel.redirectURL), isActive : $pushToNext){}.hidden(true)
     }
 }

@@ -7,11 +7,23 @@
 
 import Foundation
 
-struct PaymentSuccess {
+struct PaymentData {
+    
+    
+    enum Status : String {
+        
+        case created
+        
+        case none
+    }
     
     var amount : Double?
     
     var curreny : String?
     
     var dateCreated : Date?
+    
+    var redirectURL : URL?
+    
+    var status : Status?
 }

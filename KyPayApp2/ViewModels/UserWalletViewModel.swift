@@ -408,30 +408,24 @@ extension UserWalletViewModel {
     }
     
     
-    func add(amount : Double, card: Card, for user : User, completion : ((Error?)->Void)? = nil ){
+    func add(amount : Double, card: Card, for user : User, completion : ((PaymentData?, Error?)->Void)? = nil ){
         
         if let custId = self.serviceCustId {
   
             let currency = CurrencyManager.currency(countryCode: user.countryCode ?? "MY") ?? "MYR"
             
             self.walletHandler.add(card: card, amount: amount, currency: currency, customerId: custId, completion: {
-                _ , error in
+                pmdata , error in
                 
                 
                 guard let err = error else {
                     
-                    
-                    self.updateWalletRemotely(by: amount, for: user,
-                    method: card.paymentTypeBasedOnCardType,completion: { err in
-                    
-                        completion?(err)
-                    })
+                    completion?(pmdata, nil )
                     
                     return
                 }
                 
-                
-                completion?(err)
+                completion?(nil, err)
                 
             })
             
@@ -442,7 +436,7 @@ extension UserWalletViewModel {
     
     
     
-    func add(amount : Double, paymentMethod : PaymentMethod, for user : User, completion : ((Error?)->Void)? = nil ){
+    func add(amount : Double, paymentMethod : PaymentMethod, for user : User, completion : ((PaymentData?, Error?)->Void)? = nil ){
         
         if let custId = self.serviceCustId {
   
@@ -450,17 +444,15 @@ extension UserWalletViewModel {
             
             
             self.walletHandler.add(amount: amount, currency: currency,
-                paymentMethod: paymentMethod,customerId: custId, completion: { pmsucc , error in
+                paymentMethod: paymentMethod,customerId: custId, completion: { pmdata , error in
                 
                 guard let err = error else {
                     
-                    
-                    completion?(nil)
+                    completion?(pmdata, nil)
                     return
                 }
                 
-                
-                completion?(err)
+                completion?(nil, err)
                                     
             })
             
