@@ -10,7 +10,7 @@ import SwiftUI
 
 struct TopUpView : View {
     
-    @Binding var isPresented : Bool
+    @Binding var control : PresenterControl
     
     @EnvironmentObject private var walletViewModel : UserWalletViewModel
     
@@ -23,16 +23,11 @@ struct TopUpView : View {
     
     var body: some View {
             
-        NavigationView {
-            
-            view()
-            .navigationBarHidden(true)
-        }
-       .progressView(isShowing: $walletViewModel.progressIndicatorPresented, text: "Fetching wallet...".localized)
+        view()
+        .backButton()
+        .progressView(isShowing: $walletViewModel.progressIndicatorPresented, text: "Fetching wallet...".localized)
        .alert(isPresented: $errorMessagePresented){ Alert(title: Text("Oppps!"),message:Text(errorMessage ?? ""))}
        .onAppear{self.fetchWalletIfNotPresent()}
-       .environmentObject(PaymentMethodsViewModel())
-       .environmentObject(TopUpPaymentViewModel())
        
     }
 }
@@ -59,7 +54,18 @@ extension TopUpView {
             ScrollView(/*@START_MENU_TOKEN@*/.vertical/*@END_MENU_TOKEN@*/, showsIndicators: false){
                 
             
-                NavigationLink (destination: PaymentMethodTypesView()){
+                Button (action: {
+                    
+                    withAnimation{
+                   
+                        self.control.topUpPresented = false
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute:{
+                          
+                            self.control.paymentMethodSelectorPresented = true 
+                        })
+                    }
+                    
+                }){
                 
                     HStack(spacing:20)  {
                         
@@ -116,7 +122,7 @@ extension TopUpView {
             
             Button(action: {
                 withAnimation {
-                    self.isPresented = false
+                    self.control.topUpPresented = false
                 }
             }){
                 

@@ -18,13 +18,16 @@ struct PaymentMethodTypesView : View {
     
     var isPopBack : Bool = false
     
-    @State private var pushToPayment : Bool = false
+    @Binding var control : PresenterControl
+
     
     @Environment(\.presentationMode) private var presentation
     
     var body: some View {
         
         VStack {
+            
+            closeButton()
             
             List{
                 
@@ -39,7 +42,6 @@ struct PaymentMethodTypesView : View {
             
             Spacer()
             
-            topUpPaymentLink()
         }
         .backButton()
         .onAppear{
@@ -69,7 +71,7 @@ extension PaymentMethodTypesView {
             }
             else {
                 
-                self.pushToPayment = true
+                self.close()
             }
             
         }){
@@ -111,8 +113,48 @@ extension PaymentMethodTypesView {
         }
     }
     
-    private func topUpPaymentLink() -> some View {
+    
+}
+
+extension PaymentMethodTypesView {
+    
+    private func closeButton() -> some View {
         
-        NavigationLink(destination: TopUpPaymentView(), isActive : $pushToPayment){}.hidden(true)
+        HStack(spacing:5) {
+       
+            Spacer()
+            .frame(width:2)
+            
+            Button(action: {
+                    
+                self.close()
+                
+            }){
+                
+                Image(systemName: "x.circle.fill")
+                .resizable()
+                .frame(width:20, height: 20, alignment: .topLeading)
+                .foregroundColor(.black)
+                
+            }
+            
+            Spacer()
+        }
+        
+    }
+    
+    
+    private func close(){
+        
+        withAnimation{
+       
+            self.control.paymentMethodSelectorPresented = false
+           
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                
+                self.control.topUpPaymentPresented = true
+            })
+        }
+    
     }
 }

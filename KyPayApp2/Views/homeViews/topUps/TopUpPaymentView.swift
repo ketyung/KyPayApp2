@@ -24,6 +24,8 @@ struct TopUpPaymentView : View {
     
     @State private var pushToNext : Bool = false
     
+    @Binding var control : PresenterControl
+
     var body : some View {
         
         view()
@@ -33,6 +35,7 @@ struct TopUpPaymentView : View {
     private func view() -> some View {
         
         VStack(alignment: .center,spacing: 20) {
+            closeButton()
             
             paymentMethodView()
             
@@ -108,7 +111,7 @@ extension TopUpPaymentView  {
     
     private func paymentMethodView() -> some View {
         
-        NavigationLink(destination: PaymentMethodTypesView(isPopBack: true)){
+        NavigationLink(destination: PaymentMethodTypesView(isPopBack: true, control: $control)){
         
             HStack(spacing:20) {
                 
@@ -208,5 +211,31 @@ extension TopUpPaymentView {
         PaymentRedirectView(url: topUpViewModel.redirectURL,
         topUpViewModel: topUpViewModel, walletViewModel: walletViewModel),
         isActive : $pushToNext){}.hidden(true)
+    }
+    
+    
+    private func closeButton() -> some View {
+        
+        HStack(spacing:5) {
+       
+            Spacer()
+            .frame(width:2)
+            
+            Button(action: {
+                withAnimation {
+                    self.control.topUpPaymentPresented = false
+                }
+            }){
+                
+                Image(systemName: "x.circle.fill")
+                .resizable()
+                .frame(width:20, height: 20, alignment: .topLeading)
+                .foregroundColor(.black)
+                
+            }
+            
+            Spacer()
+        }
+        
     }
 }

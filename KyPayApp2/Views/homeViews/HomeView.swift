@@ -7,35 +7,40 @@
 
 import SwiftUI
 
-struct HomeControl {
-    
-    var topUpPresented : Bool = false
-    
-    var sendMoneyPresented : Bool = false
-    
-    var requestMoneyPresented : Bool = false
-}
 
 struct HomeView : View {
 
     @EnvironmentObject private var viewModel : UserViewModel
     
-    @State private var control = HomeControl()
+    
+    @State private var control = PresenterControl()
     
     var body : some View {
         
         view()
         .bottomSheet(isPresented: $control.topUpPresented, height: UIScreen.main.bounds.height, showGrayOverlay: true, content:{
         
-            TopUpView(isPresented: $control.topUpPresented)
+            TopUpView(control: $control)
         })
-        
+      
+        .bottomSheet(isPresented: $control.paymentMethodSelectorPresented, height: UIScreen.main.bounds.height, showGrayOverlay: true, content:{
+            
+            PaymentMethodTypesView(control: $control)
+            
+        })
+            
+        .bottomSheet(isPresented: $control.topUpPaymentPresented, height: UIScreen.main.bounds.height, showGrayOverlay: true, content:{
+                  
+            TopUpPaymentView(control: $control)
+        })
+            
         .bottomSheet(isPresented: $control.sendMoneyPresented, height: UIScreen.main.bounds.height, showGrayOverlay: true, content:{
             
             SendView()
         })
         .environmentObject(TopUpPaymentViewModel())
-        
+        .environmentObject(PaymentMethodsViewModel())
+       
     }
     
 }
