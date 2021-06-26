@@ -101,9 +101,13 @@ extension PaymentMethodTypesView {
            
             
             Text(paymentMethod.name ?? "")
-            .font(.custom(Theme.fontName, size: 16))
+            .font(.custom(Theme.fontName, size: 15))
+            .frame(minWidth: 240, alignment: .leading)
             .padding()
            
+            
+            Spacer()
+            NavigationLink.empty
         }
     }
     

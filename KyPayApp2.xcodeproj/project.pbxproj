@@ -135,6 +135,7 @@
 		10B8560B2687443400AEF15F /* Test3..php in Resources */ = {isa = PBXBuildFile; fileRef = 10B8560A2687443400AEF15F /* Test3..php */; };
 		10B8560D268757CF00AEF15F /* PaymentFailureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8560C268757CF00AEF15F /* PaymentFailureView.swift */; };
 		10B856112687EE4200AEF15F /* PresenterControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B856102687EE4200AEF15F /* PresenterControl.swift */; };
+		10B856132687F33800AEF15F /* NavigationLinkExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B856122687F33800AEF15F /* NavigationLinkExt.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -300,6 +301,7 @@
 		10B8560A2687443400AEF15F /* Test3..php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = Test3..php; sourceTree = "<group>"; };
 		10B8560C268757CF00AEF15F /* PaymentFailureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentFailureView.swift; sourceTree = "<group>"; };
 		10B856102687EE4200AEF15F /* PresenterControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterControl.swift; sourceTree = "<group>"; };
+		10B856122687F33800AEF15F /* NavigationLinkExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationLinkExt.swift; sourceTree = "<group>"; };
 		1B47377B496C6F0F1022FFD4 /* Pods-KyPayApp2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.debug.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.debug.xcconfig"; sourceTree = "<group>"; };
 		6F523BC3D4353462922B31B9 /* Pods-KyPayApp2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.release.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -686,6 +688,7 @@
 				1033C0BB267AECA200D999CE /* Theme.swift */,
 				1033C0CA267C9E4300D999CE /* NavigationBackButton.swift */,
 				10B855F0267F39D900AEF15F /* NavigationBarTitle.swift */,
+				10B856122687F33800AEF15F /* NavigationLinkExt.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -989,6 +992,7 @@
 				1033C0CF267D767000D999CE /* TxInputData.swift in Sources */,
 				1033C0982678477600D999CE /* UserViewModel.swift in Sources */,
 				1033B2572674A7F200D999CE /* SceneDelegate.swift in Sources */,
+				10B856132687F33800AEF15F /* NavigationLinkExt.swift in Sources */,
 				10154F3A268033B600DB78C4 /* TopUpPayment.swift in Sources */,
 				10B856092686C9ED00AEF15F /* PaymentRedirectView.swift in Sources */,
 				1033C06C2676E3FA00D999CE /* PhoneInputViewModel.swift in Sources */,

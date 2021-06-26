@@ -120,7 +120,7 @@ extension TopUpPaymentView  {
         
             HStack(spacing:20) {
                 
-                Spacer().frame(width:10)
+                //Spacer().frame(width:10)
                 
                 KFImage(topUpViewModel.paymentMethod?.imageURL)
                 .resizable()
@@ -132,14 +132,13 @@ extension TopUpPaymentView  {
                 .frame(width: 34)
                 
                 Text(topUpViewModel.paymentMethod?.name ?? "")
-                .font(.custom(Theme.fontName, size: 16))
-                
+                .font(.custom(Theme.fontName, size: 15))
+                .frame(minWidth: 200, alignment: .leading)
+                   
                 Spacer()
                 
-                Image(systemName: "arrow.forward.circle")
-                .resizable()
-                .frame(width: 20, height:20)
-                .foregroundColor(.gray)
+                Image(systemName: "chevron.right")
+                    .font(.body).foregroundColor(Color(UIColor(hex:"#ccccccff")!))
                 
             }.padding().foregroundColor(.black).background(Color(UIColor(hex:"#eeeeffff")!))
         }
