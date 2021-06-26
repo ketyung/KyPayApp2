@@ -45,7 +45,6 @@ struct TopUpPaymentView : View {
             nextScreenNavLink()
             
         }
-        .backButton()
         .alert(isPresented: $errorPresented){ Alert(title: Text("Oppps!"),message:Text(errorMessage ?? ""))}
         .navigationBar(title : Text("Enter Amount".localized), displayMode: .inline)
         .bottomFloatingButton( isPresented: topUpViewModel.errorMessage == nil, action: {
