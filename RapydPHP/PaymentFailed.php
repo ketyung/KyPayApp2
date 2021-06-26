@@ -4,7 +4,7 @@ use Util\Log as Log;
 
 Log::printRToErrorLog($_REQUEST);
 ?>
-<html lang="en-US"><head><title>Payment Success - KyPay</title><meta
+<html lang="en-US"><head><title>Payment Failure - KyPay</title><meta
 charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 <style>body {font-family:verdana,arial;font-size:12pt;}
 .mybox {font-size:30pt;margin:auto;max-width:400px;max-height:500px;min-height:100px;border-radius:25px;

@@ -26,7 +26,8 @@ struct WebView : UIViewRepresentable {
         w.contentMode = .scaleAspectFit
         w.sizeToFit()
         w.autoresizesSubviews = true
-    
+        w.navigationDelegate = context.coordinator
+        
         if let url = url  {
         
             w.load( URLRequest(url: url ) )
@@ -36,27 +37,12 @@ struct WebView : UIViewRepresentable {
     
     func updateUIView(_ uiView: WKWebView, context: Context) {
         
-        uiView.evaluateJavaScript("document.readyState", completionHandler: { result, error in
-
-            if result == nil || error != nil {
-                return
-            }
-
-            let js = "document.getElementById('testing_payment_field_of_id').innerHTML;"
-            
-            uiView.evaluateJavaScript(js, completionHandler: { result, error in
-                
-                print("res::\(String(describing: result))")
-                if let val = result as? String {
-                    
-                    print("obtained.value::\(val)")
-                    
-                }
-            })
-        })
+      
     }
     
+    
 }
+
 
 
 extension WKWebView {
@@ -76,10 +62,46 @@ extension WKWebView {
     }
 }
 
-/**extension PaymentRedirectWebView {
+extension WebView {
     
-    class Coordinator : WKNavigationDelegate{
+    class Coordinator : NSObject, WKNavigationDelegate{
+
+        func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+            print("Start loading")
+        }
+
+        func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+            print("End loading")
+            self.evaluateJs(webView)
+        }
         
+        
+        private func evaluateJs( _ uiView : WKWebView){
+            
+            uiView.evaluateJavaScript("document.readyState", completionHandler: { result, error in
+
+                if result == nil || error != nil {
+                    return
+                }
+
+                let js = "document.getElementById('testing_payment_data').innerHTML"
+                
+                print("title:::\(String(describing: uiView.title))")
+                uiView.evaluateJavaScript(js, completionHandler: { result, error in
+                    
+                    print("res::\(String(describing: result))")
+                    if let val = result as? String {
+                        
+                        print("obtained.value::\(val)")
+                        
+                    }
+                })
+            })
+        }
     }
-}*/
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator()
+    }
+}
 
