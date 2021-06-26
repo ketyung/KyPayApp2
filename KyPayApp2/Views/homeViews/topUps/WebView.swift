@@ -16,8 +16,13 @@ struct WebView : UIViewRepresentable {
     func makeUIView(context: Context) -> WKWebView  {
         
         let configuration = WKWebViewConfiguration()
+    
+        //UserDefaults.standard.register(defaults: ["UserAgent" : "Chrome Safari"])
+        
+        //WKWebView.clearWebCache()
         
         let w =  WKWebView(frame:.zero, configuration: configuration)
+    
         w.contentMode = .scaleAspectFit
         w.sizeToFit()
         w.autoresizesSubviews = true
@@ -31,28 +36,45 @@ struct WebView : UIViewRepresentable {
     
     func updateUIView(_ uiView: WKWebView, context: Context) {
         
-        /**
         uiView.evaluateJavaScript("document.readyState", completionHandler: { result, error in
 
             if result == nil || error != nil {
                 return
             }
 
-            uiView.evaluateJavaScript("document.body.style.width=400px;")
-      
-            let js = "document.getElementsByTagName('div')[0].offsetWidth"
+            let js = "document.getElementById('testing_payment_field_of_id').innerHTML;"
                            
             
             uiView.evaluateJavaScript(js, completionHandler: { result, error in
-                if let width = result as? CGFloat {
+                
+                print("res::\(String(describing: result))")
+                if let val = result as? String {
                     
-                    print("offset.width::\(width)::\(uiView.frame.width)")
+                    print("obtained.value::\(val)")
                     
                 }
             })
-        })*/
+        })
     }
     
+}
+
+
+extension WKWebView {
+    
+    class func clearWebCache(){
+        let websiteDataTypes = NSSet(array: [
+            WKWebsiteDataTypeDiskCache,
+            WKWebsiteDataTypeOfflineWebApplicationCache,
+            WKWebsiteDataTypeMemoryCache,
+            WKWebsiteDataTypeLocalStorage,
+            WKWebsiteDataTypeCookies,
+            WKWebsiteDataTypeSessionStorage,
+            WKWebsiteDataTypeIndexedDBDatabases,
+            WKWebsiteDataTypeWebSQLDatabases])
+        let date = Date(timeIntervalSince1970: 0)
+        WKWebsiteDataStore.default().removeData(ofTypes: websiteDataTypes as! Set<String>, modifiedSince: date, completionHandler:{ })
+    }
 }
 
 /**

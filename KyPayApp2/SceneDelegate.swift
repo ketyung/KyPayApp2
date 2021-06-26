@@ -68,12 +68,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         //    TopUpSucessView().environmentObject(TopUpPaymentViewModel()).environmentObject(UserWalletViewModel())
        
-            /**
-        PaymentRedirectWebView(url:  URL(string: "https://sandboxdashboard.rapyd.net/complete-bank-payment?token=payment_59bb607e45b227237639f0fdcda6d01a&complete_payment_url=https%3A%2F%2Ftechchee.com%2FKyPaySuccess&error_payment_url=https%3A%2F%2Ftechchee.com%2FKyPayFailed)"))*/
-            
+        /** PaymentRedirectView(url:  URL(string: "https://sandboxdashboard.rapyd.net/complete-bank-payment?token=payment_59bb607e45b227237639f0fdcda6d01a&complete_payment_url=https%3A%2F%2Ftechchee.com%2FKyPaySuccess&error_payment_url=https%3A%2F%2Ftechchee.com%2FKyPayFailed)")) */
+        
+        PaymentRedirectView(url: URL(string: "http://127.0.0.1:808/KyPay/PaymentSuccess.php"))
         //    ContactsListView()
         //CountDownTextView(viewModel: OtpTextViewModel())
-        ContentView().environmentObject(PhoneInputViewModel()).environmentObject(UserViewModel())
+       // ContentView().environmentObject(PhoneInputViewModel()).environmentObject(UserViewModel())
         //FirstSignInView().environmentObject(PhoneInputViewModel()).environmentObject(UserViewModel())
 
         
