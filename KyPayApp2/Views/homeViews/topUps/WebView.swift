@@ -43,7 +43,6 @@ struct WebView : UIViewRepresentable {
             }
 
             let js = "document.getElementById('testing_payment_field_of_id').innerHTML;"
-                           
             
             uiView.evaluateJavaScript(js, completionHandler: { result, error in
                 
@@ -77,12 +76,10 @@ extension WKWebView {
     }
 }
 
-/**
-extension PaymentRedirectWebView {
+/**extension PaymentRedirectWebView {
     
-    class Coordinator {
-        
+    class Coordinator : WKNavigationDelegate{
         
     }
-}
- */
+}*/
+

@@ -304,9 +304,15 @@ extension WalletHandler {
 
 extension WalletHandler {
     
-    static let completionURL : String = "https://techchee.com/KyPaySuccess"
+    static let completionURL : String =
+        //"http://127.0.0.1:808/KyPay/PaymentSuccess.php"
+        
+        "https://techchee.com/KyPaySuccess"
     
-    static let errorURL : String = "https://techchee.com/KyPayFailed"
+    static let errorURL : String =
+        //"http://127.0.0.1:808/KyPay/PaymentFailed.php"
+       
+        "https://techchee.com/KyPayFailed"
     
     
     func add(card : Card, amount : Double, currency : String, customerId : String ,
@@ -471,7 +477,7 @@ extension WalletHandler {
                     
                         guard let err = err else {
                     
-                            print("payment?.completePaymentURL::\(String(describing: payment?.completePaymentURL))")
+                         //   print("payment?.completePaymentURL::\(String(describing: payment?.completePaymentURL))")
                             
                            var pms = PaymentData()
                            pms.amount = Double(truncating: (payment?.amount ?? 0) as NSNumber)

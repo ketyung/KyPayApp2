@@ -16,7 +16,7 @@ struct PaymentRedirectView : View {
         VStack{
     
             WebView(url: url)
-            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+            .frame(width: UIScreen.main.bounds.width , height: UIScreen.main.bounds.height)
         }
         .backButton()
     }
