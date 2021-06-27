@@ -22,7 +22,18 @@ struct WalletView : View {
     
     @State private var custId : String = ""
     
+    @State private var control = PresenterControl()
+    
+    
     var body : some View {
+        
+        view()
+        .environmentObject(PayoutMethodsViewModel())
+        //WalletHandler().deleteWallet()
+    }
+    
+    
+    private func view() -> some View {
         
         VStack(alignment:.leading,  spacing: 20){
             
@@ -35,12 +46,17 @@ struct WalletView : View {
             Spacer()
             
         }
+        
+        .popOver(isPresented: $control.payoutMethodSelectorPresented, content: {
+        
+            PayoutMethodTypesView(control: $control)
+          
+        })
         .onAppear{
             
             self.fetchWalletIfNotPresent()
         }
         .backButton()
-        //WalletHandler().deleteWallet()
     }
 }
 
@@ -51,7 +67,6 @@ extension WalletView {
         VStack {
        
             Text("Your Wallet").font(.custom(Theme.fontName, size: 26))
-           
             HStack {
                 
                 Text(walletViewModel.currency).font(.custom(Theme.fontName, size: 20)).foregroundColor(.gray)
@@ -59,11 +74,11 @@ extension WalletView {
                 Text(walletViewModel.balance).font(.custom(Theme.fontNameBold, size: 40))
             }
         }
-        .padding()
+        .padding(4)
         .frame(width: UIScreen.main.bounds.width - 40)
         .background(
             
-            LinearGradient(gradient: Gradient(colors: [ Color(UIColor(hex:"#ccccccff")!), Color(UIColor(hex:"#f3f4ffff")!)]),
+            LinearGradient(gradient: Gradient(colors: [ Color(UIColor(hex:"#ccccccff")!), Color(UIColor(hex:"#d3f4ffff")!)]),
             startPoint: .leading, endPoint: .trailing)
            
         )
@@ -104,6 +119,10 @@ extension WalletView {
         
         Button(action: {
             
+            withAnimation{
+                
+                self.control.payoutMethodSelectorPresented = true 
+            }
         }){
             
             HomeView.buttonView(color : Color(UIColor(hex:"#225533ff")!), imageOne: "withdraw",

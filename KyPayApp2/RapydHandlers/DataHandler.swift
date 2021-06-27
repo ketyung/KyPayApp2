@@ -88,3 +88,33 @@ extension DataHandler {
         }
     }
 }
+
+
+extension DataHandler {
+    
+    
+    func supportedPayoutMethods( countryCode : String , currency : String,  completion : (([RPDPayoutMethodType]?,Error?) -> Void)? = nil ){
+        
+        Config.setup()
+    
+        
+        RPDPayoutManager().listPayoutMethodTypes(category: .cash,
+        payoutCurrency: RPDCurrency.currency(with: currency),
+        beneficiaryCountry: RPDCountry.country(isoAlpha2: countryCode),
+        beneficiaryEntityType: nil,senderEntityType: nil,isCancelable: nil,
+        isExpirable: nil,isLocationSpecific: nil, isOnline: nil, limit: nil,startingAfter: nil,
+        endingBefore: nil) { payoutMethodTypes, error in
+                                         
+            guard let err = error else {
+                
+                completion?(payoutMethodTypes, nil)
+                
+                return
+            }
+             
+            
+            completion?(nil, err)
+        }
+        
+    }
+}

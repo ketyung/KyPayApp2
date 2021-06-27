@@ -17,6 +17,8 @@ struct PresenterControl {
     
     var paymentMethodSelectorPresented : Bool = false
    
+    var payoutMethodSelectorPresented : Bool = false
+   
     var topUpPaymentPresented : Bool = false
    
 }
