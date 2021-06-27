@@ -7,9 +7,7 @@
 
 import SwiftUIX
 
-
 struct SendView : View {
-    
     
     @ObservedObject private var dataInputViewModel = PhoneInputViewModel()
   

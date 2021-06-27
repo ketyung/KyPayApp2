@@ -9,7 +9,7 @@ import Foundation
 import ContactsUI
 
 
-struct Contact {
+struct Contact : Equatable{
     
     var cnIdentifier : String = ""
     
