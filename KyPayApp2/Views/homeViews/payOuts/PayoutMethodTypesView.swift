@@ -25,9 +25,8 @@ struct PayoutMethodTypesView : View {
             
             Spacer().frame(height: 20)
            
-            Text("Select Payout Method".localized).font(.custom(Theme.fontName, size: 16))
-             .frame(minWidth: 200)
-   
+            Text("Select Payout Method".localized).font(.custom(Theme.fontName, size: 16)).padding(4)
+           
            
             List{
                 
@@ -49,7 +48,6 @@ struct PayoutMethodTypesView : View {
            //fetchSupportedPayoutMethods()
         }
         .progressView(isShowing: $pmViewModel.showLoadingIndicator, text: "", size: CGSize(width:100,height: 100), showGrayOverlay: false)
-        .navigationBar(title: Text("Select Payout Option".localized), displayMode: .inline)
     }
 }
 
@@ -88,7 +86,7 @@ extension PayoutMethodTypesView {
             
             Text(paymentMethod.name ?? "")
             .font(.custom(Theme.fontName, size: 15))
-            .frame(minWidth: 240, alignment: .leading)
+            .frame(minWidth: 200, alignment: .leading)
             .padding()
            
             

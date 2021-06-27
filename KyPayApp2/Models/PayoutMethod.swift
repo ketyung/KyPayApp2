@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct PayoutMethod {
     
     var type : String?
@@ -18,3 +17,4 @@ struct PayoutMethod {
     
     var imageURL : URL?
 }
+

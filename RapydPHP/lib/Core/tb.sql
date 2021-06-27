@@ -77,6 +77,8 @@ alter table kypay_user_wallet add service_wallet_id varchar(255) after type;
 alter table kypay_user_wallet add service_contact_id varchar(255) after type;
 alter table kypay_user_wallet add service_cust_id varchar(255) after service_contact_id;
 alter table kypay_user_wallet add service_addr_id varchar(255) after type;
+alter table kypay_user_wallet add service_po_sender_id varchar(255) after service_cust_id;
+alter table kypay_user_wallet add service_po_ben_id varchar(255) after service_cust_id;
 
 
 
@@ -102,6 +104,8 @@ create table if not exists kypay_user_payment_tx (
 
 
 alter table kypay_user_payment_tx add service_payment_id varchar(128) after method;
+
+alter table kypay_user_payment_tx modify service_payment_id varchar(255);
 
 alter table kypay_user_payment_tx modify method varchar(64);
 

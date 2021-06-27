@@ -26,6 +26,10 @@ class KypayUserWallet extends KypayDbObject{
     
     public $serviceCustId;
     
+    public $servicePoBenId;
+    
+    public $servicePoSenderId;
+    
     public $serviceWalletId;
     
     public $lastUpdated;

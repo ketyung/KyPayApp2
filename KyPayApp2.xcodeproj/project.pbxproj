@@ -140,6 +140,7 @@
 		10B8561726883FDE00AEF15F /* PayoutMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8561626883FDE00AEF15F /* PayoutMethod.swift */; };
 		10B8561A2688416300AEF15F /* PayoutMethodsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B856192688416300AEF15F /* PayoutMethodsViewModel.swift */; };
 		10B8561C2688445100AEF15F /* PayoutMethodTypesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8561B2688445100AEF15F /* PayoutMethodTypesView.swift */; };
+		10B8561E26886D8C00AEF15F /* PayoutHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8561D26886D8C00AEF15F /* PayoutHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -310,6 +311,7 @@
 		10B8561626883FDE00AEF15F /* PayoutMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayoutMethod.swift; sourceTree = "<group>"; };
 		10B856192688416300AEF15F /* PayoutMethodsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayoutMethodsViewModel.swift; sourceTree = "<group>"; };
 		10B8561B2688445100AEF15F /* PayoutMethodTypesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayoutMethodTypesView.swift; sourceTree = "<group>"; };
+		10B8561D26886D8C00AEF15F /* PayoutHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayoutHandler.swift; sourceTree = "<group>"; };
 		1B47377B496C6F0F1022FFD4 /* Pods-KyPayApp2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.debug.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.debug.xcconfig"; sourceTree = "<group>"; };
 		6F523BC3D4353462922B31B9 /* Pods-KyPayApp2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.release.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -719,6 +721,7 @@
 			isa = PBXGroup;
 			children = (
 				1033C0DF267D984C00D999CE /* WalletHandler.swift */,
+				10B8561D26886D8C00AEF15F /* PayoutHandler.swift */,
 				10B855FA2684037700AEF15F /* CustomerHandler.swift */,
 				1033C0E0267D984C00D999CE /* Config.swift */,
 				1033C0E1267D984C00D999CE /* DataHandler.swift */,
@@ -1004,6 +1007,7 @@
 				1033C0C0267AFD4F00D999CE /* ContactFetcher.swift in Sources */,
 				10B856052685831400AEF15F /* CachedPaymentMethodDataStore.swift in Sources */,
 				1033B2952674A82F00D999CE /* UserImg.swift in Sources */,
+				10B8561E26886D8C00AEF15F /* PayoutHandler.swift in Sources */,
 				1033C0CB267C9E4300D999CE /* NavigationBackButton.swift in Sources */,
 				1033C09E267850D900D999CE /* SendView.swift in Sources */,
 				1033C0752676E81000D999CE /* BottomSheet.swift in Sources */,
