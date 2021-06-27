@@ -44,7 +44,16 @@ struct TopUpPaymentView : View {
     private func view() -> some View {
         
         VStack(alignment: .center,spacing: 20) {
-            closeButton()
+            
+            HStack {
+           
+                closeButton()
+                
+                Text("Enter Amount".localized).font(.custom(Theme.fontName, size: 18))
+                
+                Spacer().frame(minWidth: 100)
+                
+            }
             
             paymentMethodView()
             
@@ -58,7 +67,6 @@ struct TopUpPaymentView : View {
             
         }
         .alert(isPresented: $errorPresented){ Alert(title: Text("Oppps!"),message:Text(errorMessage ?? ""))}
-        .navigationBar(title : Text("Enter Amount".localized), displayMode: .inline)
         .bottomFloatingButton( isPresented: topUpViewModel.errorMessage == nil, action: {
             self.topUpNow()
         })
@@ -147,9 +155,9 @@ extension TopUpPaymentView  {
                 Spacer()
                 
                 Image(systemName: "chevron.right")
-                    .font(.body).foregroundColor(Color(UIColor(hex:"#ccccccff")!))
+                .font(.body).foregroundColor(Color(UIColor(hex:"#aaaaaaff")!))
                 
-            }.padding().foregroundColor(.black).background(Color(UIColor(hex:"#eeeeffff")!))
+            }.padding().foregroundColor(.black).background(Color(UIColor(hex:"#eeeeeeff")!))
         }
         
     }

@@ -27,11 +27,21 @@ struct PaymentMethodTypesView : View {
         
         VStack {
             
+            
             if !isPopBack {
-            
-                closeButton()
+           
+                HStack {
+           
+                    closeButton()
+               
+                    Text("Select Online Banking".localized).font(.custom(Theme.fontName, size: 16))
+                     .frame(minWidth: 200)
+                
+                    Spacer().frame(minWidth: 30)
+                
+                }
             }
-            
+       
             List{
                 
                 ForEach(pmViewModel.supportedPaymentMethods, id:\.type){
@@ -74,7 +84,7 @@ extension PaymentMethodTypesView {
             }
             else {
                 
-                self.close()
+                self.select()
             }
             
         }){
@@ -150,8 +160,7 @@ extension PaymentMethodTypesView {
         
     }
     
-    
-    private func close(){
+    private func select(){
         
         withAnimation{
        
@@ -161,6 +170,17 @@ extension PaymentMethodTypesView {
                 
                 self.control.topUpPaymentPresented = true
             })
+        }
+    
+    }
+    
+    private func close(){
+        
+        withAnimation{
+       
+            self.control.paymentMethodSelectorPresented = false
+           
+            self.control.topUpPaymentPresented = false
         }
     
     }
