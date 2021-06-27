@@ -49,7 +49,7 @@ struct WalletView : View {
         
         .popOver(isPresented: $control.payoutMethodSelectorPresented, content: {
         
-            PayoutMethodTypesView(control: $control)
+            PayoutMethodTypesView(control: $control).frame(height:500)
           
         })
         .onAppear{
