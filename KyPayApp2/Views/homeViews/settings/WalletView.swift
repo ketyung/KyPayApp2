@@ -37,6 +37,8 @@ struct WalletView : View {
         
         VStack(alignment:.leading,  spacing: 20){
             
+            Spacer().frame(height:20)
+            
             walletAmountView()
             
             buttons()
@@ -46,7 +48,7 @@ struct WalletView : View {
             Spacer()
             
         }
-        
+        .navigationBar(title: Text(""), displayMode: .inline)
         .popOver(isPresented: $control.payoutMethodSelectorPresented, content: {
         
             PayoutMethodTypesView(control: $control).frame(height:400)
