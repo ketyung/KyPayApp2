@@ -24,9 +24,7 @@ struct WalletView : View {
     
     var body : some View {
         
-        VStack(spacing: 20){
-            
-            Spacer().frame(height:10)
+        VStack(alignment:.leading,  spacing: 20){
             
             walletAmountView()
             
@@ -70,7 +68,7 @@ extension WalletView {
            
         )
         .cornerRadius(10)
-        
+        .offset(x: 20)
     }
 }
 
@@ -81,9 +79,11 @@ extension WalletView {
     
     private func buttons() -> some View {
         
-        HStack(spacing: 20){
+        HStack(spacing: 10){
             
             topUpButton()
+            
+            withDrawButton()
         }.padding()
     }
     
@@ -95,6 +95,19 @@ extension WalletView {
             
             HomeView.buttonView(color : Color(UIColor(hex:"#5566aaff")!), imageOne: "wallet",
                        imageTwo: "plus.circle", text: "Top Up")
+        }
+        
+    }
+    
+    
+    private func withDrawButton() -> some View{
+        
+        Button(action: {
+            
+        }){
+            
+            HomeView.buttonView(color : Color(UIColor(hex:"#225533ff")!), imageOne: "withdraw",
+                       imageTwo: "minus.circle", text: "Withdraw")
         }
         
     }
