@@ -69,5 +69,7 @@
 	</array>
     <key>NSContactsUsageDescription</key>
     <string>KyPay app would like to access your contacts</string>
+    <key>UIUserInterfaceStyle</key>
+    <string>Light</string>
 </dict>
 </plist>
