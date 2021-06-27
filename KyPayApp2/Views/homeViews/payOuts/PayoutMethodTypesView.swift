@@ -23,6 +23,7 @@ struct PayoutMethodTypesView : View {
         
         VStack {
             
+            Spacer().frame(height: 20)
            
             Text("Select Payout Method".localized).font(.custom(Theme.fontName, size: 16))
              .frame(minWidth: 200)
@@ -37,7 +38,6 @@ struct PayoutMethodTypesView : View {
                     
                 }
             }
-            .frame(height:UIScreen.main.bounds.height - 240)
             
             Spacer()
             

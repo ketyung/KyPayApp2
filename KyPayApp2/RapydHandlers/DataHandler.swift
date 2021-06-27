@@ -99,7 +99,7 @@ extension DataHandler {
     
         
         RPDPayoutManager().listPayoutMethodTypes(category: .cash,
-        payoutCurrency: RPDCurrency.currency(with: "USD"),
+        payoutCurrency:  nil, /**RPDCurrency.currency(with: "USD"),*/ 
         beneficiaryCountry:nil, /** RPDCountry.country(isoAlpha2: countryCode),*/
         beneficiaryEntityType: nil,senderEntityType: nil,isCancelable: nil,
         isExpirable: nil,isLocationSpecific: nil, isOnline: nil, limit: nil,startingAfter: nil,
