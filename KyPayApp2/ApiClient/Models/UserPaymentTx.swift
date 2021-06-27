@@ -56,6 +56,8 @@ struct UserPaymentTx : Codable{
     
     var method : String?
     
+    var servicePaymentId : String?
+    
     var stat : Stat?
     
     var statMessage : String?

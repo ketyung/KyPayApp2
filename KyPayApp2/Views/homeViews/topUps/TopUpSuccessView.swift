@@ -21,8 +21,12 @@ struct TopUpSucessView : View {
        view()
         .onAppear{
             // update remote to record a successful payment
+            
+            print("update remote with ::\(String(describing: topUpViewModel.servicePaymentId))")
             walletViewModel.updateWalletRemotely(by: Double(topUpViewModel.amount) ?? 0,
-            for: userViewModel.user, method: topUpViewModel.paymentMethod?.type ?? "", completion: { err in
+            for: userViewModel.user, method: topUpViewModel.paymentMethod?.type ?? "",
+            servicePaymentId:  topUpViewModel.servicePaymentId, 
+            completion: { err in
                          
                 guard let err = err else {
                     

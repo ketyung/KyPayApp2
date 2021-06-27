@@ -40,7 +40,7 @@ struct TopUpFailureView : View {
             
             // update remote to record a failure payment
             walletViewModel.addPaymentTxRemotely(amount: Double(topUpViewModel.amount) ?? 0, currency: topUpViewModel.currency, user:userViewModel.user, walletRefId: walletViewModel.refId, method: topUpViewModel.paymentMethod?.type ?? "",
-            txType:.walletTopUp, status: .error, completion: { err in
+                servicePaymentId:  topUpViewModel.servicePaymentId, txType:.walletTopUp, status: .error, completion: { err in
                                                 
                 guard let err = err else {
                     

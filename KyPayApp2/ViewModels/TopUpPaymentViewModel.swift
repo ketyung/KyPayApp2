@@ -181,7 +181,7 @@ extension TopUpPaymentViewModel : WKNavigationDelegate{
                 self.evaluateJs(webView)
             }
             
-            print("title:\(String(describing: webView.title))::self.paymentStatus::\(self.paymentStatus)::\(self.servicePaymentId ?? "xxxx")::\(self.paymentMethod?.type ?? "")")
+        //    print("title:\(String(describing: webView.title))::self.paymentStatus::\(self.paymentStatus)::\(self.servicePaymentId ?? "xxxx")::\(self.paymentMethod?.type ?? "")")
      
         }
         

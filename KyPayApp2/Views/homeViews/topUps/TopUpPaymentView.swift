@@ -24,7 +24,7 @@ struct TopUpPaymentView : View {
     
     @State private var pushToNext : Bool = false
     
-    @State private var dismissCloseButton : Bool = false
+    @State private var dismissTopBar : Bool = false
     
     @Binding var control : PresenterControl
 
@@ -45,15 +45,7 @@ struct TopUpPaymentView : View {
         
         VStack(alignment: .center,spacing: 20) {
             
-            HStack {
-           
-                closeButton()
-                
-                Text("Enter Amount".localized).font(.custom(Theme.fontName, size: 18))
-                
-                Spacer().frame(minWidth: 100)
-                
-            }
+            topBar()
             
             paymentMethodView()
             
@@ -79,7 +71,7 @@ struct TopUpPaymentView : View {
     
         withAnimation{
        
-            self.dismissCloseButton = true
+            self.dismissTopBar = true
         }
         
         self.endEditing()
@@ -233,33 +225,50 @@ extension TopUpPaymentView {
     }
     
     
+    
+    
+    
     @ViewBuilder
-    private func closeButton() -> some View {
+    private func topBar() -> some View {
         
-        if !dismissCloseButton {
         
-            HStack(spacing:5) {
+        if !dismissTopBar {
+       
+            HStack {
            
-                Spacer()
-                .frame(width:2)
+                closeButton()
                 
-                Button(action: {
-                    withAnimation {
-                        self.control.topUpPaymentPresented = false
-                    }
-                }){
-                    
-                    Image(systemName: "x.circle.fill")
-                    .resizable()
-                    .frame(width:20, height: 20, alignment: .topLeading)
-                    .foregroundColor(.black)
-                    
+                Text("Enter Amount".localized).font(.custom(Theme.fontName, size: 18))
+                
+                Spacer().frame(minWidth: 100)
+                
+            }
+           
+        }
+    }
+    
+    private func closeButton() -> some View {
+    
+        HStack(spacing:5) {
+       
+            Spacer()
+            .frame(width:2)
+            
+            Button(action: {
+                withAnimation {
+                    self.control.topUpPaymentPresented = false
                 }
+            }){
                 
-                Spacer()
+                Image(systemName: "x.circle.fill")
+                .resizable()
+                .frame(width:20, height: 20, alignment: .topLeading)
+                .foregroundColor(.black)
+                
             }
             
+            Spacer()
         }
-    
+
     }
 }

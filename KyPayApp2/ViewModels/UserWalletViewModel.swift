@@ -338,13 +338,12 @@ extension UserWalletViewModel {
     
     
     func addPaymentTxRemotely ( amount : Double , currency : String, user : User,
-                                        walletRefId : String, method : String, txType : UserPaymentTx.TxType,
-                                        status : UserPaymentTx.Stat = .success ,
-                                        completion : ((Error?) -> Void)? = nil ){
+            walletRefId : String, method : String, servicePaymentId : String? = nil , txType : UserPaymentTx.TxType,
+            status : UserPaymentTx.Stat = .success , completion : ((Error?) -> Void)? = nil ){
         
         let pmTx = UserPaymentTx(uid : user.id ?? "", toUid:  user.id ?? "", toUidType: .none,
                                  txType : txType, walletRefId: walletRefId, amount:  amount, currency: currency,
-                                 method: method, stat: status)
+                                 method: method, servicePaymentId: servicePaymentId, stat: status)
         
         ARH.shared.addUserPaymentTx(pmTx, returnType: UserPaymentTx.self,  completion: {
             
@@ -366,7 +365,7 @@ extension UserWalletViewModel {
     
     
     func updateWalletRemotely(by adding : Double, for user : User,
-                                      method : String,
+                              method : String, servicePaymentId : String? = nil ,
                                       completion : ((Error?) -> Void)? = nil ){
         
         let newBalance = (self.walletHolder.wallet.balance ?? 0) + adding
@@ -401,7 +400,7 @@ extension UserWalletViewModel {
                 case .success(_) :
                     // record a payment tx remotely
                     self.addPaymentTxRemotely(amount: adding, currency: currency, user: user,
-                    walletRefId: walletToBeUpdated.refId ?? "", method: method,
+                    walletRefId: walletToBeUpdated.refId ?? "", method: method, servicePaymentId: servicePaymentId, 
                     txType: .walletTopUp, completion: completion)
             }
         })

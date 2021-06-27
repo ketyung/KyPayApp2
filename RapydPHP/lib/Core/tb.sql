@@ -101,6 +101,8 @@ create table if not exists kypay_user_payment_tx (
 )ENGINE=INNODB;
 
 
+alter table kypay_user_payment_tx add service_payment_id varchar(128) after method;
+
 alter table kypay_user_payment_tx modify method varchar(64);
 
 alter table kypay_user_payment_tx add wallet_ref_id varchar(16) after to_uid_type;
