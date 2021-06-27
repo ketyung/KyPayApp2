@@ -28,7 +28,7 @@ struct PaymentFailureView : View {
         }
         .padding()
         .navigationBar(title : Text("Payment Failure".localized), displayMode: .inline)
-        .backButton()
+        .navigationBarBackButtonHidden(true)
     }
 
 }

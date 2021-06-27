@@ -13,7 +13,7 @@ struct PaymentRedirectWebView : UIViewRepresentable {
     
     let url : URL?
     
-    let topUpViewModel : TopUpPaymentViewModel
+    @EnvironmentObject private var topUpViewModel : TopUpPaymentViewModel
    
 
     func makeUIView(context: Context) -> WKWebView  {

@@ -24,8 +24,12 @@ struct TopUpPaymentView : View {
     
     @State private var pushToNext : Bool = false
     
+    @State private var dismissCloseButton : Bool = false
+    
     @Binding var control : PresenterControl
 
+    
+    
     var body : some View {
         
         NavigationView {
@@ -65,6 +69,11 @@ struct TopUpPaymentView : View {
     
     private func topUpNow(){
     
+        withAnimation{
+       
+            self.dismissCloseButton = true
+        }
+        
         self.endEditing()
         
         self.inProgress = true
@@ -211,35 +220,38 @@ extension TopUpPaymentView {
     
     private func nextScreenNavLink() -> some View {
         
-        NavigationLink(destination:
-        PaymentRedirectView(url: topUpViewModel.redirectURL,
-        topUpViewModel: topUpViewModel, walletViewModel: walletViewModel),
+        NavigationLink(destination:PaymentRedirectView(url: topUpViewModel.redirectURL),
         isActive : $pushToNext){}.hidden(true)
     }
     
     
+    @ViewBuilder
     private func closeButton() -> some View {
         
-        HStack(spacing:5) {
-       
-            Spacer()
-            .frame(width:2)
-            
-            Button(action: {
-                withAnimation {
-                    self.control.topUpPaymentPresented = false
+        if !dismissCloseButton {
+        
+            HStack(spacing:5) {
+           
+                Spacer()
+                .frame(width:2)
+                
+                Button(action: {
+                    withAnimation {
+                        self.control.topUpPaymentPresented = false
+                    }
+                }){
+                    
+                    Image(systemName: "x.circle.fill")
+                    .resizable()
+                    .frame(width:20, height: 20, alignment: .topLeading)
+                    .foregroundColor(.black)
+                    
                 }
-            }){
                 
-                Image(systemName: "x.circle.fill")
-                .resizable()
-                .frame(width:20, height: 20, alignment: .topLeading)
-                .foregroundColor(.black)
-                
+                Spacer()
             }
             
-            Spacer()
         }
-        
+    
     }
 }

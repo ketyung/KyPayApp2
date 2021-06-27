@@ -157,20 +157,57 @@ extension TopUpPaymentViewModel : WKNavigationDelegate{
     }
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        //self.evaluateJs(webView)
         
-        if webView.url?.absoluteString == WalletHandler.completionURL {
+        DispatchQueue.main.async {
+    
+            if webView.url?.absoluteString == WalletHandler.completionURL {
+                
+                withAnimation{
+        
+                    self.paymentStatus = .success
+                }
+            }
+            else if webView.url?.absoluteString == WalletHandler.errorURL {
+                
+                withAnimation{
+          
+                    self.paymentStatus = .failure
+                }
+            }
             
-            self.paymentStatus = .success
-        }
-        else if webView.url?.absoluteString == WalletHandler.errorURL {
+            else if webView.title == "Rapyd Dashboard" {
+                
+                print("trying to force body width fpr rapyd.sandbox")
+                self.evaluateJs(webView)
+            }
             
-            self.paymentStatus = .failure
+            print("title:\(String(describing: webView.title))::self.paymentStatus::\(self.paymentStatus)::\(self.servicePaymentId ?? "xxxx")::\(self.paymentMethod?.type ?? "")")
+     
         }
         
-        print("self.paymentStatus::\(self.paymentStatus)::\(self.servicePaymentId ?? "xxxx")::\(self.paymentMethod?.type ?? "")")
     }
     
+    
+    private func evaluateJs( _ uiView : WKWebView){
+        
+        uiView.evaluateJavaScript("document.readyState", completionHandler: { result, error in
+
+            if result == nil || error != nil {
+                return
+            }
+
+            let js = "document.getElementById('root').style.width='\(UIScreen.main.bounds.width - 20)'"
+            
+            
+            uiView.evaluateJavaScript(js, completionHandler: { result, error in
+                
+                if let v = result as? String {
+                    
+                    print("V::\(v)")
+                }
+            })
+        })
+    }
 }
 
 

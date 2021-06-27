@@ -52,7 +52,7 @@ struct TopUpSucessView : View {
         }
         .padding()
         .navigationBar(title : Text("Top Up Success".localized), displayMode: .inline)
-        .backButton()
+        .navigationBarBackButtonHidden(true)
     }
 }
 

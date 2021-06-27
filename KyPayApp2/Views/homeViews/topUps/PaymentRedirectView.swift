@@ -11,10 +11,10 @@ struct PaymentRedirectView : View {
     
     let url : URL?
     
-    let topUpViewModel : TopUpPaymentViewModel
-    
-    let walletViewModel : UserWalletViewModel
-    
+    @EnvironmentObject private var topUpViewModel : TopUpPaymentViewModel
+   
+    @EnvironmentObject private var walletViewModel : UserWalletViewModel
+
     var body: some View {
         
         view()
@@ -48,7 +48,7 @@ extension PaymentRedirectView {
         
         VStack{
     
-            PaymentRedirectWebView(url: url, topUpViewModel: topUpViewModel)
+            PaymentRedirectWebView(url: url)
             .frame(width: UIScreen.main.bounds.width , height: UIScreen.main.bounds.height)
         }
         .backButton()
