@@ -25,7 +25,7 @@ struct PayoutMethodTypesView : View {
             
             Spacer().frame(height: 20)
            
-            Text("Select Payout Method".localized).font(.custom(Theme.fontName, size: 16)).padding(4)
+            Text("Available Payout Methods".localized).font(.custom(Theme.fontName, size: 16)).padding(4)
            
            
             List{
@@ -71,7 +71,7 @@ extension PayoutMethodTypesView {
     
     private func toPayoutMethodView(_ paymentMethod : PayoutMethod) -> some View {
         
-        HStack {
+        HStack (alignment: .center){
        
             KFImage(paymentMethod.imageURL)
             .resizable()
@@ -81,16 +81,19 @@ extension PayoutMethodTypesView {
             .fade(duration: 0.25)
             .aspectRatio(contentMode: .fit)
             .frame(width: 30)
-               
-           
+        
             
             Text(paymentMethod.name ?? "")
             .font(.custom(Theme.fontName, size: 15))
-            .frame(minWidth: 200, alignment: .leading)
+            .frame(minWidth: 160, alignment: .leading)
             .padding()
            
             
-            Spacer()
+            Text(paymentMethod.payoutCurrencies?.first ?? "")
+                .font(.custom(Theme.fontName, size: 15)).foregroundColor(.gray)
+            .frame(minWidth: 50, alignment: .leading)
+            .padding()
+        
             NavigationLink.empty
         }
     }

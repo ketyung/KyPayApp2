@@ -49,7 +49,16 @@ extension PayoutMethodsViewModel {
             
                     payoutMethodTypes.forEach{ pmt in
                         
-                        self.payoutMethods?.append(PayoutMethod(type: pmt.type, name: pmt.name, category: pmt.category.rawValue, imageURL: pmt.imageURL))
+                        var pm = PayoutMethod(type: pmt.type, name: pmt.name, category: pmt.category.rawValue, imageURL: pmt.imageURL)
+                        
+                        if let pocurrs = pmt.payoutCurrencies {
+                            pm.setPayOutCurrencies(pocurrs)
+                        }
+                        if let sdcurrs = pmt.senderCurrencies {
+                            pm.setSenderCurrencies(sdcurrs)
+                        }
+                        self.payoutMethods?.append(pm)
+                        
                     }
                 }
                 self.showLoadingIndicator = false
