@@ -67,7 +67,11 @@ extension LoginView {
             Spacer()
         }
         .frame(width: UIScreen.main.bounds.width, height:UIScreen.main.bounds.height + 200)
-        .background(Color(UIColor(hex: "#8899aaff")!))
+        .background(
+        
+            LinearGradient(gradient: Gradient(colors: [ Color(UIColor(hex: "#335566ff")!), Color(UIColor(hex:"#ffffffff")!)]),
+            startPoint: .top, endPoint: .bottom)
+        )
         .edgesIgnoringSafeArea(.all)
         .bottomSheet(isPresented: $viewModel.isCountryPickerPresented, height: UIScreen.main.bounds.height - 120, showGrayOverlay: true){
             
