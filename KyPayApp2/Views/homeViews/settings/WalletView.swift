@@ -63,7 +63,7 @@ extension WalletView {
         .frame(width: UIScreen.main.bounds.width - 40)
         .background(
             
-            LinearGradient(gradient: Gradient(colors: [ Color(UIColor(hex:"#ccccccff")!), Color(UIColor(hex:"#f3f4f5ff")!)]),
+            LinearGradient(gradient: Gradient(colors: [ Color(UIColor(hex:"#ccccccff")!), Color(UIColor(hex:"#f3f4ffff")!)]),
             startPoint: .leading, endPoint: .trailing)
            
         )
