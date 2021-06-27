@@ -23,6 +23,10 @@ struct Contact : Equatable{
         
         "\(firstName) \(lastName)"
     }
+    
+    static func ==(lhs: Contact, rhs: Contact) -> Bool {
+        return lhs.cnIdentifier == rhs.cnIdentifier && lhs.phoneNumber == rhs.phoneNumber
+    }
 }
 
 class ContactFetcher : NSObject {
