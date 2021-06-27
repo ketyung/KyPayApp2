@@ -106,7 +106,7 @@ extension PaymentMethodTypesView {
             .cacheMemoryOnly()
             .fade(duration: 0.25)
             .aspectRatio(contentMode: .fit)
-            .frame(width: 40)
+            .frame(width: 30)
                
            
             

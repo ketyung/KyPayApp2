@@ -158,7 +158,7 @@ extension BottomSheet {
     fileprivate func topBar(geometry: GeometryProxy) -> some View {
         ZStack {
             RoundedRectangle(cornerRadius: 6)
-            .fill(Color(UIColor(hex:"#eeeeeeff")!))
+            .fill(Color(UIColor(hex:"#ddddddff")!))
             .frame(width: 40, height: 6)
             .opacity(showTopIndicator ? 1 : 0)
         }
@@ -190,6 +190,8 @@ extension BottomSheet {
                         self.isPresented = false
                     }
                     self.draggedOffset = 0
+                    //self.previousDragValue = value
+                    
                 })
         )
     }
