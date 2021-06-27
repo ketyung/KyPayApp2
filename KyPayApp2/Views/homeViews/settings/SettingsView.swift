@@ -115,7 +115,7 @@ extension SettingsView {
             
            Spacer()
         
-        }
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

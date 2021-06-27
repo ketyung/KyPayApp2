@@ -37,7 +37,7 @@ struct TopUpPaymentView : View {
             view()
             .navigationBarHidden(true)
         }
-        
+        .navigationViewStyle(StackNavigationViewStyle())
     }
     
     

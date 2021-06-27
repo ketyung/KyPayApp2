@@ -14,8 +14,6 @@ struct PayoutMethodTypesView : View {
    
     @EnvironmentObject private var pmViewModel : PayoutMethodsViewModel
     
-    var isPopBack : Bool = false
-    
     @Binding var control : PresenterControl
 
     
@@ -25,21 +23,11 @@ struct PayoutMethodTypesView : View {
         
         VStack {
             
-            
-            if !isPopBack {
            
-                HStack {
+            Text("Select Payout Method".localized).font(.custom(Theme.fontName, size: 16))
+             .frame(minWidth: 200)
+   
            
-                    closeButton()
-               
-                    Text("Select Payout Method".localized).font(.custom(Theme.fontName, size: 16))
-                     .frame(minWidth: 200)
-                
-                    Spacer().frame(minWidth: 30)
-                
-                }
-            }
-       
             List{
                 
                 ForEach(pmViewModel.supportedPayoutMethods, id:\.type){
@@ -72,19 +60,9 @@ extension PayoutMethodTypesView {
     @ViewBuilder
     private func paymentMethodRow (_ paymentMethod : PayoutMethod) -> some View {
         
-    
         Button(action :{
    
-           // topUpViewModel.paymentMethod = paymentMethod
-            
-            if isPopBack {
-                self.presentation.dismiss()
-            }
-            else {
-                
-                self.select()
-            }
-            
+            self.select()
         }){
             
             toPayoutMethodView(paymentMethod)
@@ -133,30 +111,6 @@ extension PayoutMethodTypesView {
 
 extension PayoutMethodTypesView {
     
-    private func closeButton() -> some View {
-        
-        HStack(spacing:5) {
-       
-            Spacer()
-            .frame(width:2)
-            
-            Button(action: {
-                    
-                self.close()
-                
-            }){
-                
-                Image(systemName: "x.circle.fill")
-                .resizable()
-                .frame(width:20, height: 20, alignment: .topLeading)
-                .foregroundColor(.black)
-                
-            }
-            
-            Spacer()
-        }
-        
-    }
     
     private func select(){
         
@@ -172,14 +126,5 @@ extension PayoutMethodTypesView {
     
     }
     
-    private func close(){
-        
-        withAnimation{
-       
-            self.control.payoutMethodSelectorPresented = false
-           
-            self.control.topUpPaymentPresented = false
-        }
-    
-    }
+   
 }

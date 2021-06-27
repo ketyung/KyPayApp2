@@ -42,6 +42,7 @@ struct OTPView : View {
         .progressView(isShowing: $activityIndicatorPresented, text : "Signing in ...")
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
