@@ -88,7 +88,11 @@ extension HomeView {
         }
         .padding(6)
         .frame(width: UIScreen.main.bounds.width - 40)
-        .background(Color(UIColor(hex:"#DDEEFFFF")!))
+        .background(
+            LinearGradient(gradient: Gradient(colors: [ Color(UIColor(hex:"#ccccccff")!), Color(UIColor(hex:"#ddeeffff")!)]),
+            startPoint: .leading, endPoint: .trailing)
+        )
+        
         .cornerRadius(10)
     }
 }
@@ -115,7 +119,7 @@ extension HomeView {
                         
                     }){
                         
-                        buttonView(color : Color(UIColor(hex:"#5566aaff")!), imageOne: "wallet",
+                        HomeView.buttonView(color : Color(UIColor(hex:"#5566aaff")!), imageOne: "wallet",
                                    imageTwo: "plus.circle", text: "Top Up")
                     }
                     
@@ -125,7 +129,7 @@ extension HomeView {
                         
                     }){
                         
-                        buttonView(color: Color(UIColor(hex:"#F2a642ff")!), imageOne: "dollarsign.circle.fill",
+                        HomeView.buttonView(color: Color(UIColor(hex:"#F2a642ff")!), imageOne: "dollarsign.circle.fill",
                                    imageOneForegroundColor: Color(UIColor(hex:"#aa0000ff")!),
                                    imageTwo: "arrow.right", text: "Send Money")
                     }
@@ -133,7 +137,7 @@ extension HomeView {
                     
                     Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/){
                         
-                        buttonView(color: .purple, imageOne: "arrow.left", imageOneSize:  CGSize(width:18, height:18),
+                        HomeView.buttonView(color: .purple, imageOne: "arrow.left", imageOneSize:  CGSize(width:18, height:18),
                         imageOneForegroundColor: Color(UIColor(hex:"#DDFFDDFF")!),
                         imageTwo: "dollarsign.circle.fill", imageTwoSize:  CGSize(width:32, height:32),
                         imageTwoForegroundColor: Color(UIColor(hex:"#55dd66ff")!) ,
@@ -147,11 +151,13 @@ extension HomeView {
     }
     
     
+}
+
+extension HomeView {
     
     
     
-    
-    private func buttonView ( color : Color = .green,
+    static func buttonView ( color : Color = .green,
                               imageOne : String,
                               imageOneSize : CGSize = CGSize(width:32, height: 32),
                               imageOneForegroundColor : Color = .brown,

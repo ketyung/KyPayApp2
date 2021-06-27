@@ -87,7 +87,7 @@ extension SettingsView {
             
                 Section(header: Text("Settings")) {
             
-                    NavigationLink(destination: WalletManagementView(), label: {
+                    NavigationLink(destination: WalletView(), label: {
                         SettingRowView(title: "Your Wallet", systemImageName: "dollarsign.circle", imageForegroundColor: .purple)
                     })
                  

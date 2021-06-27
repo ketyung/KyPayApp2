@@ -20,16 +20,22 @@ struct RequestView : View {
     
     var body: some View{
         
-        VStack{
+        VStack(alignment: .leading){
             
-            Text("Request From".localized).font(.custom(Theme.fontNameBold, size: 30))
+            refreshButton()
+            
+            Spacer().frame(height:30)
+            
+            Text("Request Money From".localized).font(.custom(Theme.fontNameBold, size: 30))
 
             Text("You can select up to 5 numbers to split the bill among them!")
                 .font(.custom(Theme.fontName, size: 16)).foregroundColor(.gray)
             
             self.contactsScrollView()
             
-        }
+            Spacer()
+            
+        }.padding()
     }
 }
 
@@ -87,8 +93,30 @@ extension RequestView {
             
            
         }
-       
     
     }
     
+}
+
+extension RequestView {
+    
+    
+    private func refreshButton() -> some View {
+        
+        HStack {
+        
+            Spacer()
+            
+            Button(action: {}) {
+                
+                Image("reload")
+                .resizable()
+                .frame(width:24, height: 24, alignment: .topTrailing)
+                .foregroundColor(.gray)
+            }
+            
+            Spacer().frame(width:10)
+        }
+        
+    }
 }

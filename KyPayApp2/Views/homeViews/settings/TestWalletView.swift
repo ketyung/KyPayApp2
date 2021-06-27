@@ -1,14 +1,14 @@
 //
-//  WalletView.swift
+//  TestWalletView.swift
 //  KyPayApp2
 //
-//  Created by Christopher Chee on 22/06/2021.
+//  Created by Chee Ket Yung on 27/06/2021.
 //
 
 import SwiftUI
 import RapydSDK
 
-struct WalletManagementView : View {
+struct TestWalletView : View {
     
     @EnvironmentObject private var walletViewModel : UserWalletViewModel
     
@@ -172,7 +172,7 @@ struct WalletManagementView : View {
 }
 
 
-extension WalletManagementView {
+extension TestWalletView {
     
     private func fetchWalletIfNotPresent(){
         
