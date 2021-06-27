@@ -337,13 +337,14 @@ extension UserWalletViewModel {
 extension UserWalletViewModel {
     
     
-    private func addPaymentTxRemotely ( amount : Double , currency : String, user : User,
+    func addPaymentTxRemotely ( amount : Double , currency : String, user : User,
                                         walletRefId : String, method : String, txType : UserPaymentTx.TxType,
+                                        status : UserPaymentTx.Stat = .success ,
                                         completion : ((Error?) -> Void)? = nil ){
         
         let pmTx = UserPaymentTx(uid : user.id ?? "", toUid:  user.id ?? "", toUidType: .none,
                                  txType : txType, walletRefId: walletRefId, amount:  amount, currency: currency,
-                                 method: method, stat: .success)
+                                 method: method, stat: status)
         
         ARH.shared.addUserPaymentTx(pmTx, returnType: UserPaymentTx.self,  completion: {
             

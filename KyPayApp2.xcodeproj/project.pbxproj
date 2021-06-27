@@ -133,7 +133,7 @@
 		10B856072686ADB000AEF15F /* PaymentRedirectWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B856062686ADB000AEF15F /* PaymentRedirectWebView.swift */; };
 		10B856092686C9ED00AEF15F /* PaymentRedirectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B856082686C9ED00AEF15F /* PaymentRedirectView.swift */; };
 		10B8560B2687443400AEF15F /* Test3..php in Resources */ = {isa = PBXBuildFile; fileRef = 10B8560A2687443400AEF15F /* Test3..php */; };
-		10B8560D268757CF00AEF15F /* PaymentFailureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8560C268757CF00AEF15F /* PaymentFailureView.swift */; };
+		10B8560D268757CF00AEF15F /* TopUpFailureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8560C268757CF00AEF15F /* TopUpFailureView.swift */; };
 		10B856112687EE4200AEF15F /* PresenterControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B856102687EE4200AEF15F /* PresenterControl.swift */; };
 		10B856132687F33800AEF15F /* NavigationLinkExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B856122687F33800AEF15F /* NavigationLinkExt.swift */; };
 /* End PBXBuildFile section */
@@ -299,7 +299,7 @@
 		10B856062686ADB000AEF15F /* PaymentRedirectWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentRedirectWebView.swift; sourceTree = "<group>"; };
 		10B856082686C9ED00AEF15F /* PaymentRedirectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentRedirectView.swift; sourceTree = "<group>"; };
 		10B8560A2687443400AEF15F /* Test3..php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = Test3..php; sourceTree = "<group>"; };
-		10B8560C268757CF00AEF15F /* PaymentFailureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentFailureView.swift; sourceTree = "<group>"; };
+		10B8560C268757CF00AEF15F /* TopUpFailureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopUpFailureView.swift; sourceTree = "<group>"; };
 		10B856102687EE4200AEF15F /* PresenterControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterControl.swift; sourceTree = "<group>"; };
 		10B856122687F33800AEF15F /* NavigationLinkExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationLinkExt.swift; sourceTree = "<group>"; };
 		1B47377B496C6F0F1022FFD4 /* Pods-KyPayApp2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.debug.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.debug.xcconfig"; sourceTree = "<group>"; };
@@ -721,7 +721,7 @@
 				10B855E2267EEEB400AEF15F /* PaymentMethodTypesView.swift */,
 				10B855EB267F2BF700AEF15F /* TopUpPaymentView.swift */,
 				10B8560226855E5C00AEF15F /* TopUpSuccessView.swift */,
-				10B8560C268757CF00AEF15F /* PaymentFailureView.swift */,
+				10B8560C268757CF00AEF15F /* TopUpFailureView.swift */,
 				10B856082686C9ED00AEF15F /* PaymentRedirectView.swift */,
 				10B856062686ADB000AEF15F /* PaymentRedirectWebView.swift */,
 				10B855FC2684274D00AEF15F /* CardPaymentView.swift */,
@@ -963,7 +963,7 @@
 				1033B2942674A82F00D999CE /* DictionaryExt.swift in Sources */,
 				1033B2962674A82F00D999CE /* UserAddress.swift in Sources */,
 				10B855EC267F2BF700AEF15F /* TopUpPaymentView.swift in Sources */,
-				10B8560D268757CF00AEF15F /* PaymentFailureView.swift in Sources */,
+				10B8560D268757CF00AEF15F /* TopUpFailureView.swift in Sources */,
 				1033B2552674A7F200D999CE /* AppDelegate.swift in Sources */,
 				1033C0762676E81000D999CE /* ViewExtension.swift in Sources */,
 				1033B2972674A82F00D999CE /* UserWallet.swift in Sources */,

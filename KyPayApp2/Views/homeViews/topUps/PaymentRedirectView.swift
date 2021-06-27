@@ -31,11 +31,11 @@ extension PaymentRedirectView {
         
             case .success :
             
-                TopUpSucessView(topUpViewModel: topUpViewModel, walletViewModel: walletViewModel)
+                TopUpSucessView()
            
             case .failure :
             
-                PaymentFailureView()
+                TopUpFailureView()
             
             default :
                 webView()

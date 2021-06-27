@@ -9,13 +9,39 @@ import SwiftUI
 
 struct TopUpSucessView : View {
     
-    
-    var topUpViewModel : TopUpPaymentViewModel
+    @EnvironmentObject private var userViewModel : UserViewModel
+
+    @EnvironmentObject private var topUpViewModel : TopUpPaymentViewModel
    
-    var walletViewModel : UserWalletViewModel
+    @EnvironmentObject private var walletViewModel : UserWalletViewModel
    
     
     var body : some View {
+        
+       view()
+        .onAppear{
+            // update remote to record a successful payment
+            walletViewModel.updateWalletRemotely(by: Double(topUpViewModel.amount) ?? 0,
+            for: userViewModel.user, method: topUpViewModel.paymentMethod?.type ?? "", completion: { err in
+                         
+                guard let err = err else {
+                    
+                    print("updated payment to remote as success")
+                    return
+                }
+                
+                print("err:\(err)")
+            })
+        }
+        
+    }
+}
+
+
+extension TopUpSucessView {
+    
+    
+    private func view() -> some View {
         
         VStack{
             

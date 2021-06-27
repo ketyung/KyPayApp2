@@ -28,7 +28,7 @@ struct CardPaymentView : View {
         
         if topUpViewModel.paymentStatus == .success {
             
-           TopUpSucessView(topUpViewModel: topUpViewModel, walletViewModel: walletViewModel)
+           TopUpSucessView()
         }
         else {
        
