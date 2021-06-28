@@ -43,6 +43,11 @@ class TxInputDataViewModel : NSObject, ObservableObject {
             txInputData.showAlert
         }
         
+        set(newVal){
+            
+            txInputData.showAlert = newVal
+        }
+        
     }
     
     var alertMessage : String {

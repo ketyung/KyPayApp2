@@ -7,6 +7,25 @@
 
 import Foundation
 
+
+struct CustomError : LocalizedError, CustomStringConvertible {
+   
+    var description: String {
+        
+        errorText ?? ""
+    }
+
+    var errorText : String?
+    
+    public var errorDescription : String {
+        
+        errorText ?? ""
+    }
+    
+}
+
+
+
 private struct UserWalletHolder{
     
     var wallet : UserWallet = UserWallet()
@@ -459,7 +478,7 @@ extension UserWalletViewModel {
         }
         else {
             
-            print("no.cust.id!!!")
+            completion?(nil, CustomError(errorText: "Wallet has NO customer ID!!".localized))
         }
         
     }

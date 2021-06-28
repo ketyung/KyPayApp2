@@ -7,6 +7,7 @@
 
 import SwiftUIX
 
+
 struct SendView : View {
     
     @ObservedObject private var dataInputViewModel = PhoneInputViewModel()
@@ -27,8 +28,13 @@ struct SendView : View {
         
             CountryCodePickerUI(viewModel: dataInputViewModel, textFont: .custom(Theme.fontName, size: 15))
         }
-        .progressView(isShowing: $txInputViewModel.showProgressIndicator, text: "Syncing contacts...", size:  CGSize(width:200, height: 200))
-        .bottomFloatingButton( isPresented: !dataInputViewModel.isCountryPickerPresented, action: {
+        .popOver(isPresented: $txInputViewModel.showAlert, content: {
+        
+            errorAlertView()
+        })
+        .progressView(isShowing: $txInputViewModel.showProgressIndicator, text: "Syncing contacts...",
+            size:  CGSize(width:200, height: 200))
+        .bottomFloatingButton( isPresented: (!dataInputViewModel.isCountryPickerPresented && !txInputViewModel.showAlert), action: {
             
             self.verifyPhoneNumberAndProceed()
             
@@ -59,8 +65,6 @@ extension SendView {
             
             
             phoneView()
-            
-            hiddenTextView()
             
             Spacer()
             
@@ -119,6 +123,44 @@ extension SendView {
     }
     
 }
+
+
+
+extension SendView {
+    
+    
+    private func errorAlertView() -> some View {
+        
+        
+         VStack {
+        
+             Spacer().frame(height: 30)
+             
+             HStack (spacing: 2) {
+             
+                 Image(systemName: "info.circle.fill")
+                 .resizable()
+                 .frame(width:24, height: 24)
+                 .foregroundColor(Color(UIColor(hex:"#aa0000ff")!))
+                 
+                 Text(txInputViewModel.alertMessage)
+                 .padding()
+                 .fixedSize(horizontal: false, vertical: true)
+                 .font(.custom(Theme.fontName, size: 16))
+                 .lineLimit(3)
+             }
+             .padding(4)
+             
+             Spacer()
+         }
+         .padding()
+         .frame(width: UIScreen.main.bounds.width - 40, height: 200)
+         .cornerRadius(4)
+         
+
+    }
+}
+
 
 
 extension SendView {
@@ -205,42 +247,6 @@ extension SendView {
     }
     
     
-    @ViewBuilder
-    private func hiddenTextView() -> some View {
-        
-        if txInputViewModel.showAlert {
-       
-            VStack {
-           
-                Spacer().frame(height: 20)
-                
-                HStack (spacing: 2) {
-                
-                    Image(systemName: "info.circle.fill")
-                    .resizable()
-                    .frame(width:24, height: 24)
-                    .foregroundColor(Color(UIColor(hex:"#aaee55ff")!))
-                    
-                    Text(txInputViewModel.alertMessage)
-                    .padding()
-                    .fixedSize(horizontal: false, vertical: true)
-                    .font(.custom(Theme.fontName, size: 16))
-                    .lineLimit(2)
-                    
-                    
-                }
-                .padding(4)
-                .foregroundColor(Color(UIColor(hex:"#eeee22ff")!))
-                .background(Color(UIColor(hex:"#667799ff")!) )
-                .cornerRadius(4)
-                .frame(width: UIScreen.main.bounds.width - 10, height:30)
-                
-               
-            }
-           
-        }
-        
-    }
     
 }
 
