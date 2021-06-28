@@ -93,7 +93,7 @@ struct TopUpPaymentView : View {
                    
                     self.topUpViewModel.redirectURL = pmdata?.redirectURL
                     
-                    self.topUpViewModel.serviceId = pmdata?.id
+                    self.topUpViewModel.servicePaymentId = pmdata?.id
                     
                     withAnimation {
                         

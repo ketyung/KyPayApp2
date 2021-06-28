@@ -135,16 +135,16 @@ class TopUpPaymentViewModel : NSObject, ObservableObject {
     }
     
     
-    var serviceId : String? {
+    var servicePaymentId : String? {
         
         get {
             
-            topUpPayment.serviceId
+            topUpPayment.servicePaymentId
         }
         
         set(newVal){
             
-            topUpPayment.serviceId = newVal
+            topUpPayment.servicePaymentId = newVal
         }
     }
 }

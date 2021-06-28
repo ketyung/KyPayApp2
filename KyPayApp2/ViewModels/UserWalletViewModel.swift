@@ -364,8 +364,9 @@ extension UserWalletViewModel {
         
         let pmTx = UserPaymentTx(uid : user.id ?? "", toUid:  user.id ?? "", toUidType: .none,
                                  txType : txType, walletRefId: walletRefId, amount:  amount, currency: currency,
-                                 method: method, servicetId: serviceId, stat: status)
+                                 method: method, serviceId: serviceId, stat: status)
         
+        //print("add.pay.tx::\(serviceId ?? "xxxx")")
         ARH.shared.addUserPaymentTx(pmTx, returnType: UserPaymentTx.self,  completion: {
             
             res in

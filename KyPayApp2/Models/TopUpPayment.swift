@@ -33,5 +33,5 @@ struct TopUpPayment {
     
     var redirectURL : URL?
 
-    var serviceId : String?
+    var servicePaymentId : String?
 }
