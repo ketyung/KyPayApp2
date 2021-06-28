@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NavigationBackButton : ViewModifier {
     
-    @Environment(\.presentationMode) var presentation
+    @Environment(\.presentationMode) private var presentation
 
     let imageName : String
     

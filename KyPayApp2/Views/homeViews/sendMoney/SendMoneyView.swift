@@ -8,8 +8,10 @@
 import SwiftUIX
 
 struct SendMoneyView : View {
+        
+    //@EnvironmentObject private var txInputViewModel : TxInputDataViewModel
     
-    @EnvironmentObject private var txInputViewModel : TxInputDataViewModel
+    let txInputViewModel : TxInputDataViewModel
     
     @EnvironmentObject private var userViewModel : UserViewModel
     
@@ -90,16 +92,18 @@ extension SendMoneyView {
         to: txInputViewModel.selectedUserPhoneNumber, amount: txInputViewModel.txAmount , completion: { id, err in
             
             guard let err = err else {
-                
-                withAnimation(.easeInOut(duration: 1.0)) {
-                        
-                    self.showProgress = false
-                    DispatchQueue.main.async {
-               
+            
+                self.showProgress = false
+                DispatchQueue.main.async {
+           
+                    withAnimation(.easeInOut(duration: 1.0)) {
+                    
                         self.txInputViewModel.txSuccessful = true
                         self.amountText = ""
+                        
                     }
                 }
+                
                 return
             }
     

@@ -22,6 +22,12 @@ struct SendView : View {
     
     var body: some View {
         
+        navView()//.environmentObject(txInputViewModel)
+    }
+    
+    
+    private func navView() -> some View {
+        
         NavigationView {
         
             view()
@@ -37,10 +43,6 @@ struct SendView : View {
         
             errorAlertView()
         })
-        .popOver(isPresented: $txInputViewModel.txSuccessful, content: {
-            
-            txSucessView()
-        })
         .progressView(isShowing: $txInputViewModel.showProgressIndicator, text: "Syncing contacts...",
             size:  CGSize(width:200, height: 200))
         .bottomFloatingButton( isPresented: self.sendButtonPresented() , action: {
@@ -48,8 +50,11 @@ struct SendView : View {
             self.verifyPhoneNumberAndProceed()
             
         })
+        .popOver(isPresented: $txInputViewModel.txSuccessful, content: {
+            
+            txSucessView()
+        })
         .navigationViewStyle(StackNavigationViewStyle())
-        .environmentObject(txInputViewModel)
     }
     
     
@@ -89,6 +94,7 @@ extension SendView {
             Spacer()
             
             sendMoneyViewNavLink()
+            
         }
     }
 }
@@ -266,7 +272,7 @@ extension SendView {
     
     private func sendMoneyViewNavLink() -> some View {
         
-        NavigationLink(destination: SendMoneyView(), isActive : $txInputViewModel.shouldProceedNext){}.hidden(true)
+        NavigationLink(destination: SendMoneyView(txInputViewModel: txInputViewModel), isActive : $txInputViewModel.shouldProceedNext){}.hidden(true)
     }
 
 }
