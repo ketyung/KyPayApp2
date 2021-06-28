@@ -51,7 +51,6 @@ struct SendView : View {
             self.verifyPhoneNumberAndProceed()
             
         })
-       
         .navigationViewStyle(StackNavigationViewStyle())
     }
     

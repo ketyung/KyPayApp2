@@ -29,6 +29,31 @@ struct SendMoneyView : View {
     
     @State private var isSendButtonPresented : Bool = true
 
+    private var successView : some View {
+        
+        VStack {
+        
+            VStack(spacing:2) {
+           
+                Text("Sent To :").font(.custom(Theme.fontName, size: 16))
+                Text("\(txInputViewModel.selectedUserPhoneNumber) \(txInputViewModel.selectedUserName)")
+                .font(.custom(Theme.fontName, size: 16))
+               
+            }
+            
+            
+            Common.paymentSuccessView(amount: amountText,
+            balance: walletViewModel.balance, currency: walletViewModel.currency)
+            .padding()
+            .navigationBarHidden(true)
+            .onAppear{
+                self.isSendButtonPresented = false
+            }
+        }
+        
+        
+    }
+    
     var body : some View {
         
         if txSuccessful {
@@ -68,6 +93,7 @@ extension SendMoneyView {
         .padding(.leading, 20)
         .backButton(additionalAction: {
             self.endEditing()
+            self.txInputViewModel.shouldProceedNext = false
         })
         .popOver(isPresented: $errorPresented, content:{
             
@@ -95,13 +121,24 @@ extension SendMoneyView {
   
     private func txSucessView() -> some View {
         
-        Common.paymentSuccessView(amount: amountText,
-        balance: walletViewModel.balance, currency: walletViewModel.currency)
-        .padding()
-        .navigationBarHidden(true)
-        .onAppear{
-            self.isSendButtonPresented = false
+        VStack {
+       
+            HStack {
+           
+                Spacer()
+                
+                Button(action: {}){
+                
+                    Image("more").resizable().frame(width:24, height: 24, alignment: .topTrailing)
+                }
+                
+                Spacer().frame(width: 10)
+               
+            }
+            
+            successView
         }
+       
       //  .navigationBar(title : Text("Success".localized), displayMode: .inline)
         //.navigationBarBackButtonHidden(true)
     }
@@ -128,7 +165,6 @@ extension SendMoneyView {
                     
                         self.txSuccessful = true
                         self.isSendButtonPresented = false
-
                     }
                 }
                 
