@@ -64,6 +64,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         //print("xxxx....c::\(CurrencyManager.currency(countryCode: "AD") ?? "xxxx")")
         
+        
+        let tx = TxHandler()
+        tx.transfer(phoneNumber: "+60168112493", amount: 20, currency: "MYR")
+        
+        
         let contentView =
         
         //    TopUpSucessView().environmentObject(TopUpPaymentViewModel()).environmentObject(UserWalletViewModel())
