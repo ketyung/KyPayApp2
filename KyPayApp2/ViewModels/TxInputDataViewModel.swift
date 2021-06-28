@@ -110,6 +110,8 @@ class TxInputDataViewModel : NSObject, ObservableObject {
         
         txInputData.selectedUser?.phoneNumber ?? ""
     }
+    
+    
 }
 
 extension TxInputDataViewModel {

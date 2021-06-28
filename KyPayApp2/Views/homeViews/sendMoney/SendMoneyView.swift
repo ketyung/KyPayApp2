@@ -94,9 +94,11 @@ extension SendMoneyView {
     
     private func sendMoneyNow(){
         
+        self.endEditing()
         self.showProgress = true
+        
         walletViewModel.sendMoney(from: userViewModel.user,
-        to: txInputViewModel.selectedUserPhoneNumber, amount: txInputViewModel.txAmount, completion: { err in
+        to: txInputViewModel.selectedUserPhoneNumber, amount: Double(amountText) ?? 0, completion: { err in
             
             guard let err = err else {
                 
@@ -113,6 +115,7 @@ extension SendMoneyView {
             self.errorPresented = true
             self.showProgress = false
                                         
+           // print("self.err::\(self.errorMessage ?? "xxx.e")")
         })
     }
     
@@ -122,13 +125,19 @@ extension SendMoneyView {
     
     private func amountTextField() -> some View {
     
-        CocoaTextField("Amount".localized, text: $amountText)
-        .keyboardType(.decimalPad)
-        .foregroundColor(.black)
-        .font(UIFont.boldSystemFont(ofSize: 36))
-        .background(Color.white)
-        .frame(width: 200, height: 24)
-        .overlay(VStack{Divider().backgroundFill(.red).offset(x: 0, y: 26)})
+        HStack {
+            Text("\(walletViewModel.currency)").font(.custom(Theme.fontNameBold, size: 18))
+            .foregroundColor(.gray)
+            
+            CocoaTextField("Amount".localized, text: $amountText)
+            .keyboardType(.decimalPad)
+            .foregroundColor(.black)
+            .font(UIFont.boldSystemFont(ofSize: 36))
+            .background(Color.white)
+            .frame(width: 200, height: 24)
+            .overlay(VStack{Divider().backgroundFill(.red).offset(x: 0, y: 26)})
+         
+        }
         
     }
     

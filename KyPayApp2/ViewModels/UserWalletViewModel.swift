@@ -494,8 +494,15 @@ extension UserWalletViewModel {
     func sendMoney(from user : User, to phoneNumber : String, amount : Double, completion : ((Error?)->Void)? = nil ){
         
         let bal = (self.walletHolder.wallet.balance ?? 0)
+      
+        if amount <= 0 {
+            completion?(CustomError(errorText: "Invalid amount :\(amount.twoDecimalString)!".localized))
+            return
+        
+        }
+        
         if amount > bal {
-            completion?(CustomError(errorText: "Insufficient fund in your wallet!"))
+            completion?(CustomError(errorText: "Insufficient fund in your wallet, balance :\(bal.twoDecimalString)!".localized))
             return
         }
         
@@ -503,15 +510,24 @@ extension UserWalletViewModel {
             
             guard let self = self else { return }
             
-            self.updateWalletRemotely(by: -amount, for: user, method: "send_money", serviceId: id, completion: { err in
+            if err == nil  {
+            
+                self.updateWalletRemotely(by: -amount, for: user, method: "send_money", serviceId: id, completion: { err in
+                    
+                    guard let err = err else {
+                        completion?(nil)
+                        return
+                    }
+                    
+                    completion?(err)
+                } )
                 
-                guard let err = err else {
-                    completion?(nil)
-                    return
-                }
+            }
+            else {
                 
                 completion?(err)
-            } )
+            }
+            
             
         })
         

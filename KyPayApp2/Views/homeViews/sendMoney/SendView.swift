@@ -35,16 +35,25 @@ struct SendView : View {
         })
         .progressView(isShowing: $txInputViewModel.showProgressIndicator, text: "Syncing contacts...",
             size:  CGSize(width:200, height: 200))
-        .bottomFloatingButton( isPresented: (!dataInputViewModel.isCountryPickerPresented && !txInputViewModel.showAlert), action: {
+        .bottomFloatingButton( isPresented: self.sendButtonPresented() , action: {
             
             self.verifyPhoneNumberAndProceed()
             
         })
         .navigationViewStyle(StackNavigationViewStyle())
+      
+    }
+    
+    
+    private func sendButtonPresented() -> Bool {
+        
+        return (!dataInputViewModel.isCountryPickerPresented && !txInputViewModel.showAlert && !txInputViewModel.shouldProceedNext)
     }
 }
 
 extension SendView {
+    
+    
     
     private func view() -> some View {
         
@@ -256,34 +265,38 @@ extension SendView {
             
             Spacer().frame(height:100)
             
-            Text("Recent").font(.custom(Theme.fontNameBold, size: 15))
+            if recentAttempts.count > 0 {
             
-            List (recentAttempts, id:\.phoneNumber){ a in
+                Text("Recent").font(.custom(Theme.fontNameBold, size: 15))
                 
-                Button (action : {
+                List (recentAttempts, id:\.phoneNumber){ a in
                     
-                    if  let numberOnly = a.phoneNumber?.replace(dataInputViewModel.selectedCountry?.dialCode ?? "+60", ""){
-              
-                        dataInputViewModel.enteredPhoneNumber = numberOnly
-            
-                    }
-                }){
+                    Button (action : {
+                        
+                        if  let numberOnly = a.phoneNumber?.replace(dataInputViewModel.selectedCountry?.dialCode ?? "+60", ""){
+                  
+                            dataInputViewModel.enteredPhoneNumber = numberOnly
                 
-                    HStack {
-                        
-                        Text(a.phoneNumber ?? "Phone").font(.custom(Theme.fontName, size: 15))
-                        .foregroundColor(.gray)
-                        
-                        Text(a.name ?? "Name").font(.custom(Theme.fontName, size: 15))
-                        .foregroundColor(.gray)
+                        }
+                    }){
                     
-                        Spacer()
+                        HStack {
+                            
+                            Text(a.phoneNumber ?? "Phone").font(.custom(Theme.fontName, size: 15))
+                            .foregroundColor(.gray)
+                            
+                            Text(a.name ?? "Name").font(.custom(Theme.fontName, size: 15))
+                            .foregroundColor(.gray)
                         
-                        Common.disclosureIndicator()
+                            Spacer()
+                            
+                            Common.disclosureIndicator()
+                        }
                     }
+                    
                 }
-                
             }
+            
         }
         .onAppear{
                 
