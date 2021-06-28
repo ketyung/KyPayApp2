@@ -40,6 +40,8 @@ class UserWalletViewModel : ObservableObject {
     
     private lazy var walletHandler = WalletHandler()
     
+    private lazy var txHandler = TxHandler()
+    
     var id : String {
         
         get {
@@ -357,12 +359,12 @@ extension UserWalletViewModel {
     
     
     func addPaymentTxRemotely ( amount : Double , currency : String, user : User,
-            walletRefId : String, method : String, servicePaymentId : String? = nil , txType : UserPaymentTx.TxType,
+            walletRefId : String, method : String, serviceId : String? = nil , txType : UserPaymentTx.TxType,
             status : UserPaymentTx.Stat = .success , completion : ((Error?) -> Void)? = nil ){
         
         let pmTx = UserPaymentTx(uid : user.id ?? "", toUid:  user.id ?? "", toUidType: .none,
                                  txType : txType, walletRefId: walletRefId, amount:  amount, currency: currency,
-                                 method: method, servicePaymentId: servicePaymentId, stat: status)
+                                 method: method, servicetId: serviceId, stat: status)
         
         ARH.shared.addUserPaymentTx(pmTx, returnType: UserPaymentTx.self,  completion: {
             
@@ -384,7 +386,7 @@ extension UserWalletViewModel {
     
     
     func updateWalletRemotely(by adding : Double, for user : User,
-                              method : String, servicePaymentId : String? = nil ,
+                              method : String, serviceId : String? = nil ,
                                       completion : ((Error?) -> Void)? = nil ){
         
         let newBalance = (self.walletHolder.wallet.balance ?? 0) + adding
@@ -419,7 +421,7 @@ extension UserWalletViewModel {
                 case .success(_) :
                     // record a payment tx remotely
                     self.addPaymentTxRemotely(amount: adding, currency: currency, user: user,
-                    walletRefId: walletToBeUpdated.refId ?? "", method: method, servicePaymentId: servicePaymentId, 
+                    walletRefId: walletToBeUpdated.refId ?? "", method: method, serviceId: serviceId, 
                     txType: .walletTopUp, completion: completion)
             }
         })
@@ -480,6 +482,38 @@ extension UserWalletViewModel {
             
             completion?(nil, CustomError(errorText: "Wallet has NO customer ID!!".localized))
         }
+        
+    }
+    
+}
+
+
+extension UserWalletViewModel {
+    
+    func sendMoney(from user : User, to phoneNumber : String, amount : Double, completion : ((Error?)->Void)? = nil ){
+        
+        let bal = (self.walletHolder.wallet.balance ?? 0)
+        if amount > bal {
+            
+            completion?(CustomError(errorText: "Insufficient fund in your wallet!"))
+            return
+        }
+        
+        txHandler.transfer(to: phoneNumber, amount: amount, currency: self.currency, completion: { id, err  in
+            
+            self.updateWalletRemotely(by: -amount, for: user, method: "send_money", serviceId: id, completion: {
+                err in
+                
+                guard let err = err else {
+                    
+                    completion?(nil)
+                    return
+                }
+                
+                completion?(err)
+            } )
+            
+        })
         
     }
     

@@ -28,7 +28,7 @@ class KypayUserPaymentTx extends KypayDbObject {
     
     public $method;
     
-    public $servicePaymentId;
+    public $serviceId;
     
     public $stat;
     

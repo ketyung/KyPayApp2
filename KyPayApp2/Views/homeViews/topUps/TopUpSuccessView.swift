@@ -24,7 +24,7 @@ struct TopUpSucessView : View {
             
             walletViewModel.updateWalletRemotely(by: Double(topUpViewModel.amount) ?? 0,
             for: userViewModel.user, method: topUpViewModel.paymentMethod?.type ?? "",
-            servicePaymentId:  topUpViewModel.servicePaymentId, 
+            serviceId:  topUpViewModel.serviceId, 
             completion: { err in
                          
                 guard let err = err else {

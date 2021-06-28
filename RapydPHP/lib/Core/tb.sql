@@ -105,6 +105,8 @@ create table if not exists kypay_user_payment_tx (
 
 alter table kypay_user_payment_tx add service_payment_id varchar(128) after method;
 
+ALTER TABLE `kypay_user_payment_tx` CHANGE `service_payment_id` `service_id` VARCHAR(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL;
+
 alter table kypay_user_payment_tx modify service_payment_id varchar(255);
 
 alter table kypay_user_payment_tx modify method varchar(64);

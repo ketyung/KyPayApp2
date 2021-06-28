@@ -12,10 +12,10 @@ class TxHandler {
     
     
     
-    func transfer(phoneNumber : String, amount : Double, currency :String){
+    func transfer(to phoneNumber : String, amount : Double, currency :String, completion : ((String?,Error?)->Void)? = nil ){
         
         Config.setup()
-
+        
         let transferRequest:RPDTransferRequest = RPDTransferRequest()
         transferRequest.currency = RPDCurrency.currency(with: currency)
         transferRequest.amount = "\(amount)"
@@ -25,7 +25,33 @@ class TxHandler {
         transferManager.transfer(toUserWithTransferRequest: transferRequest, completionBlock: { details, error in
             // Enter your code here.
             
-            print("tx.req.details::\(details?.id ?? "")::\(details?.currency.code ?? "xxx"):\(details?.destinationPhoneNumber ?? "")")
+            guard let err = error else {
+          
+                if let id = details?.id {
+                    
+                    transferManager.transfer(replyWithTransferId: id, status: .accept, completionBlock: {details, error in
+                    
+                        guard let err = error else {
+                       
+                            completion?(details?.id , nil)
+                    
+                            return
+                        }
+                        
+                        completion?(nil, err)
+                       
+                    })
+                }
+                else {
+                    
+                    completion?(nil, CustomError(errorText: "The user might NOT have a wallet!"))
+                }
+                
+                return
+            }
+            
+            
+            completion?(nil, err)
             
         })
         
