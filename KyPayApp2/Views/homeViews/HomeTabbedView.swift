@@ -65,6 +65,7 @@ extension HomeTabbedView {
        }
        .navigationBarBackButtonHidden(true)
        .navigationBarHidden(true)
+     
     }
 }
 

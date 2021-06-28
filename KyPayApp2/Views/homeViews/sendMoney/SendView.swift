@@ -11,7 +11,7 @@ struct SendView : View {
     
     @ObservedObject private var dataInputViewModel = PhoneInputViewModel()
   
-    @ObservedObject private var txInputViewModel = TxInputDataViewModel()
+    @EnvironmentObject private var txInputViewModel : TxInputDataViewModel
     
     @State private var recentAttempts : [CachedRecentTxAttempt] = []
     
@@ -23,7 +23,8 @@ struct SendView : View {
     
     var body: some View {
         
-        navView().environmentObject(txInputViewModel)
+        navView()
+        
     }
     
     

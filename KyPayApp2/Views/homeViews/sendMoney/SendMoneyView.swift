@@ -58,7 +58,9 @@ struct SendMoneyView : View {
         
         if txSuccessful {
             
-            txSucessView()
+            txSucessView().onAppear{
+                txInputViewModel.clearForRestart()
+            }
         }
         else {
             view()

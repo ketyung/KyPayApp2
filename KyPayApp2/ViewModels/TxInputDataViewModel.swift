@@ -111,6 +111,20 @@ class TxInputDataViewModel : NSObject, ObservableObject {
         txInputData.selectedUser?.phoneNumber ?? ""
     }
     
+    var selectedUserId : String {
+        
+        txInputData.selectedUser?.id ?? ""
+    }
+    
+    var selectedUserWalletRefId : String {
+        
+        txInputData.selecteduserWalletRefId ?? ""
+    }
+    
+    func clearForRestart(){
+        
+        txInputData.shouldProceedNext = false 
+    }
     
 }
 
@@ -203,36 +217,18 @@ extension TxInputDataViewModel {
                             
                             self.sendFailureMessage(err.localizedDescription)
                         }
-                    
+                        completion?()
+               
                     
                     case .success(let usr) :
                         if usr.phoneNumber == phoneNumber {
                             
-                            self.txInputData.selectedUser = usr
-                            
-                            withAnimation{
-                   
-                                self.txInputData.phoneNumberVerified = true
-                                
-                                /**
-                                self.txInputData.alertMessage = "\(usr.firstName ?? "") \(usr.lastName ?? "")".localized
-                                self.txInputData.showAlert = true
-                                 */
-                                
-                                self.save(attempt: usr.phoneNumber ?? "", name: "\(usr.firstName ?? "") \(usr.lastName ?? "")")
-                                
-                                if !self.shouldProceedNext {
-                                    self.shouldProceedNext = true
-                                }
-                               
-                            }
-                            
+                            self.fetchUserWalletInfo(user: usr, completion:  completion)
                         }
                             
                 }
                
-                completion?()
-       
+               
                 withAnimation{
        
                     self.txInputData.phoneNumberBeingVerified = false
@@ -245,13 +241,74 @@ extension TxInputDataViewModel {
     }
     
     
+    private func fetchUserWalletInfo(user : User,  completion : (() -> Void)? = nil){
+        
+        ARH.shared.fetchUserWallet(id: user.id ?? "", type:.personal, currency: "MYR", completion: {
+            
+            res  in
+        
+            switch (res) {
+            
+                case .failure(let err) :
+                    
+                    if let err = err as? ApiError, err.statusCode == 404 {
+                        
+                        self.sendFailureMessage("The user does NOT have a wallet")
+                    }
+                    else {
+                        
+                        self.sendFailureMessage(err.localizedDescription)
+                    }
+                
+                    completion?()
+                    
+                case .success(let obj) :
+                
+                  
+                    DispatchQueue.main.async {
+                     
+                        self.txInputData.selectedUser = user
+                   
+                        self.txInputData.selecteduserWalletRefId = obj.refId
+                        
+                       
+                        self.txInputData.phoneNumberVerified = true
+                        
+                        self.save(attempt: user.phoneNumber ?? "", name: "\(user.firstName ?? "") \(user.lastName ?? "")")
+                       
+                        withAnimation{
+                       
+                            if !self.shouldProceedNext {
+                                self.shouldProceedNext = true
+                            }
+                           
+                        }
+                       
+                       
+                        completion?()
+                       
+                    }
+                    
+                
+            
+            }
+            
+            
+        } )
+       
+    }
+    
+    
     
     private func sendFailureMessage ( _ message : String ){
         
-        withAnimation{
-       
-            self.txInputData.alertMessage = message.localized
-            self.txInputData.showAlert = true
+        DispatchQueue.main.async {
+         
+            withAnimation{
+           
+                self.txInputData.alertMessage = message.localized
+                self.txInputData.showAlert = true
+            }
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {

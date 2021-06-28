@@ -27,5 +27,7 @@ struct TxInputData {
     
     var selectedUser : User?
     
+    var selecteduserWalletRefId : String?
+    
     
 }
