@@ -29,10 +29,14 @@ struct SendMoneyView : View {
 
     var body : some View {
         
-        view()
-        .popOver(isPresented: $txSuccessful, content: {
+        if txSuccessful {
+            
             txSucessView()
-        })
+        }
+        else {
+            view()
+        }
+        
     }
 }
 
@@ -87,8 +91,9 @@ extension SendMoneyView {
         Common.paymentSuccessView(amount: txInputViewModel.txAmount.twoDecimalString,
         balance: walletViewModel.balance, currency: walletViewModel.currency)
         .padding()
-        .navigationBar(title : Text("Success".localized), displayMode: .inline)
-        .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
+      //  .navigationBar(title : Text("Success".localized), displayMode: .inline)
+        //.navigationBarBackButtonHidden(true)
     }
     
 }
