@@ -26,6 +26,8 @@ struct SendMoneyView : View {
     @State private var showProgress : Bool = false
     
     @State private var txSuccessful : Bool = false
+    
+    @State private var isSendButtonPresented : Bool = true
 
     var body : some View {
         
@@ -72,13 +74,18 @@ extension SendMoneyView {
             self.errorAlertView()
         })
         .progressView(isShowing: $showProgress)
-        .bottomFloatingButton( isPresented: !(errorPresented), action: {
+        .bottomFloatingButton( isPresented: sendButtonPresented(), action: {
     
             self.sendMoneyNow()
         })
     }
     
    
+    private func sendButtonPresented() -> Bool {
+        
+        return isSendButtonPresented && !errorPresented
+    }
+    
     
     private func errorAlertView() -> some View {
         
@@ -88,7 +95,7 @@ extension SendMoneyView {
   
     private func txSucessView() -> some View {
         
-        Common.paymentSuccessView(amount: txInputViewModel.txAmount.twoDecimalString,
+        Common.paymentSuccessView(amount: amountText,
         balance: walletViewModel.balance, currency: walletViewModel.currency)
         .padding()
         .navigationBarHidden(true)
@@ -117,8 +124,7 @@ extension SendMoneyView {
                     withAnimation(.easeInOut(duration: 1.0)) {
                     
                         self.txSuccessful = true
-                        self.amountText = ""
-                        
+                        self.isSendButtonPresented = false
                     }
                 }
                 
