@@ -23,7 +23,7 @@ struct SendView : View {
     
     var body: some View {
         
-        navView()//.environmentObject(txInputViewModel)
+        navView().environmentObject(txInputViewModel)
     }
     
     
@@ -265,7 +265,7 @@ extension SendView {
     
     private func sendMoneyViewNavLink() -> some View {
         
-        NavigationLink(destination: SendMoneyView(txInputViewModel: txInputViewModel), isActive : $shouldProceed){}.hidden(true)
+        NavigationLink(destination: SendMoneyView(), isActive : $shouldProceed){}.hidden(true)
     }
 
 }

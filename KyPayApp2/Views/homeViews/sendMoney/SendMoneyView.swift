@@ -9,9 +9,9 @@ import SwiftUIX
 
 struct SendMoneyView : View {
         
-    //@EnvironmentObject private var txInputViewModel : TxInputDataViewModel
+    @EnvironmentObject private var txInputViewModel : TxInputDataViewModel
     
-    let txInputViewModel : TxInputDataViewModel
+    //let txInputViewModel : TxInputDataViewModel
     
     @EnvironmentObject private var userViewModel : UserViewModel
     
