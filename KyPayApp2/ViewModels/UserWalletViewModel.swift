@@ -467,14 +467,28 @@ extension UserWalletViewModel {
             
             
             self.walletHandler.add(amount: amount, currency: currency,
-                paymentMethod: paymentMethod,customerId: custId, completion: { pmdata , error in
+                paymentMethod: paymentMethod,customerId: custId, completion: {[weak self] pmdata , error in
+                    
                 
                 guard let err = error else {
                     
-                    completion?(pmdata, nil)
+                    guard let self = self else { return }
+                    
+                    self.updateWalletRemotely(by: amount, for: user, method: paymentMethod.type ?? "",
+                    serviceId: pmdata?.id, completion: { err in
+                        
+                        guard let err = err else {
+                            
+                            completion?(pmdata, nil)
+                            return
+                        }
+                        
+                        completion?(pmdata, err)
+                    })
+                    
                     return
                 }
-                
+                    
                 completion?(nil, err)
                                     
             })

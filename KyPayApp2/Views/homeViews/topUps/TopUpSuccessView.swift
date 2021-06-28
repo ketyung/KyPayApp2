@@ -19,24 +19,6 @@ struct TopUpSucessView : View {
     var body : some View {
         
        view()
-        .onAppear{
-            // update remote to record a successful payment
-            
-            walletViewModel.updateWalletRemotely(by: Double(topUpViewModel.amount) ?? 0,
-            for: userViewModel.user, method: topUpViewModel.paymentMethod?.type ?? "",
-            serviceId:  topUpViewModel.servicePaymentId, 
-            completion: { err in
-                         
-                guard let err = err else {
-                    
-                 //   print("updated payment to remote as success::\(topUpViewModel.servicePaymentId ?? "xxxx")")
-                    return
-                }
-                
-                print("err:\(err)")
-            })
-        }
-        
     }
 }
 

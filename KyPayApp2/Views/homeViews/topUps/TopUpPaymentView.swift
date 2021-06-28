@@ -91,9 +91,12 @@ struct TopUpPaymentView : View {
                 
                     self.inProgress = false
                    
-                    self.topUpViewModel.redirectURL = pmdata?.redirectURL
-                    
-                    self.topUpViewModel.servicePaymentId = pmdata?.id
+                    DispatchQueue.main.async {
+                   
+                        self.topUpViewModel.redirectURL = pmdata?.redirectURL
+                        self.topUpViewModel.servicePaymentId = pmdata?.id
+                       
+                    }
                     
                     withAnimation {
                         
