@@ -14,6 +14,7 @@ class TxInputDataViewModel : NSObject, ObservableObject {
     
     private let syncer = KyPayUserSyncer()
     
+    private lazy var cachedAttemptDS = CRTADS()
     
     var shouldPresentContactList : Bool {
         
@@ -215,6 +216,8 @@ extension TxInputDataViewModel {
                                 self.txInputData.showAlert = true
                                  */
                                 
+                                self.save(attempt: usr.phoneNumber ?? "", name: "\(usr.firstName ?? "") \(usr.lastName ?? "")")
+                                
                                 if !self.shouldProceedNext {
                                     self.shouldProceedNext = true
                                 }
@@ -252,5 +255,19 @@ extension TxInputDataViewModel {
                 self.txInputData.showAlert = false
             }
         })
+    }
+}
+
+
+extension TxInputDataViewModel {
+    
+    func fetchRecentAttempts() -> [CachedRecentTxAttempt]{
+        
+       return cachedAttemptDS.recent() ?? []
+    }
+    
+    func save(attempt phoneNumber : String, name : String){
+        
+        cachedAttemptDS.saveAttempt(phoneNumber: phoneNumber, name: name)
     }
 }

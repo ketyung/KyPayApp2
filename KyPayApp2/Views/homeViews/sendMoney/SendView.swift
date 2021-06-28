@@ -14,6 +14,7 @@ struct SendView : View {
   
     @ObservedObject private var txInputViewModel = TxInputDataViewModel()
     
+    @State private var recentAttempts : [CachedRecentTxAttempt] = []
     
     var body: some View {
         
@@ -65,6 +66,9 @@ extension SendView {
             
             
             phoneView()
+            
+            
+            recentAttemptsView()
             
             Spacer()
             
@@ -241,4 +245,49 @@ extension SendView {
         NavigationLink(destination: SendMoneyView(txInputViewModel: txInputViewModel), isActive : $txInputViewModel.shouldProceedNext){}.hidden(true)
     }
 
+}
+
+
+extension SendView {
+    
+    private func recentAttemptsView() -> some View {
+        
+        VStack(alignment: .leading, spacing: 2) {
+            
+            Spacer().frame(height:100)
+            
+            Text("Recent").font(.custom(Theme.fontNameBold, size: 15))
+            
+            List (recentAttempts, id:\.phoneNumber){ a in
+                
+                Button (action : {
+                    
+                    if  let numberOnly = a.phoneNumber?.replace(dataInputViewModel.selectedCountry?.dialCode ?? "+60", ""){
+              
+                        dataInputViewModel.enteredPhoneNumber = numberOnly
+            
+                    }
+                }){
+                
+                    HStack {
+                        
+                        Text(a.phoneNumber ?? "Phone").font(.custom(Theme.fontName, size: 15))
+                        .foregroundColor(.gray)
+                        
+                        Text(a.name ?? "Name").font(.custom(Theme.fontName, size: 15))
+                        .foregroundColor(.gray)
+                    
+                        Spacer()
+                        
+                        Common.disclosureIndicator()
+                    }
+                }
+                
+            }
+        }
+        .onAppear{
+                
+            self.recentAttempts = txInputViewModel.fetchRecentAttempts()
+        }
+    }
 }

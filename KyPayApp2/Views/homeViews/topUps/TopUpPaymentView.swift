@@ -146,8 +146,7 @@ extension TopUpPaymentView  {
                    
                 Spacer()
                 
-                Image(systemName: "chevron.right")
-                .font(.body).foregroundColor(Color(UIColor(hex:"#aaaaaaff")!))
+                Common.disclosureIndicator()
                 
             }.padding().foregroundColor(.black).background(Color(UIColor(hex:"#eeeeeeff")!))
         }

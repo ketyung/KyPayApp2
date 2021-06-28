@@ -79,3 +79,12 @@ struct Common {
 
     }
 }
+
+extension Common {
+    
+    static func disclosureIndicator() -> some View {
+        
+        Image(systemName: "chevron.right")
+        .font(.body).foregroundColor(Color(UIColor(hex:"#aaaaaaff")!))
+    }
+}
