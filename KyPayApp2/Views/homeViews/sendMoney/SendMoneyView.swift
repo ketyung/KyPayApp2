@@ -9,7 +9,7 @@ import SwiftUIX
 
 struct SendMoneyView : View {
     
-    let txInputViewModel : TxInputDataViewModel
+    @EnvironmentObject private var txInputViewModel : TxInputDataViewModel
     
     @EnvironmentObject private var userViewModel : UserViewModel
     
@@ -23,16 +23,9 @@ struct SendMoneyView : View {
     
     @State private var showProgress : Bool = false
 
-    @State private var success : Bool = false
-    
     var body : some View {
         
-        if success {
-            txSucessView()
-        }
-        else {
-            view()
-        }
+        view()
     }
 }
 
@@ -53,6 +46,10 @@ extension SendMoneyView {
             
             recipientView()
             
+            Spacer().frame(height:20)
+            
+            walletBalanceView()
+            
             Spacer()
         }
         .padding(.leading, 20)
@@ -70,16 +67,7 @@ extension SendMoneyView {
         })
     }
     
-    
-    private func txSucessView() -> some View {
-        
-        Common.paymentSuccessView(amount: txInputViewModel.txAmount.twoDecimalString,
-        balance: walletViewModel.balance, currency: walletViewModel.currency)
-        .padding()
-        .navigationBar(title : Text("Success".localized), displayMode: .inline)
-        .navigationBarBackButtonHidden(true)
-       
-    }
+   
     
     private func errorAlertView() -> some View {
         
@@ -98,15 +86,17 @@ extension SendMoneyView {
         self.showProgress = true
         
         walletViewModel.sendMoney(from: userViewModel.user,
-        to: txInputViewModel.selectedUserPhoneNumber, amount: Double(amountText) ?? 0, completion: { err in
+        to: txInputViewModel.selectedUserPhoneNumber, amount: Double(amountText) ?? 0, completion: { id, err in
             
             guard let err = err else {
                 
                 withAnimation(.easeInOut(duration: 1.0)) {
                         
                     self.showProgress = false
-                    self.success = true 
-                
+                    DispatchQueue.main.async {
+               
+                        self.txInputViewModel.txSuccessful = true
+                    }
                 }
                 return
             }
@@ -160,4 +150,27 @@ extension SendMoneyView {
     private func endEditing() {
         UIApplication.shared.endEditing()
     }
+}
+
+extension SendMoneyView {
+    
+    
+    private func walletBalanceView() -> some View {
+        
+        HStack {
+        
+            Text("Wallet Balance:").font(.custom(Theme.fontName, size: 15))
+            
+            Text(walletViewModel.currency).font(.custom(Theme.fontName, size: 15))
+           
+            Text(walletViewModel.balance).font(.custom(Theme.fontName, size: 15))
+           
+        }
+        .padding()
+        .background(Color(UIColor(hex:"#ddddddff")!))
+        .cornerRadius(10)
+        
+    }
+    
+
 }

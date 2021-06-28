@@ -7,7 +7,6 @@
 
 import SwiftUIX
 
-
 struct SendView : View {
     
     @ObservedObject private var dataInputViewModel = PhoneInputViewModel()
@@ -15,6 +14,11 @@ struct SendView : View {
     @ObservedObject private var txInputViewModel = TxInputDataViewModel()
     
     @State private var recentAttempts : [CachedRecentTxAttempt] = []
+    
+    @EnvironmentObject private var userViewModel : UserViewModel
+    
+    @EnvironmentObject private var walletViewModel : UserWalletViewModel
+   
     
     var body: some View {
         
@@ -33,6 +37,10 @@ struct SendView : View {
         
             errorAlertView()
         })
+        .popOver(isPresented: $txInputViewModel.txSuccessful, content: {
+            
+            txSucessView()
+        })
         .progressView(isShowing: $txInputViewModel.showProgressIndicator, text: "Syncing contacts...",
             size:  CGSize(width:200, height: 200))
         .bottomFloatingButton( isPresented: self.sendButtonPresented() , action: {
@@ -41,7 +49,7 @@ struct SendView : View {
             
         })
         .navigationViewStyle(StackNavigationViewStyle())
-      
+        .environmentObject(txInputViewModel)
     }
     
     
@@ -53,8 +61,7 @@ struct SendView : View {
 
 extension SendView {
     
-    
-    
+
     private func view() -> some View {
         
         VStack(alignment: .leading, spacing:20) {
@@ -228,6 +235,14 @@ extension SendView {
     }
     
     
+    private func txSucessView() -> some View {
+        
+        Common.paymentSuccessView(amount: txInputViewModel.txAmount.twoDecimalString,
+        balance: walletViewModel.balance, currency: walletViewModel.currency)
+        .padding()
+        .navigationBar(title : Text("Success".localized), displayMode: .inline)
+        .navigationBarBackButtonHidden(true)
+    }
     
 }
 
@@ -251,7 +266,7 @@ extension SendView {
     
     private func sendMoneyViewNavLink() -> some View {
         
-        NavigationLink(destination: SendMoneyView(txInputViewModel: txInputViewModel), isActive : $txInputViewModel.shouldProceedNext){}.hidden(true)
+        NavigationLink(destination: SendMoneyView(), isActive : $txInputViewModel.shouldProceedNext){}.hidden(true)
     }
 
 }

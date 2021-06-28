@@ -388,6 +388,7 @@ extension UserWalletViewModel {
     
     func updateWalletRemotely(by adding : Double, for user : User,
                               method : String, serviceId : String? = nil ,
+                              txType : UserPaymentTx.TxType = .walletTopUp,
                                       completion : ((Error?) -> Void)? = nil ){
         
         let newBalance = (self.walletHolder.wallet.balance ?? 0) + adding
@@ -423,7 +424,7 @@ extension UserWalletViewModel {
                     // record a payment tx remotely
                     self.addPaymentTxRemotely(amount: adding, currency: currency, user: user,
                     walletRefId: walletToBeUpdated.refId ?? "", method: method, serviceId: serviceId, 
-                    txType: .walletTopUp, completion: completion)
+                    txType: txType, completion: completion)
             }
         })
         
@@ -491,42 +492,48 @@ extension UserWalletViewModel {
 
 extension UserWalletViewModel {
     
-    func sendMoney(from user : User, to phoneNumber : String, amount : Double, completion : ((Error?)->Void)? = nil ){
+    func sendMoney(from user : User, to phoneNumber : String, amount : Double, completion : ((String?, Error?)->Void)? = nil ){
         
         let bal = (self.walletHolder.wallet.balance ?? 0)
       
         if amount <= 0 {
-            completion?(CustomError(errorText: "Invalid amount :\(amount.twoDecimalString)!".localized))
+            completion?(nil, CustomError(errorText: "Invalid amount :\(amount.twoDecimalString)!".localized))
             return
         
         }
         
         if amount > bal {
-            completion?(CustomError(errorText: "Insufficient fund in your wallet, balance :\(bal.twoDecimalString)!".localized))
+            completion?(nil, CustomError(errorText: "Insufficient fund in your wallet, balance :\(bal.twoDecimalString)!".localized))
             return
         }
         
-        txHandler.transfer(to: phoneNumber, amount: amount, currency: self.currency, completion: {[weak self] id, err  in
+        txHandler.transfer(to: phoneNumber, amount: amount, currency: self.currency, completion: {
+            [weak self] id, err  in
             
             guard let self = self else { return }
             
-            if err == nil  {
-            
-                self.updateWalletRemotely(by: -amount, for: user, method: "send_money", serviceId: id, completion: { err in
+            guard let err = err else {
+                
+                self.updateWalletRemotely(by: -amount,
+                for: user, method: "send_money", serviceId: id, txType: .sendMoney,
+                completion: { err in
                     
                     guard let err = err else {
-                        completion?(nil)
+                        
+                        completion?(id, err)
                         return
                     }
                     
-                    completion?(err)
+                    completion?(nil,err)
+                    
                 } )
                 
+                return
             }
-            else {
-                
-                completion?(err)
-            }
+            
+            completion?(id, err)
+            
+            
             
             
         })

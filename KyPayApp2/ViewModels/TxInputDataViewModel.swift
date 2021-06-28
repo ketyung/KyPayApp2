@@ -111,6 +111,18 @@ class TxInputDataViewModel : NSObject, ObservableObject {
         txInputData.selectedUser?.phoneNumber ?? ""
     }
     
+    var txSuccessful : Bool {
+        
+        get {
+            txInputData.txSuccessful
+        }
+        
+        set(newVal){
+    
+            txInputData.txSuccessful = newVal
+        }
+    }
+    
     
 }
 

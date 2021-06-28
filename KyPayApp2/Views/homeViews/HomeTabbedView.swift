@@ -15,7 +15,8 @@ struct HomeTabbedView : View {
    
     @EnvironmentObject private var userViewModel : UserViewModel
     
-    
+    @EnvironmentObject private var walletViewModel : UserWalletViewModel
+   
     var body: some View {
     
         tabbedView()
@@ -23,7 +24,10 @@ struct HomeTabbedView : View {
         
             FirstSignInView()
         }
-        .environmentObject(UserWalletViewModel())
+        .onAppear {
+            
+            self.fetchWalletIfNotPresent()
+        }
         
     }
 }
@@ -81,4 +85,23 @@ extension HomeTabbedView {
             }
         }
     }
+}
+
+extension HomeTabbedView {
+    
+    private func fetchWalletIfNotPresent(){
+        
+        walletViewModel.fetchWalletIfNotPresent(user: userViewModel.user, completion: {
+            
+            err in
+            
+            guard let _ = err else {
+                
+                return
+            }
+    
+        })
+        
+    }
+   
 }
