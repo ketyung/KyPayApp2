@@ -129,44 +129,10 @@ extension SendView {
     
     private func errorAlertView() -> some View {
         
-        SendView.commonErrorAlertView(message: txInputViewModel.alertMessage)
+        Common.errorAlertView(message: txInputViewModel.alertMessage)
     }
+   
     
-    static func commonErrorAlertView( message : String) -> some View {
-        
-         VStack {
-        
-             Spacer().frame(height: 30)
-             
-             HStack (spacing: 2) {
-             
-                 Image(systemName: "info.circle.fill")
-                 .resizable()
-                 .frame(width:24, height: 24)
-                 .foregroundColor(Color(UIColor(hex:"#aa0000ff")!))
-                 
-                 Text(message)
-                 .padding()
-                 .fixedSize(horizontal: false, vertical: true)
-                 .font(.custom(Theme.fontName, size: 16))
-                 .lineLimit(3)
-             }
-             .padding(4)
-             
-             Spacer()
-         }
-         .padding()
-         .frame(width: UIScreen.main.bounds.width - 40, height: 200)
-         .cornerRadius(4)
-         
-
-    }
-}
-
-
-
-extension SendView {
-
     @ViewBuilder
     private func dialCodeButton() -> some View {
         

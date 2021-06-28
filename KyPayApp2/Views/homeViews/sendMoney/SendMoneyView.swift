@@ -22,8 +22,23 @@ struct SendMoneyView : View {
     @State private var errorPresented : Bool = false
     
     @State private var showProgress : Bool = false
+
+    @State private var success : Bool = false
     
     var body : some View {
+        
+        if success {
+            txSucessView()
+        }
+        else {
+            view()
+        }
+    }
+}
+
+extension SendMoneyView {
+    
+    private func view() -> some View {
         
         VStack(alignment: .leading, spacing:20) {
             
@@ -44,11 +59,34 @@ struct SendMoneyView : View {
         .backButton(additionalAction: {
             self.endEditing()
         })
+        .popOver(isPresented: $errorPresented, content:{
+            
+            self.errorAlertView()
+        })
         .progressView(isShowing: $showProgress)
-        .bottomFloatingButton( isPresented: true, action: {
+        .bottomFloatingButton( isPresented: !(errorPresented), action: {
     
+            self.sendMoneyNow()
         })
     }
+    
+    
+    private func txSucessView() -> some View {
+        
+        Common.paymentSuccessView(amount: txInputViewModel.txAmount.twoDecimalString,
+        balance: walletViewModel.balance, currency: walletViewModel.currency)
+        .padding()
+        .navigationBar(title : Text("Success".localized), displayMode: .inline)
+        .navigationBarBackButtonHidden(true)
+       
+    }
+    
+    private func errorAlertView() -> some View {
+        
+        Common.errorAlertView(message: errorMessage ?? "Error!")
+       
+    }
+  
     
 }
 
@@ -57,24 +95,28 @@ extension SendMoneyView {
     private func sendMoneyNow(){
         
         self.showProgress = true
-        walletViewModel.sendMoney(from: userViewModel.user, to: txInputViewModel.selectedUserPhoneNumber, amount:
-                                    txInputViewModel.txAmount, completion: { err in
+        walletViewModel.sendMoney(from: userViewModel.user,
+        to: txInputViewModel.selectedUserPhoneNumber, amount: txInputViewModel.txAmount, completion: { err in
             
             guard let err = err else {
                 
-                self.showProgress = false
+                withAnimation(.easeInOut(duration: 1.0)) {
+                        
+                    self.showProgress = false
+                    self.success = true 
+                
+                }
                 return
             }
     
             self.errorMessage = err.localizedDescription
+            self.errorPresented = true
             self.showProgress = false
                                         
         })
     }
     
 }
-
-
 
 extension SendMoneyView {
     
