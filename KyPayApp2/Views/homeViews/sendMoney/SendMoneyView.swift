@@ -99,6 +99,9 @@ extension SendMoneyView {
         balance: walletViewModel.balance, currency: walletViewModel.currency)
         .padding()
         .navigationBarHidden(true)
+        .onAppear{
+            self.isSendButtonPresented = false
+        }
       //  .navigationBar(title : Text("Success".localized), displayMode: .inline)
         //.navigationBarBackButtonHidden(true)
     }
@@ -111,7 +114,7 @@ extension SendMoneyView {
         
         self.endEditing()
         self.showProgress = true
-        
+
         txInputViewModel.txAmount = Double(amountText) ?? 0
         walletViewModel.sendMoney(from: userViewModel.user,
         to: txInputViewModel.selectedUserPhoneNumber, amount: txInputViewModel.txAmount , completion: { id, err in
@@ -125,6 +128,7 @@ extension SendMoneyView {
                     
                         self.txSuccessful = true
                         self.isSendButtonPresented = false
+
                     }
                 }
                 
