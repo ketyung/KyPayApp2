@@ -85,8 +85,9 @@ extension SendMoneyView {
         self.endEditing()
         self.showProgress = true
         
+        txInputViewModel.txAmount = Double(amountText) ?? 0
         walletViewModel.sendMoney(from: userViewModel.user,
-        to: txInputViewModel.selectedUserPhoneNumber, amount: Double(amountText) ?? 0, completion: { id, err in
+        to: txInputViewModel.selectedUserPhoneNumber, amount: txInputViewModel.txAmount , completion: { id, err in
             
             guard let err = err else {
                 
@@ -96,6 +97,7 @@ extension SendMoneyView {
                     DispatchQueue.main.async {
                
                         self.txInputViewModel.txSuccessful = true
+                        self.amountText = ""
                     }
                 }
                 return
