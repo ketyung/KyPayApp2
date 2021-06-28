@@ -18,7 +18,7 @@ struct SendView : View {
     @EnvironmentObject private var userViewModel : UserViewModel
     
     @EnvironmentObject private var walletViewModel : UserWalletViewModel
-   
+    
     
     var body: some View {
         

@@ -98,6 +98,7 @@ extension SendMoneyView {
            
                     withAnimation(.easeInOut(duration: 1.0)) {
                     
+                        self.txInputViewModel.shouldProceedNext = true 
                         self.txInputViewModel.txSuccessful = true
                         self.amountText = ""
                         

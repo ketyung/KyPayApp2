@@ -166,7 +166,7 @@ extension TxInputDataViewModel {
 
 extension TxInputDataViewModel {
     
-    func verifyIfPhoneNumberExists(_ phoneNumber : String ) {
+    func verifyIfPhoneNumberExists(_ phoneNumber : String) {
         
         withAnimation{
        
