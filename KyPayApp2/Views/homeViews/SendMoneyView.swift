@@ -11,7 +11,17 @@ struct SendMoneyView : View {
     
     let txInputViewModel : TxInputDataViewModel
     
+    @EnvironmentObject private var userViewModel : UserViewModel
+    
+    @EnvironmentObject private var walletViewModel : UserWalletViewModel
+    
     @State private var amountText : String = ""
+    
+    @State private var errorMessage : String?
+    
+    @State private var errorPresented : Bool = false
+    
+    @State private var showProgress : Bool = false
     
     var body : some View {
         
@@ -34,12 +44,36 @@ struct SendMoneyView : View {
         .backButton(additionalAction: {
             self.endEditing()
         })
+        .progressView(isShowing: $showProgress)
         .bottomFloatingButton( isPresented: true, action: {
     
         })
     }
     
 }
+
+extension SendMoneyView {
+    
+    private func sendMoneyNow(){
+        
+        self.showProgress = true
+        walletViewModel.sendMoney(from: userViewModel.user, to: txInputViewModel.selectedUserPhoneNumber, amount:
+                                    txInputViewModel.txAmount, completion: { err in
+            
+            guard let err = err else {
+                
+                self.showProgress = false
+                return
+            }
+    
+            self.errorMessage = err.localizedDescription
+            self.showProgress = false
+                                        
+        })
+    }
+    
+}
+
 
 
 extension SendMoneyView {

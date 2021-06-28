@@ -151,8 +151,7 @@ extension TxInputDataViewModel {
 
 extension TxInputDataViewModel {
     
-    
-    func verifyIfPhoneNumberExists(_ phoneNumber : String ){
+    func verifyIfPhoneNumberExists(_ phoneNumber : String ) {
         
         withAnimation{
        
@@ -168,6 +167,12 @@ extension TxInputDataViewModel {
             return
         }
         
+        self.verifyPhoneNumberFromRemote(phoneNumber: phoneNumber)
+     
+    }
+    
+    
+    private func verifyPhoneNumberFromRemote( phoneNumber : String) {
         
         ARH.shared.fetchUser(phoneNumber: phoneNumber, completion: { [weak self]
             
@@ -204,8 +209,11 @@ extension TxInputDataViewModel {
                             withAnimation{
                    
                                 self.txInputData.phoneNumberVerified = true
+                                
+                                /**
                                 self.txInputData.alertMessage = "\(usr.firstName ?? "") \(usr.lastName ?? "")".localized
                                 self.txInputData.showAlert = true
+                                 */
                                 
                                 if !self.shouldProceedNext {
                                     self.shouldProceedNext = true
@@ -226,6 +234,7 @@ extension TxInputDataViewModel {
             
         })
     }
+    
     
     
     private func sendFailureMessage ( _ message : String ){

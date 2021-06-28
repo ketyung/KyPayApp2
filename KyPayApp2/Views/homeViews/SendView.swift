@@ -125,12 +125,14 @@ extension SendView {
 }
 
 
-
 extension SendView {
-    
     
     private func errorAlertView() -> some View {
         
+        SendView.commonErrorAlertView(message: txInputViewModel.alertMessage)
+    }
+    
+    static func commonErrorAlertView( message : String) -> some View {
         
          VStack {
         
@@ -143,7 +145,7 @@ extension SendView {
                  .frame(width:24, height: 24)
                  .foregroundColor(Color(UIColor(hex:"#aa0000ff")!))
                  
-                 Text(txInputViewModel.alertMessage)
+                 Text(message)
                  .padding()
                  .fixedSize(horizontal: false, vertical: true)
                  .font(.custom(Theme.fontName, size: 16))

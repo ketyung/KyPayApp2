@@ -494,18 +494,17 @@ extension UserWalletViewModel {
         
         let bal = (self.walletHolder.wallet.balance ?? 0)
         if amount > bal {
-            
             completion?(CustomError(errorText: "Insufficient fund in your wallet!"))
             return
         }
         
-        txHandler.transfer(to: phoneNumber, amount: amount, currency: self.currency, completion: { id, err  in
+        txHandler.transfer(to: phoneNumber, amount: amount, currency: self.currency, completion: {[weak self] id, err  in
             
-            self.updateWalletRemotely(by: -amount, for: user, method: "send_money", serviceId: id, completion: {
-                err in
+            guard let self = self else { return }
+            
+            self.updateWalletRemotely(by: -amount, for: user, method: "send_money", serviceId: id, completion: { err in
                 
                 guard let err = err else {
-                    
                     completion?(nil)
                     return
                 }
