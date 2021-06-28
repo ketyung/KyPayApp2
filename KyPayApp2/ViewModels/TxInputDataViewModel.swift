@@ -111,18 +111,6 @@ class TxInputDataViewModel : NSObject, ObservableObject {
         txInputData.selectedUser?.phoneNumber ?? ""
     }
     
-    var txSuccessful : Bool {
-        
-        get {
-            txInputData.txSuccessful
-        }
-        
-        set(newVal){
-    
-            txInputData.txSuccessful = newVal
-        }
-    }
-    
     
 }
 
@@ -166,7 +154,7 @@ extension TxInputDataViewModel {
 
 extension TxInputDataViewModel {
     
-    func verifyIfPhoneNumberExists(_ phoneNumber : String) {
+    func verifyIfPhoneNumberExists(_ phoneNumber : String, completion : (() -> Void)? = nil ) {
         
         withAnimation{
        
@@ -179,15 +167,16 @@ extension TxInputDataViewModel {
             withAnimation{
                 txInputData.phoneNumberBeingVerified = false
             }
+            completion?()
             return
         }
         
-        self.verifyPhoneNumberFromRemote(phoneNumber: phoneNumber)
+        self.verifyPhoneNumberFromRemote(phoneNumber: phoneNumber, completion:  completion)
      
     }
     
     
-    private func verifyPhoneNumberFromRemote( phoneNumber : String) {
+    private func verifyPhoneNumberFromRemote( phoneNumber : String, completion : (() -> Void)? = nil) {
         
         ARH.shared.fetchUser(phoneNumber: phoneNumber, completion: { [weak self]
             
@@ -214,7 +203,7 @@ extension TxInputDataViewModel {
                             
                             self.sendFailureMessage(err.localizedDescription)
                         }
-                      
+                    
                     
                     case .success(let usr) :
                         if usr.phoneNumber == phoneNumber {
@@ -237,10 +226,13 @@ extension TxInputDataViewModel {
                                 }
                                
                             }
+                            
                         }
-                
+                            
                 }
-                
+               
+                completion?()
+       
                 withAnimation{
        
                     self.txInputData.phoneNumberBeingVerified = false

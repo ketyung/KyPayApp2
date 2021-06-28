@@ -24,10 +24,15 @@ struct SendMoneyView : View {
     @State private var errorPresented : Bool = false
     
     @State private var showProgress : Bool = false
+    
+    @State private var txSuccessful : Bool = false
 
     var body : some View {
         
         view()
+        .popOver(isPresented: $txSuccessful, content: {
+            txSucessView()
+        })
     }
 }
 
@@ -77,6 +82,14 @@ extension SendMoneyView {
        
     }
   
+    private func txSucessView() -> some View {
+        
+        Common.paymentSuccessView(amount: txInputViewModel.txAmount.twoDecimalString,
+        balance: walletViewModel.balance, currency: walletViewModel.currency)
+        .padding()
+        .navigationBar(title : Text("Success".localized), displayMode: .inline)
+        .navigationBarBackButtonHidden(true)
+    }
     
 }
 
@@ -98,8 +111,7 @@ extension SendMoneyView {
            
                     withAnimation(.easeInOut(duration: 1.0)) {
                     
-                        self.txInputViewModel.shouldProceedNext = true 
-                        self.txInputViewModel.txSuccessful = true
+                        self.txSuccessful = true
                         self.amountText = ""
                         
                     }

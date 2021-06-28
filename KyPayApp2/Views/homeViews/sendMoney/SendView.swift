@@ -19,6 +19,7 @@ struct SendView : View {
     
     @EnvironmentObject private var walletViewModel : UserWalletViewModel
     
+    @State private var shouldProceed : Bool = false
     
     var body: some View {
         
@@ -50,10 +51,7 @@ struct SendView : View {
             self.verifyPhoneNumberAndProceed()
             
         })
-        .popOver(isPresented: $txInputViewModel.txSuccessful, content: {
-            
-            txSucessView()
-        })
+       
         .navigationViewStyle(StackNavigationViewStyle())
     }
     
@@ -241,14 +239,7 @@ extension SendView {
     }
     
     
-    private func txSucessView() -> some View {
-        
-        Common.paymentSuccessView(amount: txInputViewModel.txAmount.twoDecimalString,
-        balance: walletViewModel.balance, currency: walletViewModel.currency)
-        .padding()
-        .navigationBar(title : Text("Success".localized), displayMode: .inline)
-        .navigationBarBackButtonHidden(true)
-    }
+   
     
 }
 
@@ -266,13 +257,16 @@ extension SendView {
         
         let phoneNumber = "\(dataInputViewModel.selectedCountry?.dialCode ?? "+60")\(dataInputViewModel.enteredPhoneNumber)"
         
-        txInputViewModel.verifyIfPhoneNumberExists(phoneNumber)
+        txInputViewModel.verifyIfPhoneNumberExists(phoneNumber, completion: {
+            
+            self.shouldProceed = self.txInputViewModel.shouldProceedNext
+        })
         
     }
     
     private func sendMoneyViewNavLink() -> some View {
         
-        NavigationLink(destination: SendMoneyView(txInputViewModel: txInputViewModel), isActive : $txInputViewModel.shouldProceedNext){}.hidden(true)
+        NavigationLink(destination: SendMoneyView(txInputViewModel: txInputViewModel), isActive : $shouldProceed){}.hidden(true)
     }
 
 }

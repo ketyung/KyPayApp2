@@ -27,6 +27,5 @@ struct TxInputData {
     
     var selectedUser : User?
     
-    var txSuccessful : Bool = false 
     
 }
