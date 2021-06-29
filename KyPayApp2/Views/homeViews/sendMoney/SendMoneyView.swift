@@ -11,8 +11,6 @@ struct SendMoneyView : View {
         
     @EnvironmentObject private var txInputViewModel : TxInputDataViewModel
     
-    //let txInputViewModel : TxInputDataViewModel
-    
     @EnvironmentObject private var userViewModel : UserViewModel
     
     @EnvironmentObject private var walletViewModel : UserWalletViewModel
@@ -28,6 +26,8 @@ struct SendMoneyView : View {
     @State private var txSuccessful : Bool = false
     
     @State private var isSendButtonPresented : Bool = true
+    
+    @State private var showShareSheet : Bool = false
 
     private var successView : some View {
         
@@ -58,9 +58,7 @@ struct SendMoneyView : View {
         
         if txSuccessful {
             
-            txSucessView().onAppear{
-                txInputViewModel.clearForRestart()
-            }
+            txSucessView()
         }
         else {
             view()
@@ -129,7 +127,10 @@ extension SendMoneyView {
            
                 Spacer()
                 
-                Button(action: {}){
+                Button(action: {
+                    
+                    self.showShareSheet.toggle()
+                }){
                 
                     Image("more").resizable().frame(width:24, height: 24, alignment: .topTrailing)
                 }
@@ -140,9 +141,21 @@ extension SendMoneyView {
             
             successView
         }
+        .sheet(isPresented: $showShareSheet, content: {
+        
+            if let img = successView.snapShot() {
+                ShareView(activityItems: [img])
+            }
+        })
        
       //  .navigationBar(title : Text("Success".localized), displayMode: .inline)
         //.navigationBarBackButtonHidden(true)
+    }
+    
+    
+    private func shareSucessView() {
+        
+        
     }
     
 }
@@ -167,6 +180,7 @@ extension SendMoneyView {
                     
                         self.txSuccessful = true
                         self.isSendButtonPresented = false
+                        self.txInputViewModel.shouldProceedNext = true
                     }
                 }
                 

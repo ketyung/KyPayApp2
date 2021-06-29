@@ -121,9 +121,19 @@ class TxInputDataViewModel : NSObject, ObservableObject {
         txInputData.selecteduserWalletRefId ?? ""
     }
     
-    func clearForRestart(){
+    func reset(){
         
-        txInputData.shouldProceedNext = false 
+        txInputData.shouldProceedNext = false
+        txInputData.alertMessage = nil
+        txInputData.phoneNumberBeingVerified = false
+        txInputData.selectedUser = nil
+        txInputData.selecteduserWalletRefId = nil
+        txInputData.showProgressIndicator = false
+        txInputData.phoneNumberVerified = false
+        txInputData.showAlert = false
+        txInputData.txAmount = 0
+        txInputData.shouldPresentContactList = false
+
     }
     
 }

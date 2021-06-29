@@ -18,9 +18,7 @@ struct SendView : View {
     @EnvironmentObject private var userViewModel : UserViewModel
     
     @EnvironmentObject private var walletViewModel : UserWalletViewModel
-    
-    @State private var shouldProceed : Bool = false
-    
+
     var body: some View {
         
         navView()
@@ -257,16 +255,13 @@ extension SendView {
         
         let phoneNumber = "\(dataInputViewModel.selectedCountry?.dialCode ?? "+60")\(dataInputViewModel.enteredPhoneNumber)"
         
-        txInputViewModel.verifyIfPhoneNumberExists(phoneNumber, completion: {
-            
-            self.shouldProceed = self.txInputViewModel.shouldProceedNext
-        })
+        txInputViewModel.verifyIfPhoneNumberExists(phoneNumber)
         
     }
     
     private func sendMoneyViewNavLink() -> some View {
         
-        NavigationLink(destination: SendMoneyView(), isActive : $shouldProceed){}.hidden(true)
+        NavigationLink(destination: SendMoneyView(), isActive : $txInputViewModel.shouldProceedNext){}.hidden(true)
     }
 
 }

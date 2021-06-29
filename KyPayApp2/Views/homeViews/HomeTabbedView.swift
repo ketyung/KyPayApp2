@@ -16,6 +16,19 @@ struct HomeTabbedView : View {
     @EnvironmentObject private var userViewModel : UserViewModel
     
     @EnvironmentObject private var walletViewModel : UserWalletViewModel
+    
+    @EnvironmentObject private var txInputViewModel : TxInputDataViewModel
+   
+    var handler: Binding<Int> { Binding(
+       get: { self.selectedTab },
+       set: {
+            if $0 == 0 || $0 == 1{
+            
+                txInputViewModel.reset()
+            }
+            self.selectedTab = $0
+       }
+   )}
    
     var body: some View {
     
@@ -37,7 +50,7 @@ extension HomeTabbedView {
     
     private func tabbedView() -> some View {
         
-        TabView(selection: $selectedTab ){
+        TabView(selection: handler ){
            
             HomeView()
            .tabItem {tabLabel("Home", systemImage: "house")}

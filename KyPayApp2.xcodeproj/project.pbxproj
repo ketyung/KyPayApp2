@@ -144,6 +144,7 @@
 		10B85620268949CA00AEF15F /* TxHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8561F268949CA00AEF15F /* TxHandler.swift */; };
 		10B8562526896E4500AEF15F /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8562426896E4500AEF15F /* Common.swift */; };
 		10B856272689727500AEF15F /* CachedRecentTxAttemptDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B856262689727500AEF15F /* CachedRecentTxAttemptDataSource.swift */; };
+		10B85629268A982900AEF15F /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B85628268A982900AEF15F /* ShareView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -318,6 +319,7 @@
 		10B8561F268949CA00AEF15F /* TxHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TxHandler.swift; sourceTree = "<group>"; };
 		10B8562426896E4500AEF15F /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		10B856262689727500AEF15F /* CachedRecentTxAttemptDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedRecentTxAttemptDataSource.swift; sourceTree = "<group>"; };
+		10B85628268A982900AEF15F /* ShareView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
 		1B47377B496C6F0F1022FFD4 /* Pods-KyPayApp2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.debug.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.debug.xcconfig"; sourceTree = "<group>"; };
 		6F523BC3D4353462922B31B9 /* Pods-KyPayApp2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.release.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -689,6 +691,7 @@
 				1033C0AD2679BB6B00D999CE /* settings */,
 				1033C09F2678510100D999CE /* RequestView.swift */,
 				1033C0C1267AFFB600D999CE /* ContactsListView.swift */,
+				10B85628268A982900AEF15F /* ShareView.swift */,
 				1033C09926784FC300D999CE /* HomeView.swift */,
 				1033C0A22678514500D999CE /* HomeTabbedView.swift */,
 				10B8562426896E4500AEF15F /* Common.swift */,
@@ -1086,6 +1089,7 @@
 				1033C08E26773C0600D999CE /* KCDataStore.swift in Sources */,
 				1033C0742676E81000D999CE /* RoundedCorner.swift in Sources */,
 				1033C0A82678A8CD00D999CE /* CustomActivityIndicator.swift in Sources */,
+				10B85629268A982900AEF15F /* ShareView.swift in Sources */,
 				10B8560326855E5C00AEF15F /* TopUpSuccessView.swift in Sources */,
 				10B855FD2684274D00AEF15F /* CardPaymentView.swift in Sources */,
 				1033C0692676DD8700D999CE /* CountryCodePickerUI.swift in Sources */,
