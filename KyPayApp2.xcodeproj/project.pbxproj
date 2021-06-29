@@ -145,6 +145,7 @@
 		10B8562526896E4500AEF15F /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8562426896E4500AEF15F /* Common.swift */; };
 		10B856272689727500AEF15F /* CachedRecentTxAttemptDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B856262689727500AEF15F /* CachedRecentTxAttemptDataSource.swift */; };
 		10B85629268A982900AEF15F /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B85628268A982900AEF15F /* ShareView.swift */; };
+		10B8562B268AACBA00AEF15F /* kypay_db.sql in Resources */ = {isa = PBXBuildFile; fileRef = 10B8562A268AACBA00AEF15F /* kypay_db.sql */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -320,6 +321,7 @@
 		10B8562426896E4500AEF15F /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		10B856262689727500AEF15F /* CachedRecentTxAttemptDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedRecentTxAttemptDataSource.swift; sourceTree = "<group>"; };
 		10B85628268A982900AEF15F /* ShareView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
+		10B8562A268AACBA00AEF15F /* kypay_db.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = kypay_db.sql; sourceTree = "<group>"; };
 		1B47377B496C6F0F1022FFD4 /* Pods-KyPayApp2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.debug.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.debug.xcconfig"; sourceTree = "<group>"; };
 		6F523BC3D4353462922B31B9 /* Pods-KyPayApp2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.release.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -506,6 +508,7 @@
 			isa = PBXGroup;
 			children = (
 				1033B2A42674A92D00D999CE /* tb.sql */,
+				10B8562A268AACBA00AEF15F /* kypay_db.sql */,
 				1033B2A52674A92D00D999CE /* Db */,
 				1033B2AC2674A92D00D999CE /* Controllers */,
 			);
@@ -902,6 +905,7 @@
 				10B855F52681BDAC00AEF15F /* WalletRequest.php in Resources */,
 				10B855DF267DEACB00AEF15F /* countryCurrency.json in Resources */,
 				1033C0832677035100D999CE /* CountryPickerView.bundle in Resources */,
+				10B8562B268AACBA00AEF15F /* kypay_db.sql in Resources */,
 				1033B2D22674A92D00D999CE /* DotEnv.php in Resources */,
 				1033B2612674A7F300D999CE /* LaunchScreen.storyboard in Resources */,
 				1033B2D72674A92D00D999CE /* Log.php in Resources */,
