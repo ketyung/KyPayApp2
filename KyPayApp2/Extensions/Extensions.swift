@@ -228,9 +228,7 @@ extension WKWebView {
 }
 
 
-
 extension View {
-    
     func snapshot() -> UIImage {
         let controller = UIHostingController(rootView: self)
         let view = controller.view
@@ -245,5 +243,4 @@ extension View {
             view?.drawHierarchy(in: controller.view.bounds, afterScreenUpdates: true)
         }
     }
-
 }

@@ -23,36 +23,15 @@ struct SendMoneyView : View {
     
     @State private var showProgress : Bool = false
     
-    @State private var txSuccessful : Bool = true
+    @State private var txSuccessful : Bool = false
     
     @State private var isSendButtonPresented : Bool = true
     
     @State private var showShareSheet : Bool = false
-
-    private var successView : some View {
-        
-        VStack {
-        
-            VStack(spacing:2) {
-           
-                Text("Sent To :").font(.custom(Theme.fontName, size: 16))
-                Text("\(txInputViewModel.selectedUserPhoneNumber) \(txInputViewModel.selectedUserName)")
-                .font(.custom(Theme.fontName, size: 16))
-               
-            }
-            
-            
-            Common.paymentSuccessView(amount: amountText,
-            balance: walletViewModel.balance, currency: walletViewModel.currency)
-            .padding()
-            .navigationBarHidden(true)
-            .onAppear{
-                self.isSendButtonPresented = false
-            }
-        }
-        
-        
-    }
+    
+    @State private var successHiddenTextPresented : Bool = false
+    
+    
     
     var body : some View {
         
@@ -119,6 +98,32 @@ extension SendMoneyView {
        
     }
   
+    
+    private func successView(_ showBalance : Bool = true) -> some View {
+        
+        VStack {
+        
+            VStack(spacing:2) {
+           
+                Text("Sent To :").font(.custom(Theme.fontName, size: 16))
+                Text("\(txInputViewModel.selectedUserPhoneNumber) \(txInputViewModel.selectedUserName)")
+                .font(.custom(Theme.fontName, size: 16))
+               
+            }
+            
+            
+            Common.paymentSuccessView(amount: amountText,
+            balance: walletViewModel.balance, currency: walletViewModel.currency, showBalance: showBalance)
+            .padding()
+            .navigationBarHidden(true)
+            .onAppear{
+                self.isSendButtonPresented = false
+            }
+        }
+        
+        
+    }
+    
     private func txSucessView() -> some View {
         
         VStack {
@@ -129,7 +134,10 @@ extension SendMoneyView {
                 
                 Button(action: {
                     
-                    self.showShareSheet.toggle()
+                    //self.showShareSheet.toggle()
+                    
+                    self.shareSnapShot()
+                    
                 }){
                 
                     Image("more").resizable().frame(width:24, height: 24, alignment: .topTrailing)
@@ -139,17 +147,47 @@ extension SendMoneyView {
                
             }
             
-            successView
+            if successHiddenTextPresented {
+                
+                Text("Saved to photo library".localized).font(.custom(Theme.fontName, size: 15))
+            }
+            
+            
+            successView()
         }
         .sheet(isPresented: $showShareSheet, content: {
         
-            if let img = successView.snapshot() {
-                ShareView(activityItems: [img])
-            }
+            ShareView(activityItems: [successView(false).snapshot()])
+               
         })
        
       //  .navigationBar(title : Text("Success".localized), displayMode: .inline)
         //.navigationBarBackButtonHidden(true)
+    }
+    
+    
+    private func shareSnapShot(){
+        
+        let image = successView(false).snapshot()
+        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+ 
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+            withAnimation{
+             
+                self.successHiddenTextPresented.toggle()
+       
+                DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
+               
+                    withAnimation{
+                     
+                        self.successHiddenTextPresented.toggle()
+               
+                    }
+                })
+            }
+        })
+        
+        
     }
     
     

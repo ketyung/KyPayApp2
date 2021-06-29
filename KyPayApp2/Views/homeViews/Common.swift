@@ -11,7 +11,7 @@ struct Common {
     
     
     static func paymentSuccessView (amount : String, balance : String,
-    currency : String, subTitle : String = "Transfer Amount :".localized) -> some View {
+    currency : String, showBalance : Bool = true, subTitle : String = "Transfer Amount :".localized) -> some View {
         
         VStack{
             
@@ -31,19 +31,28 @@ struct Common {
             }
             
             
-            Spacer().frame(height:30)
-            
-            VStack {
-           
-                Text("Current Balance :".localized)
-                .font(.custom(Theme.fontNameBold, size: 26)).foregroundColor(Color(UIColor(hex:"#999999ff")!))
+            if showBalance {
                
-                Text("\(currency) \(balance)")
-                .font(.custom(Theme.fontNameBold, size: 30)).foregroundColor(Color(UIColor(hex:"#333333ff")!))
+                Spacer().frame(height:30)
+               
+                
+                VStack {
+               
+                    Text("Current Balance :".localized)
+                    .font(.custom(Theme.fontNameBold, size: 26)).foregroundColor(Color(UIColor(hex:"#999999ff")!))
                    
+                    Text("\(currency) \(balance)")
+                    .font(.custom(Theme.fontNameBold, size: 30)).foregroundColor(Color(UIColor(hex:"#333333ff")!))
+                       
+                }
+                Spacer()
+               
             }
-            
-            Spacer()
+            else {
+                
+                Spacer().frame(height:50)
+               
+            }
               
         }
     }
