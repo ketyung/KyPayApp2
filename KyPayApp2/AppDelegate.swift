@@ -17,8 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         
-        self.publishDeviceToken("key:\("".random(length: 20))")
-        
         return true
     }
 
@@ -43,13 +41,15 @@ extension AppDelegate {
     
     func registerForPushNotifications(onDeny handler :  (()-> Void)? = nil) {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
-            [weak self] granted, _ in
+            [weak self] _ , _ in
             
-            guard granted else { return }
+           // guard granted else { return }
             
             guard let self = self else { return }
             
             self.getNotificationSettings(onDeny: handler)
+            
+            
         }
     }
     
@@ -88,16 +88,18 @@ extension AppDelegate {
     {
         let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
         let token = tokenParts.joined()
-        print("Device Token: \(token)")
+        self.publishDeviceToken(token)
+        
+       // print("received.token::\(token)")
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error)
     {
-        print("Failed to register: \(error)")
+        print("Remote.Noti.Failed to register: \(error)")
         
     }
     
-    func publishDeviceToken(_ token : String){
+    private func publishDeviceToken(_ token : String){
         
         DispatchQueue.main.async {
    

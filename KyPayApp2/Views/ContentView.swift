@@ -60,7 +60,7 @@ extension ContentView {
         })
         .onAppear{
             
-            // registerForRemoteNotifications()
+            registerForRemoteNotifications()
         }
         .alert(isPresented: $toShowAlert) {
             Alert(title: Text("Notification has been disabled for this app"),
