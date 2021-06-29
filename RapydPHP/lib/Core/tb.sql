@@ -117,3 +117,13 @@ alter table kypay_user_payment_tx add to_wallet_ref_id varchar(16) after wallet_
 
 alter table kypay_user_payment_tx add tx_type enum('WT', 'SM', 'RM', 'PB') after to_uid_type;
 
+
+
+drop table if exists kypay_device_token;
+create table if not exists kypay_device_token (
+
+    id varchar(32) default 'x' NOT null,
+    token varchar(128) default 'xxx' NOT null,
+    last_updated datetime,
+    primary key(id,token)
+);

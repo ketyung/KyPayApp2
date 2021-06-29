@@ -101,6 +101,7 @@ extension WalletView {
             topUpButton()
             
             withDrawButton()
+           
         }.padding()
     }
     

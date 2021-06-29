@@ -7,11 +7,12 @@ use Core\Controllers\KypayUserController;
 use Core\Controllers\KypayUserAddressController;
 use Core\Controllers\KypayUserWalletController;
 use Core\Controllers\KypayUserPaymentTxController;
+use Core\Controllers\KypayDeviceTokenController;
 use Db\DbConnector as DbConn;
 
 date_default_timezone_set('Asia/Brunei');
 
-checkIfAuthorized();
+//checkIfAuthorized();
 
 headers();
 
@@ -63,6 +64,12 @@ function processUri(){
     if ($uri[1] == 'userPayment'){
 
         $u = new KyPayUserPaymentTxController( DbConn::conn() , $requestMethod, $params );
+        $u->processRequest();
+    }
+    else
+    if ($uri[1] == 'deviceToken'){
+
+        $u = new KyPayDeviceTokenController( DbConn::conn() , $requestMethod, $params );
         $u->processRequest();
     }
    

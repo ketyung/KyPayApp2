@@ -42,5 +42,6 @@ class KypayDbObject extends DbObject {
         return parent::update ($input, $toRecreateStatement);
         
     }
+    
 }
 ?>

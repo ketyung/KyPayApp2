@@ -146,6 +146,8 @@
 		10B85629268A982900AEF15F /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B85628268A982900AEF15F /* ShareView.swift */; };
 		10B8562B268AACBA00AEF15F /* kypay_db.sql in Resources */ = {isa = PBXBuildFile; fileRef = 10B8562A268AACBA00AEF15F /* kypay_db.sql */; };
 		10B8562D268AE70900AEF15F /* PaymentSuccess.php in Resources */ = {isa = PBXBuildFile; fileRef = 10B8562C268AE70900AEF15F /* PaymentSuccess.php */; };
+		10B85630268B0B8800AEF15F /* KypayDeviceToken.php in Sources */ = {isa = PBXBuildFile; fileRef = 10B8562F268B0B8800AEF15F /* KypayDeviceToken.php */; };
+		10B85632268B0E5500AEF15F /* KypayDeviceTokenController.php in Sources */ = {isa = PBXBuildFile; fileRef = 10B85631268B0E5500AEF15F /* KypayDeviceTokenController.php */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -322,6 +324,9 @@
 		10B85628268A982900AEF15F /* ShareView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
 		10B8562A268AACBA00AEF15F /* kypay_db.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = kypay_db.sql; sourceTree = "<group>"; };
 		10B8562C268AE70900AEF15F /* PaymentSuccess.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = PaymentSuccess.php; sourceTree = "<group>"; };
+		10B8562E268B084400AEF15F /* KyPayApp2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KyPayApp2.entitlements; sourceTree = "<group>"; };
+		10B8562F268B0B8800AEF15F /* KypayDeviceToken.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = KypayDeviceToken.php; sourceTree = "<group>"; };
+		10B85631268B0E5500AEF15F /* KypayDeviceTokenController.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = KypayDeviceTokenController.php; sourceTree = "<group>"; };
 		1B47377B496C6F0F1022FFD4 /* Pods-KyPayApp2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.debug.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.debug.xcconfig"; sourceTree = "<group>"; };
 		6F523BC3D4353462922B31B9 /* Pods-KyPayApp2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.release.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -390,6 +395,7 @@
 		1033B2532674A7F200D999CE /* KyPayApp2 */ = {
 			isa = PBXGroup;
 			children = (
+				10B8562E268B084400AEF15F /* KyPayApp2.entitlements */,
 				1033C0DE267D984C00D999CE /* RapydHandlers */,
 				1033C0A42678A7F600D999CE /* Modifiers */,
 				1033C08C26773AC800D999CE /* DataStore */,
@@ -524,6 +530,7 @@
 				1033B2A92674A92D00D999CE /* KypayUserWallet.php */,
 				1033B2AA2674A92D00D999CE /* KypayUserImg.php */,
 				1033B2AB2674A92D00D999CE /* KypayDbObject.php */,
+				10B8562F268B0B8800AEF15F /* KypayDeviceToken.php */,
 			);
 			path = Db;
 			sourceTree = "<group>";
@@ -537,6 +544,7 @@
 				1033B2B02674A92D00D999CE /* KypayUserWalletController.php */,
 				1033B2DE2674AC3800D999CE /* KyPayUserPaymentTxController.php */,
 				1033B2B12674A92D00D999CE /* KypayUserAddressController.php */,
+				10B85631268B0E5500AEF15F /* KypayDeviceTokenController.php */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1026,6 +1034,7 @@
 				1033C0A62678A87C00D999CE /* ProgressViewModifier.swift in Sources */,
 				1033C0BA267AEC3700D999CE /* TopUpView.swift in Sources */,
 				10B855E3267EEEB400AEF15F /* PaymentMethodTypesView.swift in Sources */,
+				10B85632268B0E5500AEF15F /* KypayDeviceTokenController.php in Sources */,
 				1033C0D3267D896900D999CE /* SendMoneyView.swift in Sources */,
 				1033C0AC2679A38000D999CE /* Tool.swift in Sources */,
 				1033C0C0267AFD4F00D999CE /* ContactFetcher.swift in Sources */,
@@ -1062,6 +1071,7 @@
 				10B855F1267F39D900AEF15F /* NavigationBarTitle.swift in Sources */,
 				1033C09426782B5700D999CE /* OtpText.swift in Sources */,
 				1033C0AF2679BB7800D999CE /* EditProfileView.swift in Sources */,
+				10B85630268B0B8800AEF15F /* KypayDeviceToken.php in Sources */,
 				1033C0BC267AECA200D999CE /* Theme.swift in Sources */,
 				10B856072686ADB000AEF15F /* PaymentRedirectWebView.swift in Sources */,
 				1033C0D1267D769400D999CE /* TxInputDataViewModel.swift in Sources */,
@@ -1267,6 +1277,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
+				CODE_SIGN_ENTITLEMENTS = KyPayApp2/KyPayApp2.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"KyPayApp2/Preview Content\"";
 				DEVELOPMENT_TEAM = 69FAF79796;
@@ -1308,6 +1319,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
+				CODE_SIGN_ENTITLEMENTS = KyPayApp2/KyPayApp2.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"KyPayApp2/Preview Content\"";
 				DEVELOPMENT_TEAM = 69FAF79796;
