@@ -228,37 +228,9 @@ extension WKWebView {
 }
 
 
-extension UIView {
-    
-    
-    func toImage(_ scaleTo : CGFloat ) -> UIImage {
-        let format = UIGraphicsImageRendererFormat()
-        // We need to divide desired size with renderer scale, otherwise you get output size larger @2x or @3x
-        let size = CGSize(width: self.frame.size.width * scaleTo / format.scale, height: self.frame.size.height * scaleTo / format.scale)
-
-        let renderer = UIGraphicsImageRenderer(size: size, format: format)
-        let image = renderer.image { _ in
-            self.drawHierarchy(in: CGRect(origin: .zero, size: size), afterScreenUpdates: true)
-        }
-        return image
-    }
-    
-    
-}
-
-
-extension UIImage {
-    class func imageWithView(_ view: UIView) -> UIImage {
-        UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.isOpaque, 0)
-        defer { UIGraphicsEndImageContext() }
-        view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
-        return UIGraphicsGetImageFromCurrentImageContext() ?? UIImage()
-    }
-}
-
-
 
 extension View {
+    
     func snapshot() -> UIImage {
         let controller = UIHostingController(rootView: self)
         let view = controller.view
@@ -273,15 +245,5 @@ extension View {
             view?.drawHierarchy(in: controller.view.bounds, afterScreenUpdates: true)
         }
     }
-    
-    func snapShot() -> UIImage? {
-        
-        let controller = UIHostingController(rootView: self)
-        if let view = controller.view {
-            return UIImage.imageWithView(view)
-        }
-        
-        print("nil snapShot!!!")
-        return nil
-    }
+
 }

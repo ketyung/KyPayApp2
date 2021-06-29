@@ -78,7 +78,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         //PaymentRedirectView(url: URL(string: "http://127.0.0.1:808/KyPay/Test2.php"))
         //    ContactsListView()
         //CountDownTextView(viewModel: OtpTextViewModel())
-            ContentView().environmentObject(PhoneInputViewModel()).environmentObject(UserViewModel()).environmentObject(UserWalletViewModel()).environmentObject(TxInputDataViewModel())
+          ContentView().environmentObject(PhoneInputViewModel()).environmentObject(UserViewModel()).environmentObject(UserWalletViewModel()).environmentObject(TxInputDataViewModel())
+        
+           // SendMoneyView().environmentObject(PhoneInputViewModel()).environmentObject(UserViewModel()).environmentObject(UserWalletViewModel()).environmentObject(TxInputDataViewModel())
+        
         
         //FirstSignInView().environmentObject(PhoneInputViewModel()).environmentObject(UserViewModel())
 

@@ -23,7 +23,7 @@ struct SendMoneyView : View {
     
     @State private var showProgress : Bool = false
     
-    @State private var txSuccessful : Bool = false
+    @State private var txSuccessful : Bool = true
     
     @State private var isSendButtonPresented : Bool = true
     
@@ -143,7 +143,7 @@ extension SendMoneyView {
         }
         .sheet(isPresented: $showShareSheet, content: {
         
-            if let img = successView.snapShot() {
+            if let img = successView.snapshot() {
                 ShareView(activityItems: [img])
             }
         })
@@ -153,10 +153,6 @@ extension SendMoneyView {
     }
     
     
-    private func shareSucessView() {
-        
-        
-    }
     
 }
 
