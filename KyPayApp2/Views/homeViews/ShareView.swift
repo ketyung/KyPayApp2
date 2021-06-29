@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ShareView: UIViewControllerRepresentable {
 
-    let activityItems: [Any]
+    @Binding var activityItems: [Any]
     let applicationActivities: [UIActivity]? = nil 
 
     func makeUIViewController(context: UIViewControllerRepresentableContext<ShareView>) -> UIActivityViewController {

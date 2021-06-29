@@ -31,6 +31,7 @@ struct SendMoneyView : View {
     
     @State private var successHiddenTextPresented : Bool = false
     
+    @State private var snapshotImages :[Any] = []
     
     
     var body : some View {
@@ -134,8 +135,6 @@ extension SendMoneyView {
                 
                 Button(action: {
                     
-                    //self.showShareSheet.toggle()
-                    
                     self.shareSnapShot()
                     
                 }){
@@ -157,7 +156,7 @@ extension SendMoneyView {
         }
         .sheet(isPresented: $showShareSheet, content: {
         
-            ShareView(activityItems: [successView(false).snapshot()])
+            ShareView(activityItems: $snapshotImages)
                
         })
        
@@ -165,10 +164,29 @@ extension SendMoneyView {
         //.navigationBarBackButtonHidden(true)
     }
     
+}
+
+extension SendMoneyView {
+    
+    
+    
+    
     
     private func shareSnapShot(){
         
-        let image = successView(false).snapshot()
+        let image = successView(false).padding().snapshot()
+        self.snapshotImages = [image]
+        withAnimation {
+
+            self.showShareSheet.toggle()
+        }
+        
+    }
+    
+    
+    private func saveSnapShot(){
+        
+        let image = successView(false).padding().snapshot()
         UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
  
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {

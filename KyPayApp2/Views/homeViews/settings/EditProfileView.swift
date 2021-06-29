@@ -55,12 +55,15 @@ extension EditProfileView {
     
     private func profileFormView() -> some View {
         
-        VStack(spacing:10) {
+        VStack(spacing:5) {
        
             Spacer()
             .frame(height: 20)
             
             infoTitleView()
+            
+            profileImageView()
+            
             
             Form{
                 
@@ -81,6 +84,20 @@ extension EditProfileView {
             .frame(minHeight: 200)
         }
         
+    }
+    
+    
+    private func profileImageView() -> some View {
+        
+        Button(action:{}){
+            ZStack {
+                
+                Color.gray.frame(width:80, height: 80).cornerRadius(50)
+                
+                Image(systemName: "person").resizable().frame(width:30,height:30).aspectRatio(contentMode: .fit).foregroundColor(.white)
+            }
+        }
+       
     }
 }
 

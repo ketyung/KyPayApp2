@@ -23,6 +23,7 @@ public struct BottomSheet<Content: View>: View {
     private let topBarBackgroundColor: Color
     private let showTopIndicator: Bool
     private let showGrayOverlay : Bool
+    private let mustAddDragOffsetWhenPresented : Bool = false
     
     @State private var yPosition : CGFloat = UIScreen.main.bounds.height
     
@@ -114,14 +115,22 @@ extension BottomSheet {
     
     private func setToPresentedYOffset(_ geometry : GeometryProxy){
         
+        var toAdd : CGFloat = 0
+        
+        if mustAddDragOffsetWhenPresented {
+            
+            toAdd = self.draggedOffset
+        }
+        
         self.yPosition =
-        (geometry.size.height/2 - self.height/2 + geometry.safeAreaInsets.bottom + self.draggedOffset)
+        (geometry.size.height/2 - self.height/2 + geometry.safeAreaInsets.bottom + toAdd)
         
     }
     
     private func setToNonPresentedYOffset(_ geometry : GeometryProxy){
     
         self.yPosition = (geometry.size.height/2 + self.height/2 + geometry.safeAreaInsets.bottom)
+      //  print("non.presented::\(self.yPosition)")
     }
     
     private func yOffset ( _ geometry : GeometryProxy ) -> CGFloat{

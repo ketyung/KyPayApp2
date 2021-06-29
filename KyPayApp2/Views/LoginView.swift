@@ -48,7 +48,9 @@ extension LoginView {
         VStack{
             
             Spacer()
-            .frame(height:320)
+            .frame(height:260)
+            
+            Image("logo").resizable().frame(width:80, height: 80).aspectRatio(contentMode: .fit)
             
             Text("Welcome")
             .font(.custom(Theme.fontNameBold, size:36))

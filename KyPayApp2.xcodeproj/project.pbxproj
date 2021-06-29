@@ -122,7 +122,6 @@
 		10B855F1267F39D900AEF15F /* NavigationBarTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B855F0267F39D900AEF15F /* NavigationBarTitle.swift */; };
 		10B855F3268081E400AEF15F /* PaymentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B855F2268081E400AEF15F /* PaymentData.swift */; };
 		10B855F52681BDAC00AEF15F /* WalletRequest.php in Resources */ = {isa = PBXBuildFile; fileRef = 10B855F42681BDAC00AEF15F /* WalletRequest.php */; };
-		10B855F726830C9600AEF15F /* PaymentSuccess.php in Resources */ = {isa = PBXBuildFile; fileRef = 10B855F626830C9600AEF15F /* PaymentSuccess.php */; };
 		10B855F926830E8F00AEF15F /* PaymentFailed.php in Resources */ = {isa = PBXBuildFile; fileRef = 10B855F826830E8F00AEF15F /* PaymentFailed.php */; };
 		10B855FB2684037700AEF15F /* CustomerHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B855FA2684037700AEF15F /* CustomerHandler.swift */; };
 		10B855FD2684274D00AEF15F /* CardPaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B855FC2684274D00AEF15F /* CardPaymentView.swift */; };
@@ -298,7 +297,6 @@
 		10B855F0267F39D900AEF15F /* NavigationBarTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarTitle.swift; sourceTree = "<group>"; };
 		10B855F2268081E400AEF15F /* PaymentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentData.swift; sourceTree = "<group>"; };
 		10B855F42681BDAC00AEF15F /* WalletRequest.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = WalletRequest.php; sourceTree = "<group>"; };
-		10B855F626830C9600AEF15F /* PaymentSuccess.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = PaymentSuccess.php; sourceTree = "<group>"; };
 		10B855F826830E8F00AEF15F /* PaymentFailed.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = PaymentFailed.php; sourceTree = "<group>"; };
 		10B855FA2684037700AEF15F /* CustomerHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerHandler.swift; sourceTree = "<group>"; };
 		10B855FC2684274D00AEF15F /* CardPaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardPaymentView.swift; sourceTree = "<group>"; };
@@ -476,7 +474,6 @@
 				1033B29E2674A92D00D999CE /* Test2.php */,
 				1033B29F2674A92D00D999CE /* Test.php */,
 				10B8560A2687443400AEF15F /* Test3..php */,
-				10B855F626830C9600AEF15F /* PaymentSuccess.php */,
 				10B855F826830E8F00AEF15F /* PaymentFailed.php */,
 				1033B2C12674A92D00D999CE /* ObtainTK.php */,
 				1033B2A02674A92D00D999CE /* public */,
@@ -925,7 +922,6 @@
 				1033B25B2674A7F300D999CE /* Assets.xcassets in Resources */,
 				1033B2C42674A92D00D999CE /* Test.php in Resources */,
 				1033B2D42674A92D00D999CE /* EncUtil.php in Resources */,
-				10B855F726830C9600AEF15F /* PaymentSuccess.php in Resources */,
 				1033B2D82674A92D00D999CE /* SQLBuilder.php in Resources */,
 				1033B2DF2674AC3800D999CE /* KyPayUserPaymentTxController.php in Resources */,
 				1033B2D52674A92D00D999CE /* KeyManager.php in Resources */,
