@@ -11,9 +11,11 @@ struct Common {
     
     
     static func paymentSuccessView (amount : String, balance : String,
-    currency : String, showBalance : Bool = true, subTitle : String = "Transfer Amount :".localized) -> some View {
+    currency : String, showBalance : Bool = true, withLogo : Bool = false, 
+    subTitle : String = "Transfer Amount :".localized) -> some View {
         
         VStack{
+            
             
             Text("Success".localized).font(.custom(Theme.fontName, size: 30))
             
@@ -53,6 +55,21 @@ struct Common {
                 Spacer().frame(height:50)
                
             }
+            
+            
+            if withLogo {
+                
+                HStack(spacing:2) {
+                    
+                    Spacer()
+                
+                    Image("logo").resizable().frame(width:36, height: 36).aspectRatio(contentMode: .fit)
+                
+                    Spacer().frame(width:3)
+                
+                }
+            }
+            
               
         }
     }

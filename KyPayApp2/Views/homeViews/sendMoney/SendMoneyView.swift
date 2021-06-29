@@ -100,7 +100,7 @@ extension SendMoneyView {
     }
   
     
-    private func successView(_ showBalance : Bool = true) -> some View {
+    private func successView(_ showBalance : Bool = true, withLogo : Bool = false ) -> some View {
         
         VStack {
         
@@ -114,7 +114,8 @@ extension SendMoneyView {
             
             
             Common.paymentSuccessView(amount: amountText,
-            balance: walletViewModel.balance, currency: walletViewModel.currency, showBalance: showBalance)
+            balance: walletViewModel.balance, currency: walletViewModel.currency,
+            showBalance: showBalance, withLogo:  withLogo)
             .padding()
             .navigationBarHidden(true)
             .onAppear{
@@ -174,7 +175,7 @@ extension SendMoneyView {
     
     private func shareSnapShot(){
         
-        let image = successView(false).padding().snapshot()
+        let image = successView(false, withLogo: true).padding().snapshot()
         self.snapshotImages = [image]
         withAnimation {
 

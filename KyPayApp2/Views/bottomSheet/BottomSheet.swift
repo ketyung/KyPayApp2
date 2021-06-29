@@ -23,7 +23,7 @@ public struct BottomSheet<Content: View>: View {
     private let topBarBackgroundColor: Color
     private let showTopIndicator: Bool
     private let showGrayOverlay : Bool
-    private let mustAddDragOffsetWhenPresented : Bool = false
+    private let shouldAddDragOffsetWhenPresented : Bool = false
     
     @State private var yPosition : CGFloat = UIScreen.main.bounds.height
     
@@ -117,7 +117,7 @@ extension BottomSheet {
         
         var toAdd : CGFloat = 0
         
-        if mustAddDragOffsetWhenPresented {
+        if shouldAddDragOffsetWhenPresented {
             
             toAdd = self.draggedOffset
         }
