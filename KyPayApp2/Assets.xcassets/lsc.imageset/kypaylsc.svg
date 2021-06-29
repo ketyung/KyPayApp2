@@ -34,7 +34,8 @@
      inkscape:window-height="949"
      inkscape:window-x="492"
      inkscape:window-y="25"
-     inkscape:window-maximized="0" />
+     inkscape:window-maximized="0"
+     showborder="false" />
   <metadata
      id="metadata54">
     <rdf:RDF>
@@ -55,7 +56,7 @@
        id="g901"
        inkscape:export-xdpi="93.129997"
        inkscape:export-ydpi="93.129997"
-       transform="translate(-198.76069,106.94644)">
+       transform="matrix(0.55555556,0,0,0.55555556,-63.445218,110.30623)">
       <circle
          style="fill:#6496a0;fill-opacity:1;stroke-width:0.260339"
          id="path891"
