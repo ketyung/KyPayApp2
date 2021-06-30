@@ -59,8 +59,8 @@ struct SettingsView : View {
                     self.signOutNow()
                 },secondaryButton: .cancel())
         }
-       
-        
+       .navigationViewStyle(StackNavigationViewStyle())
+
     }
     
 }
@@ -115,7 +115,8 @@ extension SettingsView {
             
            Spacer()
         
-        }.navigationViewStyle(StackNavigationViewStyle())
+        }
+        //.navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
