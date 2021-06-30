@@ -3,6 +3,7 @@ namespace Core\Controllers;
 
 use Core\Db\KypayUserPaymentTx as Payment;
 use Core\Db\KypayUser as User;
+use Core\Db\KypayUserWallet as Wallet;
 use Core\Controllers\RequestMethod as RM;
 use Core\Controllers\Controller as Controller;
 use Util\Log as Log;
@@ -67,6 +68,36 @@ class KypayUserPaymentTxController extends Controller {
         
     }
     
+    
+    
+    protected function updateWalletOfReceiver($input){
+        
+        if (isset($input['method']) && $input['method'] == 'send_money' ){
+            
+            
+            if ( isset($input ['to_uid']) && isset($input ['to_wallet_ref_id'])) {
+                
+                $uw = new Wallet($this->db);
+                
+                $pk = array();
+                $pk['id'] = $input ['to_uid'];
+                $pk['ref_id'] = $input ['to_wallet_ref_id'];
+                
+                
+                if ( $uw->findByPK($pk, true)){
+                    
+                    $row = $uw->getRowArray();
+                    $row['balance'] = $row['balance'] + $input['amount'];
+                    $uw->update($row);
+                   // Log::printRToErrorLog($row);
+                }
+                
+            }
+            
+        }
+    }
+    
+    
 
     
     
@@ -87,6 +118,8 @@ class KypayUserPaymentTxController extends Controller {
         
         
         if ($this->dbObject->insert($input) > 0){
+            
+            $this->updateWalletOfReceiver($input);
             
             $response['body'] = json_encode(array('status'=>1, 'id'=>$input['id'],
             'text'=>'Created!'));

@@ -5,15 +5,30 @@ use Db\DbObject as DbObject;
 
 class KypayDbObject extends DbObject {
 
-
-    public function findBy($pk){
+    protected $rowArray;
+    
+    public function getRowArray(){
+        
+        return $this->rowArray;
+    }
+    
+    
+    public function findByPK($pk, $loadAsRowArray = false ){
         
         $result = parent::findBy($pk);
         
         if (count($result) > 0){
-            
+           
             $row = $result[0];
-            $this->loadResultToProperties($row);
+           
+            if ($loadAsRowArray) {
+                
+                $this->rowArray = $row;
+            }
+            else {
+           
+                $this->loadResultToProperties($row);
+            }
             return true ;
         }
         
