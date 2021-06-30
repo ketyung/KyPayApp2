@@ -6,6 +6,7 @@
 //
 
 import SwiftUIX
+import AVFoundation
 
 struct SendMoneyView : View {
         
@@ -122,7 +123,12 @@ extension SendMoneyView {
                 self.isSendButtonPresented = false
             }
         }
-        
+        .onAppear{
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.6, execute: {
+                AudioServicesPlayAlertSound(SystemSoundID(1103))
+            })
+        }
         
     }
     

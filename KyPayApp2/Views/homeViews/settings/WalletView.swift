@@ -102,7 +102,7 @@ extension WalletView {
             
             withDrawButton()
             
-            testButton()
+            //testButton()
            
         }.padding()
     }
