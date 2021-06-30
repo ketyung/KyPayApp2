@@ -171,10 +171,14 @@ extension HomeView {
         
         
         ZStack {
-      
+            
+            let w = (UIScreen.main.bounds.width - 75) / 3
+            
+            //let _ = print("w:::::\(w)")
+            
             Rectangle()
             .fill(color)
-            .frame(width: 100, height: 70)
+            .frame(width: w, height: 70)
             .cornerRadius(10)
             .padding(6)
                 
