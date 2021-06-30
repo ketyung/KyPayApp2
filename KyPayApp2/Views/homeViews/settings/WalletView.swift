@@ -176,22 +176,9 @@ extension WalletView {
         
         Button(action: {
             
-            let dt = DeviceToken(id: userViewModel.user.id, token: "82727272727aa")
-            ARH.shared.saveDeviceToken(dt,returnType:DeviceToken.self ,  completion: {
-                
-                res  in
-                
-                switch (res) {
-                    
-                    case .failure(let err) :
-                        print("err:\(err)")
-                
-                    case .success(let succ) :
-                        print("succ::\(String(describing: succ.returnedObject))")
-                }
-                
-            })
+            //walletHandler.reloadUserData()
             
+            //walletHandler.walletAccount()
         }){
             
             Text("Test me!!")

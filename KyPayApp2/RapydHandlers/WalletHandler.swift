@@ -54,6 +54,8 @@ struct WalletIDs {
     
     var walletId : String?
     
+    var balance : Double?
+    
     init(addrId : String?, contactId : String?, custId : String?, refId : String? , walletId : String?){
         
         self.custId = custId
@@ -249,7 +251,14 @@ extension WalletHandler {
                         
                         var walletIDs = WalletIDs(from: usr)
                         walletIDs.custId = custId
-                        completion?(walletIDs, nil)
+                        
+                        self.getBalanceOf(completion: { balance , error in
+                            
+                
+                            walletIDs.balance = balance
+                            completion?(walletIDs, error)
+                            
+                        })
                         
                         print("attaching.wallet.id::\(walletIDs.custId ?? "xxxx")")
                     }
@@ -278,21 +287,29 @@ extension WalletHandler {
         })
     }
     
-    func currentWallet(attachIfNotPresent user : User, wallet : UserWallet, completion : ((WalletIDs?, Error?)->Void)? = nil,
+    func currentWallet(attachIfNotPresent user : User, wallet : UserWallet,
+    completion : ((WalletIDs?, Error?)->Void)? = nil,
     toPrint : Bool = false ){
         
         Config.setup()
        
         if let ruser = RPDUser.currentUser() {
-  
+            
             if toPrint {
                 
                 print("RPD.user::.id::\(ruser.id ?? "")::\(ruser.firstName ?? "") \(ruser.lastName ?? "") : wallet.refId::\(ruser.eWalletReferenceID ?? "xxx") ::balance::")
             }
             
-            let walletIDs = WalletIDs(from: ruser)
+            var walletIDs = WalletIDs(from: ruser)
             
-            completion?(walletIDs, nil)
+            self.getBalanceOf(completion: { balance, error in
+           
+                walletIDs.balance = balance
+                
+                completion?(walletIDs, error)
+            })
+            
+            //completion?(walletIDs, nil, nil)
             
         }
         else {
@@ -583,5 +600,45 @@ extension WalletHandler {
             completion?(nil, err)
         })
       
+    }
+    
+    
+    
+}
+
+
+extension WalletHandler {
+    
+    
+    func reloadUserData(){
+        
+        Config.setup()
+      
+        let userManager:RPDUsersManager = RPDUsersManager()
+        userManager.reloadUserData(completionBlock: { user, error in
+                      
+            
+            print("reload.wallet.user?.metadata::\(String(describing: user?.metadata))")
+            
+        })
+    }
+    
+    private func getBalanceOf(completion : ((Double?, Error?) -> Void)? = nil ){
+        
+        Config.setup()
+        
+        let accountManager:RPDAccountsManager = RPDAccountsManager()
+        accountManager.userAccounts(completionBlock: { list , error in
+            // Enter your code here.
+            
+            guard let list = list else {
+                
+                completion?(nil, error)
+                return
+            }
+          
+            completion?(list.first?.balance, error)
+            
+        })
     }
 }

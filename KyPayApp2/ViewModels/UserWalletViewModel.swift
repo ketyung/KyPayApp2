@@ -234,6 +234,13 @@ extension UserWalletViewModel {
             toUpdateRemote = true
         }
         
+        if let balance = ids?.balance, updatedWallet.balance != ids?.balance {
+            
+            updatedWallet.balance = balance
+            toUpdateRemote = true // update balance according to service
+           // print("sync.to..remote..wallet.balance::\(updatedWallet.balance ?? 0)")
+        }
+        
         DispatchQueue.main.async {
             self.walletHolder.wallet = updatedWallet
         }
