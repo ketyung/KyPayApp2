@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import AVFoundation
 
 class TxInputDataViewModel : NSObject, ObservableObject {
     
@@ -342,5 +343,14 @@ extension TxInputDataViewModel {
     func save(attempt phoneNumber : String, name : String){
         
         cachedAttemptDS.saveAttempt(phoneNumber: phoneNumber, name: name)
+    }
+    
+    
+    func alertWithSound() {
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6, execute: {
+            AudioServicesPlayAlertSound(SystemSoundID(1103))
+        })
+
     }
 }
