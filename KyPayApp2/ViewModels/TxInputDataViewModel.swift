@@ -88,16 +88,51 @@ class TxInputDataViewModel : NSObject, ObservableObject {
     }
     
     
+    var txAmountText : String {
+        
+        get {
+            
+            txAmount.twoDecimalString
+        }
+        
+        set(newVal){
+            
+            txInputData.txAmount = Double(newVal)
+        }
+    }
+    
+    
     var txAmount : Double {
         
         get {
             
-            txInputData.txAmount ?? 0
+            txInputData.txAmount?.roundTo(places: 2) ?? 0
         }
         
         set(newVal){
             
             txInputData.txAmount = newVal
+        }
+    }
+    
+    
+    var note : String {
+        
+        get {
+            
+            txInputData.note ?? ""
+        }
+        
+        set(newVal){
+            
+            var val = newVal
+            if val.count  > 50 {
+                
+                val = String(val.prefix(50))
+            }
+           
+         
+            txInputData.note = val
         }
     }
     

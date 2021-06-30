@@ -15,10 +15,6 @@ struct SendMoneyView : View {
     
     @EnvironmentObject private var walletViewModel : UserWalletViewModel
     
-    @State private var amountText : String = ""
-    
-    @State private var messageText : String = ""
-    
     @State private var errorMessage : String?
     
     @State private var errorPresented : Bool = false
@@ -53,24 +49,23 @@ extension SendMoneyView {
     
     private func view() -> some View {
         
-        VStack(alignment: .leading, spacing:20) {
-            
-            Text("How Much?".localized)
-            .font(.custom(Theme.fontNameBold, size: 40))
-            .onTapGesture {self.endEditing()}
-            
-            amountTextField()
+        VStack(alignment: .center, spacing:20) {
             
             recipientView()
             
-            walletBalanceView()
+            VStack(alignment: .leading, spacing: 20) {
+           
+                amountTextField()
+            
+                walletBalanceView()
+               
+            }.padding()
             
             messageView()
-            
-            
-            Spacer()
+     
+            Spacer().frame(minHeight: 200)
         }
-        .padding(.leading, 60)
+        .padding()
         .backButton(additionalAction: {
             self.endEditing()
             self.txInputViewModel.shouldProceedNext = false
@@ -84,6 +79,8 @@ extension SendMoneyView {
     
             self.sendMoneyNow()
         })
+        .onTapGesture {self.endEditing()}
+     
     }
     
    
@@ -113,7 +110,7 @@ extension SendMoneyView {
             }
             
             
-            Common.paymentSuccessView(amount: amountText,
+            Common.paymentSuccessView(amount: txInputViewModel.txAmountText,
             balance: walletViewModel.balance, currency: walletViewModel.currency,
             showBalance: showBalance, withLogo:  withLogo)
             .padding()
@@ -168,10 +165,6 @@ extension SendMoneyView {
 
 extension SendMoneyView {
     
-    
-    
-    
-    
     private func shareSnapShot(){
         
         let image = successView(false, withLogo: true).padding().snapshot()
@@ -219,7 +212,8 @@ extension SendMoneyView {
         self.endEditing()
         self.showProgress = true
 
-        txInputViewModel.txAmount = Double(amountText) ?? 0
+        // txInputViewModel.txAmount = Double(amountText) ?? 0
+        
         walletViewModel.sendMoney(from: userViewModel.user,
         to: txInputViewModel.selectedUserPhoneNumber, amount: txInputViewModel.txAmount ,
         toUserId:  txInputViewModel.selectedUserId, toWalletRefId:  txInputViewModel.selectedUserWalletRefId,
@@ -256,18 +250,25 @@ extension SendMoneyView {
     
     private func amountTextField() -> some View {
     
-        HStack {
-            Text("\(walletViewModel.currency)").font(.custom(Theme.fontNameBold, size: 18))
+        VStack(alignment: .leading, spacing: 8) {
+       
+            Text("How Much?".localized).font(.custom(Theme.fontNameBold, size: 26))
             .foregroundColor(.gray)
-            
-            CocoaTextField("Amount".localized, text: $amountText)
-            .keyboardType(.decimalPad)
-            .foregroundColor(.black)
-            .font(UIFont.boldSystemFont(ofSize: 36))
-            .background(Color.white)
-            .frame(width: 200, height: 24)
-            .overlay(VStack{Divider().backgroundFill(.red).offset(x: 0, y: 26)})
-         
+       
+            HStack {
+                Text("\(walletViewModel.currency)").font(.custom(Theme.fontNameBold, size: 18))
+                .foregroundColor(.gray)
+                
+                CocoaTextField("Amount".localized, text: $txInputViewModel.txAmountText)
+                .keyboardType(.decimalPad)
+                .foregroundColor(.black)
+                .font(UIFont.boldSystemFont(ofSize: 46))
+                .background(Color.white)
+                .frame(width: 200, height: 24)
+                .overlay(VStack{Divider().backgroundFill(.red).offset(x: 0, y: 26)})
+             
+            }
+           
         }
         
     }
@@ -277,6 +278,9 @@ extension SendMoneyView {
         
         HStack {
             
+            Text("To: ".localized)
+            .font(.custom(Theme.fontName, size: 18))
+               
             Text(txInputViewModel.selectedUserPhoneNumber)
             .font(.custom(Theme.fontName, size: 18))
             
@@ -292,11 +296,13 @@ extension SendMoneyView {
        
         VStack(alignment: .leading, spacing: 2) {
             
-            Text("Your Message :".localized)
+            Text("Note :".localized)
             .font(.custom(Theme.fontNameBold, size: 18))
        
-            TextField("message", text: $messageText)
-            
+            TextField("message", text: $txInputViewModel.note)
+            .frame(width: 260, height: 24)
+            .overlay(VStack{Divider().backgroundFill(.black).offset(x: 0, y: 20)})
+             
             
         }.padding()
     }

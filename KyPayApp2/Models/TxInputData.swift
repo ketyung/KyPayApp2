@@ -25,6 +25,8 @@ struct TxInputData {
     
     var txAmount : Double?
     
+    var note : String?
+    
     var selectedUser : User?
     
     var selecteduserWalletRefId : String?
