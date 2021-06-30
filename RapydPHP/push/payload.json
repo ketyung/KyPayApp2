@@ -1,0 +1,9 @@
+{
+    "Simulator Target Bundle": "com.techchee.swiftui.tut.KyPayApp2",
+    "aps": {
+        "alert": {
+            "body": "KyPay added something new ",
+            "title": "Photos"
+        }
+    }
+}

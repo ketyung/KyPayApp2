@@ -148,6 +148,8 @@
 		10B8562D268AE70900AEF15F /* PaymentSuccess.php in Resources */ = {isa = PBXBuildFile; fileRef = 10B8562C268AE70900AEF15F /* PaymentSuccess.php */; };
 		10B85630268B0B8800AEF15F /* KypayDeviceToken.php in Sources */ = {isa = PBXBuildFile; fileRef = 10B8562F268B0B8800AEF15F /* KypayDeviceToken.php */; };
 		10B85632268B0E5500AEF15F /* KypayDeviceTokenController.php in Sources */ = {isa = PBXBuildFile; fileRef = 10B85631268B0E5500AEF15F /* KypayDeviceTokenController.php */; };
+		10B85635268BEF3D00AEF15F /* payload.json in Resources */ = {isa = PBXBuildFile; fileRef = 10B85634268BEF3D00AEF15F /* payload.json */; };
+		10B85637268BF04B00AEF15F /* createPush.php in Resources */ = {isa = PBXBuildFile; fileRef = 10B85636268BF04B00AEF15F /* createPush.php */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -327,6 +329,8 @@
 		10B8562E268B084400AEF15F /* KyPayApp2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KyPayApp2.entitlements; sourceTree = "<group>"; };
 		10B8562F268B0B8800AEF15F /* KypayDeviceToken.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = KypayDeviceToken.php; sourceTree = "<group>"; };
 		10B85631268B0E5500AEF15F /* KypayDeviceTokenController.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = KypayDeviceTokenController.php; sourceTree = "<group>"; };
+		10B85634268BEF3D00AEF15F /* payload.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = payload.json; sourceTree = "<group>"; };
+		10B85636268BF04B00AEF15F /* createPush.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = createPush.php; sourceTree = "<group>"; };
 		1B47377B496C6F0F1022FFD4 /* Pods-KyPayApp2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.debug.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.debug.xcconfig"; sourceTree = "<group>"; };
 		6F523BC3D4353462922B31B9 /* Pods-KyPayApp2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.release.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -478,6 +482,7 @@
 		1033B29C2674A92D00D999CE /* RapydPHP */ = {
 			isa = PBXGroup;
 			children = (
+				10B85633268BEF0300AEF15F /* push */,
 				1033B29D2674A92D00D999CE /* bootstrap.php */,
 				1033B29E2674A92D00D999CE /* Test2.php */,
 				1033B29F2674A92D00D999CE /* Test.php */,
@@ -784,6 +789,15 @@
 			path = sendMoney;
 			sourceTree = "<group>";
 		};
+		10B85633268BEF0300AEF15F /* push */ = {
+			isa = PBXGroup;
+			children = (
+				10B85634268BEF3D00AEF15F /* payload.json */,
+				10B85636268BF04B00AEF15F /* createPush.php */,
+			);
+			path = push;
+			sourceTree = "<group>";
+		};
 		55C51AF7366AAFF575FED9C7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -943,6 +957,8 @@
 				1033C0882677386000D999CE /* GoogleService-Info.plist in Resources */,
 				1033B2CC2674A92D00D999CE /* KypayDbObject.php in Resources */,
 				1033B2CD2674A92D00D999CE /* KypayUserController.php in Resources */,
+				10B85635268BEF3D00AEF15F /* payload.json in Resources */,
+				10B85637268BF04B00AEF15F /* createPush.php in Resources */,
 				1033B2C62674A92D00D999CE /* tb.sql in Resources */,
 				1033B2D92674A92D00D999CE /* DbConnector.php in Resources */,
 				1033B2D12674A92D00D999CE /* KypayUserAddressController.php in Resources */,
