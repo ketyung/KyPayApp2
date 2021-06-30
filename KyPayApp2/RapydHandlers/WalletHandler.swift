@@ -228,7 +228,9 @@ extension WalletHandler {
         RPDUser.detachUser()
     }
     
-    func attachWallet(user : User, wallet : UserWallet,completion : ((WalletIDs?, Error?)->Void)? = nil ){
+    func attachWallet(user : User, wallet : UserWallet,
+                      toRefreshBalance : Bool = true ,
+                      completion : ((WalletIDs?, Error?)->Void)? = nil ){
         
         Config.setup()
        
@@ -252,13 +254,20 @@ extension WalletHandler {
                         var walletIDs = WalletIDs(from: usr)
                         walletIDs.custId = custId
                         
-                        self.getBalanceOf(completion: { balance , error in
+                        if toRefreshBalance {
+                       
+                            self.getBalanceOf(completion: { balance , error in
+                                
+                                walletIDs.balance = balance
+                                completion?(walletIDs, error)
+                                
+                            })
+                           
+                        }
+                        else {
                             
-                
-                            walletIDs.balance = balance
-                            completion?(walletIDs, error)
-                            
-                        })
+                            completion?(walletIDs,nil)
+                        }
                         
                         print("attaching.wallet.id::\(walletIDs.custId ?? "xxxx")")
                     }
@@ -288,7 +297,7 @@ extension WalletHandler {
     }
     
     func currentWallet(attachIfNotPresent user : User, wallet : UserWallet,
-    completion : ((WalletIDs?, Error?)->Void)? = nil,
+    toRefreshBalance: Bool = true, completion : ((WalletIDs?, Error?)->Void)? = nil,
     toPrint : Bool = false ){
         
         Config.setup()
@@ -302,19 +311,26 @@ extension WalletHandler {
             
             var walletIDs = WalletIDs(from: ruser)
             
-            self.getBalanceOf(completion: { balance, error in
+            if toRefreshBalance {
            
-                walletIDs.balance = balance
-                
-                completion?(walletIDs, error)
-            })
+                self.getBalanceOf(completion: { balance, error in
+               
+                    walletIDs.balance = balance
+                    
+                    completion?(walletIDs, error)
+                })
+               
+            }
+            else {
+           
+                completion?(walletIDs, nil)
+            }
             
-            //completion?(walletIDs, nil, nil)
             
         }
         else {
             
-            self.attachWallet(user: user, wallet: wallet, completion: completion)
+            self.attachWallet(user: user, wallet: wallet, toRefreshBalance: toRefreshBalance, completion: completion)
         }
     }
 }

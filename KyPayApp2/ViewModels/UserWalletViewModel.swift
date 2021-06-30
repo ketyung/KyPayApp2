@@ -238,7 +238,7 @@ extension UserWalletViewModel {
             
             updatedWallet.balance = balance
             toUpdateRemote = true // update balance according to service
-           // print("sync.to..remote..wallet.balance::\(updatedWallet.balance ?? 0)")
+            print("sync.to..remote..wallet.balance::\(updatedWallet.balance ?? 0)")
         }
         
         DispatchQueue.main.async {
