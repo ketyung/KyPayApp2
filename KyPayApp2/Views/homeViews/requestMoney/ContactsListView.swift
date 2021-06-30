@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ContactsListView : View {
     
+    @Binding var selectedContacts : [Contact]
+    
     private let contacts = ContactFetcher.getContacts()
     
     @State private var searchText : String = ""
@@ -18,6 +20,8 @@ struct ContactsListView : View {
         
         VStack {
             
+            Text("Contacts").font(.custom(Theme.fontNameBold, size: 18))
+            
             SearchBar(text: $searchText)
        
             List{
@@ -26,7 +30,7 @@ struct ContactsListView : View {
                     
                     contact in
                 
-                    contactRow(contact)
+                    contactRowButton(contact)
                 }
             }
             
@@ -36,6 +40,29 @@ struct ContactsListView : View {
 }
 
 extension ContactsListView {
+
+    
+    private func contactRowButton (_ contact : Contact) -> some View {
+        
+        Button(action : {
+            
+            withAnimation {
+            
+                if !selectedContacts.contains(contact){
+                    
+                    selectedContacts.append(contact)
+                }
+                else {
+                    selectedContacts.remove(object: contact)
+                }
+            }
+            
+        }){
+            
+            contactRow(contact)
+        }
+    }
+    
     
     private func contactRow(_ contact : Contact) -> some View {
         

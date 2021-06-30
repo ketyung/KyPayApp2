@@ -9,15 +9,12 @@ import SwiftUI
 
 struct RequestView : View {
 
-    @State private var selectedContacts : [Contact] = [
+    @State private var selectedContacts : [Contact] = []
     
-        Contact(cnIdentifier: "0000", firstName: "K Y", lastName: "Chee", phoneNumber: "+60128122229"),
-        Contact(cnIdentifier: "0001", firstName: "Jane", lastName: "Sung", phoneNumber: "+60128122129"),
-        Contact(cnIdentifier: "0002", firstName: "Mary", lastName: "Chung", phoneNumber: "+60128122139"),
-        Contact(cnIdentifier: "0004", firstName: "Wang", lastName: "Yang", phoneNumber: "+60138222129"),
-        
-    ]
+    @State private var kypayUsers : [KyPayUser] = []
     
+    @EnvironmentObject private var txInputViewModel : TxInputDataViewModel
+   
     var body: some View{
         
         VStack(alignment: .leading){
@@ -33,9 +30,23 @@ struct RequestView : View {
             
             self.contactsScrollView()
             
+            Spacer().frame(height:30)
+            
+            //ContactsListView(selectedContacts: $selectedContacts)
+            
+            KypayUserSelectionView(selectedContacts: $selectedContacts, kypayUsers: $kypayUsers)
+            
             Spacer()
             
-        }.padding()
+        }
+        .padding()
+        .progressView(isShowing: $txInputViewModel.showProgressIndicator, text: "Syncing contacts...",
+            size:  CGSize(width:200, height: 200))
+        .onAppear{
+            
+            kypayUsers = KyPayContactDataStore().all() ?? []
+            
+        }
     }
 }
 
@@ -106,17 +117,22 @@ extension RequestView {
         HStack {
         
             Spacer()
-            
-            Button(action: {}) {
+   
+            Button(action: {
                 
+                txInputViewModel.syncContact(forceSyncing: true, completion: {
+                    
+                    kypayUsers = KyPayContactDataStore().all() ?? []
+             
+                })
+            }){
                 Image("reload")
                 .resizable()
                 .frame(width:24, height: 24, alignment: .topTrailing)
                 .foregroundColor(.gray)
             }
-            
+        
             Spacer().frame(width:10)
         }
-        
     }
 }

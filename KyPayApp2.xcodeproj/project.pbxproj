@@ -151,6 +151,7 @@
 		10B85635268BEF3D00AEF15F /* payload.json in Resources */ = {isa = PBXBuildFile; fileRef = 10B85634268BEF3D00AEF15F /* payload.json */; };
 		10B85637268BF04B00AEF15F /* createPush.php in Resources */ = {isa = PBXBuildFile; fileRef = 10B85636268BF04B00AEF15F /* createPush.php */; };
 		10B85639268BF50300AEF15F /* DeviceToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B85638268BF50300AEF15F /* DeviceToken.swift */; };
+		10FFB5E3268C452D0029C1D8 /* KypayUserSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB5E2268C452D0029C1D8 /* KypayUserSelectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -333,6 +334,7 @@
 		10B85634268BEF3D00AEF15F /* payload.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = payload.json; sourceTree = "<group>"; };
 		10B85636268BF04B00AEF15F /* createPush.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = createPush.php; sourceTree = "<group>"; };
 		10B85638268BF50300AEF15F /* DeviceToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceToken.swift; sourceTree = "<group>"; };
+		10FFB5E2268C452D0029C1D8 /* KypayUserSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KypayUserSelectionView.swift; sourceTree = "<group>"; };
 		1B47377B496C6F0F1022FFD4 /* Pods-KyPayApp2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.debug.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.debug.xcconfig"; sourceTree = "<group>"; };
 		6F523BC3D4353462922B31B9 /* Pods-KyPayApp2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.release.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -704,12 +706,11 @@
 		1033C0A12678510600D999CE /* homeViews */ = {
 			isa = PBXGroup;
 			children = (
+				10FFB5E1268C42E30029C1D8 /* requestMoney */,
 				10B8562326896B5100AEF15F /* sendMoney */,
 				10B856182688411E00AEF15F /* payOuts */,
 				10B855ED267F2BFB00AEF15F /* topUps */,
 				1033C0AD2679BB6B00D999CE /* settings */,
-				1033C09F2678510100D999CE /* RequestView.swift */,
-				1033C0C1267AFFB600D999CE /* ContactsListView.swift */,
 				10B85628268A982900AEF15F /* ShareView.swift */,
 				1033C09926784FC300D999CE /* HomeView.swift */,
 				1033C0A22678514500D999CE /* HomeTabbedView.swift */,
@@ -799,6 +800,16 @@
 				10B85636268BF04B00AEF15F /* createPush.php */,
 			);
 			path = push;
+			sourceTree = "<group>";
+		};
+		10FFB5E1268C42E30029C1D8 /* requestMoney */ = {
+			isa = PBXGroup;
+			children = (
+				1033C0C1267AFFB600D999CE /* ContactsListView.swift */,
+				1033C09F2678510100D999CE /* RequestView.swift */,
+				10FFB5E2268C452D0029C1D8 /* KypayUserSelectionView.swift */,
+			);
+			path = requestMoney;
 			sourceTree = "<group>";
 		};
 		55C51AF7366AAFF575FED9C7 /* Frameworks */ = {
@@ -1036,6 +1047,7 @@
 				10B8561726883FDE00AEF15F /* PayoutMethod.swift in Sources */,
 				10B855FB2684037700AEF15F /* CustomerHandler.swift in Sources */,
 				1033B2942674A82F00D999CE /* DictionaryExt.swift in Sources */,
+				10FFB5E3268C452D0029C1D8 /* KypayUserSelectionView.swift in Sources */,
 				1033B2962674A82F00D999CE /* UserAddress.swift in Sources */,
 				10B855EC267F2BF700AEF15F /* TopUpPaymentView.swift in Sources */,
 				10B856152688217300AEF15F /* TestWalletView.swift in Sources */,

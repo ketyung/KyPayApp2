@@ -12,12 +12,18 @@ class KyPayUserSyncer : NSObject {
     private let dataStore = KyPayContactDataStore()
     
     
-    func syncNow( completion : ((String?)->Void)? = nil ) {
+    func syncNow( removeAllFirst : Bool = false, completion : ((String?)->Void)? = nil ) {
         
        /**
           Use this in iOS 15 only, sick!!!!
         await withThrowingTaskGroup (of : [Contact].self) { group in
         }*/
+        
+        if removeAllFirst {
+            
+            self.dataStore.removeAll()
+        }
+        
         
         let contacts = ContactFetcher.getContacts()
         
@@ -25,7 +31,7 @@ class KyPayUserSyncer : NSObject {
             
             self.fetchAndSaveContactIfNotPresent(contact, completion: { succ in
                 
-                print("saved.contact::\(contact.phoneNumber):\(succ)")
+                print("saved.contact::\(contact.firstName):\(succ)")
                 
             })
         }
@@ -53,11 +59,7 @@ extension KyPayUserSyncer {
                 
                 res in
                 
-                guard let sself = self else {
-                    
-                    print("self.nil!!")
-                    return
-                }
+                guard let self = self else {return}
                 
                 switch(res) {
                
@@ -72,11 +74,9 @@ extension KyPayUserSyncer {
                           
                             DispatchQueue.main.async {
                          
-                                sself.dataStore.saveKyPayUser(by: contact)
-                             
+                                self.dataStore.saveKyPayUser(by: contact)
                             }
                             
-                           
                             completion?(true)
                         }
                         else {

@@ -31,6 +31,7 @@ class KyPayContactDataStore : NSObject {
         
             kcontact.firstName = contact.firstName
             kcontact.lastName = contact.lastName
+            kcontact.phoneNumber = contact.phoneNumber
             kcontact.lastUpdated = Date()
             
             do {
@@ -47,7 +48,7 @@ class KyPayContactDataStore : NSObject {
             let kcontact = KyPayUser(context: managedObjectContext)
             kcontact.firstName = contact.firstName
             kcontact.lastName = contact.lastName
-    
+            kcontact.phoneNumber = contact.phoneNumber
             kcontact.cnIdentifier = contact.cnIdentifier
             kcontact.lastUpdated = Date()
             
@@ -156,4 +157,19 @@ extension KyPayContactDataStore {
             return nil
         }
     }
+    
+    func removeAll() {
+        
+        if let allRes = all() {
+        
+            allRes.forEach{ c in
+                
+                removeKyPayUser(by: c.cnIdentifier ?? "")
+                
+            }
+        }
+        
+    }
+    
+    
 }

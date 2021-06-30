@@ -141,10 +141,11 @@ class TxInputDataViewModel : NSObject, ObservableObject {
 
 extension TxInputDataViewModel {
     
-    func syncContact(){
+    func syncContact(forceSyncing : Bool = false, completion : (()->Void)? = nil ){
         
         
-        if KDS.shared.lastSyncedDateLonger(than: 1800){
+        if KDS.shared.lastSyncedDateLonger(than: 1800) || forceSyncing{
+            
             withAnimation{
                 
                 self.txInputData.showProgressIndicator = true
@@ -153,7 +154,7 @@ extension TxInputDataViewModel {
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 1 ){
            
-                self.syncer.syncNow(completion: { [weak self]
+                self.syncer.syncNow( completion: { [weak self]
                     
                     _ in
                     
@@ -168,6 +169,7 @@ extension TxInputDataViewModel {
                         }
                     }
                     
+                    completion?()
                     
                 })
             }
@@ -310,7 +312,11 @@ extension TxInputDataViewModel {
     }
     
     
-    
+}
+ 
+
+extension TxInputDataViewModel {
+ 
     private func sendFailureMessage ( _ message : String ){
         
         DispatchQueue.main.async {
@@ -330,10 +336,6 @@ extension TxInputDataViewModel {
             }
         })
     }
-}
-
-
-extension TxInputDataViewModel {
     
     func fetchRecentAttempts() -> [CachedRecentTxAttempt]{
         
