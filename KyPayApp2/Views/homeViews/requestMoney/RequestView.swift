@@ -14,6 +14,8 @@ struct RequestView : View {
     @State private var kypayUsers : [KyPayUser] = []
     
     @EnvironmentObject private var txInputViewModel : TxInputDataViewModel
+    
+    static let toSyncContactPublisher = Notification.Name("com.techchee.kypay.toSyncContactPublisher.id")
    
     var body: some View{
         
@@ -42,11 +44,12 @@ struct RequestView : View {
         .padding()
         .progressView(isShowing: $txInputViewModel.showProgressIndicator, text: "Syncing contacts...",
             size:  CGSize(width:200, height: 200))
-        .onAppear{
-            
-            kypayUsers = KyPayContactDataStore().all() ?? []
-            
-        }
+        .onReceive( NotificationCenter.default.publisher(for:RequestView.toSyncContactPublisher), perform: { _ in
+     
+           syncContacts()
+           // print("receive.to.sync!!!")
+        
+        })
     }
 }
 
@@ -58,8 +61,6 @@ extension RequestView {
         ScrollView (.horizontal, showsIndicators:false ){
             
             HStack (spacing: 20) {
-             
-                
                 ForEach(self.selectedContacts, id:\.cnIdentifier) {
                     
                     contact in
@@ -112,6 +113,21 @@ extension RequestView {
 extension RequestView {
     
     
+    private func syncContacts(force : Bool = false ){
+        
+        if !force {
+            
+            kypayUsers = KyPayContactDataStore().all() ?? []
+        }
+        
+        txInputViewModel.syncContact(forceSyncing: force, completion: {
+            
+            kypayUsers = KyPayContactDataStore().all() ?? []
+     
+        })
+    }
+    
+    
     private func refreshButton() -> some View {
         
         HStack {
@@ -120,11 +136,7 @@ extension RequestView {
    
             Button(action: {
                 
-                txInputViewModel.syncContact(forceSyncing: true, completion: {
-                    
-                    kypayUsers = KyPayContactDataStore().all() ?? []
-             
-                })
+                syncContacts(force: true)
             }){
                 Image("reload")
                 .resizable()

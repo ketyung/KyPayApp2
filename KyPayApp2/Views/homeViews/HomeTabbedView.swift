@@ -26,6 +26,15 @@ struct HomeTabbedView : View {
             
                 txInputViewModel.reset()
             }
+        
+            if $0 == 2 {
+                
+                DispatchQueue.main.async {
+           
+                    NotificationCenter.default.post(name: RequestView.toSyncContactPublisher, object: nil)
+                }
+            }
+        
             self.selectedTab = $0
        }
    )}

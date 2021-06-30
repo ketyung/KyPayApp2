@@ -77,7 +77,7 @@ extension SettingsView {
                         SettingRowView(title: "Edit Profile", systemImageName: "person")
                     })
                     
-                    NavigationLink(destination: EmptyView(), label: {
+                    NavigationLink(destination: Text("Feature isn't available, coming soon..."), label: {
                         SettingRowView(title:
                         userViewModel.isBusinessUser ?  "Merchant Profile".localized : "Become A Merchant".localized,
                         systemImageName: "cart", imageForegroundColor: .green)
@@ -92,7 +92,7 @@ extension SettingsView {
                     })
                  
                     
-                    NavigationLink(destination: EmptyView(), label: {
+                    NavigationLink(destination:  Text("Feature isn't available, coming soon..."), label: {
                         SettingRowView(title: "Face ID", systemImageName: "faceid", imageForegroundColor: .blue)
                     })
                     

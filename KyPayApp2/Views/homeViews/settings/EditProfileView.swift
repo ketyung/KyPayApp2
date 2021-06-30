@@ -17,6 +17,8 @@ struct EditProfileView : View {
     
     @ObservedObject private var countryPickerViewModel = PhoneInputViewModel()
     
+    @State private var errorPresented : Bool = false
+    
     var body: some View {
         
         profileFormView()
@@ -78,11 +80,26 @@ extension EditProfileView {
                 
                 DatePicker("Date Of Birth", selection: $userViewModel.dob, displayedComponents: .date)
             }
-            .frame(height:400)
+            .frame(minHeight: 300)
+            
+            Button(action: {
+                
+                UIApplication.shared.endEditing()
+                errorPresented = true
+                
+            }){
+                
+                Text("Update").padding()
+                
+            }
            
             Spacer()
             .frame(minHeight: 200)
         }
+        .popOver(isPresented: $errorPresented , content: {
+            
+            Common.errorAlertView(message: "Opps : Feature isn't available! Coming soon...".localized)
+        })
         
     }
     
