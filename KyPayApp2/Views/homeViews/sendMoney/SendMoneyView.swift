@@ -221,7 +221,9 @@ extension SendMoneyView {
 
         txInputViewModel.txAmount = Double(amountText) ?? 0
         walletViewModel.sendMoney(from: userViewModel.user,
-        to: txInputViewModel.selectedUserPhoneNumber, amount: txInputViewModel.txAmount , completion: { id, err in
+        to: txInputViewModel.selectedUserPhoneNumber, amount: txInputViewModel.txAmount ,
+        toUserId:  txInputViewModel.selectedUserId, toWalletRefId:  txInputViewModel.selectedUserWalletRefId,
+        completion: { id, err in
             
             guard let err = err else {
             
