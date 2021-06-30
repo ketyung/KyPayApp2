@@ -512,6 +512,34 @@ class DbObject extends SQLBuilder {
         return $obj;
     }
     
+            
+    public function save(Array $input){
+    
+        $pks = $this->getPrimaryKeys();
+        $pksv = array();
+        
+        $keys = array_keys($input);
+        
+        foreach($keys as $key){
+            
+            if (in_array($key, $pks)){
+                
+                $pkvs[$key] = $input[$key];
+            }
+        }
+        
+
+        if ($this->findBy($pkvs)) {
+    
+            return $this->update($input,true);
+    
+        }
+        else {
+    
+            return $this->insert($input);
+        }
+    }
+            
 	
 }
 ?>

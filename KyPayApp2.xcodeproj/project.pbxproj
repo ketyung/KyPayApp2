@@ -150,6 +150,7 @@
 		10B85632268B0E5500AEF15F /* KypayDeviceTokenController.php in Sources */ = {isa = PBXBuildFile; fileRef = 10B85631268B0E5500AEF15F /* KypayDeviceTokenController.php */; };
 		10B85635268BEF3D00AEF15F /* payload.json in Resources */ = {isa = PBXBuildFile; fileRef = 10B85634268BEF3D00AEF15F /* payload.json */; };
 		10B85637268BF04B00AEF15F /* createPush.php in Resources */ = {isa = PBXBuildFile; fileRef = 10B85636268BF04B00AEF15F /* createPush.php */; };
+		10B85639268BF50300AEF15F /* DeviceToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B85638268BF50300AEF15F /* DeviceToken.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -331,6 +332,7 @@
 		10B85631268B0E5500AEF15F /* KypayDeviceTokenController.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = KypayDeviceTokenController.php; sourceTree = "<group>"; };
 		10B85634268BEF3D00AEF15F /* payload.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = payload.json; sourceTree = "<group>"; };
 		10B85636268BF04B00AEF15F /* createPush.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = createPush.php; sourceTree = "<group>"; };
+		10B85638268BF50300AEF15F /* DeviceToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceToken.swift; sourceTree = "<group>"; };
 		1B47377B496C6F0F1022FFD4 /* Pods-KyPayApp2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.debug.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.debug.xcconfig"; sourceTree = "<group>"; };
 		6F523BC3D4353462922B31B9 /* Pods-KyPayApp2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.release.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -475,6 +477,7 @@
 				1033B28D2674A82F00D999CE /* UserWallet.swift */,
 				1033B28E2674A82F00D999CE /* User.swift */,
 				1033B28F2674A82F00D999CE /* UserPaymentTx.swift */,
+				10B85638268BF50300AEF15F /* DeviceToken.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1053,6 +1056,7 @@
 				10B85632268B0E5500AEF15F /* KypayDeviceTokenController.php in Sources */,
 				1033C0D3267D896900D999CE /* SendMoneyView.swift in Sources */,
 				1033C0AC2679A38000D999CE /* Tool.swift in Sources */,
+				10B85639268BF50300AEF15F /* DeviceToken.swift in Sources */,
 				1033C0C0267AFD4F00D999CE /* ContactFetcher.swift in Sources */,
 				10B856052685831400AEF15F /* CachedPaymentMethodDataStore.swift in Sources */,
 				1033B2952674A82F00D999CE /* UserImg.swift in Sources */,

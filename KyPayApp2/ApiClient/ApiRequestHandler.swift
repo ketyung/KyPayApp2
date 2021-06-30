@@ -671,3 +671,13 @@ extension ApiRequestHandler {
     
     
 }
+
+extension ApiRequestHandler {
+    
+    func saveDeviceToken <R:Decodable> (_ token : DeviceToken, returnType : R.Type? = nil, completion:  ((Result<ReturnedResult<R>, Error>)->Void)? = nil){
+        
+        send(module: "deviceToken", dataObject: token, returnType: returnType,completion:  completion)
+    }
+    
+    
+}

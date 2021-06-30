@@ -127,3 +127,6 @@ create table if not exists kypay_device_token (
     last_updated datetime,
     primary key(id,token)
 );
+
+
+alter table kypay_device_token add device_type enum('I', 'A','O') after token;
