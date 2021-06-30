@@ -87,7 +87,7 @@ class KypayUserPaymentTxController extends Controller {
                 if ( $uw->findByPK($pk, true)){
                     
                     $row = $uw->getRowArray();
-                    $row['balance'] = $row['balance'] + $input['amount'];
+                    $row['balance'] = $row['balance'] + abs( $input['amount'] );
                     $uw->update($row);
                    // Log::printRToErrorLog($row);
                 }
