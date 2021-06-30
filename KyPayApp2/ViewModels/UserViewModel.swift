@@ -405,3 +405,27 @@ extension UserViewModel {
         })
     }
 }
+
+extension UserViewModel {
+    
+    
+    func updateDeviceTokenRemotely (_ token : String){
+        
+        let dt = DeviceToken(id: self.id, token: token)
+        ARH.shared.saveDeviceToken(dt,returnType:DeviceToken.self ,  completion: {
+            
+            res  in
+            
+            switch (res) {
+                
+                case .failure(let err) :
+                    print("err:\(err)")
+            
+                case .success(let succ) :
+                    print("succ::\(String(describing: succ.returnedObject))")
+            }
+            
+        })
+
+    }
+}

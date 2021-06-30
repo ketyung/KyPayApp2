@@ -53,8 +53,8 @@ extension ContentView {
             
             if let token = obj.object as? String {
                 
-                print("received custom notification::\(token)")
-            
+                //print("received custom notification::\(token)")
+                viewModel.updateDeviceTokenRemotely(token)
             }
                 
         })
