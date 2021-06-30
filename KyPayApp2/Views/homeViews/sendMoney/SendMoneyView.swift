@@ -17,6 +17,8 @@ struct SendMoneyView : View {
     
     @State private var amountText : String = ""
     
+    @State private var messageText : String = ""
+    
     @State private var errorMessage : String?
     
     @State private var errorPresented : Bool = false
@@ -57,20 +59,18 @@ extension SendMoneyView {
             .font(.custom(Theme.fontNameBold, size: 40))
             .onTapGesture {self.endEditing()}
             
-            Spacer()
-            .frame(height:30)
-            
             amountTextField()
             
             recipientView()
             
-            Spacer().frame(height:20)
-            
             walletBalanceView()
+            
+            messageView()
+            
             
             Spacer()
         }
-        .padding(.leading, 20)
+        .padding(.leading, 60)
         .backButton(additionalAction: {
             self.endEditing()
             self.txInputViewModel.shouldProceedNext = false
@@ -285,6 +285,20 @@ extension SendMoneyView {
             
         }.padding()
         
+    }
+    
+    
+    private func messageView() -> some View{
+       
+        VStack(alignment: .leading, spacing: 2) {
+            
+            Text("Your Message :".localized)
+            .font(.custom(Theme.fontNameBold, size: 18))
+       
+            TextField("message", text: $messageText)
+            
+            
+        }.padding()
     }
     
     
