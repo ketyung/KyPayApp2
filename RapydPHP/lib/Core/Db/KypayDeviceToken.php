@@ -17,7 +17,5 @@ class KypayDeviceToken extends KypayDbObject {
         parent::__construct($db, "kypay_device_token");
     }
     
-    
-
 }
 ?>
