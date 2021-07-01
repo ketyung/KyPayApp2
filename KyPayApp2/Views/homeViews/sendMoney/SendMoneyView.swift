@@ -53,7 +53,7 @@ extension SendMoneyView {
             
             recipientView()
             
-            VStack(alignment: .leading, spacing: 20) {
+            VStack(alignment: .leading, spacing: 10) {
            
                 amountTextField()
             
@@ -79,6 +79,7 @@ extension SendMoneyView {
     
             self.sendMoneyNow()
         })
+        .navigationBar(title: Text(""), displayMode: .inline)
         .onTapGesture {self.endEditing()}
      
     }
@@ -217,7 +218,7 @@ extension SendMoneyView {
         walletViewModel.sendMoney(from: userViewModel.user,
         to: txInputViewModel.selectedUserPhoneNumber, amount: txInputViewModel.txAmount ,
         toUserId:  txInputViewModel.selectedUserId, toWalletRefId:  txInputViewModel.selectedUserWalletRefId,
-        completion: { id, err in
+        note:  txInputViewModel.note, completion: { id, err in
             
             guard let err = err else {
             
@@ -287,7 +288,7 @@ extension SendMoneyView {
             Text(txInputViewModel.selectedUserName)
             .font(.custom(Theme.fontName, size: 18))
             
-        }.padding()
+        }.padding(4)
         
     }
     
@@ -303,8 +304,7 @@ extension SendMoneyView {
             .frame(width: 260, height: 24)
             .overlay(VStack{Divider().backgroundFill(.black).offset(x: 0, y: 20)})
              
-            
-        }.padding()
+        }.padding(4)
     }
     
     
@@ -329,7 +329,7 @@ extension SendMoneyView {
         }
         .padding()
         .background(Color(UIColor(hex:"#ddddddff")!))
-        .cornerRadius(10)
+        .cornerRadius(6)
         
     }
     

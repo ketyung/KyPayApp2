@@ -291,7 +291,12 @@ extension TxInputDataViewModel {
     
     private func fetchUserWalletInfo(user : User,  completion : (() -> Void)? = nil){
         
-        ARH.shared.fetchUserWallet(id: user.id ?? "", type:.personal, currency: "MYR", completion: {
+        
+        // need.to.change.the.hard.coded.currency.x
+        
+        let currency = CurrencyManager.currency(countryCode: user.countryCode ?? "MY")
+        
+        ARH.shared.fetchUserWallet(id: user.id ?? "", type:.personal, currency: currency ?? "MYR", completion: {
             
             res  in
         

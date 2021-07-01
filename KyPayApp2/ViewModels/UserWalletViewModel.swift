@@ -367,15 +367,17 @@ extension UserWalletViewModel {
     
     func addPaymentTxRemotely ( amount : Double , currency : String, user : User,
             walletRefId : String, toUserId : String? = nil, toWalletRefId : String? = nil,
-            method : String, serviceId : String? = nil , txType : UserPaymentTx.TxType,
+            method : String, note : String? = nil, serviceId : String? = nil , txType : UserPaymentTx.TxType,
             status : UserPaymentTx.Stat = .success , completion : ((Error?) -> Void)? = nil ){
         
         let pmTx = UserPaymentTx(uid : user.id ?? "", toUid:  toUserId ?? user.id ?? "",
                                  toUidType: .none, txType : txType, walletRefId: walletRefId,
                                  toWalletRefId:  toWalletRefId, amount:  amount, currency: currency,
-                                 method: method, serviceId: serviceId, stat: status)
+                                 method: method, note: note, serviceId: serviceId, stat: status)
         
         //print("add.pay.tx::\(serviceId ?? "xxxx")")
+        //print("add.pay::.note::\(note ?? "xxxx.x")")
+        
         ARH.shared.addUserPaymentTx(pmTx, returnType: UserPaymentTx.self,  completion: {
             
             res in
@@ -398,7 +400,7 @@ extension UserWalletViewModel {
     func updateWalletRemotely(by adding : Double, for user : User,
                               method : String, serviceId : String? = nil ,
                               toUserId : String? = nil, toWalletRefId : String? = nil,
-                              txType : UserPaymentTx.TxType = .walletTopUp,
+                              note : String? = nil, txType : UserPaymentTx.TxType = .walletTopUp,
                                completion : ((Error?) -> Void)? = nil ){
         
         let newBalance = (self.walletHolder.wallet.balance ?? 0) + adding
@@ -435,7 +437,7 @@ extension UserWalletViewModel {
                     self.addPaymentTxRemotely(amount: adding, currency: currency, user: user,
                     walletRefId: walletToBeUpdated.refId ?? "",
                     toUserId: toUserId, toWalletRefId: toWalletRefId,
-                    method: method, serviceId: serviceId,
+                    method: method, note: note, serviceId: serviceId,
                     txType: txType, completion: completion)
                     
                    // print("record.tx.to.remote::\(toUserId ?? "zzz")::\(toWalletRefId ?? "xxx")")
@@ -523,7 +525,7 @@ extension UserWalletViewModel {
     
     func sendMoney(from user : User, to phoneNumber : String, amount : Double,
                    toUserId : String? = nil, toWalletRefId : String? = nil,
-                   completion : ((String?, Error?)->Void)? = nil ){
+                   note : String? = nil, completion : ((String?, Error?)->Void)? = nil ){
         
         let bal = (self.walletHolder.wallet.balance ?? 0)
       
@@ -547,7 +549,8 @@ extension UserWalletViewModel {
                 
                 self.updateWalletRemotely(by: -amount,
                 for: user, method: "send_money", serviceId: id,
-                toUserId : toUserId, toWalletRefId: toWalletRefId, txType: .sendMoney,
+                toUserId : toUserId, toWalletRefId: toWalletRefId,
+                note: note, txType: .sendMoney,
                 completion: { err in
                     
                     guard let err = err else {
