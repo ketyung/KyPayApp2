@@ -81,6 +81,17 @@ alter table kypay_user_wallet add service_po_sender_id varchar(255) after servic
 alter table kypay_user_wallet add service_po_ben_id varchar(255) after service_cust_id;
 
 
+alter table kypay_user_wallet modify service_wallet_id varchar(128);
+alter table kypay_user_wallet modify service_contact_id varchar(128);
+alter table kypay_user_wallet modify service_cust_id varchar(128);
+alter table kypay_user_wallet modify service_addr_id varchar(128);
+alter table kypay_user_wallet modify service_po_sender_id varchar(128);
+alter table kypay_user_wallet modify service_po_ben_id varchar(128);
+
+
+
+
+
 
 create unique index wallet_uidx on kypay_user_wallet(id,type,currency);
 
@@ -132,3 +143,28 @@ create table if not exists kypay_device_token (
 
 
 alter table kypay_device_token add device_type enum('I', 'A','O') after token;
+
+
+drop table if exists kypay_biller;
+create table if not exists kypay_biller (
+
+    id varchar(32) default 'x' NOT null,
+    service_bid varchar(128),
+    name varchar(128),
+    addr_line1 varchar(255),
+    addr_line2 varchar(255),
+    post_code varchar(20),
+    city varchar(150),
+    state varchar(150),
+    country varchar(5),
+    icon_url varchar(255),
+    status enum('A','S') default 'A',
+    last_updated datetime,
+    primary key(id)
+);
+
+
+
+insert into kypay_biller(id,service_bid,name,country,icon_url,last_updated)
+values('sesb_bafdf33ZAv33ddhdgss', 'beneficiary_84887b767d150765863769a55c07bcb8',
+'SESB', 'MY', '/images/billers/MY/sesb.png', now());

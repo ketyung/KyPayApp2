@@ -152,6 +152,9 @@
 		10B85637268BF04B00AEF15F /* createPush.php in Resources */ = {isa = PBXBuildFile; fileRef = 10B85636268BF04B00AEF15F /* createPush.php */; };
 		10B85639268BF50300AEF15F /* DeviceToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B85638268BF50300AEF15F /* DeviceToken.swift */; };
 		10FFB5E3268C452D0029C1D8 /* KypayUserSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB5E2268C452D0029C1D8 /* KypayUserSelectionView.swift */; };
+		10FFB5EC268D6C670029C1D8 /* sesb.png in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB5E9268D6C670029C1D8 /* sesb.png */; };
+		10FFB5ED268D6C670029C1D8 /* astro.png in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB5EA268D6C670029C1D8 /* astro.png */; };
+		10FFB5EE268D6C670029C1D8 /* tm.png in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB5EB268D6C670029C1D8 /* tm.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -335,6 +338,9 @@
 		10B85636268BF04B00AEF15F /* createPush.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = createPush.php; sourceTree = "<group>"; };
 		10B85638268BF50300AEF15F /* DeviceToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceToken.swift; sourceTree = "<group>"; };
 		10FFB5E2268C452D0029C1D8 /* KypayUserSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KypayUserSelectionView.swift; sourceTree = "<group>"; };
+		10FFB5E9268D6C670029C1D8 /* sesb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sesb.png; sourceTree = "<group>"; };
+		10FFB5EA268D6C670029C1D8 /* astro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = astro.png; sourceTree = "<group>"; };
+		10FFB5EB268D6C670029C1D8 /* tm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tm.png; sourceTree = "<group>"; };
 		1B47377B496C6F0F1022FFD4 /* Pods-KyPayApp2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.debug.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.debug.xcconfig"; sourceTree = "<group>"; };
 		6F523BC3D4353462922B31B9 /* Pods-KyPayApp2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.release.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -504,6 +510,7 @@
 		1033B2A02674A92D00D999CE /* public */ = {
 			isa = PBXGroup;
 			children = (
+				10FFB5E6268D6C670029C1D8 /* images */,
 				1033B2A12674A92D00D999CE /* index.php */,
 			);
 			path = public;
@@ -812,6 +819,32 @@
 			path = requestMoney;
 			sourceTree = "<group>";
 		};
+		10FFB5E6268D6C670029C1D8 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				10FFB5E7268D6C670029C1D8 /* billers */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		10FFB5E7268D6C670029C1D8 /* billers */ = {
+			isa = PBXGroup;
+			children = (
+				10FFB5E8268D6C670029C1D8 /* MY */,
+			);
+			path = billers;
+			sourceTree = "<group>";
+		};
+		10FFB5E8268D6C670029C1D8 /* MY */ = {
+			isa = PBXGroup;
+			children = (
+				10FFB5E9268D6C670029C1D8 /* sesb.png */,
+				10FFB5EA268D6C670029C1D8 /* astro.png */,
+				10FFB5EB268D6C670029C1D8 /* tm.png */,
+			);
+			path = MY;
+			sourceTree = "<group>";
+		};
 		55C51AF7366AAFF575FED9C7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -939,10 +972,12 @@
 				1033B2C82674A92D00D999CE /* KypayUserPaymentTx.php in Resources */,
 				1033B2C92674A92D00D999CE /* KypayUserAddress.php in Resources */,
 				10B855F52681BDAC00AEF15F /* WalletRequest.php in Resources */,
+				10FFB5ED268D6C670029C1D8 /* astro.png in Resources */,
 				10B855DF267DEACB00AEF15F /* countryCurrency.json in Resources */,
 				1033C0832677035100D999CE /* CountryPickerView.bundle in Resources */,
 				10B8562B268AACBA00AEF15F /* kypay_db.sql in Resources */,
 				1033B2D22674A92D00D999CE /* DotEnv.php in Resources */,
+				10FFB5EC268D6C670029C1D8 /* sesb.png in Resources */,
 				1033B2612674A7F300D999CE /* LaunchScreen.storyboard in Resources */,
 				1033B2D72674A92D00D999CE /* Log.php in Resources */,
 				1033B2C22674A92D00D999CE /* bootstrap.php in Resources */,
@@ -961,6 +996,7 @@
 				1033B2D02674A92D00D999CE /* KypayUserWalletController.php in Resources */,
 				1033B25B2674A7F300D999CE /* Assets.xcassets in Resources */,
 				1033B2C42674A92D00D999CE /* Test.php in Resources */,
+				10FFB5EE268D6C670029C1D8 /* tm.png in Resources */,
 				1033B2D42674A92D00D999CE /* EncUtil.php in Resources */,
 				1033B2D82674A92D00D999CE /* SQLBuilder.php in Resources */,
 				1033B2DF2674AC3800D999CE /* KyPayUserPaymentTxController.php in Resources */,
