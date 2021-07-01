@@ -29,12 +29,12 @@ class KypayBiller extends KypayDbObject {
     }
     
     
-    function findBillersBy( $country = "MY" ){
+    function findBillersBy( $country = "MY", $limit = null, $offset = null ){
         
         $a = new ArrayOfSQLWhereCol();
         $a[] = new SQLWhereCol("country", "=", "", $country);
 
-        $res = $this->findByWhere($a, true);
+        $res = $this->findByWhere($a, true, null, $limit, $offset);
         
         return $res;
 

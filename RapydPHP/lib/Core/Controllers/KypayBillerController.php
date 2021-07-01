@@ -20,6 +20,8 @@ class KypayBillerController extends Controller {
         $param1 = "";
         $param2 = "";
         
+        
+       // Log::printRToErrorLog($this->params);
        
         if (isset($this->params)) {
             
@@ -41,7 +43,17 @@ class KypayBillerController extends Controller {
         else
         if ($param1 == 'country' && $param2 != ''){
             
-            return $this->getByCountry($param2);
+            $param3 = null;
+            if (isset($this->params[2])){
+                $param3 = $this->params[2] ;
+            }
+        
+            $param4 = null;
+            if (isset($this->params[3])){
+                $param4 = $this->params[3] ;
+            }
+        
+            return $this->getByCountry($param2, $param3, $param4);
         }
         else {
          
@@ -73,9 +85,9 @@ class KypayBillerController extends Controller {
     }
 
     
-    private function getByCountry($country){
+    private function getByCountry($country, $limit = null, $offset = null){
         
-        $result = $this->dbObject->findBillersBy($country) ;
+        $result = $this->dbObject->findBillersBy($country, $limit, $offset) ;
         
         if (count($result) > 0){
        

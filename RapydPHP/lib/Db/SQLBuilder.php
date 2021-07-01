@@ -1,5 +1,6 @@
 <?php
 namespace Db;
+use Util\Log as Log;
 
 class SQLWhereCol {
 
@@ -259,7 +260,7 @@ class SQLBuilder {
 	}
 	
 	
-	public function buildFindBySql(ArrayOfSQLWhereCol $columns, $orderBy = null ){
+	public function buildFindBySql(ArrayOfSQLWhereCol $columns, $orderBy = null, $limit = null , $offset = null ){
 		
 		//print_r($columns);
 		
@@ -304,6 +305,21 @@ class SQLBuilder {
             
             $sql .= " ".trim($orderBy);
         }
+        
+        
+        if (isset($limit) && is_numeric($limit)){
+            
+            $sql .= " LIMIT $limit";
+            
+            if (isset($offset) && is_numeric($offset)){
+            
+                $sql .= ", $offset";
+            }
+        }
+        
+        
+        
+        //Log::printRToErrorLog("$limit::$offset::. $sql");
         
         return $sql;
     }
