@@ -156,6 +156,7 @@
 		10FFB5ED268D6C670029C1D8 /* astro.png in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB5EA268D6C670029C1D8 /* astro.png */; };
 		10FFB5EE268D6C670029C1D8 /* tm.png in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB5EB268D6C670029C1D8 /* tm.png */; };
 		10FFB5F0268D71920029C1D8 /* KypayBiller.php in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB5EF268D71920029C1D8 /* KypayBiller.php */; };
+		10FFB5F2268D84050029C1D8 /* KypayBillerController.php in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB5F1268D84050029C1D8 /* KypayBillerController.php */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -343,6 +344,7 @@
 		10FFB5EA268D6C670029C1D8 /* astro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = astro.png; sourceTree = "<group>"; };
 		10FFB5EB268D6C670029C1D8 /* tm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tm.png; sourceTree = "<group>"; };
 		10FFB5EF268D71920029C1D8 /* KypayBiller.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = KypayBiller.php; sourceTree = "<group>"; };
+		10FFB5F1268D84050029C1D8 /* KypayBillerController.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = KypayBillerController.php; sourceTree = "<group>"; };
 		1B47377B496C6F0F1022FFD4 /* Pods-KyPayApp2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.debug.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.debug.xcconfig"; sourceTree = "<group>"; };
 		6F523BC3D4353462922B31B9 /* Pods-KyPayApp2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.release.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -565,6 +567,7 @@
 				1033B2DE2674AC3800D999CE /* KyPayUserPaymentTxController.php */,
 				1033B2B12674A92D00D999CE /* KypayUserAddressController.php */,
 				10B85631268B0E5500AEF15F /* KypayDeviceTokenController.php */,
+				10FFB5F1268D84050029C1D8 /* KypayBillerController.php */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -988,6 +991,7 @@
 				10B8562D268AE70900AEF15F /* PaymentSuccess.php in Resources */,
 				1033B25E2674A7F300D999CE /* Preview Assets.xcassets in Resources */,
 				1033B2DB2674A92D00D999CE /* RapydRequest.php in Resources */,
+				10FFB5F2268D84050029C1D8 /* KypayBillerController.php in Resources */,
 				1033B2C32674A92D00D999CE /* Test2.php in Resources */,
 				1033B2CE2674A92D00D999CE /* Controller.php in Resources */,
 				10B855F926830E8F00AEF15F /* PaymentFailed.php in Resources */,

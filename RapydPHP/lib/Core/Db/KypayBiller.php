@@ -3,6 +3,7 @@ namespace Core\Db;
 
 use Db\DbObject as DbObject;
 use Core\Db\KypayDbObject as KypayDbObject;
+use Util\Log as Log;
 use Db\SQLWhereCol as SQLWhereCol;
 use Db\ArrayOfSQLWhereCol as ArrayOfSQLWhereCol;
 
@@ -25,6 +26,18 @@ class KypayBiller extends KypayDbObject {
     public function __construct($db)
     {
         parent::__construct($db, "kypay_biller");
+    }
+    
+    
+    function findBillersBy( $country = "MY" ){
+        
+        $a = new ArrayOfSQLWhereCol();
+        $a[] = new SQLWhereCol("country", "=", "", $country);
+
+        $res = $this->findByWhere($a, true);
+        
+        return $res;
+
     }
     
 }
