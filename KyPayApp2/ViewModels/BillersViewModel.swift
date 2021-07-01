@@ -24,8 +24,8 @@ class BillersViewModel : ObservableObject {
             return
         }
         
-        
         self.showProgressIndicator = true
+        
         ARH.shared.fetchBillers(country: country, completion: { [weak self] res in
             
             guard let self = self else { return }
@@ -43,7 +43,6 @@ class BillersViewModel : ObservableObject {
                     
                         self.billers = billers
                     
-                        
                 }
                 
                 self.showProgressIndicator = false 

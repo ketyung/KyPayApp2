@@ -21,5 +21,17 @@ struct PresenterControl {
    
     var topUpPaymentPresented : Bool = false
    
-    var billerPaymentPresented : Bool = false 
+    var billerPaymentPresented : Bool = false
+    
+    
+    mutating func reset(){
+        
+        topUpPresented = false
+        sendMoneyPresented = false
+        requestMoneyPresented = false
+        payoutMethodSelectorPresented = false
+        payoutMethodSelectorPresented = false
+        topUpPaymentPresented = false
+        billerPaymentPresented = false
+    }
 }

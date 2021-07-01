@@ -20,9 +20,10 @@ struct HomeView : View {
     var body : some View {
         
         view()
+        .onDisappear{ control.reset()}
         .environmentObject(TopUpPaymentViewModel())
         .environmentObject(PaymentMethodsViewModel())
-       
+        
     }
     
 }
@@ -173,9 +174,9 @@ extension HomeView {
         }){
             
             HomeView.buttonView(equallyDivideBy : 1, screenWidthSubstract: 40,
-                                color: Color(UIColor(hex:"#224225ff")!), imageOne: "dollarsign.circle.fill",
+                                color: Color(UIColor(hex:"#666680ff")!), imageOne: "biller",
                        imageOneForegroundColor: Color(UIColor(hex:"#aa0000ff")!),
-                       imageTwo: "arrow.right", text: "Pay Bills")
+                       imageTwo: "arrow.up", text: "Pay Bills")
         }
         
     }
