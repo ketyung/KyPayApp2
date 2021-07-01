@@ -21,4 +21,5 @@ struct PresenterControl {
    
     var topUpPaymentPresented : Bool = false
    
+    var billerPaymentPresented : Bool = false 
 }

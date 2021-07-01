@@ -260,7 +260,8 @@ class SQLBuilder {
 	}
 	
 	
-	public function buildFindBySql(ArrayOfSQLWhereCol $columns, $orderBy = null, $limit = null , $offset = null ){
+	public function buildFindBySql(ArrayOfSQLWhereCol $columns,
+    $orderBy = null, $limit = null , $offset = null, Array $fieldReplacers = null ){
 		
 		//print_r($columns);
 		
@@ -282,9 +283,28 @@ class SQLBuilder {
 		$sql_fields = "";
 		$c = count($col_names);
 		
+        $fieldReplacerKeys = [];
+        
+        if ( isset($fieldReplacers) ){
+        
+            $fieldReplacerKeys = array_keys($fieldReplacers);
+        }
+        
 		for ($i = 0 ; $i< $c; $i++){
 			
-			$sql_fields .= $col_names[$i];
+            $field_name = $col_names[$i];
+                
+            if ( isset($fieldReplacers) && in_array($field_name, $fieldReplacerKeys)){
+                
+                $sql_fields .= $fieldReplacers[$field_name]. ' as '.$field_name  ;
+           
+            }
+            else {
+        
+                $sql_fields .= $field_name ;
+            
+            }
+            
 			
 			if ($i < ($c - 1)){
 			

@@ -137,7 +137,7 @@ extension TopUpPaymentView  {
                 KFImage(topUpViewModel.paymentMethod?.imageURL)
                 .resizable()
                 .loadDiskFileSynchronously()
-                .placeholder(placeHolderView)
+                .placeholder(Common.imagePlaceHolderView)
                 .cacheMemoryOnly()
                 .fade(duration: 0.25)
                 .aspectRatio(contentMode: .fit)
@@ -157,10 +157,6 @@ extension TopUpPaymentView  {
     }
     
     
-    private func placeHolderView() -> some View {
-        
-        Image("wallet").resizable().frame(width:26, height: 20).aspectRatio(contentMode: .fit)
-    }
 }
 
 extension TopUpPaymentView {

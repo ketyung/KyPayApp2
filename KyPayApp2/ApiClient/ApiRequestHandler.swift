@@ -678,6 +678,14 @@ extension ApiRequestHandler {
         
         send(module: "deviceToken", dataObject: token, returnType: returnType,completion:  completion)
     }
+}
+
+
+extension ApiRequestHandler {
     
-    
+    func fetchBillers (country : String, completion:  ((Result<[Biller], Error>)->Void)? = nil ){
+        
+        fetch(module: "biller", param: "country/\(country)" , decode: [Biller].self, completion: completion)
+    }
+  
 }

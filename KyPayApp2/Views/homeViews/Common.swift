@@ -5,7 +5,7 @@
 //  Created by Chee Ket Yung on 28/06/2021.
 //
 
-import SwiftUI
+import SwiftUIX
 
 struct Common {
     
@@ -127,4 +127,15 @@ extension Common {
         Image(systemName: "chevron.right")
         .font(.body).foregroundColor(Color(UIColor(hex:"#aaaaaaff")!))
     }
+    
+    
+    static func imagePlaceHolderView() -> some View {
+        ZStack {
+   
+            Circle().fill(Color(UIColor(hex:"#bbbbccff")!)).frame(width: 32, height: 32)
+            
+            ActivityIndicator().frame(width:24, height: 24).tintColor(.white)
+        }
+    }
+   
 }

@@ -9,10 +9,8 @@ class EncUtil {
         
         try {
             
-       
            // $caller = debug_backtrace()[1]['function'] ?? "none";
            //error_log("caller::: $caller"  );
-            
             
             if (!isset($key)) {
                 

@@ -243,20 +243,23 @@ class DbObject extends SQLBuilder {
 	
 	
 	public function findByWhere(ArrayOfSQLWhereCol $whereCols,
-    $toRecreateStatement = false, $orderBy = null, $limit = null , $offset = null  ){
+    $toRecreateStatement = false, $orderBy = null, $limit = null ,
+    $offset = null, Array $fieldReplacers = null  ){
 		
 		
 		try {
 				
             if ($toRecreateStatement){
                 
-                $this->findByStatement = $this->db->prepare($this->buildFindBySql($whereCols, $orderBy, $limit, $offset));
+                $this->findByStatement = $this->db->prepare($this->buildFindBySql($whereCols,
+                                                    $orderBy, $limit, $offset, $fieldReplacers));
             }
             else {
             
                 if (!isset($this->findByStatement)){
                     
-                    $this->findByStatement = $this->db->prepare($this->buildFindBySql($whereCols, $orderBy, $limit, $offset));
+                    $this->findByStatement = $this->db->prepare($this->buildFindBySql($whereCols,
+                                                    $orderBy, $limit, $offset, $fieldReplacers));
                 }
             
             }

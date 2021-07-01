@@ -7,6 +7,8 @@ use Util\Log as Log;
 use Db\SQLWhereCol as SQLWhereCol;
 use Db\ArrayOfSQLWhereCol as ArrayOfSQLWhereCol;
 
+define('ICON_URL_PREFIX', 'http://127.0.0.1:808/KyPay');
+
 class KypayBiller extends KypayDbObject {
     
     public $id;
@@ -34,7 +36,8 @@ class KypayBiller extends KypayDbObject {
         $a = new ArrayOfSQLWhereCol();
         $a[] = new SQLWhereCol("country", "=", "", $country);
 
-        $res = $this->findByWhere($a, true, null, $limit, $offset);
+        $res = $this->findByWhere($a, true, null, $limit, $offset,
+        array('icon_url'=>"concat('".ICON_URL_PREFIX."', icon_url)"));
         
         return $res;
 

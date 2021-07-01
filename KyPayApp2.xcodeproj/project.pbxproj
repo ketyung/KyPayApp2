@@ -157,6 +157,9 @@
 		10FFB5EE268D6C670029C1D8 /* tm.png in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB5EB268D6C670029C1D8 /* tm.png */; };
 		10FFB5F0268D71920029C1D8 /* KypayBiller.php in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB5EF268D71920029C1D8 /* KypayBiller.php */; };
 		10FFB5F2268D84050029C1D8 /* KypayBillerController.php in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB5F1268D84050029C1D8 /* KypayBillerController.php */; };
+		10FFB5F4268DA1140029C1D8 /* Biller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB5F3268DA1140029C1D8 /* Biller.swift */; };
+		10FFB5F6268DA23C0029C1D8 /* BillersSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB5F5268DA23C0029C1D8 /* BillersSelectionView.swift */; };
+		10FFB5F8268DA2950029C1D8 /* BillersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB5F7268DA2950029C1D8 /* BillersViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -345,6 +348,9 @@
 		10FFB5EB268D6C670029C1D8 /* tm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tm.png; sourceTree = "<group>"; };
 		10FFB5EF268D71920029C1D8 /* KypayBiller.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = KypayBiller.php; sourceTree = "<group>"; };
 		10FFB5F1268D84050029C1D8 /* KypayBillerController.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = KypayBillerController.php; sourceTree = "<group>"; };
+		10FFB5F3268DA1140029C1D8 /* Biller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Biller.swift; sourceTree = "<group>"; };
+		10FFB5F5268DA23C0029C1D8 /* BillersSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillersSelectionView.swift; sourceTree = "<group>"; };
+		10FFB5F7268DA2950029C1D8 /* BillersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillersViewModel.swift; sourceTree = "<group>"; };
 		1B47377B496C6F0F1022FFD4 /* Pods-KyPayApp2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.debug.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.debug.xcconfig"; sourceTree = "<group>"; };
 		6F523BC3D4353462922B31B9 /* Pods-KyPayApp2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.release.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -490,6 +496,7 @@
 				1033B28E2674A82F00D999CE /* User.swift */,
 				1033B28F2674A82F00D999CE /* UserPaymentTx.swift */,
 				10B85638268BF50300AEF15F /* DeviceToken.swift */,
+				10FFB5F3268DA1140029C1D8 /* Biller.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -497,6 +504,7 @@
 		1033B29C2674A92D00D999CE /* RapydPHP */ = {
 			isa = PBXGroup;
 			children = (
+				10FFB5E6268D6C670029C1D8 /* images */,
 				10B85633268BEF0300AEF15F /* push */,
 				1033B29D2674A92D00D999CE /* bootstrap.php */,
 				1033B29E2674A92D00D999CE /* Test2.php */,
@@ -514,7 +522,6 @@
 		1033B2A02674A92D00D999CE /* public */ = {
 			isa = PBXGroup;
 			children = (
-				10FFB5E6268D6C670029C1D8 /* images */,
 				1033B2A12674A92D00D999CE /* index.php */,
 			);
 			path = public;
@@ -651,6 +658,7 @@
 				10B855EE267F2FD400AEF15F /* TopUpPaymentViewModel.swift */,
 				10B85600268427FA00AEF15F /* CardPaymentViewModel.swift */,
 				10B856102687EE4200AEF15F /* PresenterControl.swift */,
+				10FFB5F7268DA2950029C1D8 /* BillersViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -728,6 +736,7 @@
 				1033C09926784FC300D999CE /* HomeView.swift */,
 				1033C0A22678514500D999CE /* HomeTabbedView.swift */,
 				10B8562426896E4500AEF15F /* Common.swift */,
+				10FFB5F5268DA23C0029C1D8 /* BillersSelectionView.swift */,
 			);
 			path = homeViews;
 			sourceTree = "<group>";
@@ -1116,6 +1125,7 @@
 				10B856052685831400AEF15F /* CachedPaymentMethodDataStore.swift in Sources */,
 				1033B2952674A82F00D999CE /* UserImg.swift in Sources */,
 				10B856272689727500AEF15F /* CachedRecentTxAttemptDataSource.swift in Sources */,
+				10FFB5F4268DA1140029C1D8 /* Biller.swift in Sources */,
 				10B8561E26886D8C00AEF15F /* PayoutHandler.swift in Sources */,
 				1033C0CB267C9E4300D999CE /* NavigationBackButton.swift in Sources */,
 				1033C09E267850D900D999CE /* SendView.swift in Sources */,
@@ -1169,6 +1179,7 @@
 				1033B2592674A7F200D999CE /* ContentView.swift in Sources */,
 				10B855DD267DE95300AEF15F /* CurrencyManager.swift in Sources */,
 				1033C09C2678509D00D999CE /* SettingsView.swift in Sources */,
+				10FFB5F6268DA23C0029C1D8 /* BillersSelectionView.swift in Sources */,
 				10B855FF268427AF00AEF15F /* CardPayment.swift in Sources */,
 				1033C0BE267AFCCD00D999CE /* PersistanceController.swift in Sources */,
 				1033C0B12679C45C00D999CE /* PopOverView.swift in Sources */,
@@ -1176,6 +1187,7 @@
 				1033C0E4267D984C00D999CE /* Config.swift in Sources */,
 				1033C0812677011400D999CE /* Country.swift in Sources */,
 				1033C0622676DCAF00D999CE /* Extensions.swift in Sources */,
+				10FFB5F8268DA2950029C1D8 /* BillersViewModel.swift in Sources */,
 				1033C08E26773C0600D999CE /* KCDataStore.swift in Sources */,
 				1033C0742676E81000D999CE /* RoundedCorner.swift in Sources */,
 				1033C0A82678A8CD00D999CE /* CustomActivityIndicator.swift in Sources */,

@@ -76,7 +76,7 @@ extension PayoutMethodTypesView {
             KFImage(paymentMethod.imageURL)
             .resizable()
             .loadDiskFileSynchronously()
-            .placeholder(placeHolderView)
+            .placeholder(Common.imagePlaceHolderView)
             .cacheMemoryOnly()
             .fade(duration: 0.25)
             .aspectRatio(contentMode: .fit)
@@ -95,15 +95,6 @@ extension PayoutMethodTypesView {
             .padding()
         
             NavigationLink.empty
-        }
-    }
-    
-    private func placeHolderView() -> some View {
-        ZStack {
-   
-            Circle().fill(Color(UIColor(hex:"#bbbbccff")!)).frame(width: 32, height: 32)
-            
-            ActivityIndicator().frame(width:24, height: 24).tintColor(.white)
         }
     }
     

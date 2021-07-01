@@ -42,6 +42,8 @@ extension HomeView {
                 
                 buttonsScrollView()
                 
+                billerButtonView()
+                
                 Spacer()
         
             }
@@ -68,7 +70,11 @@ extension HomeView {
             
             SendView()
         })
-       
+        .bottomSheet(isPresented: $control.billerPaymentPresented, height: UIScreen.main.bounds.height, showGrayOverlay: true, content:{
+      
+            BillersSelectionView()
+        })
+      
         
     }
 }
@@ -154,14 +160,35 @@ extension HomeView {
     }
     
     
+    private func billerButtonView() -> some View {
+        
+        
+        Button(action: {
+            
+            withAnimation{
+                
+                control.billerPaymentPresented = true 
+            }
+            
+        }){
+            
+            HomeView.buttonView(equallyDivideBy : 1, screenWidthSubstract: 40,
+                                color: Color(UIColor(hex:"#224225ff")!), imageOne: "dollarsign.circle.fill",
+                       imageOneForegroundColor: Color(UIColor(hex:"#aa0000ff")!),
+                       imageTwo: "arrow.right", text: "Pay Bills")
+        }
+        
+    }
+    
+    
 }
 
 extension HomeView {
     
     
     
-    static func buttonView ( color : Color = .green,
-                              imageOne : String,
+    static func buttonView (  equallyDivideBy : CGFloat = 3, screenWidthSubstract : CGFloat = 75,
+                              color : Color = .green, imageOne : String,
                               imageOneSize : CGSize = CGSize(width:32, height: 32),
                               imageOneForegroundColor : Color = .brown,
                               imageTwo : String,
@@ -172,7 +199,7 @@ extension HomeView {
         
         ZStack {
             
-            let w = (UIScreen.main.bounds.width - 75) / 3
+            let w = (UIScreen.main.bounds.width - screenWidthSubstract) / equallyDivideBy
             
             //let _ = print("w:::::\(w)")
             
