@@ -19,7 +19,9 @@ struct WalletView : View {
     @State private var walletHandler = WalletHandler()
     
     @State private var custHandler = CustomerHandler()
-    
+   
+    @State private var dataHandler = DataHandler()
+   
     @State private var custId : String = ""
     
     @State private var control = PresenterControl()
@@ -102,7 +104,7 @@ extension WalletView {
             
             withDrawButton()
             
-            //testButton()
+            testButton()
            
         }.padding()
     }
@@ -179,6 +181,12 @@ extension WalletView {
             //walletHandler.reloadUserData()
             
             //walletHandler.walletAccount()
+            
+            //dataHandler.supportedPaymentMethods(countryCode: "MY")
+            
+            dataHandler.supportedServiceProviders()
+            
+           // dataHandler.supportedPayoutMethods(countryCode: "MY", currency: "MYR")
         }){
             
             Text("Test me!!")

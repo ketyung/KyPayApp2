@@ -107,6 +107,12 @@ extension DataHandler {
                                          
             guard let err = error else {
                 
+                /**
+                payoutMethodTypes?.forEach { pm in
+            
+                    print("po.method::\(pm.type)::\(pm.name ?? "")")
+                }*/
+                
                 completion?(payoutMethodTypes, nil)
                 
                 return
@@ -116,5 +122,25 @@ extension DataHandler {
             completion?(nil, err)
         }
         
+    }
+}
+
+extension DataHandler {
+    
+    
+    func supportedServiceProviders(country : String = "US" ){
+        
+        Config.setup()
+        
+        RPDServiceProvidersManager().listServiceProviders(country: RPDCountry.country(isoAlpha2: country), currency: nil, catalogType: nil, catalogSubtype: nil, limit: 20, completionBlock: {
+          
+            svplist, error in
+            
+            svplist?.forEach{ svp in
+                
+                print("svp.name::\(svp.country.name ?? "")::\(svp.brand ?? "")::\(svp.iconURL?.absoluteString ?? "")")
+            }
+            
+        })
     }
 }
