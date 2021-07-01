@@ -16,16 +16,21 @@ struct BillersSelectionView : View {
     
     var body: some View {
         
-        VStack{
-            
-            Text("Choose a biller").font(.custom(Theme.fontName, size: 18))
-            
-            List(billersViewModel.billers, id:\.id) { biller in
-                
-                billerRow(biller)
-            }
+        NavigationView {
         
+            VStack{
+                
+               // Text("Choose a biller").font(.custom(Theme.fontName, size: 18))
+                
+                List(billersViewModel.billers, id:\.id) { biller in
+                    
+                    billerRow(biller)
+                }
+            
+            }
+            .navigationBar(title: Text("Choose A Biller"), displayMode: .inline)
         }
+        
         .popOver(isPresented: $billersViewModel.errorPresented , content: {
             
             Common.errorAlertView(message: billersViewModel.errorMessage)
@@ -43,8 +48,8 @@ extension BillersSelectionView {
     
     private func billerRow( _ biller : Biller ) -> some View{
         
-        Button (action: {}){
-        
+        NavigationLink(destination: BillerNumberView(biller: biller)){
+            
             HStack {
                 
                 KFImage( URL(string: biller.iconUrl ?? ""))
@@ -61,12 +66,6 @@ extension BillersSelectionView {
                 .frame(minWidth: 160, alignment: .leading)
                 .padding()
                 
-                Spacer()
-                
-                // let _ = print("biller.bid::\(biller.name ?? ""):::\(biller.serviceBid ?? "xxx")")
-                
-                Common.disclosureIndicator()
-              
             }
         }
         

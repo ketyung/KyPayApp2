@@ -22,6 +22,8 @@ class KypayBiller extends KypayDbObject {
     public $country;
     public $iconUrl;
     public $status;
+    public $byType;
+    public $numberValidator;
     public $lastUpdated;
     
     

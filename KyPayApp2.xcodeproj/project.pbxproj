@@ -160,6 +160,7 @@
 		10FFB5F4268DA1140029C1D8 /* Biller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB5F3268DA1140029C1D8 /* Biller.swift */; };
 		10FFB5F6268DA23C0029C1D8 /* BillersSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB5F5268DA23C0029C1D8 /* BillersSelectionView.swift */; };
 		10FFB5F8268DA2950029C1D8 /* BillersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB5F7268DA2950029C1D8 /* BillersViewModel.swift */; };
+		10FFB5FB268DEB4B0029C1D8 /* BillerNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB5FA268DEB4B0029C1D8 /* BillerNumberView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -351,6 +352,7 @@
 		10FFB5F3268DA1140029C1D8 /* Biller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Biller.swift; sourceTree = "<group>"; };
 		10FFB5F5268DA23C0029C1D8 /* BillersSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillersSelectionView.swift; sourceTree = "<group>"; };
 		10FFB5F7268DA2950029C1D8 /* BillersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillersViewModel.swift; sourceTree = "<group>"; };
+		10FFB5FA268DEB4B0029C1D8 /* BillerNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillerNumberView.swift; sourceTree = "<group>"; };
 		1B47377B496C6F0F1022FFD4 /* Pods-KyPayApp2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.debug.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.debug.xcconfig"; sourceTree = "<group>"; };
 		6F523BC3D4353462922B31B9 /* Pods-KyPayApp2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.release.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -864,6 +866,7 @@
 			isa = PBXGroup;
 			children = (
 				10FFB5F5268DA23C0029C1D8 /* BillersSelectionView.swift */,
+				10FFB5FA268DEB4B0029C1D8 /* BillerNumberView.swift */,
 			);
 			path = payBill;
 			sourceTree = "<group>";
@@ -1123,6 +1126,7 @@
 				1033C0C2267AFFB600D999CE /* ContactsListView.swift in Sources */,
 				1033C0A32678514500D999CE /* HomeTabbedView.swift in Sources */,
 				1033C0A62678A87C00D999CE /* ProgressViewModifier.swift in Sources */,
+				10FFB5FB268DEB4B0029C1D8 /* BillerNumberView.swift in Sources */,
 				1033C0BA267AEC3700D999CE /* TopUpView.swift in Sources */,
 				10B855E3267EEEB400AEF15F /* PaymentMethodTypesView.swift in Sources */,
 				10B85632268B0E5500AEF15F /* KypayDeviceTokenController.php in Sources */,

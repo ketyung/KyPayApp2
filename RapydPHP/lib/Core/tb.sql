@@ -180,3 +180,7 @@ values('tm_77ggsgdvVAf390', 'beneficiary_3e90373749167aa868b02e4012c8345f',
 'Telekom', 'MY', '/images/billers/MY/tm.png', now());
 
 
+alter table kypay_biller add by_type enum('PN', 'AN', 'O') default 'AN';
+
+alter table kypay_biller add number_validator varchar(128);
+

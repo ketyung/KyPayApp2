@@ -9,6 +9,16 @@ import Foundation
 
 struct Biller : Codable {
     
+    enum ByType : String, Codable {
+        
+        case accountNumber = "AN"
+        
+        case phoneNumber = "PN"
+        
+        case others = "O"
+        
+    }
+    
     var id : String?
     
     var serviceBid : String?
@@ -30,6 +40,12 @@ struct Biller : Codable {
     var iconUrl : String?
     
     var status : String?
+    
+    var byType : ByType?
+    
+    // a regex string that is used to verify the
+    // validity of the number
+    var numberValidator : String?
     
     var lastUpdated: Date?
     
