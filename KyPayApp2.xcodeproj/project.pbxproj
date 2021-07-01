@@ -727,6 +727,7 @@
 		1033C0A12678510600D999CE /* homeViews */ = {
 			isa = PBXGroup;
 			children = (
+				10FFB5F9268DB1140029C1D8 /* payBill */,
 				10FFB5E1268C42E30029C1D8 /* requestMoney */,
 				10B8562326896B5100AEF15F /* sendMoney */,
 				10B856182688411E00AEF15F /* payOuts */,
@@ -736,7 +737,6 @@
 				1033C09926784FC300D999CE /* HomeView.swift */,
 				1033C0A22678514500D999CE /* HomeTabbedView.swift */,
 				10B8562426896E4500AEF15F /* Common.swift */,
-				10FFB5F5268DA23C0029C1D8 /* BillersSelectionView.swift */,
 			);
 			path = homeViews;
 			sourceTree = "<group>";
@@ -858,6 +858,14 @@
 				10FFB5EB268D6C670029C1D8 /* tm.png */,
 			);
 			path = MY;
+			sourceTree = "<group>";
+		};
+		10FFB5F9268DB1140029C1D8 /* payBill */ = {
+			isa = PBXGroup;
+			children = (
+				10FFB5F5268DA23C0029C1D8 /* BillersSelectionView.swift */,
+			);
+			path = payBill;
 			sourceTree = "<group>";
 		};
 		55C51AF7366AAFF575FED9C7 /* Frameworks */ = {

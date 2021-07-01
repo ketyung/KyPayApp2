@@ -63,6 +63,8 @@ extension BillersSelectionView {
                 
                 Spacer()
                 
+                // let _ = print("biller.bid::\(biller.serviceBid ?? "xxx")")
+                
                 Common.disclosureIndicator()
               
             }
