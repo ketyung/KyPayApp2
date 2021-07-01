@@ -27,8 +27,6 @@ struct SendMoneyView : View {
     
     @State private var showShareSheet : Bool = false
     
-    @State private var successHiddenTextPresented : Bool = false
-    
     @State private var snapshotImages :[Any] = []
     
     
@@ -144,11 +142,6 @@ extension SendMoneyView {
                
             }
             
-            if successHiddenTextPresented {
-                
-                Text("Saved to photo library".localized).font(.custom(Theme.fontName, size: 15))
-            }
-            
             
             successView()
         }
@@ -176,33 +169,6 @@ extension SendMoneyView {
         }
         
     }
-    
-    
-    private func saveSnapShot(){
-        
-        let image = successView(false).padding().snapshot()
-        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
- 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-            withAnimation{
-             
-                self.successHiddenTextPresented.toggle()
-       
-                DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
-               
-                    withAnimation{
-                     
-                        self.successHiddenTextPresented.toggle()
-               
-                    }
-                })
-            }
-        })
-        
-        
-    }
-    
-    
     
 }
 
