@@ -8,6 +8,8 @@
 import Foundation
 import CoreData
 
+typealias KCDS = KyPayContactDataStore 
+
 class KyPayContactDataStore : NSObject {
 
     private var managedObjectContext : NSManagedObjectContext?

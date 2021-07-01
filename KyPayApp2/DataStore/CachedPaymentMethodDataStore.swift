@@ -181,4 +181,18 @@ extension CachedPaymentMethodDataStore {
             return nil
         }
     }
+    
+    
+    func removeAll(){
+        
+        
+        if let allRes = all() {
+        
+            allRes.forEach{ c in
+                
+                removePaymentMethod(by: c.country ?? "", type: c.type ?? "")
+            }
+        }
+      
+    }
 }

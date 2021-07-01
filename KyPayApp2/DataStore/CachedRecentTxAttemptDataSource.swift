@@ -139,14 +139,18 @@ extension CachedRecentTxAttemptDataStore {
     
     
     
-    func recent(limit : Int = 20) -> [CachedRecentTxAttempt]?{
+    func recent(limit : Int? = 20) -> [CachedRecentTxAttempt]?{
         
         guard let managedObjContext = self.managedObjectContext else { return nil }
       
 
         let myRequest : NSFetchRequest<CachedRecentTxAttempt> = CachedRecentTxAttempt.fetchRequest()
         
-        myRequest.fetchLimit = limit
+        if let limit = limit {
+       
+            myRequest.fetchLimit = limit
+        }
+        
         let sort = NSSortDescriptor(key: #keyPath(CachedRecentTxAttempt.lastUpdated), ascending: false)
         myRequest.sortDescriptors = [sort]
         
@@ -161,5 +165,22 @@ extension CachedRecentTxAttemptDataStore {
             
             return nil
         }
+    }
+    
+    
+    
+    func removeAll(){
+        
+        
+        if let allRes = recent(limit: nil) {
+        
+            allRes.forEach{ c in
+                
+                removeAttempt(by: c.phoneNumber ?? "")
+                
+         //       print("remove....phone::\(c.phoneNumber ?? "xxx")")
+            }
+        }
+      
     }
 }

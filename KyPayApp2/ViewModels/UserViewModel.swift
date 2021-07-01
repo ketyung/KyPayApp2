@@ -216,18 +216,26 @@ extension UserViewModel {
 
 extension UserViewModel {
     
+    private func removeAllStored(){
+        
+        WalletHandler().detachWallet()
+    
+        CPMDS().removeAll()
+        CRTADS().removeAll()
+        KCDS().removeAll()
+        KDS.shared.removeUser()
+        KDS.shared.removeAllWallets()
+       
+    }
+    
     
     func signOut(completion : ((Error?)-> Void)? = nil ){
         
         do {
        
             try Auth.auth().signOut()
-            
-            WalletHandler().detachWallet()
-            //WalletHandler().deleteWallet()
-            
-            KDS.shared.removeUser()
-            KDS.shared.removeAllWallets()
+    
+            removeAllStored()
             
             DispatchQueue.main.async {
                 
