@@ -98,21 +98,19 @@ extension DataHandler {
         Config.setup()
     
         
-        RPDPayoutManager().listPayoutMethodTypes(category: .cash,
+        RPDPayoutManager().listPayoutMethodTypes(category: .bank,
         payoutCurrency:  nil, /**RPDCurrency.currency(with: "USD"),*/ 
-        beneficiaryCountry:nil, /** RPDCountry.country(isoAlpha2: countryCode),*/
+        beneficiaryCountry:RPDCountry.country(isoAlpha2: countryCode),
         beneficiaryEntityType: nil,senderEntityType: nil,isCancelable: nil,
         isExpirable: nil,isLocationSpecific: nil, isOnline: nil, limit: nil,startingAfter: nil,
         endingBefore: nil) { payoutMethodTypes, error in
                                          
             guard let err = error else {
                 
-                /**
                 payoutMethodTypes?.forEach { pm in
             
                     print("po.method::\(pm.type)::\(pm.name ?? "")")
-                }*/
-                
+                }
                 completion?(payoutMethodTypes, nil)
                 
                 return

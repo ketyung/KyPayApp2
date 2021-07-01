@@ -166,12 +166,12 @@ create table if not exists kypay_biller (
 
 
 insert into kypay_biller(id,service_bid,name,country,icon_url,last_updated)
-values('sesb-88277376aga2', 'beneficiary_84887b767d150765863769a55c07bcb8',
+values('sesb-88277376aga2', 'beneficiary_42f0049c56b62a6324da9d7ed14735af',
 'SESB', 'MY', '/images/billers/MY/sesb.png', now());
 
 
 insert into kypay_biller(id,service_bid,name,country,icon_url,last_updated)
-values('astro_77363avdvd3a63', 'beneficiary_813ff6a62f065ea3fb921acb3aa07c9b',
+values('astro_77363avdvd3a63', 'beneficiary_ebf65ac46c65cc7d6aac5f69d05e4ca9',
 'Astro', 'MY', '/images/billers/MY/astro.png', now());
 
 
