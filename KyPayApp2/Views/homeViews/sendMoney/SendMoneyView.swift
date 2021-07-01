@@ -113,7 +113,7 @@ extension SendMoneyView {
             
             Common.paymentSuccessView(amount: txInputViewModel.txAmountText,
             balance: walletViewModel.balance, currency: walletViewModel.currency,
-            showBalance: showBalance, withLogo:  withLogo)
+            showBalance: showBalance, withLogo:  withLogo, note: txInputViewModel.note)
             .padding()
             .navigationBarHidden(true)
             .onAppear{

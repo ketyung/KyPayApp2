@@ -11,8 +11,8 @@ struct Common {
     
     
     static func paymentSuccessView (amount : String, balance : String,
-    currency : String, showBalance : Bool = true, withLogo : Bool = false, 
-    subTitle : String = "Transfer Amount :".localized) -> some View {
+    currency : String, showBalance : Bool = true, withLogo : Bool = false,
+    note : String? = nil, subTitle : String = "Transfer Amount :".localized) -> some View {
         
         VStack{
             
@@ -32,6 +32,20 @@ struct Common {
                    
             }
             
+            if let note = note, !note.isEmpty {
+                
+                VStack(spacing:2) {
+                    
+                    Spacer().frame(height:5)
+                    
+                    Text("Note :").font(.custom(Theme.fontName, size: 16))
+                    
+                    Text("\(note)").font(.custom(Theme.fontName, size: 16))
+                    .foregroundColor(Color(UIColor(hex:"#666666ff")!))
+                    
+                }
+                
+            }
             
             if showBalance {
                

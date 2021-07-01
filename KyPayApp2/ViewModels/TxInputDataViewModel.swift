@@ -169,7 +169,7 @@ class TxInputDataViewModel : NSObject, ObservableObject {
         txInputData.showAlert = false
         txInputData.txAmount = 0
         txInputData.shouldPresentContactList = false
-
+        txInputData.note = nil 
     }
     
 }
