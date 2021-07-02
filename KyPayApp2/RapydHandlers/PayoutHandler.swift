@@ -38,26 +38,35 @@ class PayoutHandler : NSObject {
          
             print("create.payout.withOut.senderId!!")
             
-            self.getPayoutRequiredFields(for: user, biller: biller, amount: amount, senderCountry: senderCountry,
-                senderCurrency: senderCurrency, billerCountry: billerCountry, billerCurrency: billerCurrency, completion: {
-                [weak self] senderRequiredFields, beneficiaryRequiredFields in
+            //self.getPayoutRequiredFields(for: user, biller: biller, amount: amount, senderCountry: senderCountry,
+              //  senderCurrency: senderCurrency, billerCountry: billerCountry, billerCurrency: billerCurrency, completion: {
+               // [weak self] senderRequiredFields, beneficiaryRequiredFields in
      
-                    self?.createSender(for: user, currency: senderCurrency,
-                    senderRequiredFields: senderRequiredFields ?? [],completion: { senderID in
+            var senderRequiredFields : [RPDPayoutRequiredField] = []
+            
+            self.set(senderRequiredFields: &senderRequiredFields, user: user)
+            
+            self.createSender(for: user, currency: senderCurrency,
+            senderRequiredFields: senderRequiredFields ,completion: { [weak self ] senderID in
+                      
+                guard let self = self else {
+                    print("nil....self!.x")
+                    return
+                }
+                if let senderID = senderID {
+                    
+                    print("xx..createdSender.::\(senderID)")
+                 
+                    self.createPayout(for: user, biller: biller, senderID: senderID, amount: amount, number: number, senderCountry: senderCountry, senderCurrency: senderCurrency, billerCountry: billerCountry, billerCurrency: billerCurrency,completion: {payoutId, err in
                                         
-                        if let senderID = senderID {
-                            
-                            print("xx..createdSender.::\(senderID)")
-                         
-                            self?.createPayout(for: user, biller: biller, senderID: senderID, amount: amount, number: number, senderCountry: senderCountry, senderCurrency: senderCurrency, billerCountry: billerCountry, billerCurrency: billerCurrency,completion: {payoutId, err in
-                                                
-                                completion?(payoutId, senderID, err)
-                            })
-                        }
-                                        
+                        print("xxx...createdPayout::\(payoutId ?? "xxxx.x")")
+                        completion?(payoutId, senderID, err)
                     })
-             
+                }
+                                
             })
+             
+           // })
             
         }
     }
@@ -71,12 +80,20 @@ extension PayoutHandler {
     number : String, senderCountry : String, senderCurrency : String, billerCountry : String,
     billerCurrency : String, completion: ((String?, Error?)->Void)? = nil){
         
+        print("going.createPayout.for::\(biller.id ?? "xxx")")
         self.getPayoutRequiredFields(for: user, biller: biller, amount: amount, senderCountry: senderCountry,
             senderCurrency: senderCurrency, billerCountry: billerCountry, billerCurrency: billerCurrency, completion: {
             [weak self] senderRequiredFields, beneficiaryRequiredFields in
                 
-                guard let self = self else {return}
+                guard let self = self else {
+                    
+                    print("nil.self.at@getPayoutRequiredFields!.x")
+                    
+                    return
+                    
+                }
             
+                print("after.getReqFields::\(senderRequiredFields ?? [])")
                 self.createPayout(for: biller, amount: amount, senderID: senderID, senderCurrency: senderCurrency, senderCountry: senderCountry, number: number, beneficiaryRequiredFields: beneficiaryRequiredFields ?? [], senderRequiredFields: senderRequiredFields ?? [], completion: {
                     
                     id, err in
@@ -101,6 +118,8 @@ extension PayoutHandler {
                 
                 payout, err in
             
+                
+                print("create.po::\(payout?.ID ?? "pid.xxx")")
     
                 completion?(payout?.ID, err)
                 
@@ -162,7 +181,15 @@ extension PayoutHandler {
                         return
                     }
                 }
+                
+                
+                var senderRequiredFields : [RPDPayoutRequiredField] = []
+                var beneficiaryRequiredFields : [RPDPayoutRequiredField] = []
+                self.set(senderRequiredFields: &senderRequiredFields, user: user)
+                self.set(beneficiaryRequiredFields: &beneficiaryRequiredFields, user: user)
             
+                completion?(senderRequiredFields, beneficiaryRequiredFields)
+              
                 return
             }
             
@@ -269,7 +296,7 @@ extension PayoutHandler {
             completionBlock: { sender, error in
                 if let sender = sender {
                     
-                    print("obtained.sender.id::\(sender.ID)")
+                 //   print("obtained.sender.id::\(sender.ID)")
                     
                     completion?(sender.ID)
                     return
