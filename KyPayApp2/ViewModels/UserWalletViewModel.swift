@@ -588,6 +588,48 @@ extension UserWalletViewModel {
 
 extension UserWalletViewModel {
     
+    
+    func updateWalletRemotely(with senderID : String, for user : User, completion : ((Error?)->Void)? = nil ){
+        
+        let walletToBeUpdated = UserWallet(id : walletHolder.wallet.id ,
+        refId: walletHolder.wallet.refId, servicePoSenderId: senderID)
+        
+       
+        // update wallet in session
+        DispatchQueue.main.async {
+       
+            self.walletHolder.wallet.servicePoSenderId = senderID
+        }
+        
+        let walletType = user.allowedWalletTypes.first ?? .personal
+        let currency = CurrencyManager.currency(countryCode: user.countryCode ?? "MY") ?? "MYR"
+        
+        // update wallet in KDS
+        if var savedWallet = KDS.shared.getWallet(type: walletType, currency: currency){
+            
+            savedWallet.servicePoSenderId = senderID
+            KDS.shared.saveWallet(savedWallet)
+        }
+       
+        
+        ARH.shared.updateUserWallet(walletToBeUpdated, returnType: UserWallet.self,  completion: { res in
+            
+            switch(res) {
+            
+                case .failure(let err) :
+                    completion?(err)
+                case .success(_) :
+                    
+                    completion?(nil)
+                    
+                   // print("record.tx.to.remote::\(toUserId ?? "zzz")::\(toWalletRefId ?? "xxx")")
+                    
+            }
+        })
+        
+    }
+    
+    
     func updateWalletRemotely(payOutTo biller : Biller, user : User,
         amount : Double, number : String, senderId : String? = nil ,
         serviceId : String? = nil , completion : ((Error?) -> Void)? = nil ){

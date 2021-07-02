@@ -25,7 +25,6 @@ class PayoutHandler : NSObject {
       
         if let senderID = walletSenderID {
             
-            print("create.payout.with.senderId:\(senderID)")
             
             self.createPayout(for: user, biller: biller, senderID: senderID, amount: amount, number: number, senderCountry: senderCountry, senderCurrency: senderCurrency, billerCountry: billerCountry, billerCurrency: billerCurrency,
                               completion: {
@@ -36,7 +35,6 @@ class PayoutHandler : NSObject {
         }
         else {
          
-            print("create.payout.withOut.senderId!!")
             
             //self.getPayoutRequiredFields(for: user, biller: biller, amount: amount, senderCountry: senderCountry,
               //  senderCurrency: senderCurrency, billerCountry: billerCountry, billerCurrency: billerCurrency, completion: {
@@ -49,17 +47,12 @@ class PayoutHandler : NSObject {
             self.createSender(for: user, currency: senderCurrency,
             senderRequiredFields: senderRequiredFields ,completion: { [weak self ] senderID in
                       
-                guard let self = self else {
-                    print("nil....self!.x")
-                    return
-                }
+                guard let self = self else {return}
+                
                 if let senderID = senderID {
                     
-                    print("xx..createdSender.::\(senderID)")
-                 
-                    self.createPayout(for: user, biller: biller, senderID: senderID, amount: amount, number: number, senderCountry: senderCountry, senderCurrency: senderCurrency, billerCountry: billerCountry, billerCurrency: billerCurrency,completion: {payoutId, err in
+                    self.createPayout(for: user, biller: biller, senderID: senderID, amount: amount, number: number, senderCountry: senderCountry, senderCurrency: senderCurrency, billerCountry: billerCountry, billerCurrency: billerCurrency,completion: { payoutId, err in
                                         
-                        print("xxx...createdPayout::\(payoutId ?? "xxxx.x")")
                         completion?(payoutId, senderID, err)
                     })
                 }
@@ -80,23 +73,13 @@ extension PayoutHandler {
     number : String, senderCountry : String, senderCurrency : String, billerCountry : String,
     billerCurrency : String, completion: ((String?, Error?)->Void)? = nil){
         
-        print("going.createPayout.for::\(biller.id ?? "xxx")")
         self.getPayoutRequiredFields(for: user, biller: biller, amount: amount, senderCountry: senderCountry,
             senderCurrency: senderCurrency, billerCountry: billerCountry, billerCurrency: billerCurrency, completion: {
             [weak self] senderRequiredFields, beneficiaryRequiredFields in
                 
-                guard let self = self else {
-                    
-                    print("nil.self.at@getPayoutRequiredFields!.x")
-                    
-                    return
-                    
-                }
+                guard let self = self else { return}
             
-                print("after.getReqFields::\(senderRequiredFields ?? [])")
-                self.createPayout(for: biller, amount: amount, senderID: senderID, senderCurrency: senderCurrency, senderCountry: senderCountry, number: number, beneficiaryRequiredFields: beneficiaryRequiredFields ?? [], senderRequiredFields: senderRequiredFields ?? [], completion: {
-                    
-                    id, err in
+                self.createPayout(for: biller, amount: amount, senderID: senderID, senderCurrency: senderCurrency, senderCountry: senderCountry, number: number, beneficiaryRequiredFields: beneficiaryRequiredFields ?? [], senderRequiredFields: senderRequiredFields ?? [], completion: { id, err in
                     
                     completion?(id, err)
                     
@@ -118,9 +101,6 @@ extension PayoutHandler {
                 
                 payout, err in
             
-                
-                print("create.po::\(payout?.ID ?? "pid.xxx")")
-    
                 completion?(payout?.ID, err)
                 
             
@@ -172,9 +152,13 @@ extension PayoutHandler {
              
                 if let payoutRequiredFieldsDetails = payoutRequiredFieldsDetails {
                                                                 
-                    if var senderRequiredFields = payoutRequiredFieldsDetails.senderRequiredFields, var beneficiaryRequiredFields = payoutRequiredFieldsDetails.beneficiaryRequiredFields {
-                                        
-                        self.set(beneficiaryRequiredFields: &beneficiaryRequiredFields, user: user)
+                    if var senderRequiredFields = payoutRequiredFieldsDetails.senderRequiredFields,
+                       var beneficiaryRequiredFields = payoutRequiredFieldsDetails.beneficiaryRequiredFields {
+                       
+                        print("sender.rq.fields.fr.obtained::\(senderRequiredFields)")
+                        print("benefi.rq.fields.fr.obtained::\(beneficiaryRequiredFields)")
+                       
+                        self.set(beneficiaryRequiredFields: &beneficiaryRequiredFields, biller: biller)
                         self.set(senderRequiredFields: &senderRequiredFields, user: user)
                         
                         completion?(senderRequiredFields, beneficiaryRequiredFields)
@@ -186,7 +170,7 @@ extension PayoutHandler {
                 var senderRequiredFields : [RPDPayoutRequiredField] = []
                 var beneficiaryRequiredFields : [RPDPayoutRequiredField] = []
                 self.set(senderRequiredFields: &senderRequiredFields, user: user)
-                self.set(beneficiaryRequiredFields: &beneficiaryRequiredFields, user: user)
+                self.set(beneficiaryRequiredFields: &beneficiaryRequiredFields, biller:  biller)
             
                 completion?(senderRequiredFields, beneficiaryRequiredFields)
               
@@ -205,23 +189,15 @@ extension PayoutHandler {
             
 extension PayoutHandler {
                 
-    private func set(beneficiaryRequiredFields : inout [RPDPayoutRequiredField], user : User){
+    private func set(beneficiaryRequiredFields : inout [RPDPayoutRequiredField], biller : Biller){
         
         beneficiaryRequiredFields.forEach {
                                                         
             switch $0.name {
-                                
-                 case "firstName":
-                    $0.value = user.firstName
-                                
-                 case "lastName":
-                    $0.value = user.lastName
-                                
-                 case "address":
+               
+                case "address":
                        $0.value = "123 Any street"
                                 
-                 case "phone_number":
-                    $0.value = user.phoneNumber
                                 
                  case "state":
                        $0.value = "usa"
@@ -229,13 +205,6 @@ extension PayoutHandler {
                  case "city":
                        $0.value = "c"
                                 
-                 case "identification_type":
-                        $0.value = PH.temp_id_type
-                                
-                // will need to update this later for future use
-                // real IC number from user
-                 case "identification_value":
-                        $0.value = PH.temp_id_value
                     
                                 
                   default:
@@ -265,7 +234,15 @@ extension PayoutHandler {
                                  
                  case "phone_number":
                        $0.value = user.phoneNumber
-                                 
+                               
+                case "identification_type":
+                        $0.value = PH.temp_id_type
+                            
+                // will need to update this later for future use
+                // real IC number from user
+                 case "identification_value":
+                        $0.value = PH.temp_id_value
+                
                   default:
                         break
             }

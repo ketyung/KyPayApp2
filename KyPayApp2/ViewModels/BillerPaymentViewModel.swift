@@ -219,31 +219,53 @@ extension BillerPaymentViewModel {
                 
                 [weak self] payoutId, senderId, err in
                 
-                print("issuing.payOut::\(payoutId ?? "pid")::\(senderId ?? "sid")")
+               // print("po.id::\(String(describing: payoutId))::sd.id::\(String(describing: senderId))")
                 
                 guard let err = err else {
+              
                     
-                    walletViewModel.updateWalletRemotely(payOutTo: biller, user: user, amount: self?.amount ?? 0, number: self?.number ?? "", senderId: senderId, serviceId: payoutId, completion: {err in
-                        
-                        guard let err = err else {
+                    if let payoutId = payoutId, let senderId = senderId {
+                    
+                        walletViewModel.updateWalletRemotely(payOutTo: biller, user: user, amount: self?.amount ?? 0, number: self?.number ?? "", senderId: senderId, serviceId: payoutId, completion: {err in
                             
-                            DispatchQueue.main.async {
-                                withAnimation{
-                                    self?.success = true
-                                    self?.inProgress = false
+                            guard let err = err else {
+                                
+                                DispatchQueue.main.async {
+                                    withAnimation{
+                                        self?.success = true
+                                        self?.inProgress = false
+                                    }
                                 }
+                                   
+                                return
+                                
                             }
-                               
-                            return
                             
-                        }
+                            self?.send(error: err)
+                            
+                        })
+                        
+                        
+                    }
+                    
+                    
+                 
+                    return
+             
+                    
+                }
+                
+                
+                if let senderId = senderId {
+                    
+                    walletViewModel.updateWalletRemotely(with: senderId, for : user, completion: {_ in
                         
                         self?.send(error: err)
+                        return
                     })
-                    
-                    
-                    return
                 }
+                
+                
                 
                 self?.send(error: err)
           
