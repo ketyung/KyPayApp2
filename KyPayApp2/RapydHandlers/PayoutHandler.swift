@@ -11,7 +11,7 @@ import RapydSDK
 class PayoutHandler : NSObject {
     
     
-    func issuePayoutFor(biller : Biller){
+    func issuePayout(from user : User, for biller : Biller){
         
         self.obtainBeneficiaryOf(biller: biller, completion: { p in
         
