@@ -11,14 +11,47 @@ import RapydSDK
 class PayoutHandler : NSObject {
     
     
-    func issuePayout(from user : User, wallet : UserWallet, for biller : Biller, amount : Double){
+    func issuePayout(from user : User, wallet : UserWallet,
+                     for biller : Biller, amount : Double, number : String,
+                     completion: ((_ payoutID : String?,_ senderID : String?, _ error : Error?)->Void)? = nil ){
         
+        
+        let senderCountry = user.countryCode ?? "MY"
+        let senderCurrency = CurrencyManager.currency(countryCode: senderCountry) ?? "MYR"
+       
+        let billerCountry = biller.country ?? "MY"
+        let billerCurrency = CurrencyManager.currency(countryCode: billerCountry) ?? "MYR"
+      
         if let senderID = wallet.servicePoSenderId {
             
             
+            self.createPayout(for: user, biller: biller, senderID: senderID, amount: amount, number: number, senderCountry: senderCountry, senderCurrency: senderCurrency, billerCountry: billerCountry, billerCurrency: billerCurrency,
+                              completion: {
+                payoutId, err in
+                                
+                completion?(payoutId, nil, err)
+            })
         }
         else {
-            
+         
+            self.getPayoutRequiredFields(for: user, biller: biller, amount: amount, senderCountry: senderCountry,
+                senderCurrency: senderCurrency, billerCountry: billerCountry, billerCurrency: billerCurrency, completion: {
+                [weak self] senderRequiredFields, beneficiaryRequiredFields in
+     
+                    self?.createSender(for: user, currency: senderCurrency,
+                    senderRequiredFields: senderRequiredFields ?? [],completion: { senderID in
+                                        
+                        if let senderID = senderID {
+                         
+                            self?.createPayout(for: user, biller: biller, senderID: senderID, amount: amount, number: number, senderCountry: senderCountry, senderCurrency: senderCurrency, billerCountry: billerCountry, billerCurrency: billerCurrency,completion: {payoutId, err in
+                                                
+                                completion?(payoutId, senderID, err)
+                            })
+                        }
+                                        
+                    })
+             
+            })
             
         }
     }
@@ -27,10 +60,32 @@ class PayoutHandler : NSObject {
 
 extension PayoutHandler {
     
+    
+    private func createPayout(for user : User, biller : Biller, senderID : String,  amount : Double,
+    number : String, senderCountry : String, senderCurrency : String, billerCountry : String,
+    billerCurrency : String, completion: ((String?, Error?)->Void)? = nil){
+        
+        self.getPayoutRequiredFields(for: user, biller: biller, amount: amount, senderCountry: senderCountry,
+            senderCurrency: senderCurrency, billerCountry: billerCountry, billerCurrency: billerCurrency, completion: {
+            [weak self] senderRequiredFields, beneficiaryRequiredFields in
+                
+                guard let self = self else {return}
+            
+                self.createPayout(for: biller, amount: amount, senderID: senderID, senderCurrency: senderCurrency, senderCountry: senderCountry, number: number, beneficiaryRequiredFields: beneficiaryRequiredFields ?? [], senderRequiredFields: senderRequiredFields ?? [], completion: {
+                    
+                    id, err in
+                    
+                    completion?(id, err)
+                    
+                })
+        })
+        
+    }
+    
+    
     private func createPayout(for biller : Biller, amount : Double, senderID : String,
         senderCurrency : String, senderCountry : String, number : String,
-        beneficiaryRequiredFields : [RPDPayoutRequiredField],
-        senderRequiredFields : [RPDPayoutRequiredField], completion:((String?, Error?)-> Void)? = nil ){
+        beneficiaryRequiredFields : [RPDPayoutRequiredField],senderRequiredFields : [RPDPayoutRequiredField], completion:((String?, Error?)-> Void)? = nil ){
         
         let payoutCurrency = RPDCurrency.currency(with: CurrencyManager.currency(countryCode:  biller.country ?? "MY") ?? "MYR")
         
@@ -74,14 +129,9 @@ extension PayoutHandler {
 extension PayoutHandler {
     
     
-    func getPayoutRequiredFields ( for user : User, biller : Biller, amount : Double ) {
+    func getPayoutRequiredFields ( for user : User, biller : Biller, amount : Double, senderCountry : String, senderCurrency : String, billerCountry : String, billerCurrency : String,
+            completion : ((_ senderRequiredFields : [RPDPayoutRequiredField]?, _ beneficiaryRequiredFields : [RPDPayoutRequiredField]?)->Void)? = nil) {
         
-        let senderCountry = user.countryCode ?? "MY"
-        let senderCurrency = CurrencyManager.currency(countryCode: senderCountry) ?? "MYR"
-       
-        let billerCountry = biller.country ?? "MY"
-        let billerCurrency = CurrencyManager.currency(countryCode: billerCountry) ?? "MYR"
-       
         
         RPDPayoutManager().getPayoutRequiredFields(payoutMethodType: biller.payoutMethod ?? "",
           payoutAmount: Decimal(amount),
@@ -98,8 +148,16 @@ extension PayoutHandler {
                                         
                         self.set(beneficiaryRequiredFields: &beneficiaryRequiredFields, user: user)
                         self.set(senderRequiredFields: &senderRequiredFields, user: user)
+                        
+                        completion?(senderRequiredFields, beneficiaryRequiredFields)
+                        return
                     }
                 }
+            
+                print("error.obtaining.required.fields::\(error?.localizedDescription ?? "xxxx")")
+            
+                completion?(nil,nil)
+            
         }
     }
 }
