@@ -14,7 +14,7 @@ class PayoutHandler : NSObject {
     func issuePayoutFor(biller : Biller){
         
         self.obtainBeneficiaryOf(biller: biller, completion: { p in
-            
+        
             
         
         })
@@ -48,22 +48,23 @@ extension PayoutHandler {
 extension PayoutHandler {
     
     
-    func getPayoutRequiredFields ( for user : User, wallet : UserWallet, payoutMethod : PayoutMethod,
-    amount : Double, payoutCurrency : String, senderCurrency : String) {
+    func getPayoutRequiredFields ( for user : User, biller : Biller, amount : Double, payoutCurrency : String) {
+        
+        let senderCountry = user.countryCode ?? "MY"
+        let senderCurrency = CurrencyManager.currency(countryCode: senderCountry) ?? "MYR"
         
         
-        RPDPayoutManager().getPayoutRequiredFields(payoutMethodType: payoutMethod.type ?? "",payoutAmount: Decimal(amount),
-                              payoutCurrency: RPDCurrency.currency(with: payoutCurrency),
+        RPDPayoutManager().getPayoutRequiredFields(payoutMethodType: biller.payoutMethod ?? "",
+                              payoutAmount: Decimal(amount), payoutCurrency: RPDCurrency.currency(with: payoutCurrency),
                               beneficiaryCountry: RPDCountry.country(isoAlpha2: user.countryCode ?? "MY"),
                               beneficiaryEntityType: .individual,
-                              senderCountry: RPDCountry.country(isoAlpha2: "MX"),
-                              senderCurrency: RPDCurrency.currency(with: "MXN"),
+                              senderCountry: RPDCountry.country(isoAlpha2: senderCountry),
+                              senderCurrency: RPDCurrency.currency(with: senderCurrency),
                               senderEntityType: .individual) { payoutRequiredFieldsDetails, error in
                                                             
                 if let payoutRequiredFieldsDetails = payoutRequiredFieldsDetails {
                                                                 
                     if var senderRequiredFields = payoutRequiredFieldsDetails.senderRequiredFields, var beneficiaryRequiredFields = payoutRequiredFieldsDetails.beneficiaryRequiredFields {
-                        
                                         
                         self.set(beneficiaryRequiredFields: &beneficiaryRequiredFields, user: user)
                         self.set(senderRequiredFields: &senderRequiredFields, user: user)
