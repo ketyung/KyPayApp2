@@ -8,12 +8,14 @@
 import Foundation
 
 struct BillerPayment {
-    
-    
+
     var number : String?
     
     var amount : Double?
 
     var biller : Biller?
     
+    var errorPresented : Bool?
+    
+    var errorMessage : String?
 }

@@ -58,6 +58,14 @@ extension BillerNumberView {
             .keyboardType(.numberPad)
             .frame(width: 200, height: 24)
             .overlay(VStack{Divider().backgroundFill(.black).offset(x: 0, y: 20)})
+            
+            
+            if paymentViewModel.errorPresented {
+            
+                Spacer().frame(height: 4)
+                Text(paymentViewModel.errorMessage).foregroundColor(.red).font(.custom(Theme.fontName, size: 14))
+            }
+           
         }
      
     }
@@ -76,6 +84,7 @@ extension BillerNumberView {
             .keyboardType(.decimalPad)
             .frame(width: 200, height: 24).font(.custom(Theme.fontName, size: 30))
             .overlay(VStack{Divider().backgroundFill(.black).offset(x: 0, y: 20)})
+            
         }
      
     }
@@ -97,9 +106,6 @@ extension BillerNumberView  {
                     
                 case .others :
                     return "Others".localized
-                
-                default :
-                    return "none".localized
                 
             }
         }

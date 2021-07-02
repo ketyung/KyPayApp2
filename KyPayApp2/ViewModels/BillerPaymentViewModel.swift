@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class BillerPaymentViewModel : ObservableObject {
     
@@ -51,7 +52,11 @@ class BillerPaymentViewModel : ObservableObject {
         set(newVal){
             
             billerPayment.number = newVal
+            
+            self.validateNumberAndAlertIfInvalid()
         }
+        
+        
     }
     
     
@@ -68,6 +73,27 @@ class BillerPaymentViewModel : ObservableObject {
         }
     }
     
+    
+    var errorMessage : String {
+        
+        get {
+            
+            billerPayment.errorMessage ?? ""
+        }
+    }
+    
+    var errorPresented : Bool {
+        
+        get {
+            
+            billerPayment.errorPresented ?? false
+        }
+        
+        set(newVal){
+            
+            billerPayment.errorPresented = newVal
+        }
+    }
 }
 
 
@@ -78,5 +104,59 @@ extension BillerPaymentViewModel {
         billerPayment.biller = nil
         billerPayment.amount = nil
         billerPayment.number = nil
+        billerPayment.errorPresented = nil
+        billerPayment.errorMessage = nil
     }
+    
+    
+    
+    private func validateNumberAndAlertIfInvalid() {
+        
+        if !validateNumber() {
+            
+            if biller?.byType == .accountNumber {
+                
+                self.billerPayment.errorMessage = "Invalid account number".localized
+                withAnimation{
+          
+                    self.billerPayment.errorPresented = true
+                }
+            }
+            else if biller?.byType == .phoneNumber {
+                
+                
+                self.billerPayment.errorMessage = "Invalid phone number".localized
+                withAnimation{
+          
+                    self.billerPayment.errorPresented = true
+              
+                }
+         
+            }
+        }
+        else {
+            
+            withAnimation{
+                
+                self.billerPayment.errorMessage = nil
+                self.billerPayment.errorPresented = false 
+            }
+            
+        }
+    }
+    
+    
+    private func validateNumber() -> Bool{
+        
+        if let regexPattern = billerPayment.biller?.numberValidator {
+            
+            let test = NSPredicate(format: "SELF MATCHES %@", regexPattern)
+            let result = test.evaluate(with: self.number)
+            return result
+            
+        }
+        
+        return true // default to true if no pattern available
+    }
+    
 }

@@ -184,3 +184,4 @@ alter table kypay_biller add by_type enum('PN', 'AN', 'O') default 'AN';
 
 alter table kypay_biller add number_validator varchar(128);
 
+update kypay_biller set number_validator = '^[0-9+]{0,1}+[0-9]{5,16}$' where id = 'tm_77ggsgdvVAf390';
