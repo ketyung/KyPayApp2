@@ -161,6 +161,8 @@
 		10FFB5F6268DA23C0029C1D8 /* BillersSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB5F5268DA23C0029C1D8 /* BillersSelectionView.swift */; };
 		10FFB5F8268DA2950029C1D8 /* BillersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB5F7268DA2950029C1D8 /* BillersViewModel.swift */; };
 		10FFB5FB268DEB4B0029C1D8 /* BillerNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB5FA268DEB4B0029C1D8 /* BillerNumberView.swift */; };
+		10FFB5FD268E890C0029C1D8 /* BillerPaymentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB5FC268E890C0029C1D8 /* BillerPaymentViewModel.swift */; };
+		10FFB5FF268E892B0029C1D8 /* BillerPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB5FE268E892B0029C1D8 /* BillerPayment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -353,6 +355,8 @@
 		10FFB5F5268DA23C0029C1D8 /* BillersSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillersSelectionView.swift; sourceTree = "<group>"; };
 		10FFB5F7268DA2950029C1D8 /* BillersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillersViewModel.swift; sourceTree = "<group>"; };
 		10FFB5FA268DEB4B0029C1D8 /* BillerNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillerNumberView.swift; sourceTree = "<group>"; };
+		10FFB5FC268E890C0029C1D8 /* BillerPaymentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillerPaymentViewModel.swift; sourceTree = "<group>"; };
+		10FFB5FE268E892B0029C1D8 /* BillerPayment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillerPayment.swift; sourceTree = "<group>"; };
 		1B47377B496C6F0F1022FFD4 /* Pods-KyPayApp2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.debug.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.debug.xcconfig"; sourceTree = "<group>"; };
 		6F523BC3D4353462922B31B9 /* Pods-KyPayApp2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.release.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -652,6 +656,7 @@
 			children = (
 				1033C06B2676E3FA00D999CE /* PhoneInputViewModel.swift */,
 				1033C0912678292900D999CE /* OtpTextViewModel.swift */,
+				10FFB5FC268E890C0029C1D8 /* BillerPaymentViewModel.swift */,
 				1033C0972678477600D999CE /* UserViewModel.swift */,
 				1033C0D0267D769400D999CE /* TxInputDataViewModel.swift */,
 				10B855E0267EC76300AEF15F /* UserWalletViewModel.swift */,
@@ -677,6 +682,7 @@
 				10154F39268033B600DB78C4 /* TopUpPayment.swift */,
 				10B855F2268081E400AEF15F /* PaymentData.swift */,
 				10B855FE268427AF00AEF15F /* CardPayment.swift */,
+				10FFB5FE268E892B0029C1D8 /* BillerPayment.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1117,6 +1123,7 @@
 				10B8560D268757CF00AEF15F /* TopUpFailureView.swift in Sources */,
 				10B8561C2688445100AEF15F /* PayoutMethodTypesView.swift in Sources */,
 				1033B2552674A7F200D999CE /* AppDelegate.swift in Sources */,
+				10FFB5FF268E892B0029C1D8 /* BillerPayment.swift in Sources */,
 				1033C0762676E81000D999CE /* ViewExtension.swift in Sources */,
 				1033B2972674A82F00D999CE /* UserWallet.swift in Sources */,
 				1033B29A2674A82F00D999CE /* DateFormatterExt.swift in Sources */,
@@ -1137,6 +1144,7 @@
 				10B856052685831400AEF15F /* CachedPaymentMethodDataStore.swift in Sources */,
 				1033B2952674A82F00D999CE /* UserImg.swift in Sources */,
 				10B856272689727500AEF15F /* CachedRecentTxAttemptDataSource.swift in Sources */,
+				10FFB5FD268E890C0029C1D8 /* BillerPaymentViewModel.swift in Sources */,
 				10FFB5F4268DA1140029C1D8 /* Biller.swift in Sources */,
 				10B8561E26886D8C00AEF15F /* PayoutHandler.swift in Sources */,
 				1033C0CB267C9E4300D999CE /* NavigationBackButton.swift in Sources */,

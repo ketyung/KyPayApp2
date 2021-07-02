@@ -10,19 +10,9 @@ import Kingfisher
 
 struct BillerNumberView : View {
     
-    let biller : Biller
+    @EnvironmentObject private var paymentViewModel : BillerPaymentViewModel
     
-    @State private var enteredNumber : String = ""
-    
-    @State private var amountText : String = "" {
-        
-        didSet{
-            
-            amountText = String(format: "%.2f", amountText)
-            
-            print("am.txt::\(amountText)")
-        }
-    }
+    @State private var shouldReset : Bool = true
     
     var body: some View {
         
@@ -44,7 +34,13 @@ struct BillerNumberView : View {
     
         })
         .backButton()
-        .navigationBar(title: Text(biller.name ?? ""), displayMode: .inline)
+        .navigationBar(title: Text(paymentViewModel.biller?.name ?? ""), displayMode: .inline)
+        .onDisappear{
+            
+            if shouldReset {
+                paymentViewModel.reset()
+            }
+        }
     }
 
 }
@@ -58,7 +54,7 @@ extension BillerNumberView {
             let n = billerNumberTitle()
             Text(n).font(.custom(Theme.fontName, size: 16))
             
-            TextField(n, text: $enteredNumber)
+            TextField(n, text: $paymentViewModel.number)
             .keyboardType(.numberPad)
             .frame(width: 200, height: 24)
             .overlay(VStack{Divider().backgroundFill(.black).offset(x: 0, y: 20)})
@@ -69,14 +65,14 @@ extension BillerNumberView {
     @ViewBuilder
     private func amountView() -> some View {
         
-        let currency = CurrencyManager.currency(countryCode: biller.country ?? "MY") ?? "MYR"
+        let currency = CurrencyManager.currency(countryCode: paymentViewModel.biller?.country ?? "MY") ?? "MYR"
         let amountTitle = "\("Amount".localized) (\(currency))"
         
         VStack(alignment: .leading, spacing: 2){
        
             Text(amountTitle).font(.custom(Theme.fontNameBold, size: 16)).foregroundColor(Color(UIColor(hex:"#888888ff")!))
             
-            TextField("Amount", text: $amountText)
+            TextField("Amount", text: $paymentViewModel.amountText)
             .keyboardType(.decimalPad)
             .frame(width: 200, height: 24).font(.custom(Theme.fontName, size: 30))
             .overlay(VStack{Divider().backgroundFill(.black).offset(x: 0, y: 20)})
@@ -89,21 +85,27 @@ extension BillerNumberView  {
     
     private func billerNumberTitle() -> String{
         
-        switch(biller.byType) {
-        
-            case .accountNumber :
-                return "Account Number".localized
-                
-            case .phoneNumber :
-                return "Phone Number".localized
-                
-            case .others :
-                return "Others".localized
+        if let bType = paymentViewModel.biller?.byType {
+       
+            switch(bType) {
             
-            default :
-                return "none".localized
-            
+                case .accountNumber :
+                    return "Account Number".localized
+                    
+                case .phoneNumber :
+                    return "Phone Number".localized
+                    
+                case .others :
+                    return "Others".localized
+                
+                default :
+                    return "none".localized
+                
+            }
         }
+        
+        return ""
+       
     }
     
     
@@ -117,7 +119,7 @@ extension BillerNumberView  {
             Circle().fill(Color(UIColor(hex:"#eeeeffff")!)).frame(width: 100, height: 100).padding()
             
             
-            KFImage( URL(string: biller.iconUrl ?? ""))
+            KFImage( URL(string: paymentViewModel.biller?.iconUrl ?? ""))
             .resizable()
             .loadDiskFileSynchronously()
             .placeholder(Common.imagePlaceHolderView)

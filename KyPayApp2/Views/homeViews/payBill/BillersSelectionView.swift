@@ -12,7 +12,12 @@ struct BillersSelectionView : View {
     
     @ObservedObject private var billersViewModel = BillersViewModel()
     
+    @State private var paymentViewModel = BillerPaymentViewModel()
+    
     @EnvironmentObject private var userViewModel : UserViewModel
+    
+    @State private var shouldProceed : Bool = false
+    
     
     var body: some View {
         
@@ -27,6 +32,7 @@ struct BillersSelectionView : View {
                     billerRow(biller)
                 }
             
+                paymentNavLink()
             }
             .navigationBar(title: Text("Choose A Biller"), displayMode: .inline)
         }
@@ -39,6 +45,7 @@ struct BillersSelectionView : View {
         .onAppear{
             billersViewModel.fetchBillers(country: userViewModel.countryCode)
         }
+        .environmentObject(paymentViewModel)
     }
 }
 
@@ -48,8 +55,17 @@ extension BillersSelectionView {
     
     private func billerRow( _ biller : Biller ) -> some View{
         
-        NavigationLink(destination: BillerNumberView(biller: biller)){
+       
+        Button(action: {
             
+            paymentViewModel.biller = biller
+            
+            withAnimation{
+                
+                self.shouldProceed = true
+            }
+    
+        }){
             HStack {
                 
                 KFImage( URL(string: biller.iconUrl ?? ""))
@@ -67,7 +83,14 @@ extension BillersSelectionView {
                 .padding()
                 
             }
+           
         }
-        
     }
+    
+    
+    private func paymentNavLink() -> some View {
+        
+        NavigationLink(destination: BillerNumberView(), isActive : $shouldProceed){}.hidden(true)
+    }
+
 }
