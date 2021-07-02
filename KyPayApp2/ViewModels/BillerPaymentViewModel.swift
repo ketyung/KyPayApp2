@@ -160,3 +160,15 @@ extension BillerPaymentViewModel {
     }
     
 }
+
+extension BillerPaymentViewModel {
+    
+    func proceed(){
+        
+        if !errorPresented {
+            
+            /// should proceed while no error!
+            
+        }
+    }
+}

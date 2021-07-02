@@ -11,10 +11,35 @@ import RapydSDK
 class PayoutHandler : NSObject {
     
     
-    func issuePayoutFor(wallet : UserWallet, user : User, payoutMethod : PayoutMethod){
+    func issuePayoutFor(biller : Biller){
         
+        self.obtainBeneficiaryOf(biller: biller, completion: { p in
+            
+            
         
+        })
+    }
+    
+}
+
+extension PayoutHandler {
+    
+    private func obtainBeneficiaryOf(biller : Biller, completion : ((RPDPayoutTransferBeneficiaryPartaker?)->Void)? = nil ){
         
+        if let bid = biller.serviceBid {
+            
+            RPDPayoutManager().retrieveBeneficiary(forID: bid) { b, error in
+            
+                guard let err = error else {
+                    
+                    completion?(b)
+                    
+                    return
+                }
+                
+                print("obtainining.beneficiary.for.biller.error:\(err)")
+            }
+        }
     }
     
 }
@@ -124,22 +149,14 @@ extension PayoutHandler {
         
         
         RPDPayoutManager().createSender(country: RPDCountry.country(isoAlpha2: user.countryCode ?? "MY"),                                 currency: RPDCurrency.currency(with: currency),entityType: RPDEntityHolderType.individual,                                      senderRequiredFields: senderRequiredFields,firstName: user.firstName, lastName: user.lastName,
-            companyName: "abc",identifierType: "IC", identifierValue: "99299393939", completionBlock: { sender, error in
+            companyName: "abc",identifierType: "IC", identifierValue: "99299393939",
+            
+            completionBlock: { sender, error in
                 if let sender = sender {
                     
                     print("sender.id::\(sender.ID)")
                 }
         })
 
-    }
-}
-
-extension PayoutHandler {
-    
-    
-    
-    func createBenefiary(){
-        
-        
     }
 }

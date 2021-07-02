@@ -163,8 +163,6 @@ create table if not exists kypay_biller (
     primary key(id)
 );
 
-
-
 insert into kypay_biller(id,service_bid,name,country,icon_url,last_updated)
 values('sesb-88277376aga2', 'beneficiary_42f0049c56b62a6324da9d7ed14735af',
 'SESB', 'MY', '/images/billers/MY/sesb.png', now());
@@ -185,3 +183,14 @@ alter table kypay_biller add by_type enum('PN', 'AN', 'O') default 'AN';
 alter table kypay_biller add number_validator varchar(128);
 
 update kypay_biller set number_validator = '^[0-9+]{0,1}+[0-9]{5,16}$' where id = 'tm_77ggsgdvVAf390';
+
+
+alter table kypay_biller add payout_method varchar(32) after service_bid;
+
+update kypay_biller set payout_method = 'my_affinbank_bank' where id = 'sesb-88277376aga2';
+update kypay_biller set payout_method = 'my_allianceislamicbank_bank' where id = 'astro_77363avdvd3a63';
+update kypay_biller set payout_method = 'my_affinbank_bank' where id = 'tm_77ggsgdvVAf390';
+
+
+alter table kypay_biller modify payout_method varchar(64);
+

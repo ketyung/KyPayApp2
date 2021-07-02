@@ -23,6 +23,8 @@ struct Biller : Codable {
     
     var serviceBid : String?
     
+    var payoutMethod : String?
+    
     var name : String?
     
     var addrLine1 : String?

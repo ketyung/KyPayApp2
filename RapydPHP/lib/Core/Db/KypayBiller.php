@@ -13,6 +13,7 @@ class KypayBiller extends KypayDbObject {
     
     public $id;
     public $serviceBid;
+    public $payoutMethod;
     public $name;
     public $addrLine1;
     public $addrLine2;
