@@ -16,6 +16,8 @@ struct UserPaymentTx : Codable{
         case email = "E"
         
         case user_id = "U"
+        
+        case biller_id = "B"
     }
     
     enum Stat : String, Codable {

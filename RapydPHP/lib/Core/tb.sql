@@ -115,6 +115,7 @@ create table if not exists kypay_user_payment_tx (
 
 alter table kypay_user_payment_tx add note varchar(64) after method;
 
+alter table kypay_user_payment_tx modify to_uid_type enum('B','P', 'E', 'U') default 'U' NOT null;
 
 alter table kypay_user_payment_tx add service_payment_id varchar(128) after method;
 

@@ -366,12 +366,14 @@ extension UserWalletViewModel {
     
     
     func addPaymentTxRemotely ( amount : Double , currency : String, user : User,
-            walletRefId : String, toUserId : String? = nil, toWalletRefId : String? = nil,
-            method : String, note : String? = nil, serviceId : String? = nil , txType : UserPaymentTx.TxType,
+                                walletRefId : String, toUserId : String? = nil,
+                                toUserIdType : UserPaymentTx.UidType? = .user_id,
+            toWalletRefId : String? = nil, method : String, note : String? = nil,
+            serviceId : String? = nil , txType : UserPaymentTx.TxType,
             status : UserPaymentTx.Stat = .success , completion : ((Error?) -> Void)? = nil ){
         
         let pmTx = UserPaymentTx(uid : user.id ?? "", toUid:  toUserId ?? user.id ?? "",
-                                 toUidType: .none, txType : txType, walletRefId: walletRefId,
+                                 toUidType: toUserIdType, txType : txType, walletRefId: walletRefId,
                                  toWalletRefId:  toWalletRefId, amount:  amount, currency: currency,
                                  method: method, note: note, serviceId: serviceId, stat: status)
         
@@ -568,11 +570,69 @@ extension UserWalletViewModel {
             
             completion?(id, err)
             
-            
-            
-            
         })
         
     }
     
+}
+
+
+
+extension UserWalletViewModel {
+    
+    func updateWalletRemotely(payOutTo biller : Biller, user : User,
+        amount : Double, number : String, senderId : String? = nil ,
+        serviceId : String? = nil , completion : ((Error?) -> Void)? = nil ){
+        
+        let newBalance = (walletHolder.wallet.balance ?? 0) - amount
+        
+        var walletToBeUpdated = UserWallet(id : walletHolder.wallet.id ,
+        refId: walletHolder.wallet.refId, balance : newBalance)
+        
+        if walletToBeUpdated.servicePoSenderId == nil, let senderId = senderId {
+            
+            walletToBeUpdated.servicePoSenderId = senderId
+        }
+        
+        // update wallet in session
+        DispatchQueue.main.async {
+       
+            self.walletHolder.wallet.balance = newBalance
+        }
+        
+        let walletType = user.allowedWalletTypes.first ?? .personal
+        let currency = CurrencyManager.currency(countryCode: user.countryCode ?? "MY") ?? "MYR"
+        
+        // update wallet in KDS
+        if var savedWallet = KDS.shared.getWallet(type: walletType, currency: currency){
+            
+            savedWallet.balance = newBalance
+            KDS.shared.saveWallet(savedWallet)
+        }
+        
+        // Now update remotely
+        ARH.shared.updateUserWallet(walletToBeUpdated, returnType: UserWallet.self,  completion: { res in
+            
+            switch(res) {
+            
+                case .failure(let err) :
+                    completion?(err)
+                    
+                case .success(_) :
+                    // record a payment tx remotely
+                    
+                    let note = "\(PH.payBillPrefix)\(number)"
+                    
+                    self.addPaymentTxRemotely(amount: -amount, currency: currency, user: user,
+                    walletRefId: walletToBeUpdated.refId ?? "", toUserId: biller.id ?? "",
+                    toUserIdType: .biller_id, toWalletRefId: nil,
+                    method: biller.payoutMethod ?? "", note: note, serviceId: serviceId,
+                    txType: .payBill, completion: completion)
+                    
+                   // print("record.tx.to.remote::\(toUserId ?? "zzz")::\(toWalletRefId ?? "xxx")")
+                    
+            }
+        })
+        
+    }
 }

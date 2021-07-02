@@ -13,6 +13,7 @@ class BillerPaymentViewModel : ObservableObject {
     
     @Published private var billerPayment  = BillerPayment()
     
+    private lazy var payoutHandler = PayoutHandler()
     
     var amount : Double {
         
@@ -163,12 +164,63 @@ extension BillerPaymentViewModel {
 
 extension BillerPaymentViewModel {
     
-    func proceed(){
+    func proceed(from user : User, wallet : UserWallet, walletViewModel : UserWalletViewModel){
         
-        if !errorPresented {
+        if amount <= 0 {
+            
+            self.send(error: CustomError(errorText: "Invalid amount!".localized))
+            return
+        }
+        
+        
+        if number.isEmpty {
+            
+            self.send(error: CustomError(errorText: "Invalid number!".localized))
+            return
+        }
+        
+        if !errorPresented, let biller = biller {
             
             /// should proceed while no error!
+            self.payoutHandler.issuePayout(from: user, wallet: wallet, for: biller, amount: amount, number: number, completion: {
+                
+                [weak self] payoutId, senderId, err in
+                
+                guard let err = err else {
+                    
+                    
+                    walletViewModel.updateWalletRemotely(payOutTo: biller, user: user, amount: self?.amount ?? 0, number: self?.number ?? "", senderId: senderId, serviceId: payoutId, completion: {err in
+                        
+                        guard let err = err else { return }
+                        
+                        self?.send(error: err)
+                    })
+                    return
+                }
+                
+                self?.send(error: err)
+          
+                
+            })
             
         }
     }
+    
+    
+    private func send(error : Error?){
+        
+        DispatchQueue.main.async {
+         
+            withAnimation{
+           
+                self.billerPayment.errorMessage = error?.localizedDescription
+                self.errorPresented = true
+               
+            }
+            
+        }
+    }
+    
+   
+    
 }
