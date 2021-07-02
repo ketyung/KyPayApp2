@@ -88,7 +88,7 @@ class WalletHandler : NSObject {
         
         Config.setup()
         
-        let countryCode = user.countryCode ?? "MY"
+        let countryCode = user.countryCode ?? Common.defaultCountry
         let phoneNumber = user.phoneNumber ?? ""
         let email = user.email ?? ""
         let walletRefId = wallet.refIdForService ?? ""

@@ -25,7 +25,7 @@ struct Country : Decodable {
     
     var flag : UIImage? {
         
-        return UIImage(named: "CountryPickerView.bundle/Images/\(code?.uppercased() ?? "MY")")
+        return UIImage(named: "CountryPickerView.bundle/Images/\(code?.uppercased() ?? Common.defaultCountry)")
             
     }
     

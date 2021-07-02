@@ -119,7 +119,7 @@ class UserViewModel : NSObject, ObservableObject {
         
         get {
             
-            Country.phoneNumberOnly(phoneNumber, countryCode: userHolder.user.countryCode ?? "MY")
+            Country.phoneNumberOnly(phoneNumber, countryCode: userHolder.user.countryCode ?? Common.defaultCountry)
         }
         
         set(newVal){
@@ -153,7 +153,7 @@ class UserViewModel : NSObject, ObservableObject {
         
         get {
             
-            userHolder.user.countryCode ?? "MY"
+            userHolder.user.countryCode ?? Common.defaultCountry
         }
         
         set(newVal){

@@ -102,7 +102,7 @@ extension BillerNumberView {
     @ViewBuilder
     private func amountView() -> some View {
         
-        let currency = CurrencyManager.currency(countryCode: paymentViewModel.biller?.country ?? "MY") ?? "MYR"
+        let currency = CurrencyManager.currency(countryCode: paymentViewModel.biller?.country ?? Common.defaultCountry) ?? Common.defaultCurrency
         let amountTitle = "\("Amount".localized) (\(currency))"
         
         VStack(alignment: .leading, spacing: 2){

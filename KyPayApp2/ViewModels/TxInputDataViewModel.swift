@@ -294,9 +294,9 @@ extension TxInputDataViewModel {
         
         // need.to.change.the.hard.coded.currency.x
         
-        let currency = CurrencyManager.currency(countryCode: user.countryCode ?? "MY")
+        let currency = CurrencyManager.currency(countryCode: user.countryCode ?? Common.defaultCountry)
         
-        ARH.shared.fetchUserWallet(id: user.id ?? "", type:.personal, currency: currency ?? "MYR", completion: {
+        ARH.shared.fetchUserWallet(id: user.id ?? "", type:.personal, currency: currency ?? Common.defaultCurrency, completion: {
             
             res  in
         

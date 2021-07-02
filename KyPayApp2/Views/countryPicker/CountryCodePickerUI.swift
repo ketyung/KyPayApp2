@@ -107,7 +107,7 @@ extension CountryCodePickerUI {
             .resizable()
             .foregroundColor(Color(UIColor(hex:"#338855ff")!))
             .frame(width:20,height:20)
-            .hidden(viewModel.selectedCountry?.code ?? "MY" != country.code)
+            .hidden(viewModel.selectedCountry?.code ?? Common.defaultCountry != country.code)
             
         }.padding()
     }

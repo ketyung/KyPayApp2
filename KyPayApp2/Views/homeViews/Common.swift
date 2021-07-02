@@ -139,3 +139,10 @@ extension Common {
     }
    
 }
+
+extension Common {
+    
+    static let defaultCurrency : String = "MYR"
+    
+    static let defaultCountry : String = "MY"
+}

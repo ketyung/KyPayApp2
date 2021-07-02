@@ -17,11 +17,11 @@ class PayoutHandler : NSObject {
         
         Config.setup()
         
-        let senderCountry = user.countryCode ?? "MY"
-        let senderCurrency = CurrencyManager.currency(countryCode: senderCountry) ?? "MYR"
+        let senderCountry = user.countryCode ?? Common.defaultCountry
+        let senderCurrency = CurrencyManager.currency(countryCode: senderCountry) ?? Common.defaultCurrency
        
-        let billerCountry = biller.country ?? "MY"
-        let billerCurrency = CurrencyManager.currency(countryCode: billerCountry) ?? "MYR"
+        let billerCountry = biller.country ?? Common.defaultCountry
+        let billerCurrency = CurrencyManager.currency(countryCode: billerCountry) ?? Common.defaultCurrency
       
         if let senderID = walletSenderID {
             
@@ -93,8 +93,8 @@ extension PayoutHandler {
         senderCurrency : String, senderCountry : String, number : String,
         beneficiaryRequiredFields : [RPDPayoutRequiredField],senderRequiredFields : [RPDPayoutRequiredField], completion:((String?, Error?)-> Void)? = nil ){
         
-        let payoutCurrency = RPDCurrency.currency(with: CurrencyManager.currency(countryCode:  biller.country ?? "MY") ?? "MYR")
-        let beneficiaryCountry = RPDCountry.country(isoAlpha2: biller.country ?? "MY")
+        let payoutCurrency = RPDCurrency.currency(with: CurrencyManager.currency(countryCode:  biller.country ?? Common.defaultCountry) ?? Common.defaultCurrency)
+        let beneficiaryCountry = RPDCountry.country(isoAlpha2: biller.country ?? Common.defaultCountry)
         
       //  print("::\(biller.country ?? "")::beneficiaryCountry::\(beneficiaryCountry.isoAlpha2)::\(beneficiaryCountry.phoneCode ?? "")")
         
@@ -271,7 +271,7 @@ extension PayoutHandler {
         , completion : ((String?)->Void)? = nil ){
         
         
-        RPDPayoutManager().createSender(country: RPDCountry.country(isoAlpha2: user.countryCode ?? "MY"),                       currency: RPDCurrency.currency(with: currency),entityType: RPDEntityHolderType.individual,                                senderRequiredFields: senderRequiredFields,firstName: user.firstName, lastName: user.lastName,
+        RPDPayoutManager().createSender(country: RPDCountry.country(isoAlpha2: user.countryCode ?? Common.defaultCountry),                       currency: RPDCurrency.currency(with: currency),entityType: RPDEntityHolderType.individual,                                senderRequiredFields: senderRequiredFields,firstName: user.firstName, lastName: user.lastName,
                 companyName: PH.temp_company_name,identifierType: PH.temp_id_type,identifierValue: PH.temp_id_value,
             
             completionBlock: { sender, error in

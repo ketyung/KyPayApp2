@@ -42,7 +42,7 @@ class TopUpPaymentViewModel : NSObject, ObservableObject {
         
         get {
             
-            topUpPayment.currency ?? "MYR"
+            topUpPayment.currency ?? Common.defaultCurrency
         }
         
         set(newVal){

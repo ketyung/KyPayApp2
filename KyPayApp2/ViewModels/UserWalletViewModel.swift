@@ -91,7 +91,7 @@ class UserWalletViewModel : ObservableObject {
         
         get{
             
-            walletHolder.wallet.currency ?? "MYR"
+            walletHolder.wallet.currency ?? Common.defaultCurrency
         }
     }
     
@@ -142,7 +142,7 @@ extension UserWalletViewModel {
     func fetchWalletIfNotPresent( user : User, completion :((Error?) -> Void)? = nil ) {
         
         let walletType = user.allowedWalletTypes.first ?? .personal
-        let currency = CurrencyManager.currency(countryCode: user.countryCode ?? "MY") ?? "MYR"
+        let currency = CurrencyManager.currency(countryCode: user.countryCode ?? Common.defaultCountry) ?? Common.defaultCurrency
         
         guard let wallet = KDS.shared.getWallet(type: walletType , currency: currency ) else {
             
@@ -425,7 +425,7 @@ extension UserWalletViewModel {
         }
         
         let walletType = user.allowedWalletTypes.first ?? .personal
-        let currency = CurrencyManager.currency(countryCode: user.countryCode ?? "MY") ?? "MYR"
+        let currency = CurrencyManager.currency(countryCode: user.countryCode ?? Common.defaultCountry) ?? Common.defaultCurrency
         
         // update wallet in KDS
         if var savedWallet = KDS.shared.getWallet(type: walletType, currency: currency){
@@ -462,7 +462,7 @@ extension UserWalletViewModel {
         
         if let custId = self.serviceCustId {
   
-            let currency = CurrencyManager.currency(countryCode: user.countryCode ?? "MY") ?? "MYR"
+            let currency = CurrencyManager.currency(countryCode: user.countryCode ?? Common.defaultCountry) ?? Common.defaultCurrency
             
             self.walletHandler.add(card: card, amount: amount, currency: currency, customerId: custId, completion: {
                 pmdata , error in
@@ -490,7 +490,7 @@ extension UserWalletViewModel {
         
         if let custId = self.serviceCustId {
   
-            let currency = CurrencyManager.currency(countryCode: user.countryCode ?? "MY") ?? "MYR"
+            let currency = CurrencyManager.currency(countryCode: user.countryCode ?? Common.defaultCountry) ?? Common.defaultCurrency
             
             
             self.walletHandler.add(amount: amount, currency: currency,
@@ -602,7 +602,7 @@ extension UserWalletViewModel {
         }
         
         let walletType = user.allowedWalletTypes.first ?? .personal
-        let currency = CurrencyManager.currency(countryCode: user.countryCode ?? "MY") ?? "MYR"
+        let currency = CurrencyManager.currency(countryCode: user.countryCode ?? Common.defaultCountry) ?? Common.defaultCurrency
         
         // update wallet in KDS
         if var savedWallet = KDS.shared.getWallet(type: walletType, currency: currency){
@@ -651,7 +651,7 @@ extension UserWalletViewModel {
         }
         
         let walletType = user.allowedWalletTypes.first ?? .personal
-        let currency = CurrencyManager.currency(countryCode: user.countryCode ?? "MY") ?? "MYR"
+        let currency = CurrencyManager.currency(countryCode: user.countryCode ?? Common.defaultCountry) ?? Common.defaultCurrency
         
         // update wallet in KDS
         if var savedWallet = KDS.shared.getWallet(type: walletType, currency: currency){

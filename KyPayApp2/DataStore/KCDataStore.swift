@@ -74,7 +74,7 @@ extension KCDataStore {
     
     func saveWallet ( _ wallet : UserWallet ){
         
-        let key = "\(KDS.walleyKeyPrefix)\(wallet.type ?? .personal)\(wallet.currency ?? "MYR")"
+        let key = "\(KDS.walleyKeyPrefix)\(wallet.type ?? .personal)\(wallet.currency ?? Common.defaultCurrency)"
         
         save(wallet, key: key)
         

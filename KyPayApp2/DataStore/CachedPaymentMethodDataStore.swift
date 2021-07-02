@@ -31,7 +31,7 @@ class CachedPaymentMethodDataStore : NSObject {
         
         guard let managedObjectContext = self.managedObjectContext else { return }
         
-        if let pm = self.getPaymentMethod(by: paymentMethod.country ?? "MY", type: paymentMethod.type ?? "")?.first {
+        if let pm = self.getPaymentMethod(by: paymentMethod.country ?? Common.defaultCountry, type: paymentMethod.type ?? "")?.first {
         
             pm.type = paymentMethod.type
             pm.imageURL = paymentMethod.imageURL?.absoluteString
