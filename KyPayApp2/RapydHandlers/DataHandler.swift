@@ -109,7 +109,20 @@ extension DataHandler {
                 
                 payoutMethodTypes?.forEach { pm in
             
-                    print("po.method::\(pm.type)::\(pm.name ?? "")")
+                    print("po.method::\(pm.type)::\(pm.name ?? "")::\(pm.beneficiaryCountry?.isoAlpha2 ?? "")")
+                    
+                    pm.beneficiaryEntityTypes?.forEach{
+                        type in
+                        
+                        print("type::\(type)")
+                    }
+                    
+                    pm.payoutCurrencies?.forEach {
+                        
+                        c in
+                        
+                        print("currency :\(c.code)")
+                    }
                 }
                 completion?(payoutMethodTypes, nil)
                 

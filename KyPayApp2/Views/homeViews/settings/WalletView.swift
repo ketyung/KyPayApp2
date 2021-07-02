@@ -184,9 +184,9 @@ extension WalletView {
             
             //dataHandler.supportedPaymentMethods(countryCode: "MY")
             
-            dataHandler.supportedServiceProviders()
+            //dataHandler.supportedServiceProviders()
             
-           // dataHandler.supportedPayoutMethods(countryCode: "MY", currency: "MYR")
+            dataHandler.supportedPayoutMethods(countryCode: "MY", currency: "MYR")
         }){
             
             Text("Test me!!")

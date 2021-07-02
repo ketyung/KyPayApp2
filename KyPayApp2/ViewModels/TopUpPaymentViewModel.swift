@@ -174,12 +174,12 @@ extension TopUpPaymentViewModel : WKNavigationDelegate{
                     self.paymentStatus = .failure
                 }
             }
-            
+            /**
             else if webView.title == "Rapyd Dashboard" {
                 
                 print("trying to force body width fpr rapyd.sandbox")
                 self.evaluateJs(webView)
-            }
+            }*/
             
         //    print("title:\(String(describing: webView.title))::self.paymentStatus::\(self.paymentStatus)::\(self.servicePaymentId ?? "xxxx")::\(self.paymentMethod?.type ?? "")")
      
