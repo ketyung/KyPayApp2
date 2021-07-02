@@ -117,9 +117,7 @@ extension DataHandler {
                         print("type::\(type)")
                     }
                     
-                    pm.payoutCurrencies?.forEach {
-                        
-                        c in
+                    pm.payoutCurrencies?.forEach { c in
                         
                         print("currency :\(c.code)")
                     }

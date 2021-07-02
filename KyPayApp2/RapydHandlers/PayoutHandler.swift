@@ -96,10 +96,11 @@ extension PayoutHandler {
         let payoutCurrency = RPDCurrency.currency(with: CurrencyManager.currency(countryCode:  biller.country ?? "MY") ?? "MYR")
         let beneficiaryCountry = RPDCountry.country(isoAlpha2: biller.country ?? "MY")
         
-        print("::\(biller.country ?? "")::beneficiaryCountry::\(beneficiaryCountry.isoAlpha2)::\(beneficiaryCountry.phoneCode ?? "")")
+      //  print("::\(biller.country ?? "")::beneficiaryCountry::\(beneficiaryCountry.isoAlpha2)::\(beneficiaryCountry.phoneCode ?? "")")
         
         RPDPayoutManager().createPayout(payoutMethodType: biller.payoutMethod ?? "", payoutAmount: Decimal(amount), payoutCurrency: payoutCurrency, beneficiary: beneficiaryRequiredFields, beneficiaryID: biller.serviceBid ?? "",
-            beneficiaryCountry: beneficiaryCountry, beneficiaryEntityType: .company, sender: senderRequiredFields, senderID: senderID, senderCountry: RPDCountry.country(isoAlpha2: senderCountry), senderCurrency: RPDCurrency.currency(with: senderCurrency), senderEntityType: .company,
+            beneficiaryCountry: beneficiaryCountry, beneficiaryEntityType: .company,
+            sender: senderRequiredFields, senderID: senderID, senderCountry: RPDCountry.country(isoAlpha2: senderCountry), senderCurrency: RPDCurrency.currency(with: senderCurrency), senderEntityType: .individual,
             description:"\(PH.payBillPrefix)\(number)" , metadata: nil, merchantReferenceID: nil, confirmAutomatically: true, expiration: nil, identifierType: PH.temp_id_type, identifierValue: PH.temp_id_value, completionBlock: {
                 
                 payout, err in
