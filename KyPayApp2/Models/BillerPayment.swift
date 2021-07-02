@@ -18,4 +18,7 @@ struct BillerPayment {
     var errorPresented : Bool?
     
     var errorMessage : String?
+    
+    var success : Bool?
+    
 }

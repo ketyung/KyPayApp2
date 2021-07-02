@@ -11,10 +11,23 @@ import Kingfisher
 struct BillerNumberView : View {
     
     @EnvironmentObject private var paymentViewModel : BillerPaymentViewModel
-    
+   
+    @EnvironmentObject private var walletViewModel : UserWalletViewModel
+
+    @EnvironmentObject private var userViewModel : UserViewModel
+   
     @State private var shouldReset : Bool = true
     
     var body: some View {
+        
+       view()
+    }
+
+}
+
+extension BillerNumberView {
+    
+    private func view() -> some View {
         
         VStack{
             
@@ -31,6 +44,8 @@ struct BillerNumberView : View {
             Spacer()
         }
         .bottomFloatingButton( isPresented: true, action: {
+            
+   //         paymentViewModel.proceed(from: userViewModel.user, wallet: walletViewMode, walletViewModel: <#T##UserWalletViewModel#>)
     
         })
         .backButton()
@@ -42,8 +57,8 @@ struct BillerNumberView : View {
             }
         }
     }
-
 }
+
 
 extension BillerNumberView {
     

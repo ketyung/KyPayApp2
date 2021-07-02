@@ -95,6 +95,19 @@ class BillerPaymentViewModel : ObservableObject {
             billerPayment.errorPresented = newVal
         }
     }
+    
+    var success : Bool {
+        
+        get {
+            
+            billerPayment.success ?? false
+        }
+        
+        set(newVal){
+            
+            billerPayment.success = newVal
+        }
+    }
 }
 
 
@@ -107,6 +120,7 @@ extension BillerPaymentViewModel {
         billerPayment.number = nil
         billerPayment.errorPresented = nil
         billerPayment.errorMessage = nil
+        billerPayment.success = nil 
     }
     
     
@@ -188,10 +202,19 @@ extension BillerPaymentViewModel {
                 
                 guard let err = err else {
                     
-                    
                     walletViewModel.updateWalletRemotely(payOutTo: biller, user: user, amount: self?.amount ?? 0, number: self?.number ?? "", senderId: senderId, serviceId: payoutId, completion: {err in
                         
-                        guard let err = err else { return }
+                        guard let err = err else {
+                            
+                            DispatchQueue.main.async {
+                                withAnimation{
+                                    self?.success = true
+                                }
+                            }
+                               
+                            return
+                            
+                        }
                         
                         self?.send(error: err)
                     })
