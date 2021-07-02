@@ -11,10 +11,11 @@ import RapydSDK
 class PayoutHandler : NSObject {
     
     
-    func issuePayout(from user : User, wallet : UserWallet,
+    func issuePayout(from user : User, walletSenderID : String? = nil ,
                      for biller : Biller, amount : Double, number : String,
                      completion: ((_ payoutID : String?,_ senderID : String?, _ error : Error?)->Void)? = nil ){
         
+        Config.setup()
         
         let senderCountry = user.countryCode ?? "MY"
         let senderCurrency = CurrencyManager.currency(countryCode: senderCountry) ?? "MYR"
@@ -22,7 +23,7 @@ class PayoutHandler : NSObject {
         let billerCountry = biller.country ?? "MY"
         let billerCurrency = CurrencyManager.currency(countryCode: billerCountry) ?? "MYR"
       
-        if let senderID = wallet.servicePoSenderId {
+        if let senderID = walletSenderID {
             
             
             self.createPayout(for: user, biller: biller, senderID: senderID, amount: amount, number: number, senderCountry: senderCountry, senderCurrency: senderCurrency, billerCountry: billerCountry, billerCurrency: billerCurrency,
@@ -42,6 +43,8 @@ class PayoutHandler : NSObject {
                     senderRequiredFields: senderRequiredFields ?? [],completion: { senderID in
                                         
                         if let senderID = senderID {
+                            
+                            print("xx..createdSender.::\(senderID)")
                          
                             self?.createPayout(for: user, biller: biller, senderID: senderID, amount: amount, number: number, senderCountry: senderCountry, senderCurrency: senderCurrency, billerCountry: billerCountry, billerCurrency: billerCurrency,completion: {payoutId, err in
                                                 
@@ -95,6 +98,7 @@ extension PayoutHandler {
                 
                 payout, err in
             
+    
                 completion?(payout?.ID, err)
                 
             
@@ -142,6 +146,8 @@ extension PayoutHandler {
           senderCurrency: RPDCurrency.currency(with: senderCurrency),
           senderEntityType: .individual) { payoutRequiredFieldsDetails, error in
                                         
+            guard let error = error else {
+             
                 if let payoutRequiredFieldsDetails = payoutRequiredFieldsDetails {
                                                                 
                     if var senderRequiredFields = payoutRequiredFieldsDetails.senderRequiredFields, var beneficiaryRequiredFields = payoutRequiredFieldsDetails.beneficiaryRequiredFields {
@@ -154,9 +160,12 @@ extension PayoutHandler {
                     }
                 }
             
-                print("error.obtaining.required.fields::\(error?.localizedDescription ?? "xxxx")")
+                return
+            }
             
-                completion?(nil,nil)
+            print("error.obtaining.required.fields::\(String(describing: error))")
+            
+            completion?(nil,nil)
             
         }
     }
@@ -257,13 +266,13 @@ extension PayoutHandler {
             completionBlock: { sender, error in
                 if let sender = sender {
                     
-                    print("sender.id::\(sender.ID)")
+                    print("obtained.sender.id::\(sender.ID)")
                     
                     completion?(sender.ID)
                     return
                 }
                 
-                print("obtaining.sender.id::.error::\(error?.localizedDescription ?? "xxxx")")
+                print("obtaining.sender.id::.error::\(String(describing: error))")
         })
 
     }

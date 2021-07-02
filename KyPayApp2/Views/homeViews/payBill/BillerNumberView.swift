@@ -44,10 +44,14 @@ extension BillerNumberView {
             Spacer()
         }
         .bottomFloatingButton( isPresented: true, action: {
-            
-   //         paymentViewModel.proceed(from: userViewModel.user, wallet: walletViewMode, walletViewModel: <#T##UserWalletViewModel#>)
     
+            proceed()
         })
+        .progressView(isShowing: $paymentViewModel.inProgress )
+        .popOver(isPresented: $paymentViewModel.success ){
+            
+            Text("Success!")
+        }
         .backButton()
         .navigationBar(title: Text(paymentViewModel.biller?.name ?? ""), displayMode: .inline)
         .onDisappear{
@@ -57,10 +61,20 @@ extension BillerNumberView {
             }
         }
     }
+    
+    
+    private func proceed(){
+        
+        UIApplication.shared.endEditing()
+        paymentViewModel.proceed(from: userViewModel.user, walletViewModel: walletViewModel)
+
+    }
 }
 
 
 extension BillerNumberView {
+    
+
     
     private func accountNumberView() -> some View {
         

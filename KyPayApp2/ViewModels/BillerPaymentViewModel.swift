@@ -108,6 +108,19 @@ class BillerPaymentViewModel : ObservableObject {
             billerPayment.success = newVal
         }
     }
+    
+    var inProgress : Bool {
+        
+        get {
+            
+            billerPayment.inProgress ?? false
+        }
+        
+        set(newVal){
+            
+            billerPayment.inProgress = newVal
+        }
+    }
 }
 
 
@@ -120,7 +133,8 @@ extension BillerPaymentViewModel {
         billerPayment.number = nil
         billerPayment.errorPresented = nil
         billerPayment.errorMessage = nil
-        billerPayment.success = nil 
+        billerPayment.success = nil
+        billerPayment.inProgress = nil
     }
     
     
@@ -178,7 +192,7 @@ extension BillerPaymentViewModel {
 
 extension BillerPaymentViewModel {
     
-    func proceed(from user : User, wallet : UserWallet, walletViewModel : UserWalletViewModel){
+    func proceed(from user : User,  walletViewModel : UserWalletViewModel){
         
         if amount <= 0 {
             
@@ -193,12 +207,19 @@ extension BillerPaymentViewModel {
             return
         }
         
+        self.billerPayment.errorMessage = nil
+        self.errorPresented = false
+        
+        self.inProgress = true
+        
         if !errorPresented, let biller = biller {
             
             /// should proceed while no error!
-            self.payoutHandler.issuePayout(from: user, wallet: wallet, for: biller, amount: amount, number: number, completion: {
+            self.payoutHandler.issuePayout(from: user, walletSenderID: walletViewModel.walletSenderID, for: biller, amount: amount, number: number, completion: {
                 
                 [weak self] payoutId, senderId, err in
+                
+                print("issuing.payOut::\(payoutId ?? "pid")::\(senderId ?? "sid")")
                 
                 guard let err = err else {
                     
@@ -209,6 +230,7 @@ extension BillerPaymentViewModel {
                             DispatchQueue.main.async {
                                 withAnimation{
                                     self?.success = true
+                                    self?.inProgress = false
                                 }
                             }
                                
@@ -218,6 +240,8 @@ extension BillerPaymentViewModel {
                         
                         self?.send(error: err)
                     })
+                    
+                    
                     return
                 }
                 
@@ -238,6 +262,7 @@ extension BillerPaymentViewModel {
            
                 self.billerPayment.errorMessage = error?.localizedDescription
                 self.errorPresented = true
+                self.inProgress = false 
                
             }
             

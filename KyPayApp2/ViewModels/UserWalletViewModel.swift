@@ -124,6 +124,14 @@ class UserWalletViewModel : ObservableObject {
     }
     
     
+    var walletSenderID : String? {
+        
+        get {
+            
+            walletHolder.wallet.servicePoSenderId
+        }
+    }
+    
    
 }
 

@@ -21,4 +21,6 @@ struct BillerPayment {
     
     var success : Bool?
     
+    var inProgress : Bool?
+    
 }
