@@ -25,6 +25,7 @@ class PayoutHandler : NSObject {
       
         if let senderID = walletSenderID {
             
+            print("create.payout.with.senderId:\(senderID)")
             
             self.createPayout(for: user, biller: biller, senderID: senderID, amount: amount, number: number, senderCountry: senderCountry, senderCurrency: senderCurrency, billerCountry: billerCountry, billerCurrency: billerCurrency,
                               completion: {
@@ -35,6 +36,8 @@ class PayoutHandler : NSObject {
         }
         else {
          
+            print("create.payout.withOut.senderId!!")
+            
             self.getPayoutRequiredFields(for: user, biller: biller, amount: amount, senderCountry: senderCountry,
                 senderCurrency: senderCurrency, billerCountry: billerCountry, billerCurrency: billerCurrency, completion: {
                 [weak self] senderRequiredFields, beneficiaryRequiredFields in
