@@ -11,16 +11,42 @@ import RapydSDK
 class PayoutHandler : NSObject {
     
     
-    func issuePayout(from user : User, for biller : Biller){
+    func issuePayout(from user : User, wallet : UserWallet, for biller : Biller, amount : Double){
         
-        self.obtainBeneficiaryOf(biller: biller, completion: { p in
-        
+        if let senderID = wallet.servicePoSenderId {
             
-        
-        })
+            
+        }
+        else {
+            
+            
+        }
     }
     
 }
+
+extension PayoutHandler {
+    
+    private func createPayout(for biller : Biller, amount : Double, senderID : String,
+        senderCurrency : String, senderCountry : String, number : String,
+        beneficiaryRequiredFields : [RPDPayoutRequiredField],
+        senderRequiredFields : [RPDPayoutRequiredField], completion:((String?, Error?)-> Void)? = nil ){
+        
+        let payoutCurrency = RPDCurrency.currency(with: CurrencyManager.currency(countryCode:  biller.country ?? "MY") ?? "MYR")
+        
+        RPDPayoutManager().createPayout(payoutMethodType: biller.payoutMethod ?? "", payoutAmount: Decimal(amount), payoutCurrency: payoutCurrency, beneficiary: beneficiaryRequiredFields, beneficiaryID: biller.serviceBid ?? "",
+            beneficiaryCountry: RPDCountry.country(isoAlpha2: biller.country ?? "MY"), beneficiaryEntityType: .company, sender: senderRequiredFields, senderID: senderID, senderCountry: RPDCountry.country(isoAlpha2: senderCountry), senderCurrency: RPDCurrency.currency(with: senderCurrency), senderEntityType: .individual,
+            description:"\(PH.payBillPrefix)\(number)" , metadata: nil, merchantReferenceID: nil, confirmAutomatically: true, expiration: nil, identifierType: PH.temp_id_type, identifierValue: PH.temp_id_value, completionBlock: {
+                
+                payout, err in
+            
+                completion?(payout?.ID, err)
+                
+            
+        })
+    }
+}
+
 
 extension PayoutHandler {
     
@@ -48,20 +74,24 @@ extension PayoutHandler {
 extension PayoutHandler {
     
     
-    func getPayoutRequiredFields ( for user : User, biller : Biller, amount : Double, payoutCurrency : String) {
+    func getPayoutRequiredFields ( for user : User, biller : Biller, amount : Double ) {
         
         let senderCountry = user.countryCode ?? "MY"
         let senderCurrency = CurrencyManager.currency(countryCode: senderCountry) ?? "MYR"
-        
+       
+        let billerCountry = biller.country ?? "MY"
+        let billerCurrency = CurrencyManager.currency(countryCode: billerCountry) ?? "MYR"
+       
         
         RPDPayoutManager().getPayoutRequiredFields(payoutMethodType: biller.payoutMethod ?? "",
-                              payoutAmount: Decimal(amount), payoutCurrency: RPDCurrency.currency(with: payoutCurrency),
-                              beneficiaryCountry: RPDCountry.country(isoAlpha2: user.countryCode ?? "MY"),
-                              beneficiaryEntityType: .individual,
-                              senderCountry: RPDCountry.country(isoAlpha2: senderCountry),
-                              senderCurrency: RPDCurrency.currency(with: senderCurrency),
-                              senderEntityType: .individual) { payoutRequiredFieldsDetails, error in
-                                                            
+          payoutAmount: Decimal(amount),
+          payoutCurrency: RPDCurrency.currency(with: billerCurrency),
+          beneficiaryCountry: RPDCountry.country(isoAlpha2: billerCountry),
+          beneficiaryEntityType: .individual,
+          senderCountry: RPDCountry.country(isoAlpha2: senderCountry),
+          senderCurrency: RPDCurrency.currency(with: senderCurrency),
+          senderEntityType: .individual) { payoutRequiredFieldsDetails, error in
+                                        
                 if let payoutRequiredFieldsDetails = payoutRequiredFieldsDetails {
                                                                 
                     if var senderRequiredFields = payoutRequiredFieldsDetails.senderRequiredFields, var beneficiaryRequiredFields = payoutRequiredFieldsDetails.beneficiaryRequiredFields {
@@ -103,10 +133,13 @@ extension PayoutHandler {
                        $0.value = "c"
                                 
                  case "identification_type":
-                       $0.value = "64564645634"
+                        $0.value = PH.temp_id_type
                                 
+                // will need to update this later for future use
+                // real IC number from user
                  case "identification_value":
-                       $0.value = "565656"
+                        $0.value = PH.temp_id_value
+                    
                                 
                   default:
                        break
@@ -144,20 +177,40 @@ extension PayoutHandler {
 }
             
 
+typealias PH = PayoutHandler
+
 extension PayoutHandler {
     
-    func createSender(for user: User, currency : String, senderRequiredFields : [RPDPayoutRequiredField]){
+    static let payBillPrefix : String = "PayBill:"
+    
+    private static let temp_id_type : String = "ic_number"
+    
+    private static let temp_id_value : String = "770120-12-5677"
+    
+    private static let temp_company_name : String = "TechChee.com"
+    
+    func createSender(for user: User, currency : String, senderRequiredFields : [RPDPayoutRequiredField]
+        , completion : ((String?)->Void)? = nil ){
         
         
-        RPDPayoutManager().createSender(country: RPDCountry.country(isoAlpha2: user.countryCode ?? "MY"),                                 currency: RPDCurrency.currency(with: currency),entityType: RPDEntityHolderType.individual,                                      senderRequiredFields: senderRequiredFields,firstName: user.firstName, lastName: user.lastName,
-            companyName: "abc",identifierType: "IC", identifierValue: "99299393939",
+        RPDPayoutManager().createSender(country: RPDCountry.country(isoAlpha2: user.countryCode ?? "MY"),                       currency: RPDCurrency.currency(with: currency),entityType: RPDEntityHolderType.individual,                                senderRequiredFields: senderRequiredFields,firstName: user.firstName, lastName: user.lastName,
+                companyName: PH.temp_company_name,identifierType: PH.temp_id_type,identifierValue: PH.temp_id_value,
             
             completionBlock: { sender, error in
                 if let sender = sender {
                     
                     print("sender.id::\(sender.ID)")
+                    
+                    completion?(sender.ID)
+                    return
                 }
+                
+                print("obtaining.sender.id::.error::\(error?.localizedDescription ?? "xxxx")")
         })
 
     }
+    
+    
+
+    
 }
