@@ -91,7 +91,7 @@ extension PaymentMethodsViewModel {
             guard let err = err else {
                 
                 // filter for banks only, exclude other e-Wallets
-                if let types = types?.filter({$0.category == "bank_redirect" || $0.category == "bank_transfer"} )
+                if let types = types?.filter({$0.category == "bank_redirect" /**|| $0.category == "bank_transfer"*/ } )
                 {
         
                     DispatchQueue.main.async {

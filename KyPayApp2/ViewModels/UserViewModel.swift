@@ -198,9 +198,12 @@ class UserViewModel : NSObject, ObservableObject {
         guard let currency = self.currency else {
             
             self.currency = CurrencyManager.currency(countryCode: user.countryCode ?? "")
+          //  print("self.curr:\(self.currency ?? "xxxx")")
             return self.currency ?? ""
         }
         
+        //print("notnil.self.curr:\(self.currency ?? "xxxx")")
+    
         return currency
     }
     
