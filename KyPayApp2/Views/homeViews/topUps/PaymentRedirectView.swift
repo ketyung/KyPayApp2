@@ -48,6 +48,7 @@ extension PaymentRedirectView {
         
         VStack{
     
+          //  let _ = print(" PaymentRedirectWebView::url::\(url?.absoluteString ?? "xxxx")")
             PaymentRedirectWebView(url: url)
             .frame(width: UIScreen.main.bounds.width , height: UIScreen.main.bounds.height)
         }

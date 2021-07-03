@@ -171,7 +171,7 @@ extension CachedPaymentMethodDataStore {
         do{
             let results = try managedObjContext.fetch(myRequest)
 
-            print("locally.stored.cpms.count::\(results.count)")
+          //  print("locally.stored.cpms.count::\(results.count)")
             return results
 
         }

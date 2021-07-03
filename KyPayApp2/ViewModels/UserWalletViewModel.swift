@@ -336,15 +336,39 @@ extension UserWalletViewModel {
 extension UserWalletViewModel {
     
     
+    private func updateWalletInSessionForCustId(walletIDs : WalletIDs?, user : User){
+        
+        let walletType = user.allowedWalletTypes.first ?? .personal
+        let currency = CurrencyManager.currency(countryCode: user.countryCode ?? Common.defaultCountry) ?? Common.defaultCurrency
+        
+        if var savedWallet = KDS.shared.getWallet(type: walletType, currency: currency){
+            
+            savedWallet.serviceCustId = walletIDs?.custId
+            KDS.shared.saveWallet(savedWallet)
+        }
+       
+        
+        DispatchQueue.main.async {
+       
+            self.walletHolder.wallet.serviceCustId = walletIDs?.custId
+        }
+    }
+    
+    
     private func createRapydWallet( user : User, wallet : UserWallet){
         
-    
+       
         walletHandler.attachWallet(user: user, wallet: wallet, completion: { [weak self ] ids, err in
             guard let self = self else { return }
             
+            
             guard let _ = err else {
                 
+                self.updateWalletInSessionForCustId(walletIDs: ids, user: user)
+                
                 self.updateWalletRemotelyIfNeeded(wallet, ids: ids)
+                
+                
                 return
             }
        
@@ -354,6 +378,8 @@ extension UserWalletViewModel {
                
                 guard let err = err else {
                     
+                    self.updateWalletInSessionForCustId(walletIDs: ids, user: user)
+                   
                     self.updateWalletRemotelyIfNeeded(wallet, ids: ids)
                     return
                 }

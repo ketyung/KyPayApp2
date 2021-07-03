@@ -174,12 +174,15 @@ extension TopUpPaymentViewModel : WKNavigationDelegate{
                     self.paymentStatus = .failure
                 }
             }
-            /**
             else if webView.title == "Rapyd Dashboard" {
                 
                 print("trying to force body width fpr rapyd.sandbox")
                 self.evaluateJs(webView)
-            }*/
+            }
+            else {
+                
+                print("url::is::\(webView.url?.absoluteString ?? "xxxx")")
+            }
             
         //    print("title:\(String(describing: webView.title))::self.paymentStatus::\(self.paymentStatus)::\(self.servicePaymentId ?? "xxxx")::\(self.paymentMethod?.type ?? "")")
      
@@ -198,6 +201,7 @@ extension TopUpPaymentViewModel : WKNavigationDelegate{
 
             let js = "document.getElementById('root').style.width='\(UIScreen.main.bounds.width - 20)'"
             
+            //let js = "alert('hi....');"
             
             uiView.evaluateJavaScript(js, completionHandler: { result, error in
                 

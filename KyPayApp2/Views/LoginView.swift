@@ -71,11 +71,11 @@ extension LoginView {
         .frame(width: UIScreen.main.bounds.width, height:UIScreen.main.bounds.height + 200)
         .background(
         
-            LinearGradient(gradient: Gradient(colors: [ Color(UIColor(hex: "#ccddeeff")!), Color(UIColor(hex:"#ffffffff")!)]),
+            LinearGradient(gradient: Gradient(colors: [ Color(UIColor(hex: "#ccddeeff")!), Color(UIColor(hex:"#fffffff2")!)]),
                            startPoint: .leading, endPoint: .trailing)
         )
         .edgesIgnoringSafeArea(.all)
-        .bottomSheet(isPresented: $viewModel.isCountryPickerPresented, height: UIScreen.main.bounds.height , showGrayOverlay: true){
+        .bottomSheet(isPresented: $viewModel.isCountryPickerPresented, height: UIScreen.main.bounds.height - 50 , showGrayOverlay: true){
             
             
             CountryCodePickerUI(viewModel: viewModel, textFont: .custom(Theme.fontName, size: 16))

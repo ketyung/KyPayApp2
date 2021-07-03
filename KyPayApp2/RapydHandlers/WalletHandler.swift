@@ -604,12 +604,14 @@ extension WalletHandler {
             
             guard let err = error else {
                 
-                completion?(walletIDs, nil)
                 
                 if let message = message {
                     
                     print("creatingCustomer::\(walletIDs?.custId ?? "")::from::\(message)")
                 }
+               
+                completion?(walletIDs, nil)
+               
                 return
             }
             
