@@ -131,7 +131,8 @@ class KypayUserController extends Controller {
                                             
         if ($this->dbObject->insert($input) > 0){
             
-            $response['body'] = json_encode(array('status'=>1, 'id'=>$input['id'], 'text'=>'Created!'));
+            $a = array('status'=>1, 'id'=>$input['id'], 'text'=>'Created!');//, 'returnedObject'=> $input);
+            $response['body'] = json_encode($a);
         
         }
         else {

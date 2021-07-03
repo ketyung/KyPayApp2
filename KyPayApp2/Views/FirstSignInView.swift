@@ -46,10 +46,8 @@ struct FirstSignInView : View {
             
             Spacer()
             
-            homeScreenNavLink()
         }
         .popOver(isPresented: $errorPresented, content: {
-            
             
             Common.errorAlertView(message: errorMessage ?? "")
         })
@@ -100,14 +98,14 @@ extension FirstSignInView {
                 DispatchQueue.main.async {
               
                     phoneInputViewModel.removeAllUnneeded()
-               
+              
+                    withAnimation{
+                          
+                        viewModel.firstSignIn = false
+                    }
                 }
                 
               
-                withAnimation{
-                    
-                    self.pushToHome = true 
-                }
                 
                
             })
@@ -125,8 +123,4 @@ extension FirstSignInView {
     }
     
     
-    private func homeScreenNavLink() -> some View {
-        
-        NavigationLink(destination: ContentView(), isActive : $pushToHome){}.hidden(true)
-    }
 }

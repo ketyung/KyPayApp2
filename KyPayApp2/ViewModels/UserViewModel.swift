@@ -414,7 +414,6 @@ extension UserViewModel {
                 
                 case .success(let usr ) :
                 
-                
                     if let ruser = usr.returnedObject {
                    
                         KDS.shared.saveUser(ruser)
@@ -423,10 +422,23 @@ extension UserViewModel {
                         DispatchQueue.main.async {
                        
                             self.userHolder.user = ruser
+                            self.firstSignIn = false
                         }
                         
-                        self.firstSignIn = false
+                    }
+                    else {
+                        
+                        let ruser = User(id: usr.id, firstName: self.firstName, lastName: self.lastName, dob: self.dob, email: self.email, phoneNumber: self.phoneNumber, accountType: .personal, stat: .signedIn, countryCode: self.countryCode)
+                        
+                        KDS.shared.saveUser(ruser)
+                        
+                        // refresh user in userHolder
+                        DispatchQueue.main.async {
                        
+                            self.userHolder.user = ruser
+                            self.firstSignIn = false
+                        }
+                        
                     }
                    
                     

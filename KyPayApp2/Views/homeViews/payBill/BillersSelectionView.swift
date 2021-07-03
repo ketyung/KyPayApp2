@@ -82,6 +82,12 @@ extension BillersSelectionView {
                 .frame(minWidth: 160, alignment: .leading)
                 .padding()
                 
+                Spacer()
+                
+                Common.disclosureIndicator()
+                
+                Spacer().frame(width:3)
+                
             }
            
         }

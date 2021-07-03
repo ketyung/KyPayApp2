@@ -101,7 +101,7 @@ extension PaymentMethodsViewModel {
                             type in
                             
                             
-                            print("type::\(type.category)")
+                           // print("type::\(type.category)")
                             let pm = PaymentMethod(type: type.type,  country : countryCode, name: type.name, category: type.category, imageURL: type.imageURL, paymentFlowType: type.paymentFlowType)
                             
                             self.paymentMethods?.append(pm)
