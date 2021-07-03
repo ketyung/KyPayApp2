@@ -244,3 +244,16 @@ create table if not exists kypay_seller (
     description varchar(128),
     primary key(id)
 );
+
+create table if not exists kypay_seller_item (
+
+    id varchar(12) default 'x' NOT null,
+    seller_id varchar(32) default 'x' NOT null,
+    name varchar(64),
+    description varchar(128),
+    price float(10,2),
+    currency varchar(5),
+    primary key(id,seller_id)
+);
+
+
