@@ -223,7 +223,7 @@ extension TxInputDataViewModel {
             txInputData.phoneNumberBeingVerified = true
         }
         
-        if !phoneNumber.isValidPhone() {
+        if !phoneNumber.isValidPhone() || phoneNumber.isEmpty {
             
             sendFailureMessage("Invalid Phone Number!")
             withAnimation{

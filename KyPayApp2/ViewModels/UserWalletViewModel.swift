@@ -597,7 +597,7 @@ extension UserWalletViewModel {
             guard let err = err else {
                 
                 self.updateWalletRemotely(by: -amount,
-                for: user, method: "send_money", serviceId: id,
+                for: user, method: "kypay_send_money", serviceId: id,
                 toUserId : toUserId, toWalletRefId: toWalletRefId,
                 note: note, txType: .sendMoney,
                 completion: { err in

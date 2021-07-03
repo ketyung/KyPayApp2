@@ -144,7 +144,6 @@
 		10B8562526896E4500AEF15F /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8562426896E4500AEF15F /* Common.swift */; };
 		10B856272689727500AEF15F /* CachedRecentTxAttemptDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B856262689727500AEF15F /* CachedRecentTxAttemptDataSource.swift */; };
 		10B85629268A982900AEF15F /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B85628268A982900AEF15F /* ShareView.swift */; };
-		10B8562B268AACBA00AEF15F /* kypay_db.sql in Resources */ = {isa = PBXBuildFile; fileRef = 10B8562A268AACBA00AEF15F /* kypay_db.sql */; };
 		10B8562D268AE70900AEF15F /* PaymentSuccess.php in Resources */ = {isa = PBXBuildFile; fileRef = 10B8562C268AE70900AEF15F /* PaymentSuccess.php */; };
 		10B85630268B0B8800AEF15F /* KypayDeviceToken.php in Sources */ = {isa = PBXBuildFile; fileRef = 10B8562F268B0B8800AEF15F /* KypayDeviceToken.php */; };
 		10B85632268B0E5500AEF15F /* KypayDeviceTokenController.php in Sources */ = {isa = PBXBuildFile; fileRef = 10B85631268B0E5500AEF15F /* KypayDeviceTokenController.php */; };
@@ -163,6 +162,8 @@
 		10FFB5FB268DEB4B0029C1D8 /* BillerNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB5FA268DEB4B0029C1D8 /* BillerNumberView.swift */; };
 		10FFB5FD268E890C0029C1D8 /* BillerPaymentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB5FC268E890C0029C1D8 /* BillerPaymentViewModel.swift */; };
 		10FFB5FF268E892B0029C1D8 /* BillerPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB5FE268E892B0029C1D8 /* BillerPayment.swift */; };
+		10FFB60126904A6F0029C1D8 /* KypayMessage.php in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB60026904A6F0029C1D8 /* KypayMessage.php */; };
+		10FFB60326904BA10029C1D8 /* KypayMessageController.php in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB60226904BA10029C1D8 /* KypayMessageController.php */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -337,7 +338,6 @@
 		10B8562426896E4500AEF15F /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		10B856262689727500AEF15F /* CachedRecentTxAttemptDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedRecentTxAttemptDataSource.swift; sourceTree = "<group>"; };
 		10B85628268A982900AEF15F /* ShareView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
-		10B8562A268AACBA00AEF15F /* kypay_db.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = kypay_db.sql; sourceTree = "<group>"; };
 		10B8562C268AE70900AEF15F /* PaymentSuccess.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = PaymentSuccess.php; sourceTree = "<group>"; };
 		10B8562E268B084400AEF15F /* KyPayApp2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KyPayApp2.entitlements; sourceTree = "<group>"; };
 		10B8562F268B0B8800AEF15F /* KypayDeviceToken.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = KypayDeviceToken.php; sourceTree = "<group>"; };
@@ -357,6 +357,8 @@
 		10FFB5FA268DEB4B0029C1D8 /* BillerNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillerNumberView.swift; sourceTree = "<group>"; };
 		10FFB5FC268E890C0029C1D8 /* BillerPaymentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillerPaymentViewModel.swift; sourceTree = "<group>"; };
 		10FFB5FE268E892B0029C1D8 /* BillerPayment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillerPayment.swift; sourceTree = "<group>"; };
+		10FFB60026904A6F0029C1D8 /* KypayMessage.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = KypayMessage.php; sourceTree = "<group>"; };
+		10FFB60226904BA10029C1D8 /* KypayMessageController.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = KypayMessageController.php; sourceTree = "<group>"; };
 		1B47377B496C6F0F1022FFD4 /* Pods-KyPayApp2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.debug.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.debug.xcconfig"; sourceTree = "<group>"; };
 		6F523BC3D4353462922B31B9 /* Pods-KyPayApp2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.release.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -548,7 +550,6 @@
 			isa = PBXGroup;
 			children = (
 				1033B2A42674A92D00D999CE /* tb.sql */,
-				10B8562A268AACBA00AEF15F /* kypay_db.sql */,
 				1033B2A52674A92D00D999CE /* Db */,
 				1033B2AC2674A92D00D999CE /* Controllers */,
 			);
@@ -566,6 +567,7 @@
 				1033B2AB2674A92D00D999CE /* KypayDbObject.php */,
 				10B8562F268B0B8800AEF15F /* KypayDeviceToken.php */,
 				10FFB5EF268D71920029C1D8 /* KypayBiller.php */,
+				10FFB60026904A6F0029C1D8 /* KypayMessage.php */,
 			);
 			path = Db;
 			sourceTree = "<group>";
@@ -581,6 +583,7 @@
 				1033B2B12674A92D00D999CE /* KypayUserAddressController.php */,
 				10B85631268B0E5500AEF15F /* KypayDeviceTokenController.php */,
 				10FFB5F1268D84050029C1D8 /* KypayBillerController.php */,
+				10FFB60226904BA10029C1D8 /* KypayMessageController.php */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1007,7 +1010,7 @@
 				10FFB5ED268D6C670029C1D8 /* astro.png in Resources */,
 				10B855DF267DEACB00AEF15F /* countryCurrency.json in Resources */,
 				1033C0832677035100D999CE /* CountryPickerView.bundle in Resources */,
-				10B8562B268AACBA00AEF15F /* kypay_db.sql in Resources */,
+				10FFB60326904BA10029C1D8 /* KypayMessageController.php in Resources */,
 				1033B2D22674A92D00D999CE /* DotEnv.php in Resources */,
 				10FFB5EC268D6C670029C1D8 /* sesb.png in Resources */,
 				1033B2612674A7F300D999CE /* LaunchScreen.storyboard in Resources */,
@@ -1156,6 +1159,7 @@
 				1033C0C5267B358E00D999CE /* KyPayDb.xcdatamodeld in Sources */,
 				1033C0922678292900D999CE /* OtpTextViewModel.swift in Sources */,
 				1033C0CF267D767000D999CE /* TxInputData.swift in Sources */,
+				10FFB60126904A6F0029C1D8 /* KypayMessage.php in Sources */,
 				1033C0982678477600D999CE /* UserViewModel.swift in Sources */,
 				10B85620268949CA00AEF15F /* TxHandler.swift in Sources */,
 				1033B2572674A7F200D999CE /* SceneDelegate.swift in Sources */,

@@ -22,7 +22,7 @@ struct SendView : View {
     var body: some View {
         
         navView()
-        
+           
     }
     
     
@@ -33,7 +33,7 @@ struct SendView : View {
             view()
             .padding(.leading, 20)
             .navigationBarHidden(true)
-              
+                
         }
         .popOver(isPresented: $dataInputViewModel.isCountryPickerPresented){
         
@@ -73,14 +73,15 @@ extension SendView {
             Text("Send Money")
             .font(.custom(Theme.fontNameBold, size: 40))
             .onTapGesture {self.endEditing()}
-            
+             
             Spacer()
             .frame(height:30)
             
             Text("Mobile Phone")
             .font(.custom(Theme.fontName, size: 20))
             .foregroundColor(Color(UIColor(hex:"#36A600ff")!))
-            
+            .onTapGesture {self.endEditing()}
+                
             
             phoneView()
             

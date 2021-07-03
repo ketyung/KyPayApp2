@@ -132,6 +132,8 @@ alter table kypay_user_payment_tx add to_wallet_ref_id varchar(16) after wallet_
 alter table kypay_user_payment_tx add tx_type enum('WT', 'SM', 'RM', 'PB') after to_uid_type;
 
 
+update kypay_user_payment_tx set method = 'kypay_send_money' where method = 'send_money';
+
 
 drop table if exists kypay_device_token;
 create table if not exists kypay_device_token (
@@ -195,3 +197,17 @@ update kypay_biller set payout_method = 'my_affinbank_bank' where id = 'tm_77ggs
 
 alter table kypay_biller modify payout_method varchar(64);
 
+
+
+drop table if exists kypay_message;
+create table if not exists kypay_message (
+
+    id varchar(32) default 'x' NOT null,
+    uid varchar(32) default 'x' NOT null,
+    item_id varchar(32),
+    title varchar(128),
+    sub_title varchar(255),
+    type enum('SM', 'RM','O'),
+    last_updated datetime,
+    primary key(id)
+);

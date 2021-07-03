@@ -6,6 +6,7 @@ use Core\Db\KypayUser as User;
 use Core\Db\KypayUserWallet as Wallet;
 use Core\Controllers\RequestMethod as RM;
 use Core\Controllers\Controller as Controller;
+use Core\Controllers\KypayMessageController as MessageController;
 use Util\Log as Log;
 use Util\StrUtil as StrUtil;
 
@@ -70,9 +71,9 @@ class KypayUserPaymentTxController extends Controller {
     
     
     
-    protected function updateWalletOfReceiver($input){
+    protected function updateWalletOfRecipient($input){
         
-        if (isset($input['method']) && $input['method'] == 'send_money' ){
+        if (isset($input['method']) && $input['method'] == 'kypay_send_money' ){
             
             
             if ( isset($input ['to_uid']) && isset($input ['to_wallet_ref_id'])) {
@@ -98,6 +99,13 @@ class KypayUserPaymentTxController extends Controller {
     }
     
     
+    
+    protected function notifyOfMoneySent(Array $input){
+        
+        $m = new KypayMessageController($this->db);
+        $m->notifyOfMoneySent($input);
+        
+    }
 
     
     
@@ -119,7 +127,8 @@ class KypayUserPaymentTxController extends Controller {
         
         if ($this->dbObject->insert($input) > 0){
             
-            $this->updateWalletOfReceiver($input);
+            $this->updateWalletOfRecipient($input);
+            $this->notifyOfMoneySent($input);
             
             $response['body'] = json_encode(array('status'=>1, 'id'=>$input['id'],
             'text'=>'Created!'));

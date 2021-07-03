@@ -16,7 +16,7 @@ class Controller {
     
     protected $params;
  
-    public function __construct($db, $requestMethod, $params = null)
+    public function __construct($db, $requestMethod = "", $params = null)
     {
         $this->db = $db;
         $this->requestMethod = $requestMethod;
