@@ -75,7 +75,7 @@ extension LoginView {
                            startPoint: .leading, endPoint: .trailing)
         )
         .edgesIgnoringSafeArea(.all)
-        .bottomSheet(isPresented: $viewModel.isCountryPickerPresented, height: UIScreen.main.bounds.height - 120, showGrayOverlay: true){
+        .bottomSheet(isPresented: $viewModel.isCountryPickerPresented, height: UIScreen.main.bounds.height , showGrayOverlay: true){
             
             
             CountryCodePickerUI(viewModel: viewModel, textFont: .custom(Theme.fontName, size: 16))

@@ -285,6 +285,13 @@ extension UserViewModel {
                         case .failure(let err) :
                             if let err = err as? ApiError, err.statusCode == 404 {
                                 // indicate first sign in if NOT found!
+                                // save the phone number to userViewModel
+                                
+                                DispatchQueue.main.async {
+                                    
+                                    self.phoneNumber = phone
+                                }
+                                
                                 completion?(true, nil)
                                 
                             }
@@ -336,9 +343,28 @@ extension UserViewModel {
     
     
     
-    func add(completion : ((Error?)-> Void)? = nil ){
+    func add(country : Country?, completion : ((Error?)-> Void)? = nil ){
+        
+        
+        guard let country = country else {
+            
+            completion?(FirstSignInError(errorText: "No selected country".localized))
+            self.showingProgressIndicator = false
+            return
+        }
+        
+        self.countryCode = country.code ?? Common.defaultCountry
+    
         
         self.showingProgressIndicator = true
+        
+        if !self.phoneNumber.isValidPhone() {
+   
+            completion?(FirstSignInError(errorText: "Invalid phone number!".localized))
+            self.showingProgressIndicator = false
+            return
+   
+        }
         
         
         if self.firstName.trim().isEmpty {
@@ -372,6 +398,7 @@ extension UserViewModel {
             self.showingProgressIndicator = false
             return
         }
+        
         
         ARH.shared.addUser(user, returnType: User.self, completion: { [weak self]
         
@@ -407,8 +434,11 @@ extension UserViewModel {
                 
             }
             
-            self.showingProgressIndicator = false
-        
+            DispatchQueue.main.async {
+         
+                self.showingProgressIndicator = false
+            }
+           
             
         })
     }

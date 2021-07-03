@@ -12,6 +12,9 @@ struct FirstSignInView : View {
     
     @EnvironmentObject private var viewModel : UserViewModel
     
+    @EnvironmentObject private var phoneInputViewModel : PhoneInputViewModel
+ 
+    
     @State private var errorPresented : Bool = false
     
     @State private var errorMessage : String?
@@ -45,7 +48,13 @@ struct FirstSignInView : View {
             
             homeScreenNavLink()
         }
-        .alert(isPresented: $errorPresented){ Alert(title: Text("Oppps!"),message:Text(errorMessage ?? ""))}
+        .popOver(isPresented: $errorPresented, content: {
+            
+            
+            Common.errorAlertView(message: errorMessage ?? "")
+        })
+        
+     //   .alert(isPresented: $errorPresented){ Alert(title: Text("Oppps!"),message:Text(errorMessage ?? ""))}
       
     }
 }
@@ -73,7 +82,8 @@ extension FirstSignInView {
         
         Button(action: {
             
-            viewModel.add(completion: {
+            
+            viewModel.add(country: phoneInputViewModel.selectedCountry ?? Country(code: Common.defaultCountry) ,completion: {
                 
                 err in
                 
@@ -87,6 +97,13 @@ extension FirstSignInView {
                     return
                 }
                 
+                DispatchQueue.main.async {
+              
+                    phoneInputViewModel.removeAllUnneeded()
+               
+                }
+                
+              
                 withAnimation{
                     
                     self.pushToHome = true 

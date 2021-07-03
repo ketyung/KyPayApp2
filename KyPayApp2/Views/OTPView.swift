@@ -144,12 +144,7 @@ extension OTPView {
                     return
                 }
                 
-                
-    
-                DispatchQueue.main.async {
-        
-                    self.determineScreenToPush(firstSignIn)
-                }
+                self.determineScreenToPush(firstSignIn)
                         
             })
         }
@@ -163,16 +158,18 @@ extension OTPView {
     
     private func determineScreenToPush( _ firstSignIn : Bool ){
         
-        withAnimation{
-            
-            self.userViewModel.firstSignIn = firstSignIn
-            
-            
-            self.pushToHome = true
-
-            self.activityIndicatorPresented = false
-            phoneInputViewModel.removeAllUnneeded()
-      
+        DispatchQueue.main.async {
+         
+            withAnimation{
+                
+                self.userViewModel.firstSignIn = firstSignIn
+                self.pushToHome = true
+                self.activityIndicatorPresented = false
+                if !firstSignIn {
+                    phoneInputViewModel.removeAllUnneeded()
+                }
+               
+            }
         }
     }
     

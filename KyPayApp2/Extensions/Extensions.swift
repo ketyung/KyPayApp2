@@ -66,7 +66,10 @@ extension Date {
     
     func isMoreThan(years : Int) -> Bool {
         
-        return self.timeIntervalSinceNow > -(Double(3600*24*365*years))
+        let d = self.timeIntervalSinceNow
+        let yrs = -(Double(3600*24*365*years))
+        
+        return  d < yrs
     }
 }
 
@@ -247,18 +250,5 @@ extension View {
         return renderer.image { _ in
             view?.drawHierarchy(in: controller.view.bounds, afterScreenUpdates: true)
         }
-    }
-}
-
-extension Binding {
-    func didSet(_ didSet: @escaping (Value) -> Void) -> Binding<Value> {
-        Binding(
-            get: { wrappedValue },
-            set: { newValue in
-                self.wrappedValue = newValue
-                didSet(newValue)
-                
-            }
-        )
     }
 }

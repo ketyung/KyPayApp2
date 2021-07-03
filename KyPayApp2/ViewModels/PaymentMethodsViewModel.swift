@@ -59,6 +59,9 @@ extension PaymentMethodsViewModel {
             
             return
         }
+       
+        //CPMDS().removeAll()
+      
         
         self.paymentMethods = self.fetchFromCachedDb(countryCode: countryCode)
         
@@ -88,7 +91,8 @@ extension PaymentMethodsViewModel {
             guard let err = err else {
                 
                 // filter for banks only, exclude other e-Wallets
-                if let types = types?.filter({$0.category == "bank_redirect"}) {
+                if let types = types?.filter({$0.category == "bank_redirect" || $0.category == "bank_transfer"} )
+                {
         
                     DispatchQueue.main.async {
                   
@@ -96,6 +100,8 @@ extension PaymentMethodsViewModel {
                             
                             type in
                             
+                            
+                            print("type::\(type.category)")
                             let pm = PaymentMethod(type: type.type,  country : countryCode, name: type.name, category: type.category, imageURL: type.imageURL, paymentFlowType: type.paymentFlowType)
                             
                             self.paymentMethods?.append(pm)
