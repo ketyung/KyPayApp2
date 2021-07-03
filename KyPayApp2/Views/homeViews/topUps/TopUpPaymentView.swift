@@ -82,6 +82,7 @@ struct TopUpPaymentView : View {
         if let paymentMethod = topUpViewModel.paymentMethod, let amount =  Double(topUpViewModel.amount), amount > 5 {
        
             let user = userViewModel.user
+            
             walletViewModel.add(amount: amount, paymentMethod:paymentMethod ,for: user,
             completion: {
                 pmdata, err in

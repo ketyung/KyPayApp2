@@ -61,7 +61,11 @@ extension HomeView {
             PaymentMethodTypesView(control: $control)
             
         })
+        .bottomSheet(isPresented: $control.cardPaymentPresented, height: UIScreen.main.bounds.height, showGrayOverlay: true, content:{
             
+            CardPaymentView()
+        })
+       
         .bottomSheet(isPresented: $control.topUpPaymentPresented, height: UIScreen.main.bounds.height, showGrayOverlay: true, content:{
                   
             TopUpPaymentView(control: $control)

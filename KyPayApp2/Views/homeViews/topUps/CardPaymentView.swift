@@ -54,7 +54,8 @@ struct CardPaymentView : View {
                 self.inProgress = false
                 
                 self.topUpViewModel.redirectURL = pmdata?.redirectURL
-                
+                self.topUpViewModel.servicePaymentId = pmdata?.id
+               
                 return
             }
             
@@ -74,11 +75,48 @@ extension CardPaymentView {
     
     private func view() -> some View {
         
-        VStack(spacing:30){
+        VStack(spacing:3){
             
-            Spacer().frame(height: 30)
+            Text("Pay By Card".localized).font(.custom(Theme.fontNameBold, size: 18))
+          
+            cardInfoView()
+          
+            amountView()
             
+            Spacer().frame(height:100)
             
+            Text("Currently, we don't store your card, this is a one-time payment with a card").font(.custom(Theme.fontName, size: 13))
+            Spacer()
+            
+        }
+        .padding()
+        .bottomFloatingButton( isPresented: cardViewModel.errorMessage == nil, action: {
+            self.topUpNow()
+        })
+        .popOver(isPresented: $errorPresented, content: {
+            
+            Common.errorAlertView(message: errorMessage ?? "")
+        })
+        .progressView(isShowing: $inProgress, text: "")
+        .onTapGesture {self.endEditing()}
+    
+    }
+    
+    
+    private func endEditing() {
+        UIApplication.shared.endEditing()
+    }
+}
+
+
+
+extension CardPaymentView {
+    
+    private func cardInfoView() -> some View {
+        
+        
+        VStack {
+        
             VStack(alignment: .leading){
                 
                 Text("Card Number".localized).font(.custom(Theme.fontName, size: 16))
@@ -112,40 +150,36 @@ extension CardPaymentView {
                 }
                 
             }
-            
-            
-            errorTextView()
-            
-            Spacer()
-            
-        }.padding()
-        .navigationBar(title : Text("Pay By Card".localized), displayMode: .inline)
-        .backButton()
-        .bottomFloatingButton( isPresented: cardViewModel.errorMessage == nil, action: {
-            self.topUpNow()
-        })
-        .progressView(isShowing: $inProgress, text: "")
-        .onTapGesture {self.endEditing()}
-    
-    }
-    
-    
-    private func endEditing() {
-        UIApplication.shared.endEditing()
-    }
-}
-
-extension CardPaymentView {
-    
-    
-    @ViewBuilder
-    private func errorTextView() -> some View {
-        
-        if let err = cardViewModel.errorMessage {
-        
-            Text(err).padding().font(.custom(Theme.fontName, size: 13))
-            .foregroundColor(.red)
-        }
+        }.padding().border(Color.green).frame(maxHeight:200)
         
     }
+    
+    private func amountView() -> some View {
+        
+        VStack(alignment: .leading, spacing:2) {
+            
+            Text("Amount :".localized).font(.custom(Theme.fontNameBold, size: 20)).foregroundColor(.gray)
+            HStack(alignment: .top) {
+           
+                Text(userViewModel.allowedCurrency)
+                .font(.custom(Theme.fontNameBold, size: 24))
+               
+                TextField("0", text: $topUpViewModel.amount)
+                .keyboardType(.numberPad)
+                .font(.custom(Theme.fontName, size: 50))
+                .foregroundColor(.gray)
+                .frame(width:200)
+                
+            }.padding()
+            
+            if let err = topUpViewModel.errorMessage {
+                
+                Text(err.replace("<curr>", userViewModel.allowedCurrency))
+                .font(.custom(Theme.fontName, size: 15))
+                .foregroundColor(.red)
+            }
+            
+        }.padding(4)
+    }
+    
 }

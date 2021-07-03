@@ -83,10 +83,20 @@ extension TopUpView {
                   
                 }
                 
-                
-                
-                NavigationLink (destination: CardPaymentView()){
-                
+                Button (action: {
+                    
+                    withAnimation{
+                   
+                        self.control.topUpPresented = false
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute:{
+                          
+                        
+                            self.control.cardPaymentPresented = true
+                            
+                        })
+                    }
+                    
+                }){
                     
                     HStack(spacing:20) {
                         
