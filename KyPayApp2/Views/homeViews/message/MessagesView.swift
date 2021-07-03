@@ -16,33 +16,51 @@ struct MessagesView : View {
     
     var body: some View {
         
-        VStack(alignment: .leading) {
-            
-            Spacer()
-            .frame(height:30)
-           
-            Text("Messages").font(.custom(Theme.fontNameBold, size: 30))
-            
-            List(messagesViewModel.messages, id:\.id){
+        NavigationView {
+         
+            VStack(alignment: .leading) {
                 
-                mesg in
+                Spacer()
+                .frame(height:30)
+               
+                Text("Messages").font(.custom(Theme.fontNameBold, size: 30))
                 
-                messageRowView(mesg)
+                List(messagesViewModel.messages, id:\.id){
+                    
+                    mesg in
+                    
+                    messageRowLink(mesg)
+                }
+                
+                Spacer()
+                
             }
-            
+            .navigationBarHidden(true)
+           
         }
-        .padding()
+        .padding(6)
         .popOver(isPresented:$messagesViewModel.errorPresented , content: {
             
             Common.errorAlertView(message: messagesViewModel.errorMessage)
             
         })
-        
+     
     }
 }
 
 
 extension MessagesView {
+    
+    
+    private func messageRowLink( _ message : Message) -> some View {
+        
+        NavigationLink(destination: EmptyView()){
+            
+            messageRowView(message)
+        }
+        
+    }
+    
     
     private func messageRowView(_ message : Message) -> some View {
         
@@ -55,8 +73,17 @@ extension MessagesView {
             
             VStack(alignment: .leading) {
                 
-                Text(message.title ?? "").font(.custom(Theme.fontNameBold, size: 18))
-                    .foregroundColor(Color(UIColor(hex:"#999999ff")!))
+                HStack(spacing: 2) {
+                
+                    Text(message.title ?? "").font(.custom(Theme.fontNameBold, size: 18))
+                        .foregroundColor(Color(UIColor(hex:"#999999ff")!))
+                    
+                    Spacer()
+                    
+                    Text(message.lastUpdated?.timeAgo() ?? "").font(.custom(Theme.fontNameBold, size: 13))
+                        .foregroundColor(Color(UIColor(hex:"#bbbbbbff")!))
+                    
+                }
                 
                 Text(message.subTitle ?? "").font(.custom(Theme.fontName, size: 16))
                 
@@ -64,9 +91,6 @@ extension MessagesView {
             
             Spacer()
             
-            Common.disclosureIndicator()
-            
-            Spacer().frame(width: 3)
            
         }.frame(maxHeight: 60)
     }

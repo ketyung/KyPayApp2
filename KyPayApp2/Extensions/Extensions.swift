@@ -71,6 +71,13 @@ extension Date {
         
         return  d < yrs
     }
+    
+    func timeAgo() -> String {
+        let formatter = RelativeDateTimeFormatter()
+        formatter.unitsStyle = .short
+        return formatter.localizedString(for: self, relativeTo: Date())
+    }
+
 }
 
 

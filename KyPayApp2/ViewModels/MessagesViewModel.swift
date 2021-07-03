@@ -38,9 +38,6 @@ class MessagesViewModel : ObservableObject {
                         self.messages = messages
                         self.errorPresented = false
                         
-                        print("m.rcv::\(self.messages.count)")
-                        print("mess::\(self.messages)")
-                        
                         
                 }
             }
