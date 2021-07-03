@@ -211,3 +211,36 @@ create table if not exists kypay_message (
     last_updated datetime,
     primary key(id)
 );
+
+
+create table if not exists kypay_seller_category (
+    
+    id varchar(12) default 'x' NOT null,
+    name varchar(64),
+    last_updated datetime,
+    primary key(id)
+);
+
+
+insert into kypay_seller_category (id, name, last_updated)
+values ('BK-YH62738L', 'Books',now());
+
+insert into kypay_seller_category (id, name, last_updated)
+values ('COL-2663BBL', 'Collectibles',now());
+
+insert into kypay_seller_category (id, name, last_updated)
+values ('HA-BH62736N', 'Home Appliances',now());
+
+insert into kypay_seller_category (id, name, last_updated)
+values ('GG-4BTHY672', 'Gadgets',now());
+
+
+
+create table if not exists kypay_seller (
+
+    id varchar(32) default 'x' NOT null,
+    uid varchar(32) default 'x' NOT null,
+    name varchar(64),
+    description varchar(128),
+    primary key(id)
+);
