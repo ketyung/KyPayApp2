@@ -18,6 +18,8 @@ struct Message : Decodable {
     
     var id : String?
 
+    var uid : String?
+    
     var itemId : String?
 
     var title : String?

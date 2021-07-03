@@ -11,6 +11,8 @@ struct HomeTabbedView : View {
     
     @State private var selectedTab : Int = 0
       
+    @EnvironmentObject private var messagesViewModel : MessagesViewModel
+    
     @EnvironmentObject private var phoneInputViewModel : PhoneInputViewModel
    
     @EnvironmentObject private var userViewModel : UserViewModel
@@ -33,6 +35,12 @@ struct HomeTabbedView : View {
            
                     NotificationCenter.default.post(name: RequestView.toSyncContactPublisher, object: nil)
                 }
+            }
+        
+            if $0 == 3 {
+                
+                messagesViewModel.fetchMessages(userId: userViewModel.id)
+            
             }
         
             self.selectedTab = $0
@@ -75,10 +83,13 @@ extension HomeTabbedView {
            .tabItem {tabLabel("Request Money", systemImage: "arrow.left.circle")}
            .tag(2)
             
+           MessagesView()
+           .tabItem {tabLabel("Messages", systemImage: "bell.circle")}
+           .tag(3)
             
            SettingsView()
            .tabItem {tabLabel("Settings", systemImage: "gear")}
-           .tag(3)
+           .tag(4)
        }
        .onAppear{
            // always reset back to zero

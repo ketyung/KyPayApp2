@@ -16,31 +16,33 @@ class MessagesViewModel : ObservableObject {
     @Published var errorPresented : Bool = false
     
     
-    func fetchMessages(userId : String, completion : ((Error?)->Void)? = nil ){
+    func fetchMessages(userId : String ){
         
-        ARH.shared.fetchMessages(userId: userId, completion: {
+        
+        ARH.shared.fetchMessages(userId: userId, completion: {[weak self] res in
             
-            res in
+            guard let self = self else { return }
             
-            switch(res) {
-            
-                case .failure(let err) :
-                    
-                    DispatchQueue.main.async {
-                    
+            DispatchQueue.main.async {
+           
+                switch(res) {
+                
+                    case .failure(let err) :
+                        
+                        
                         self.errorMessage = err.localizedDescription
                         self.errorPresented = true
-                    }
-                    completion?(err)
-            
-                case .success(let messages) :
-                    
-                    DispatchQueue.main.async {
+                      
+                    case .success(let messages) :
+                        
                         self.messages = messages
-                        self.errorPresented = false 
-                    }
-                    
-                    completion?(nil)
+                        self.errorPresented = false
+                        
+                        print("m.rcv::\(self.messages.count)")
+                        print("mess::\(self.messages)")
+                        
+                        
+                }
             }
         })
     }

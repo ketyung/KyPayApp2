@@ -88,7 +88,7 @@ class KypayMessageController extends Controller {
         Log::printRToErrorLog($user);*/
         
         $input['title'] = "Money Received!";
-        $input['sub_title'] = $userName . " sent you money ". $paymentTx['currency'].abs( $paymentTx['amount'] );
+        $input['sub_title'] = $userName . " sent you money ". $paymentTx['currency'].' '.abs( $paymentTx['amount'] );
         
         $input['type'] = 'SM';
         
