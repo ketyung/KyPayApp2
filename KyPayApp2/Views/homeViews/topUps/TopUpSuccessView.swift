@@ -29,9 +29,9 @@ extension TopUpSucessView {
     private func view() -> some View {
         
         Common.paymentSuccessView(amount: topUpViewModel.amount,
-        balance: walletViewModel.balance, currency: topUpViewModel.currency)
+        balance: walletViewModel.balance, currency: topUpViewModel.currency, subTitle: "Top Up Amount".localized)
         .padding()
-        .navigationBar(title : Text("Top Up Success".localized), displayMode: .inline)
+        .navigationBar(title : Text("Top Up".localized), displayMode: .inline)
         .navigationBarBackButtonHidden(true)
     }
 }

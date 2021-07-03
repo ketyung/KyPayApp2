@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import WebKit
+import AVFoundation
 
 class TopUpPaymentViewModel : NSObject, ObservableObject {
     
@@ -165,6 +166,7 @@ extension TopUpPaymentViewModel : WKNavigationDelegate{
                 withAnimation{
         
                     self.paymentStatus = .success
+                    self.alertWithSound()
                 }
             }
             else if webView.url?.absoluteString == WalletHandler.errorURL {
@@ -174,23 +176,18 @@ extension TopUpPaymentViewModel : WKNavigationDelegate{
                     self.paymentStatus = .failure
                 }
             }
+            /**
             else if webView.title == "Rapyd Dashboard" {
                 
-                print("trying to force body width fpr rapyd.sandbox")
-                self.evaluateJs(webView)
-            }
-            else {
-                
-                print("url::is::\(webView.url?.absoluteString ?? "xxxx")")
-            }
+               // print("trying to force body width fpr rapyd.sandbox")
+            //    self.evaluateJs(webView)
+            }*/
             
-        //    print("title:\(String(describing: webView.title))::self.paymentStatus::\(self.paymentStatus)::\(self.servicePaymentId ?? "xxxx")::\(self.paymentMethod?.type ?? "")")
-     
         }
         
     }
     
-    
+    // isn't needed anymore
     private func evaluateJs( _ uiView : WKWebView){
         
         uiView.evaluateJavaScript("document.readyState", completionHandler: { result, error in
@@ -211,6 +208,16 @@ extension TopUpPaymentViewModel : WKNavigationDelegate{
                 }
             })
         })
+    }
+    
+    
+    
+    func alertWithSound(after seconds : TimeInterval = 1) {
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + seconds, execute: {
+            AudioServicesPlayAlertSound(SystemSoundID(1210))
+        })
+
     }
 }
 

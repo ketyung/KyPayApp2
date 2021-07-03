@@ -31,14 +31,8 @@ class CardPaymentViewModel : ObservableObject {
             
             cardPayment.number = num
             
-            if !cardPayment.isSupportedCardType {
-                
-                errorMessage = "Only VISA and Master allowed!".localized
-            }
-            else {
-                
-                errorMessage = nil 
-            }
+          //  self.validateCard()
+            
         }
     }
     
@@ -80,5 +74,68 @@ class CardPaymentViewModel : ObservableObject {
         get{
             cardPayment.asCard
         }
+    }
+}
+
+extension CardPaymentViewModel {
+    
+    private func validateCard(){
+        
+        if !cardPayment.isSupportedCardType {
+            
+            errorMessage = "Only VISA and Master allowed!".localized
+        }
+        else {
+            
+            errorMessage = nil
+        }
+    }
+    
+    
+    private func validateAll(){
+        
+        if !cardPayment.isSupportedCardType {
+            
+            errorMessage = "Only VISA and Master allowed!".localized
+            return 
+        }
+        else {
+            
+            errorMessage = nil
+        }
+        
+        if expiryDate.isEmpty {
+            
+            errorMessage = "Invalid card expiry date".localized
+            return
+        }
+        else {
+            
+            errorMessage = nil
+        }
+        
+        if cvv.isEmpty {
+            
+            errorMessage = "Invalid card cvv".localized
+            return
+        }
+        else {
+            
+            errorMessage = nil
+        }
+        
+    }
+    
+    
+    func isValid() -> Bool {
+    
+        self.validateAll()
+        
+        guard let _ = self.errorMessage else {
+            
+            return true
+        }
+    
+        return false
     }
 }

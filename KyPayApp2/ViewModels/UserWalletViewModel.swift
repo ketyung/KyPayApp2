@@ -491,12 +491,25 @@ extension UserWalletViewModel {
             let currency = CurrencyManager.currency(countryCode: user.countryCode ?? Common.defaultCountry) ?? Common.defaultCurrency
             
             self.walletHandler.add(card: card, amount: amount, currency: currency, customerId: custId, completion: {
-                pmdata , error in
+                [weak self] pmdata , error in
                 
                 
                 guard let err = error else {
                     
-                    completion?(pmdata, nil )
+                    guard let self = self else { return }
+                    
+                    self.updateWalletRemotely(by: amount, for: user, method: card.paymentTypeBasedOnCardType,
+                    serviceId: pmdata?.id, completion: { err in
+                        
+                        guard let err = err else {
+                            
+                            completion?(pmdata, nil)
+                            return
+                        }
+                        
+                        completion?(pmdata, err)
+                    })
+                   
                     
                     return
                 }

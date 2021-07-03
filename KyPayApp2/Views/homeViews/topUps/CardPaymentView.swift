@@ -23,50 +23,18 @@ struct CardPaymentView : View {
     
     @State private var inProgress : Bool = false
     
+    @State private var pushToNext : Bool = false
     
     var body: some View {
         
-        if topUpViewModel.paymentStatus == .success {
+        NavigationView {
             
-           TopUpSucessView()
-        }
-        else {
-       
             view()
-           
         }
-        
+        .navigationBarHidden(true)
     }
     
-    
-    private func topUpNow(){
-        
-        self.endEditing()
-        self.inProgress = true 
-        
-        // tp continue tomorrow
-        walletViewModel.add(amount: 10, card: cardViewModel.asCard,  for: userViewModel.user, completion: {
-            
-            pmdata, err in
-            
-            guard let err = err else {
-                
-                self.inProgress = false
-                
-                self.topUpViewModel.redirectURL = pmdata?.redirectURL
-                self.topUpViewModel.servicePaymentId = pmdata?.id
-               
-                return
-            }
-            
-            
-            self.errorMessage = err.localizedDescription
-            self.errorPresented = true
-            self.inProgress = false
-            
-        })
-    }
-   
+  
     
 }
 
@@ -93,6 +61,8 @@ extension CardPaymentView {
             
             Text("Currently, we don't store your card yet, this is a one-time payment with a card").font(.custom(Theme.fontName, size: 13))
             Spacer()
+            
+            nextScreenNavLink()
             
         }
         .padding()
@@ -185,6 +155,17 @@ extension CardPaymentView {
         }.padding(4).frame(minWidth : UIScreen.main.bounds.width - 20).border(Color(UIColor(hex:"#aaaaafff")!))
     }
     
+    private func nextScreenNavLink() -> some View {
+        
+        NavigationLink(destination:PaymentRedirectView(url: topUpViewModel.redirectURL),
+        isActive : $pushToNext){}.hidden(true)
+    }
+   
+    
+}
+
+extension CardPaymentView {
+
     
     
     private func proceedButton() -> some View {
@@ -196,6 +177,7 @@ extension CardPaymentView {
             Button(action: {
                 
                 UIApplication.shared.endEditing()
+                self.topUpNow()
             })
             {
                 Text("Proceed")
@@ -207,6 +189,69 @@ extension CardPaymentView {
             }
         }
         
+    }
+    
+    
+    
+    private func topUpNow(){
+        
+        self.endEditing()
+        
+        if !cardViewModel.isValid() {
+            
+            self.present(errorMessage: cardViewModel.errorMessage ?? "")
+            return
+        }
+        
+        
+        guard let amount = Double( topUpViewModel.amount ), amount > 5 else {
+            
+            self.present(errorMessage: "Invalid amount!".localized)
+            return
+        }
+        
+
+        
+        self.inProgress = true
+        
+        // tp continue tomorrow
+        walletViewModel.add(amount: amount , card: cardViewModel.asCard,  for: userViewModel.user, completion: {
+            
+            pmdata, err in
+            
+            guard let err = err else {
+                
+                self.inProgress = false
+               
+                DispatchQueue.main.async {
+                  
+                    self.topUpViewModel.redirectURL = pmdata?.redirectURL
+                    self.topUpViewModel.servicePaymentId = pmdata?.id
+                }
+                
+                self.pushToNext = true
+           
+                
+                return
+            }
+            
+            
+            self.present(errorMessage: err.localizedDescription)
+            self.inProgress = false
+            
+        })
+    }
+   
+    
+    private func present(errorMessage : String){
+      
+        withAnimation{
+       
+            self.errorMessage = errorMessage
+            self.errorPresented = true
+          
+        }
+       
     }
     
 }
