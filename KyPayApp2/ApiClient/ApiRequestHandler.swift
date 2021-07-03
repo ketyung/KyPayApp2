@@ -689,3 +689,12 @@ extension ApiRequestHandler {
     }
   
 }
+
+extension ApiRequestHandler {
+    
+    func fetchMessages (userId : String, completion:  ((Result<[Message], Error>)->Void)? = nil ){
+        
+        fetch(module: "message", param: "user/\(userId)" , decode: [Message].self, completion: completion)
+    }
+  
+}

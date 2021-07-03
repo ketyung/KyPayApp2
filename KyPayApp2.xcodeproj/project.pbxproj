@@ -164,6 +164,9 @@
 		10FFB5FF268E892B0029C1D8 /* BillerPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB5FE268E892B0029C1D8 /* BillerPayment.swift */; };
 		10FFB60126904A6F0029C1D8 /* KypayMessage.php in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB60026904A6F0029C1D8 /* KypayMessage.php */; };
 		10FFB60326904BA10029C1D8 /* KypayMessageController.php in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB60226904BA10029C1D8 /* KypayMessageController.php */; };
+		10FFB60526905B4C0029C1D8 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB60426905B4C0029C1D8 /* Message.swift */; };
+		10FFB60726905C490029C1D8 /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB60626905C490029C1D8 /* MessagesView.swift */; };
+		10FFB60A26905C880029C1D8 /* MessagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB60926905C880029C1D8 /* MessagesViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -359,6 +362,9 @@
 		10FFB5FE268E892B0029C1D8 /* BillerPayment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillerPayment.swift; sourceTree = "<group>"; };
 		10FFB60026904A6F0029C1D8 /* KypayMessage.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = KypayMessage.php; sourceTree = "<group>"; };
 		10FFB60226904BA10029C1D8 /* KypayMessageController.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = KypayMessageController.php; sourceTree = "<group>"; };
+		10FFB60426905B4C0029C1D8 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		10FFB60626905C490029C1D8 /* MessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesView.swift; sourceTree = "<group>"; };
+		10FFB60926905C880029C1D8 /* MessagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewModel.swift; sourceTree = "<group>"; };
 		1B47377B496C6F0F1022FFD4 /* Pods-KyPayApp2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.debug.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.debug.xcconfig"; sourceTree = "<group>"; };
 		6F523BC3D4353462922B31B9 /* Pods-KyPayApp2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.release.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -505,6 +511,7 @@
 				1033B28F2674A82F00D999CE /* UserPaymentTx.swift */,
 				10B85638268BF50300AEF15F /* DeviceToken.swift */,
 				10FFB5F3268DA1140029C1D8 /* Biller.swift */,
+				10FFB60426905B4C0029C1D8 /* Message.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -669,6 +676,7 @@
 				10B85600268427FA00AEF15F /* CardPaymentViewModel.swift */,
 				10B856102687EE4200AEF15F /* PresenterControl.swift */,
 				10FFB5F7268DA2950029C1D8 /* BillersViewModel.swift */,
+				10FFB60926905C880029C1D8 /* MessagesViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -738,6 +746,7 @@
 		1033C0A12678510600D999CE /* homeViews */ = {
 			isa = PBXGroup;
 			children = (
+				10FFB60826905C4E0029C1D8 /* message */,
 				10FFB5F9268DB1140029C1D8 /* payBill */,
 				10FFB5E1268C42E30029C1D8 /* requestMoney */,
 				10B8562326896B5100AEF15F /* sendMoney */,
@@ -878,6 +887,14 @@
 				10FFB5FA268DEB4B0029C1D8 /* BillerNumberView.swift */,
 			);
 			path = payBill;
+			sourceTree = "<group>";
+		};
+		10FFB60826905C4E0029C1D8 /* message */ = {
+			isa = PBXGroup;
+			children = (
+				10FFB60626905C490029C1D8 /* MessagesView.swift */,
+			);
+			path = message;
 			sourceTree = "<group>";
 		};
 		55C51AF7366AAFF575FED9C7 /* Frameworks */ = {
@@ -1118,6 +1135,7 @@
 			files = (
 				10B8561726883FDE00AEF15F /* PayoutMethod.swift in Sources */,
 				10B855FB2684037700AEF15F /* CustomerHandler.swift in Sources */,
+				10FFB60A26905C880029C1D8 /* MessagesViewModel.swift in Sources */,
 				1033B2942674A82F00D999CE /* DictionaryExt.swift in Sources */,
 				10FFB5E3268C452D0029C1D8 /* KypayUserSelectionView.swift in Sources */,
 				1033B2962674A82F00D999CE /* UserAddress.swift in Sources */,
@@ -1177,6 +1195,7 @@
 				1033C0E6267D984C00D999CE /* PaymentHandler.swift in Sources */,
 				1033C0C7267B363C00D999CE /* KyPayContactDataStore.swift in Sources */,
 				10B855EF267F2FD400AEF15F /* TopUpPaymentViewModel.swift in Sources */,
+				10FFB60526905B4C0029C1D8 /* Message.swift in Sources */,
 				1033C0B32679E01600D999CE /* ShadowedRoundedCorner.swift in Sources */,
 				10B855F1267F39D900AEF15F /* NavigationBarTitle.swift in Sources */,
 				1033C09426782B5700D999CE /* OtpText.swift in Sources */,
@@ -1210,6 +1229,7 @@
 				1033C0642676DCCE00D999CE /* UIColorExt.swift in Sources */,
 				1033C0E4267D984C00D999CE /* Config.swift in Sources */,
 				1033C0812677011400D999CE /* Country.swift in Sources */,
+				10FFB60726905C490029C1D8 /* MessagesView.swift in Sources */,
 				1033C0622676DCAF00D999CE /* Extensions.swift in Sources */,
 				10FFB5F8268DA2950029C1D8 /* BillersViewModel.swift in Sources */,
 				1033C08E26773C0600D999CE /* KCDataStore.swift in Sources */,
