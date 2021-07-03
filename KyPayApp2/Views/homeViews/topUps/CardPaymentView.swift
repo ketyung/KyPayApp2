@@ -81,18 +81,21 @@ extension CardPaymentView {
           
             cardInfoView()
           
+            Spacer().frame(height:10)
+            
             amountView()
+           
+            Spacer().frame(height:10)
+           
+            proceedButton()
             
             Spacer().frame(height:100)
             
-            Text("Currently, we don't store your card, this is a one-time payment with a card").font(.custom(Theme.fontName, size: 13))
+            Text("Currently, we don't store your card yet, this is a one-time payment with a card").font(.custom(Theme.fontName, size: 13))
             Spacer()
             
         }
         .padding()
-        .bottomFloatingButton( isPresented: cardViewModel.errorMessage == nil, action: {
-            self.topUpNow()
-        })
         .popOver(isPresented: $errorPresented, content: {
             
             Common.errorAlertView(message: errorMessage ?? "")
@@ -146,11 +149,11 @@ extension CardPaymentView {
                 VStack(alignment: .leading) {
                 
                     Text("CVV".localized).font(.custom(Theme.fontName, size: 16))
-                    TextField("CVV", text : $cardViewModel.cvv).keyboardType(.numberPad)
+                    SecureField("CVV", text : $cardViewModel.cvv).keyboardType(.numberPad)
                 }
                 
             }
-        }.padding().border(Color.green).frame(maxHeight:200)
+        }.padding().frame(maxHeight:160).border(Color.green)
         
     }
     
@@ -179,7 +182,31 @@ extension CardPaymentView {
                 .foregroundColor(.red)
             }
             
-        }.padding(4)
+        }.padding(4).frame(minWidth : UIScreen.main.bounds.width - 20).border(Color(UIColor(hex:"#aaaaafff")!))
+    }
+    
+    
+    
+    private func proceedButton() -> some View {
+        
+        HStack{
+        
+            Spacer()
+            
+            Button(action: {
+                
+                UIApplication.shared.endEditing()
+            })
+            {
+                Text("Proceed")
+                .font(.custom(Theme.fontName, size: 20))
+                .padding(.leading, 20).padding(.trailing, 20)
+                .padding(.top, 6).padding(.bottom, 6)
+                .background(Color.green)
+                .foregroundColor(.white).cornerRadius(6)
+            }
+        }
+        
     }
     
 }
