@@ -40,6 +40,8 @@ struct ItemDetailsView : View {
             
             CartView().frame(width: UIScreen.main.bounds.width - 10)
         })
+        .animation(.easeIn)
+        
     }
     
 }
@@ -76,7 +78,9 @@ extension ItemDetailsView {
                     .font(.custom(Theme.fontName, size: 18))
                     
                     cartActionButton()
-                }.padding().border(Color.green, width: 1, cornerRadius: 6)
+                }
+                .frame(maxWidth: UIScreen.main.bounds.width - 20)
+                .padding().border(Color.green, width: 1, cornerRadius: 6)
                 
                 
                 VStack(alignment: .leading, spacing: 2) {
@@ -107,7 +111,7 @@ extension ItemDetailsView {
                     }
                     .padding(8)
                     .frame(maxWidth: 160, maxHeight: 50, alignment: .trailing)
-                    .background(Color.blue)
+                    .background(IDV.buttonBgColor)
                     .cornerRadius(10)
                
                 }
@@ -127,7 +131,12 @@ extension ItemDetailsView {
 }
 
 
+typealias  IDV = ItemDetailsView
+
 extension ItemDetailsView {
+    
+    
+    static let buttonBgColor : Color = Color(UIColor(hex:"#226655ff")!)
     
     
     private func cartActionButton() -> some View {
@@ -208,8 +217,9 @@ extension ItemDetailsView {
             }
             .padding(8)
             .frame(maxWidth: 80, maxHeight: 50, alignment: .trailing)
-            .background(Color.blue)
+            .background(IDV.buttonBgColor)
             .cornerRadius(20)
+          
        
         }
       

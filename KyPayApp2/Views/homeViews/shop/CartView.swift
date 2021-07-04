@@ -18,14 +18,25 @@ struct CartView : View {
             
             Text("Your Shopping Cart").font(.custom(Theme.fontNameBold, size: 24))
             
-            List(cartViewModel.cartItems, id:\.item.id) {
+            ScrollView(.vertical,showsIndicators : false ){
+            
+                ForEach(cartViewModel.cartItems, id:\.item.id) {
+                        
+                    cartItem in
                     
-                cartItem in
-                
-                itemRowView(cartItem)
-    
-            }.padding()
+                    itemRowView(cartItem)
         
+                }
+            }
+            .padding()
+            .frame(width: UIScreen.main.bounds.width - 10)
+        
+            Button(action: {}){
+                
+                Text("Check Out".localized).font(.custom(Theme.fontNameBold, size: 20)).padding(6).frame(width: 200)
+                .background(IDV.buttonBgColor).foregroundColor(.white)
+                .cornerRadius(6)
+            }
         }
     }
 }
@@ -47,16 +58,31 @@ extension CartView {
             .frame(width: 50, height: 50)
             
             
-            Text(cartItem.item.name ?? "").font(.custom(Theme.fontName, size:18)).padding(.leading, 2)
+            Text(cartItem.item.name ?? "").font(.custom(Theme.fontName, size:16)).padding(.leading, 2)
             .fixedSize(horizontal: false, vertical: true).lineLimit(3)
-            //.frame(width: 200)
+            .frame(width: 200)
             
+            Spacer().frame(width:10)
             
-            Text("\(cartItem.quantity)").font(.custom(Theme.fontNameBold, size:18)).padding()
-            .foregroundColor(.black)
+            cartActionButtons(cartItem: cartItem)
+            
+        }
+    }
+}
+
+
+extension CartView {
+    
+    
+    private func cartActionButtons(cartItem : CartItem) -> some View {
+        
+        HStack(spacing:10) {
+            
+            Text("\(cartItem.quantity)").font(.custom(Theme.fontNameBold, size:15)).padding()
+            .foregroundColor(.white).background(IDV.buttonBgColor).frame(minWidth:55)
             
             Image(systemName: "plus.circle.fill")
-            .resizable().frame(width:34, height:34).aspectRatio(contentMode: .fit)
+            .resizable().frame(width:30, height:30).aspectRatio(contentMode: .fit)
             .foregroundColor(.black)
             .onTapGesture {
                 withAnimation {
@@ -67,7 +93,7 @@ extension CartView {
             
                    
             Image(systemName: "minus.circle.fill")
-            .resizable().frame(width:34, height:34).aspectRatio(contentMode: .fit)
+            .resizable().frame(width:30, height:30).aspectRatio(contentMode: .fit)
             .foregroundColor(.black)
             .onTapGesture {
                 
@@ -76,10 +102,7 @@ extension CartView {
                     cartViewModel.remove(item: cartItem.item)
                 }
             }
-            
-            Spacer()
-         
         }
+        
     }
 }
-

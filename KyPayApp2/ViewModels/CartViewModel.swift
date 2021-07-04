@@ -43,7 +43,7 @@ class CartViewModel : ObservableObject {
             if itm.quantity > 1 {
                 
                 itm.quantity -= 1
-                items[idx] = cartItem
+                items[idx] = itm
             }
             else {
                 items.remove(at: idx)
