@@ -17,6 +17,8 @@ struct ItemDetailsView : View {
 
     @EnvironmentObject private var cartViewModel : CartViewModel
 
+    @State private var cartViewPresented : Bool = false
+    
     var body: some View {
         
         ScrollView([], showsIndicators: false) {
@@ -34,6 +36,10 @@ struct ItemDetailsView : View {
             Spacer()//.frame(minHeight: 20)
        
         }
+        .popOver(isPresented: $cartViewPresented, content: {
+            
+            CartView().frame(width: UIScreen.main.bounds.width - 10)
+        })
     }
     
 }
@@ -183,19 +189,30 @@ extension ItemDetailsView {
     
     private func cartBadge() -> some View {
         
-        HStack {
-    
-            Text("\(cartViewModel.total())").font(.custom(Theme.fontNameBold, size: 20)).foregroundColor(.white)
+        Button(action :{
+            
+            withAnimation{
                 
-            Image(systemName: "cart.fill").resizable()
-            .foregroundColor(.white).frame(width:24, height:20).aspectRatio(contentMode: .fit)
+                self.cartViewPresented = true 
+            }
+            
+        }){
+      
+            HStack {
         
+                Text("\(cartViewModel.total())").font(.custom(Theme.fontNameBold, size: 20)).foregroundColor(.white)
+                    
+                Image(systemName: "cart.fill").resizable()
+                .foregroundColor(.white).frame(width:24, height:20).aspectRatio(contentMode: .fit)
+            
+            }
+            .padding(8)
+            .frame(maxWidth: 80, maxHeight: 50, alignment: .trailing)
+            .background(Color.blue)
+            .cornerRadius(20)
+       
         }
-        .padding(8)
-        .frame(maxWidth: 80, maxHeight: 50, alignment: .trailing)
-        .background(Color.blue)
-        .cornerRadius(20)
-   
+      
     }
     
     
