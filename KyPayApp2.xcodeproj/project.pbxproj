@@ -167,20 +167,24 @@
 		10FFB60526905B4C0029C1D8 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB60426905B4C0029C1D8 /* Message.swift */; };
 		10FFB60726905C490029C1D8 /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB60626905C490029C1D8 /* MessagesView.swift */; };
 		10FFB60A26905C880029C1D8 /* MessagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB60926905C880029C1D8 /* MessagesViewModel.swift */; };
-		10FFB61026912EDB0029C1D8 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB60F26912EDB0029C1D8 /* 1.png */; };
-		10FFB614269137750029C1D8 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB613269137750029C1D8 /* 1.png */; };
-		10FFB618269138B20029C1D8 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB617269138B20029C1D8 /* 1.png */; };
-		10FFB626269142490029C1D8 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB61C269142490029C1D8 /* 1.png */; };
-		10FFB627269142490029C1D8 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB61F269142490029C1D8 /* 1.png */; };
-		10FFB628269142490029C1D8 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB622269142490029C1D8 /* 1.png */; };
-		10FFB629269142490029C1D8 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB625269142490029C1D8 /* 1.png */; };
 		10FFB62B26914A620029C1D8 /* KypaySeller.php in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB62A26914A620029C1D8 /* KypaySeller.php */; };
 		10FFB62D26914ADF0029C1D8 /* KypaySellerCategory.php in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB62C26914ADF0029C1D8 /* KypaySellerCategory.php */; };
 		10FFB62F26914B200029C1D8 /* KypaySellerItem.php in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB62E26914B200029C1D8 /* KypaySellerItem.php */; };
-		10FFB63726914B2E0029C1D8 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB63326914B2E0029C1D8 /* 1.png */; };
-		10FFB63826914B2E0029C1D8 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB63626914B2E0029C1D8 /* 1.png */; };
 		10FFB63A26914C4A0029C1D8 /* KypaySellerItemController.php in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB63926914C4A0029C1D8 /* KypaySellerItemController.php */; };
 		10FFB63C269150290029C1D8 /* KypaySellerItemImage.php in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB63B269150290029C1D8 /* KypaySellerItemImage.php */; };
+		10FFB63E269156BE0029C1D8 /* SellerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB63D269156BE0029C1D8 /* SellerItem.swift */; };
+		10FFB640269156E00029C1D8 /* SellerCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB63F269156E00029C1D8 /* SellerCategory.swift */; };
+		10FFB6422691571F0029C1D8 /* SellerItemImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB6412691571F0029C1D8 /* SellerItemImage.swift */; };
+		10FFB644269158120029C1D8 /* Seller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB643269158120029C1D8 /* Seller.swift */; };
+		10FFB664269159480029C1D8 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB649269159480029C1D8 /* 1.png */; };
+		10FFB665269159480029C1D8 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB64C269159480029C1D8 /* 1.png */; };
+		10FFB666269159480029C1D8 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB650269159480029C1D8 /* 1.png */; };
+		10FFB667269159480029C1D8 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB653269159480029C1D8 /* 1.png */; };
+		10FFB668269159480029C1D8 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB656269159480029C1D8 /* 1.png */; };
+		10FFB669269159480029C1D8 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB65A269159480029C1D8 /* 1.png */; };
+		10FFB66A269159480029C1D8 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB65D269159480029C1D8 /* 1.png */; };
+		10FFB66B269159480029C1D8 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB660269159480029C1D8 /* 1.png */; };
+		10FFB66C269159480029C1D8 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB663269159480029C1D8 /* 1.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -379,20 +383,24 @@
 		10FFB60426905B4C0029C1D8 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		10FFB60626905C490029C1D8 /* MessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesView.swift; sourceTree = "<group>"; };
 		10FFB60926905C880029C1D8 /* MessagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewModel.swift; sourceTree = "<group>"; };
-		10FFB60F26912EDB0029C1D8 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
-		10FFB613269137750029C1D8 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
-		10FFB617269138B20029C1D8 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
-		10FFB61C269142490029C1D8 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
-		10FFB61F269142490029C1D8 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
-		10FFB622269142490029C1D8 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
-		10FFB625269142490029C1D8 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		10FFB62A26914A620029C1D8 /* KypaySeller.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = KypaySeller.php; sourceTree = "<group>"; };
 		10FFB62C26914ADF0029C1D8 /* KypaySellerCategory.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = KypaySellerCategory.php; sourceTree = "<group>"; };
 		10FFB62E26914B200029C1D8 /* KypaySellerItem.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = KypaySellerItem.php; sourceTree = "<group>"; };
-		10FFB63326914B2E0029C1D8 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
-		10FFB63626914B2E0029C1D8 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		10FFB63926914C4A0029C1D8 /* KypaySellerItemController.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = KypaySellerItemController.php; sourceTree = "<group>"; };
 		10FFB63B269150290029C1D8 /* KypaySellerItemImage.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = KypaySellerItemImage.php; sourceTree = "<group>"; };
+		10FFB63D269156BE0029C1D8 /* SellerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerItem.swift; sourceTree = "<group>"; };
+		10FFB63F269156E00029C1D8 /* SellerCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerCategory.swift; sourceTree = "<group>"; };
+		10FFB6412691571F0029C1D8 /* SellerItemImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerItemImage.swift; sourceTree = "<group>"; };
+		10FFB643269158120029C1D8 /* Seller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Seller.swift; sourceTree = "<group>"; };
+		10FFB649269159480029C1D8 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		10FFB64C269159480029C1D8 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		10FFB650269159480029C1D8 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		10FFB653269159480029C1D8 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		10FFB656269159480029C1D8 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		10FFB65A269159480029C1D8 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		10FFB65D269159480029C1D8 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		10FFB660269159480029C1D8 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		10FFB663269159480029C1D8 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		1B47377B496C6F0F1022FFD4 /* Pods-KyPayApp2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.debug.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.debug.xcconfig"; sourceTree = "<group>"; };
 		6F523BC3D4353462922B31B9 /* Pods-KyPayApp2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.release.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -540,6 +548,10 @@
 				10B85638268BF50300AEF15F /* DeviceToken.swift */,
 				10FFB5F3268DA1140029C1D8 /* Biller.swift */,
 				10FFB60426905B4C0029C1D8 /* Message.swift */,
+				10FFB63D269156BE0029C1D8 /* SellerItem.swift */,
+				10FFB643269158120029C1D8 /* Seller.swift */,
+				10FFB63F269156E00029C1D8 /* SellerCategory.swift */,
+				10FFB6412691571F0029C1D8 /* SellerItemImage.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -890,7 +902,7 @@
 		10FFB5E6268D6C670029C1D8 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				10FFB60B26912EDB0029C1D8 /* sellers */,
+				10FFB645269159480029C1D8 /* sellers */,
 				10FFB5E7268D6C670029C1D8 /* billers */,
 			);
 			path = images;
@@ -931,186 +943,186 @@
 			path = message;
 			sourceTree = "<group>";
 		};
-		10FFB60B26912EDB0029C1D8 /* sellers */ = {
+		10FFB645269159480029C1D8 /* sellers */ = {
 			isa = PBXGroup;
 			children = (
-				10FFB63026914B2E0029C1D8 /* S-CHEEKY8998KYCC */,
-				10FFB619269142490029C1D8 /* S-UJAG627HAJA902 */,
-				10FFB60C26912EDB0029C1D8 /* S-8HAFvGAJ3KLaJK */,
+				10FFB646269159480029C1D8 /* S-CHEEKY8998KYCC */,
+				10FFB64D269159480029C1D8 /* S-8HAFvGAJ3KLaJK */,
+				10FFB657269159480029C1D8 /* S-UJAG627HAJA902 */,
 			);
 			path = sellers;
 			sourceTree = "<group>";
 		};
-		10FFB60C26912EDB0029C1D8 /* S-8HAFvGAJ3KLaJK */ = {
+		10FFB646269159480029C1D8 /* S-CHEEKY8998KYCC */ = {
 			isa = PBXGroup;
 			children = (
-				10FFB615269138B20029C1D8 /* i00000002aaaXdf */,
-				10FFB611269137750029C1D8 /* i000089haj38JKs */,
-				10FFB60D26912EDB0029C1D8 /* i00009abYakopI2 */,
-			);
-			path = "S-8HAFvGAJ3KLaJK";
-			sourceTree = "<group>";
-		};
-		10FFB60D26912EDB0029C1D8 /* i00009abYakopI2 */ = {
-			isa = PBXGroup;
-			children = (
-				10FFB60E26912EDB0029C1D8 /* images */,
-			);
-			path = i00009abYakopI2;
-			sourceTree = "<group>";
-		};
-		10FFB60E26912EDB0029C1D8 /* images */ = {
-			isa = PBXGroup;
-			children = (
-				10FFB60F26912EDB0029C1D8 /* 1.png */,
-			);
-			path = images;
-			sourceTree = "<group>";
-		};
-		10FFB611269137750029C1D8 /* i000089haj38JKs */ = {
-			isa = PBXGroup;
-			children = (
-				10FFB612269137750029C1D8 /* images */,
-			);
-			path = i000089haj38JKs;
-			sourceTree = "<group>";
-		};
-		10FFB612269137750029C1D8 /* images */ = {
-			isa = PBXGroup;
-			children = (
-				10FFB613269137750029C1D8 /* 1.png */,
-			);
-			path = images;
-			sourceTree = "<group>";
-		};
-		10FFB615269138B20029C1D8 /* i00000002aaaXdf */ = {
-			isa = PBXGroup;
-			children = (
-				10FFB616269138B20029C1D8 /* images */,
-			);
-			path = i00000002aaaXdf;
-			sourceTree = "<group>";
-		};
-		10FFB616269138B20029C1D8 /* images */ = {
-			isa = PBXGroup;
-			children = (
-				10FFB617269138B20029C1D8 /* 1.png */,
-			);
-			path = images;
-			sourceTree = "<group>";
-		};
-		10FFB619269142490029C1D8 /* S-UJAG627HAJA902 */ = {
-			isa = PBXGroup;
-			children = (
-				10FFB61A269142490029C1D8 /* B0000000002x */,
-				10FFB61D269142490029C1D8 /* BF8888888888gH */,
-				10FFB620269142490029C1D8 /* B00000000001 */,
-				10FFB623269142490029C1D8 /* BS00000000fxY */,
-			);
-			path = "S-UJAG627HAJA902";
-			sourceTree = "<group>";
-		};
-		10FFB61A269142490029C1D8 /* B0000000002x */ = {
-			isa = PBXGroup;
-			children = (
-				10FFB61B269142490029C1D8 /* images */,
-			);
-			path = B0000000002x;
-			sourceTree = "<group>";
-		};
-		10FFB61B269142490029C1D8 /* images */ = {
-			isa = PBXGroup;
-			children = (
-				10FFB61C269142490029C1D8 /* 1.png */,
-			);
-			path = images;
-			sourceTree = "<group>";
-		};
-		10FFB61D269142490029C1D8 /* BF8888888888gH */ = {
-			isa = PBXGroup;
-			children = (
-				10FFB61E269142490029C1D8 /* images */,
-			);
-			path = BF8888888888gH;
-			sourceTree = "<group>";
-		};
-		10FFB61E269142490029C1D8 /* images */ = {
-			isa = PBXGroup;
-			children = (
-				10FFB61F269142490029C1D8 /* 1.png */,
-			);
-			path = images;
-			sourceTree = "<group>";
-		};
-		10FFB620269142490029C1D8 /* B00000000001 */ = {
-			isa = PBXGroup;
-			children = (
-				10FFB621269142490029C1D8 /* images */,
-			);
-			path = B00000000001;
-			sourceTree = "<group>";
-		};
-		10FFB621269142490029C1D8 /* images */ = {
-			isa = PBXGroup;
-			children = (
-				10FFB622269142490029C1D8 /* 1.png */,
-			);
-			path = images;
-			sourceTree = "<group>";
-		};
-		10FFB623269142490029C1D8 /* BS00000000fxY */ = {
-			isa = PBXGroup;
-			children = (
-				10FFB624269142490029C1D8 /* images */,
-			);
-			path = BS00000000fxY;
-			sourceTree = "<group>";
-		};
-		10FFB624269142490029C1D8 /* images */ = {
-			isa = PBXGroup;
-			children = (
-				10FFB625269142490029C1D8 /* 1.png */,
-			);
-			path = images;
-			sourceTree = "<group>";
-		};
-		10FFB63026914B2E0029C1D8 /* S-CHEEKY8998KYCC */ = {
-			isa = PBXGroup;
-			children = (
-				10FFB63126914B2E0029C1D8 /* H1234567899A */,
-				10FFB63426914B2E0029C1D8 /* H23356778BHA */,
+				10FFB647269159480029C1D8 /* H1234567899A */,
+				10FFB64A269159480029C1D8 /* H23356778BHA */,
 			);
 			path = "S-CHEEKY8998KYCC";
 			sourceTree = "<group>";
 		};
-		10FFB63126914B2E0029C1D8 /* H1234567899A */ = {
+		10FFB647269159480029C1D8 /* H1234567899A */ = {
 			isa = PBXGroup;
 			children = (
-				10FFB63226914B2E0029C1D8 /* images */,
+				10FFB648269159480029C1D8 /* images */,
 			);
 			path = H1234567899A;
 			sourceTree = "<group>";
 		};
-		10FFB63226914B2E0029C1D8 /* images */ = {
+		10FFB648269159480029C1D8 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				10FFB63326914B2E0029C1D8 /* 1.png */,
+				10FFB649269159480029C1D8 /* 1.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
 		};
-		10FFB63426914B2E0029C1D8 /* H23356778BHA */ = {
+		10FFB64A269159480029C1D8 /* H23356778BHA */ = {
 			isa = PBXGroup;
 			children = (
-				10FFB63526914B2E0029C1D8 /* images */,
+				10FFB64B269159480029C1D8 /* images */,
 			);
 			path = H23356778BHA;
 			sourceTree = "<group>";
 		};
-		10FFB63526914B2E0029C1D8 /* images */ = {
+		10FFB64B269159480029C1D8 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				10FFB63626914B2E0029C1D8 /* 1.png */,
+				10FFB64C269159480029C1D8 /* 1.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		10FFB64D269159480029C1D8 /* S-8HAFvGAJ3KLaJK */ = {
+			isa = PBXGroup;
+			children = (
+				10FFB64E269159480029C1D8 /* i00009abYakopI2 */,
+				10FFB651269159480029C1D8 /* i000089haj38JKs */,
+				10FFB654269159480029C1D8 /* i00000002aaaXdf */,
+			);
+			path = "S-8HAFvGAJ3KLaJK";
+			sourceTree = "<group>";
+		};
+		10FFB64E269159480029C1D8 /* i00009abYakopI2 */ = {
+			isa = PBXGroup;
+			children = (
+				10FFB64F269159480029C1D8 /* images */,
+			);
+			path = i00009abYakopI2;
+			sourceTree = "<group>";
+		};
+		10FFB64F269159480029C1D8 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				10FFB650269159480029C1D8 /* 1.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		10FFB651269159480029C1D8 /* i000089haj38JKs */ = {
+			isa = PBXGroup;
+			children = (
+				10FFB652269159480029C1D8 /* images */,
+			);
+			path = i000089haj38JKs;
+			sourceTree = "<group>";
+		};
+		10FFB652269159480029C1D8 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				10FFB653269159480029C1D8 /* 1.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		10FFB654269159480029C1D8 /* i00000002aaaXdf */ = {
+			isa = PBXGroup;
+			children = (
+				10FFB655269159480029C1D8 /* images */,
+			);
+			path = i00000002aaaXdf;
+			sourceTree = "<group>";
+		};
+		10FFB655269159480029C1D8 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				10FFB656269159480029C1D8 /* 1.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		10FFB657269159480029C1D8 /* S-UJAG627HAJA902 */ = {
+			isa = PBXGroup;
+			children = (
+				10FFB658269159480029C1D8 /* B0000000002x */,
+				10FFB65B269159480029C1D8 /* BF8888888888gH */,
+				10FFB65E269159480029C1D8 /* B00000000001 */,
+				10FFB661269159480029C1D8 /* BS00000000fxY */,
+			);
+			path = "S-UJAG627HAJA902";
+			sourceTree = "<group>";
+		};
+		10FFB658269159480029C1D8 /* B0000000002x */ = {
+			isa = PBXGroup;
+			children = (
+				10FFB659269159480029C1D8 /* images */,
+			);
+			path = B0000000002x;
+			sourceTree = "<group>";
+		};
+		10FFB659269159480029C1D8 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				10FFB65A269159480029C1D8 /* 1.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		10FFB65B269159480029C1D8 /* BF8888888888gH */ = {
+			isa = PBXGroup;
+			children = (
+				10FFB65C269159480029C1D8 /* images */,
+			);
+			path = BF8888888888gH;
+			sourceTree = "<group>";
+		};
+		10FFB65C269159480029C1D8 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				10FFB65D269159480029C1D8 /* 1.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		10FFB65E269159480029C1D8 /* B00000000001 */ = {
+			isa = PBXGroup;
+			children = (
+				10FFB65F269159480029C1D8 /* images */,
+			);
+			path = B00000000001;
+			sourceTree = "<group>";
+		};
+		10FFB65F269159480029C1D8 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				10FFB660269159480029C1D8 /* 1.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		10FFB661269159480029C1D8 /* BS00000000fxY */ = {
+			isa = PBXGroup;
+			children = (
+				10FFB662269159480029C1D8 /* images */,
+			);
+			path = BS00000000fxY;
+			sourceTree = "<group>";
+		};
+		10FFB662269159480029C1D8 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				10FFB663269159480029C1D8 /* 1.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -1243,12 +1255,11 @@
 				1033B2C92674A92D00D999CE /* KypayUserAddress.php in Resources */,
 				10B855F52681BDAC00AEF15F /* WalletRequest.php in Resources */,
 				10FFB5ED268D6C670029C1D8 /* astro.png in Resources */,
-				10FFB627269142490029C1D8 /* 1.png in Resources */,
 				10B855DF267DEACB00AEF15F /* countryCurrency.json in Resources */,
 				1033C0832677035100D999CE /* CountryPickerView.bundle in Resources */,
 				10FFB60326904BA10029C1D8 /* KypayMessageController.php in Resources */,
 				1033B2D22674A92D00D999CE /* DotEnv.php in Resources */,
-				10FFB61026912EDB0029C1D8 /* 1.png in Resources */,
+				10FFB66B269159480029C1D8 /* 1.png in Resources */,
 				10FFB5EC268D6C670029C1D8 /* sesb.png in Resources */,
 				1033B2612674A7F300D999CE /* LaunchScreen.storyboard in Resources */,
 				1033B2D72674A92D00D999CE /* Log.php in Resources */,
@@ -1258,24 +1269,23 @@
 				10B8562D268AE70900AEF15F /* PaymentSuccess.php in Resources */,
 				1033B25E2674A7F300D999CE /* Preview Assets.xcassets in Resources */,
 				1033B2DB2674A92D00D999CE /* RapydRequest.php in Resources */,
-				10FFB626269142490029C1D8 /* 1.png in Resources */,
-				10FFB63826914B2E0029C1D8 /* 1.png in Resources */,
 				10FFB62B26914A620029C1D8 /* KypaySeller.php in Resources */,
 				10FFB5F2268D84050029C1D8 /* KypayBillerController.php in Resources */,
+				10FFB66C269159480029C1D8 /* 1.png in Resources */,
 				1033B2C32674A92D00D999CE /* Test2.php in Resources */,
+				10FFB66A269159480029C1D8 /* 1.png in Resources */,
 				1033B2CE2674A92D00D999CE /* Controller.php in Resources */,
 				10B855F926830E8F00AEF15F /* PaymentFailed.php in Resources */,
 				1033B2CB2674A92D00D999CE /* KypayUserImg.php in Resources */,
 				10B8560B2687443400AEF15F /* Test3..php in Resources */,
 				1033B2922674A82F00D999CE /* T.json in Resources */,
 				1033B2DA2674A92D00D999CE /* DbObject.php in Resources */,
+				10FFB668269159480029C1D8 /* 1.png in Resources */,
 				10FFB62F26914B200029C1D8 /* KypaySellerItem.php in Resources */,
 				1033B2CF2674A92D00D999CE /* RequestMethod.php in Resources */,
-				10FFB614269137750029C1D8 /* 1.png in Resources */,
 				1033B2D02674A92D00D999CE /* KypayUserWalletController.php in Resources */,
 				10FFB63C269150290029C1D8 /* KypaySellerItemImage.php in Resources */,
 				10FFB63A26914C4A0029C1D8 /* KypaySellerItemController.php in Resources */,
-				10FFB618269138B20029C1D8 /* 1.png in Resources */,
 				1033B25B2674A7F300D999CE /* Assets.xcassets in Resources */,
 				1033B2C42674A92D00D999CE /* Test.php in Resources */,
 				10FFB5EE268D6C670029C1D8 /* tm.png in Resources */,
@@ -1285,18 +1295,20 @@
 				1033B2D52674A92D00D999CE /* KeyManager.php in Resources */,
 				1033B2C52674A92D00D999CE /* index.php in Resources */,
 				1033B2C72674A92D00D999CE /* KypayUser.php in Resources */,
+				10FFB667269159480029C1D8 /* 1.png in Resources */,
 				1033B2CA2674A92D00D999CE /* KypayUserWallet.php in Resources */,
 				1033C0882677386000D999CE /* GoogleService-Info.plist in Resources */,
 				1033B2CC2674A92D00D999CE /* KypayDbObject.php in Resources */,
+				10FFB666269159480029C1D8 /* 1.png in Resources */,
 				1033B2CD2674A92D00D999CE /* KypayUserController.php in Resources */,
-				10FFB629269142490029C1D8 /* 1.png in Resources */,
+				10FFB665269159480029C1D8 /* 1.png in Resources */,
 				10B85635268BEF3D00AEF15F /* payload.json in Resources */,
 				10B85637268BF04B00AEF15F /* createPush.php in Resources */,
-				10FFB63726914B2E0029C1D8 /* 1.png in Resources */,
+				10FFB669269159480029C1D8 /* 1.png in Resources */,
 				1033B2C62674A92D00D999CE /* tb.sql in Resources */,
 				1033B2D92674A92D00D999CE /* DbConnector.php in Resources */,
 				1033B2D12674A92D00D999CE /* KypayUserAddressController.php in Resources */,
-				10FFB628269142490029C1D8 /* 1.png in Resources */,
+				10FFB664269159480029C1D8 /* 1.png in Resources */,
 				1033B2DD2674A92D00D999CE /* ObtainTK.php in Resources */,
 				1033B2DC2674A92D00D999CE /* CollectRequest.php in Resources */,
 			);
@@ -1369,12 +1381,14 @@
 				10B855FB2684037700AEF15F /* CustomerHandler.swift in Sources */,
 				10FFB60A26905C880029C1D8 /* MessagesViewModel.swift in Sources */,
 				1033B2942674A82F00D999CE /* DictionaryExt.swift in Sources */,
+				10FFB640269156E00029C1D8 /* SellerCategory.swift in Sources */,
 				10FFB5E3268C452D0029C1D8 /* KypayUserSelectionView.swift in Sources */,
 				1033B2962674A82F00D999CE /* UserAddress.swift in Sources */,
 				10B855EC267F2BF700AEF15F /* TopUpPaymentView.swift in Sources */,
 				10B856152688217300AEF15F /* TestWalletView.swift in Sources */,
 				10B8560D268757CF00AEF15F /* TopUpFailureView.swift in Sources */,
 				10B8561C2688445100AEF15F /* PayoutMethodTypesView.swift in Sources */,
+				10FFB63E269156BE0029C1D8 /* SellerItem.swift in Sources */,
 				1033B2552674A7F200D999CE /* AppDelegate.swift in Sources */,
 				10FFB5FF268E892B0029C1D8 /* BillerPayment.swift in Sources */,
 				1033C0762676E81000D999CE /* ViewExtension.swift in Sources */,
@@ -1409,6 +1423,7 @@
 				1033C0C5267B358E00D999CE /* KyPayDb.xcdatamodeld in Sources */,
 				1033C0922678292900D999CE /* OtpTextViewModel.swift in Sources */,
 				1033C0CF267D767000D999CE /* TxInputData.swift in Sources */,
+				10FFB644269158120029C1D8 /* Seller.swift in Sources */,
 				10FFB60126904A6F0029C1D8 /* KypayMessage.php in Sources */,
 				1033C0982678477600D999CE /* UserViewModel.swift in Sources */,
 				10B85620268949CA00AEF15F /* TxHandler.swift in Sources */,
@@ -1433,6 +1448,7 @@
 				1033C09426782B5700D999CE /* OtpText.swift in Sources */,
 				1033C0AF2679BB7800D999CE /* EditProfileView.swift in Sources */,
 				10B85630268B0B8800AEF15F /* KypayDeviceToken.php in Sources */,
+				10FFB6422691571F0029C1D8 /* SellerItemImage.swift in Sources */,
 				1033C0BC267AECA200D999CE /* Theme.swift in Sources */,
 				10B856072686ADB000AEF15F /* PaymentRedirectWebView.swift in Sources */,
 				1033C0D1267D769400D999CE /* TxInputDataViewModel.swift in Sources */,

@@ -101,6 +101,7 @@ class KypaySellerItemController extends Controller {
             
             $row = $res[$r];
             
+            
             $row['price'] = floatval($row['price']);
             $row['qoh'] = intval($row['qoh']);
             
@@ -112,6 +113,9 @@ class KypaySellerItemController extends Controller {
             if ( $seller->findByPK($pk, true))
                 $row['seller'] = $seller->getRowArray();
           
+            unset($row['seller_id']); // remove
+            
+            
             $images = $itemImage->findImagesBy($row['id']);
             $row['images'] = $images;
             
