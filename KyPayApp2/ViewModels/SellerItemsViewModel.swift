@@ -32,6 +32,11 @@ class SellerItemsViewModel : ObservableObject {
         })
         
     }
+    
+    var categoryKeys : [String] {
+        
+        Array(byCategories.keys)
+    }
 }
 
 extension SellerItemsViewModel {

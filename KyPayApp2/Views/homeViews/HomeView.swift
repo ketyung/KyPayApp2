@@ -45,6 +45,8 @@ extension HomeView {
                 
                 billerButtonView()
                 
+                SellerItemsView()
+                
                 Spacer()
         
             }

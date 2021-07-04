@@ -80,6 +80,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         //CountDownTextView(viewModel: OtpTextViewModel())
             ContentView().environmentObject(PhoneInputViewModel()).environmentObject(UserViewModel()).environmentObject(UserWalletViewModel()).environmentObject(TxInputDataViewModel()).environmentObject(MessagesViewModel()).environmentObject(SellerItemsViewModel())
         
+       //SellerItemsView().environmentObject(PhoneInputViewModel()).environmentObject(UserViewModel()).environmentObject(UserWalletViewModel()).environmentObject(TxInputDataViewModel()).environmentObject(MessagesViewModel()).environmentObject(SellerItemsViewModel())
+    
         //SendMoneyView().environmentObject(PhoneInputViewModel()).environmentObject(UserViewModel()).environmentObject(UserWalletViewModel()).environmentObject(TxInputDataViewModel())
         
         

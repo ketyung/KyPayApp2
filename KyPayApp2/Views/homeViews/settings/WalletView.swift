@@ -14,8 +14,7 @@ struct WalletView : View {
     
     @EnvironmentObject private var userViewModel : UserViewModel
 
-    @EnvironmentObject private var itemsViewModel : SellerItemsViewModel
-
+  
     @State private var promptDelete : Bool = false
 
     @State private var walletHandler = WalletHandler()

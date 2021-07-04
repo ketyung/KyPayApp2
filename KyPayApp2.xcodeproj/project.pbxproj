@@ -178,6 +178,7 @@
 		10FFB644269158120029C1D8 /* Seller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB643269158120029C1D8 /* Seller.swift */; };
 		10FFB66E26915C5D0029C1D8 /* kypay_db.sql in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB66D26915C5D0029C1D8 /* kypay_db.sql */; };
 		10FFB67026915CD90029C1D8 /* SellerItemsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB66F26915CD90029C1D8 /* SellerItemsViewModel.swift */; };
+		10FFB673269162C50029C1D8 /* SellerItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB672269162C50029C1D8 /* SellerItemsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -387,6 +388,7 @@
 		10FFB643269158120029C1D8 /* Seller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Seller.swift; sourceTree = "<group>"; };
 		10FFB66D26915C5D0029C1D8 /* kypay_db.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = kypay_db.sql; sourceTree = "<group>"; };
 		10FFB66F26915CD90029C1D8 /* SellerItemsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerItemsViewModel.swift; sourceTree = "<group>"; };
+		10FFB672269162C50029C1D8 /* SellerItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerItemsView.swift; sourceTree = "<group>"; };
 		1B47377B496C6F0F1022FFD4 /* Pods-KyPayApp2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.debug.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.debug.xcconfig"; sourceTree = "<group>"; };
 		6F523BC3D4353462922B31B9 /* Pods-KyPayApp2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.release.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -779,6 +781,7 @@
 		1033C0A12678510600D999CE /* homeViews */ = {
 			isa = PBXGroup;
 			children = (
+				10FFB671269162B30029C1D8 /* shop */,
 				10FFB60826905C4E0029C1D8 /* message */,
 				10FFB5F9268DB1140029C1D8 /* payBill */,
 				10FFB5E1268C42E30029C1D8 /* requestMoney */,
@@ -928,6 +931,14 @@
 				10FFB60626905C490029C1D8 /* MessagesView.swift */,
 			);
 			path = message;
+			sourceTree = "<group>";
+		};
+		10FFB671269162B30029C1D8 /* shop */ = {
+			isa = PBXGroup;
+			children = (
+				10FFB672269162C50029C1D8 /* SellerItemsView.swift */,
+			);
+			path = shop;
 			sourceTree = "<group>";
 		};
 		55C51AF7366AAFF575FED9C7 /* Frameworks */ = {
@@ -1224,6 +1235,7 @@
 				1033C0982678477600D999CE /* UserViewModel.swift in Sources */,
 				10B85620268949CA00AEF15F /* TxHandler.swift in Sources */,
 				1033B2572674A7F200D999CE /* SceneDelegate.swift in Sources */,
+				10FFB673269162C50029C1D8 /* SellerItemsView.swift in Sources */,
 				10B856132687F33800AEF15F /* NavigationLinkExt.swift in Sources */,
 				10154F3A268033B600DB78C4 /* TopUpPayment.swift in Sources */,
 				10B8561A2688416300AEF15F /* PayoutMethodsViewModel.swift in Sources */,
