@@ -167,6 +167,13 @@
 		10FFB60526905B4C0029C1D8 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB60426905B4C0029C1D8 /* Message.swift */; };
 		10FFB60726905C490029C1D8 /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB60626905C490029C1D8 /* MessagesView.swift */; };
 		10FFB60A26905C880029C1D8 /* MessagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB60926905C880029C1D8 /* MessagesViewModel.swift */; };
+		10FFB61026912EDB0029C1D8 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB60F26912EDB0029C1D8 /* 1.png */; };
+		10FFB614269137750029C1D8 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB613269137750029C1D8 /* 1.png */; };
+		10FFB618269138B20029C1D8 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB617269138B20029C1D8 /* 1.png */; };
+		10FFB626269142490029C1D8 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB61C269142490029C1D8 /* 1.png */; };
+		10FFB627269142490029C1D8 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB61F269142490029C1D8 /* 1.png */; };
+		10FFB628269142490029C1D8 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB622269142490029C1D8 /* 1.png */; };
+		10FFB629269142490029C1D8 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB625269142490029C1D8 /* 1.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -365,6 +372,13 @@
 		10FFB60426905B4C0029C1D8 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		10FFB60626905C490029C1D8 /* MessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesView.swift; sourceTree = "<group>"; };
 		10FFB60926905C880029C1D8 /* MessagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewModel.swift; sourceTree = "<group>"; };
+		10FFB60F26912EDB0029C1D8 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		10FFB613269137750029C1D8 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		10FFB617269138B20029C1D8 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		10FFB61C269142490029C1D8 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		10FFB61F269142490029C1D8 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		10FFB622269142490029C1D8 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		10FFB625269142490029C1D8 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		1B47377B496C6F0F1022FFD4 /* Pods-KyPayApp2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.debug.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.debug.xcconfig"; sourceTree = "<group>"; };
 		6F523BC3D4353462922B31B9 /* Pods-KyPayApp2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.release.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -857,6 +871,7 @@
 		10FFB5E6268D6C670029C1D8 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				10FFB60B26912EDB0029C1D8 /* sellers */,
 				10FFB5E7268D6C670029C1D8 /* billers */,
 			);
 			path = images;
@@ -895,6 +910,148 @@
 				10FFB60626905C490029C1D8 /* MessagesView.swift */,
 			);
 			path = message;
+			sourceTree = "<group>";
+		};
+		10FFB60B26912EDB0029C1D8 /* sellers */ = {
+			isa = PBXGroup;
+			children = (
+				10FFB619269142490029C1D8 /* S-UJAG627HAJA902 */,
+				10FFB60C26912EDB0029C1D8 /* S-8HAFvGAJ3KLaJK */,
+			);
+			path = sellers;
+			sourceTree = "<group>";
+		};
+		10FFB60C26912EDB0029C1D8 /* S-8HAFvGAJ3KLaJK */ = {
+			isa = PBXGroup;
+			children = (
+				10FFB615269138B20029C1D8 /* i00000002aaaXdf */,
+				10FFB611269137750029C1D8 /* i000089haj38JKs */,
+				10FFB60D26912EDB0029C1D8 /* i00009abYakopI2 */,
+			);
+			path = "S-8HAFvGAJ3KLaJK";
+			sourceTree = "<group>";
+		};
+		10FFB60D26912EDB0029C1D8 /* i00009abYakopI2 */ = {
+			isa = PBXGroup;
+			children = (
+				10FFB60E26912EDB0029C1D8 /* images */,
+			);
+			path = i00009abYakopI2;
+			sourceTree = "<group>";
+		};
+		10FFB60E26912EDB0029C1D8 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				10FFB60F26912EDB0029C1D8 /* 1.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		10FFB611269137750029C1D8 /* i000089haj38JKs */ = {
+			isa = PBXGroup;
+			children = (
+				10FFB612269137750029C1D8 /* images */,
+			);
+			path = i000089haj38JKs;
+			sourceTree = "<group>";
+		};
+		10FFB612269137750029C1D8 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				10FFB613269137750029C1D8 /* 1.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		10FFB615269138B20029C1D8 /* i00000002aaaXdf */ = {
+			isa = PBXGroup;
+			children = (
+				10FFB616269138B20029C1D8 /* images */,
+			);
+			path = i00000002aaaXdf;
+			sourceTree = "<group>";
+		};
+		10FFB616269138B20029C1D8 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				10FFB617269138B20029C1D8 /* 1.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		10FFB619269142490029C1D8 /* S-UJAG627HAJA902 */ = {
+			isa = PBXGroup;
+			children = (
+				10FFB61A269142490029C1D8 /* B0000000002x */,
+				10FFB61D269142490029C1D8 /* BF8888888888gH */,
+				10FFB620269142490029C1D8 /* B00000000001 */,
+				10FFB623269142490029C1D8 /* BS00000000fxY */,
+			);
+			path = "S-UJAG627HAJA902";
+			sourceTree = "<group>";
+		};
+		10FFB61A269142490029C1D8 /* B0000000002x */ = {
+			isa = PBXGroup;
+			children = (
+				10FFB61B269142490029C1D8 /* images */,
+			);
+			path = B0000000002x;
+			sourceTree = "<group>";
+		};
+		10FFB61B269142490029C1D8 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				10FFB61C269142490029C1D8 /* 1.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		10FFB61D269142490029C1D8 /* BF8888888888gH */ = {
+			isa = PBXGroup;
+			children = (
+				10FFB61E269142490029C1D8 /* images */,
+			);
+			path = BF8888888888gH;
+			sourceTree = "<group>";
+		};
+		10FFB61E269142490029C1D8 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				10FFB61F269142490029C1D8 /* 1.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		10FFB620269142490029C1D8 /* B00000000001 */ = {
+			isa = PBXGroup;
+			children = (
+				10FFB621269142490029C1D8 /* images */,
+			);
+			path = B00000000001;
+			sourceTree = "<group>";
+		};
+		10FFB621269142490029C1D8 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				10FFB622269142490029C1D8 /* 1.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		10FFB623269142490029C1D8 /* BS00000000fxY */ = {
+			isa = PBXGroup;
+			children = (
+				10FFB624269142490029C1D8 /* images */,
+			);
+			path = BS00000000fxY;
+			sourceTree = "<group>";
+		};
+		10FFB624269142490029C1D8 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				10FFB625269142490029C1D8 /* 1.png */,
+			);
+			path = images;
 			sourceTree = "<group>";
 		};
 		55C51AF7366AAFF575FED9C7 /* Frameworks */ = {
@@ -1025,10 +1182,12 @@
 				1033B2C92674A92D00D999CE /* KypayUserAddress.php in Resources */,
 				10B855F52681BDAC00AEF15F /* WalletRequest.php in Resources */,
 				10FFB5ED268D6C670029C1D8 /* astro.png in Resources */,
+				10FFB627269142490029C1D8 /* 1.png in Resources */,
 				10B855DF267DEACB00AEF15F /* countryCurrency.json in Resources */,
 				1033C0832677035100D999CE /* CountryPickerView.bundle in Resources */,
 				10FFB60326904BA10029C1D8 /* KypayMessageController.php in Resources */,
 				1033B2D22674A92D00D999CE /* DotEnv.php in Resources */,
+				10FFB61026912EDB0029C1D8 /* 1.png in Resources */,
 				10FFB5EC268D6C670029C1D8 /* sesb.png in Resources */,
 				1033B2612674A7F300D999CE /* LaunchScreen.storyboard in Resources */,
 				1033B2D72674A92D00D999CE /* Log.php in Resources */,
@@ -1037,6 +1196,7 @@
 				10B8562D268AE70900AEF15F /* PaymentSuccess.php in Resources */,
 				1033B25E2674A7F300D999CE /* Preview Assets.xcassets in Resources */,
 				1033B2DB2674A92D00D999CE /* RapydRequest.php in Resources */,
+				10FFB626269142490029C1D8 /* 1.png in Resources */,
 				10FFB5F2268D84050029C1D8 /* KypayBillerController.php in Resources */,
 				1033B2C32674A92D00D999CE /* Test2.php in Resources */,
 				1033B2CE2674A92D00D999CE /* Controller.php in Resources */,
@@ -1046,7 +1206,9 @@
 				1033B2922674A82F00D999CE /* T.json in Resources */,
 				1033B2DA2674A92D00D999CE /* DbObject.php in Resources */,
 				1033B2CF2674A92D00D999CE /* RequestMethod.php in Resources */,
+				10FFB614269137750029C1D8 /* 1.png in Resources */,
 				1033B2D02674A92D00D999CE /* KypayUserWalletController.php in Resources */,
+				10FFB618269138B20029C1D8 /* 1.png in Resources */,
 				1033B25B2674A7F300D999CE /* Assets.xcassets in Resources */,
 				1033B2C42674A92D00D999CE /* Test.php in Resources */,
 				10FFB5EE268D6C670029C1D8 /* tm.png in Resources */,
@@ -1060,11 +1222,13 @@
 				1033C0882677386000D999CE /* GoogleService-Info.plist in Resources */,
 				1033B2CC2674A92D00D999CE /* KypayDbObject.php in Resources */,
 				1033B2CD2674A92D00D999CE /* KypayUserController.php in Resources */,
+				10FFB629269142490029C1D8 /* 1.png in Resources */,
 				10B85635268BEF3D00AEF15F /* payload.json in Resources */,
 				10B85637268BF04B00AEF15F /* createPush.php in Resources */,
 				1033B2C62674A92D00D999CE /* tb.sql in Resources */,
 				1033B2D92674A92D00D999CE /* DbConnector.php in Resources */,
 				1033B2D12674A92D00D999CE /* KypayUserAddressController.php in Resources */,
+				10FFB628269142490029C1D8 /* 1.png in Resources */,
 				1033B2DD2674A92D00D999CE /* ObtainTK.php in Resources */,
 				1033B2DC2674A92D00D999CE /* CollectRequest.php in Resources */,
 			);

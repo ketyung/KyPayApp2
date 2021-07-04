@@ -235,25 +235,59 @@ insert into kypay_seller_category (id, name, last_updated)
 values ('GG-4BTHY672', 'Gadgets',now());
 
 
-
+drop table if exists kypay_seller;
 create table if not exists kypay_seller (
 
     id varchar(32) default 'x' NOT null,
     uid varchar(32) default 'x' NOT null,
     name varchar(64),
     description varchar(128),
-    primary key(id)
+    last_updated datetime,
+    primary key(id),
+    FOREIGN KEY (uid) REFERENCES kypay_user(id)
+
 );
 
+
+insert into kypay_seller (id, uid, name, description, last_updated)
+values ('S-8HAFvGAJ3KLaJK', 'Teo_bKVBIrH0XFI2', 'Teo\'s Figurine Shop',
+'Selling Interesting Figurines which are great for your collection', now() );
+
+
+drop table if exists kypay_seller_item;
 create table if not exists kypay_seller_item (
 
-    id varchar(12) default 'x' NOT null,
+    id varchar(32) default 'x' NOT null,
     seller_id varchar(32) default 'x' NOT null,
     name varchar(64),
     description varchar(128),
+    category varchar(12),
     price float(10,2),
     currency varchar(5),
-    primary key(id,seller_id)
+    qoh smallint(3),
+    shipping_fee float(10,2),
+    last_updated datetime,
+    primary key(id),
+    FOREIGN KEY (seller_id) REFERENCES kypay_seller(id)
 );
 
 
+insert into kypay_seller_item (id, seller_id, name, description, category, price, currency, qoh,
+shipping_fee,last_updated) values ('i00009abYakopI2', 'S-8HAFvGAJ3KLaJK', 'Comansi - Masha and the Bear - figurine Masha',
+"Delivery time: usually ships in 1-3 working days\nBrand: Comansi", "COL-2663BBL", 12.50, 'MYR', 20, 0, now());
+
+
+drop table if exists kypay_seller_item_image;
+create table if not exists kypay_seller_item_image(
+
+    id smallint(2) default 1 NOT null,
+    item_id varchar(32) default 'x' NOT null,
+    type enum('T', 'O'),
+    url varchar(255),
+    last_updated datetime,
+    primary key(id, item_id),
+    FOREIGN KEY (item_id) REFERENCES kypay_seller_item(id)
+);
+
+insert into kypay_seller_item_image (id, item_id, type, url , last_updated)
+values(1,'i00009abYakopI2', 'O','/sellers/S-8HAFvGAJ3KLaJK/i00009abYakopI2/images/1.png', now());
