@@ -535,6 +535,38 @@ class Tester {
     }
     
     
+    
+    static func testFetchSellerItems() {
+        
+        ARH.shared.fetchSellerItems(currency: "MYR", completion: {
+            
+            res in
+            
+            switch(res) {
+            
+                case .failure(let err) :
+                    print("err.fetch.items..::\(err)")
+                
+                case .success(let items) :
+                    items.forEach{
+                        
+                        item in
+                        
+                        print("item.id::\(item.id ?? "")::\(item.name ?? ""):: category ::\(item.category?.name ?? "")")
+                        print("seller.is::\(item.seller?.id ?? "")::uid::\(item.seller?.uid ?? "")")
+                        
+                        item.images?.forEach{
+                            image in
+                            print("Item.image::\(image.url ?? "xxxx")")
+                        }
+                    }
+                
+                    
+            }
+        })
+    }
+    
+    
     static func testFetchUserAddress(){
         
         ARH.shared.fetchUserAddress(id: "Che_Rm92ndZL", completion: {

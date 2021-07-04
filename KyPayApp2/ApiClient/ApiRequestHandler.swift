@@ -698,3 +698,14 @@ extension ApiRequestHandler {
     }
   
 }
+
+extension ApiRequestHandler {
+    
+    func fetchSellerItems (currency : String, completion:  ((Result<[SellerItem], Error>)->Void)? = nil ){
+        
+        fetch(module: "sellerItem", param: "currency/\(currency)" , decode: [SellerItem].self, completion: completion)
+    }
+  
+}
+
+
