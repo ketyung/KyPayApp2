@@ -101,6 +101,8 @@ class KypaySellerItemController extends Controller {
             
             $row = $res[$r];
             
+            $row['price'] = floatval($row['price']);
+            $row['qoh'] = intval($row['qoh']);
             
             $pk['id'] = $row['category'];
             if ( $cat->findByPK($pk, true))
