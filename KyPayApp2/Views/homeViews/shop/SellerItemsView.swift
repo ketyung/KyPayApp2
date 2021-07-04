@@ -20,7 +20,7 @@ struct SellerItemsView : View {
             
             VStack(alignment: .leading, spacing: 3){
             
-                Text("KyShop - shop for great items").font(.custom(Theme.fontNameBold, size: 20))
+                Text("KyShop - shop here for great items").font(.custom(Theme.fontNameBold, size: 18))
                 
                 ForEach(itemsViewModel.categoryKeys, id:\.self){
                     cat in
@@ -28,8 +28,8 @@ struct SellerItemsView : View {
                     Text(cat).font(.custom(Theme.fontNameBold, size: 18))
                     .padding(4)
                     //.frame(width: UIScreen.main.bounds.width - 10)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .background(Color(UIColor(hex:"#ddddddff")!))
+                    .frame(width: UIScreen.main.bounds.width - 10, alignment: .leading)
+                    .background(Color(UIColor(hex:"#ddeeddff")!))
                         
                     if let items = itemsViewModel.byCategories[cat] {
                         
