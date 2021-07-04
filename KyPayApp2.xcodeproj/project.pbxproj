@@ -177,6 +177,7 @@
 		10FFB6422691571F0029C1D8 /* SellerItemImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB6412691571F0029C1D8 /* SellerItemImage.swift */; };
 		10FFB644269158120029C1D8 /* Seller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB643269158120029C1D8 /* Seller.swift */; };
 		10FFB66E26915C5D0029C1D8 /* kypay_db.sql in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB66D26915C5D0029C1D8 /* kypay_db.sql */; };
+		10FFB67026915CD90029C1D8 /* SellerItemsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB66F26915CD90029C1D8 /* SellerItemsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -385,6 +386,7 @@
 		10FFB6412691571F0029C1D8 /* SellerItemImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerItemImage.swift; sourceTree = "<group>"; };
 		10FFB643269158120029C1D8 /* Seller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Seller.swift; sourceTree = "<group>"; };
 		10FFB66D26915C5D0029C1D8 /* kypay_db.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = kypay_db.sql; sourceTree = "<group>"; };
+		10FFB66F26915CD90029C1D8 /* SellerItemsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerItemsViewModel.swift; sourceTree = "<group>"; };
 		1B47377B496C6F0F1022FFD4 /* Pods-KyPayApp2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.debug.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.debug.xcconfig"; sourceTree = "<group>"; };
 		6F523BC3D4353462922B31B9 /* Pods-KyPayApp2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.release.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -707,6 +709,7 @@
 				10B856102687EE4200AEF15F /* PresenterControl.swift */,
 				10FFB5F7268DA2950029C1D8 /* BillersViewModel.swift */,
 				10FFB60926905C880029C1D8 /* MessagesViewModel.swift */,
+				10FFB66F26915CD90029C1D8 /* SellerItemsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1184,6 +1187,7 @@
 				1033B2552674A7F200D999CE /* AppDelegate.swift in Sources */,
 				10FFB5FF268E892B0029C1D8 /* BillerPayment.swift in Sources */,
 				1033C0762676E81000D999CE /* ViewExtension.swift in Sources */,
+				10FFB67026915CD90029C1D8 /* SellerItemsViewModel.swift in Sources */,
 				1033B2972674A82F00D999CE /* UserWallet.swift in Sources */,
 				1033B29A2674A82F00D999CE /* DateFormatterExt.swift in Sources */,
 				1033C090267749F600D999CE /* OTPView.swift in Sources */,
