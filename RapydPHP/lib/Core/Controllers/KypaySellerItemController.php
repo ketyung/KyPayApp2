@@ -2,6 +2,7 @@
 namespace Core\Controllers;
 
 use Core\Db\KypaySellerItem as Item;
+use Core\Db\KypaySellerItemImage as ItemImage;
 use Core\Db\KypaySellerCategory as Category;
 use Core\Db\KypaySeller as Seller;
 use Core\Controllers\RequestMethod as RM;
@@ -75,6 +76,8 @@ class KypaySellerItemController extends Controller {
         
         if (count($result) > 0){
        
+            $this->addRequiredFields($result);
+            
             $response['status_code_header'] = 'HTTP/1.1 200 OK';
             $response['body'] = json_encode($result);
             return $response;
@@ -86,5 +89,35 @@ class KypaySellerItemController extends Controller {
         }
       
     }
+    
+    
+    protected function addRequiredFields (&$res){
+        
+        $itemImage = new ItemImage($this->db);
+        $cat = new Category($this->db);
+        $seller = new Seller($this->db);
+      
+        for($r=0; $r < count($res); $r++ ){
+            
+            $row = $res[$r];
+            
+            
+            $pk['id'] = $row['category'];
+            if ( $cat->findByPK($pk, true))
+                $row['category'] = $cat->getRowArray();
+            
+            $pk['id'] = $row['seller_id'];
+            if ( $seller->findByPK($pk, true))
+                $row['seller'] = $seller->getRowArray();
+          
+            $images = $itemImage->findImagesBy($row['id']);
+            $row['images'] = $images;
+            
+            $res[$r] = $row;
+        }
+    }
+    
+    
+    
 }
 ?>
