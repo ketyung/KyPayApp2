@@ -10,13 +10,17 @@ import Kingfisher
 
 struct ItemDetailsView : View {
     
+    
+    @Binding var control : PresenterControl
+    
     @EnvironmentObject private var itemsViewModel : SellerItemsViewModel
 
     var body: some View {
         
         VStack {
             
-    
+            topBar()
+            
             ScrollView(.vertical, showsIndicators: false) {
         
                 itemView(itemsViewModel.selectedItem)
@@ -59,8 +63,11 @@ extension ItemDetailsView {
                 
                 
                 HStack {
-                    Text("Price :").font(.custom(Theme.fontNameBold, size: 18)).padding(6)
+                    Text("Price :").font(.custom(Theme.fontNameBold, size: 16)).padding(6)
                     Text("\(item.currency ?? Common.defaultCurrency) \(item.price?.twoDecimalString ?? "0.00")")
+                    .font(.custom(Theme.fontName, size: 18))
+                    
+                    cartActionButton()
                 }.padding().border(Color.green, width: 1, cornerRadius: 6)
                 
                 
@@ -89,4 +96,101 @@ extension ItemDetailsView {
         
         
     }
+}
+
+
+extension ItemDetailsView {
+    
+    
+    private func cartActionButton() -> some View {
+        
+        HStack(spacing: 50) {
+            
+            Button(action: {}){
+            
+                ZStack {
+               
+                    Circle().fill(Color.green).frame(width:36,height:36)
+                    
+                    Image(systemName: "cart.fill.badge.plus")
+                    .resizable().frame(width:24).aspectRatio(contentMode: .fit)
+                    .foregroundColor(.white)
+                   
+                }
+                
+            }
+            
+            
+            Button(action: {}){
+            
+                    
+                ZStack {
+               
+                    Circle().fill(Color.red).frame(width:36,height:36)
+                    
+                    Image(systemName: "cart.fill.badge.minus")
+                    .resizable().frame(width:24).aspectRatio(contentMode: .fit)
+                    .foregroundColor(.white)
+                   
+                }
+            }
+        }
+        .padding(8)
+        .frame(maxWidth: 160)
+        .background(Color.purple)
+        .cornerRadius(20)
+       
+    }
+    
+    
+    private func cartBadge() -> some View {
+        
+        HStack {
+    
+            Spacer()
+          
+            Text("0").font(.custom(Theme.fontNameBold, size: 20)).foregroundColor(.white)
+    
+            
+            ZStack {
+                
+                Circle().fill(Color.black).frame(width:36)
+                
+                Image(systemName: "cart.fill").resizable()
+                .foregroundColor(.white).frame(width:24).aspectRatio(contentMode: .fit)
+            
+            }
+            
+        }
+        .padding(8)
+        .frame(maxWidth: 100, maxHeight: 50, alignment: .trailing)
+        .background(Color.blue)
+        .cornerRadius(20)
+   
+    }
+    
+    
+    private func topBar() -> some View {
+        
+        HStack {
+            
+            Button(action: {
+                
+                withAnimation {
+                
+                    control.itemDetailsPresented = false
+                    
+                }
+                
+            }){
+                
+                Image(systemName: "x.circle.fill").resizable().foregroundColor(Color.black).frame(width:30, height:30)
+            }
+            
+            Spacer()
+            
+            cartBadge()
+        }.padding()
+    }
+    
 }

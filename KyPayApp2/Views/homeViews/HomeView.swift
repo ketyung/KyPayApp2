@@ -85,7 +85,7 @@ extension HomeView {
       
         .bottomSheet(isPresented: $control.itemDetailsPresented, height: UIScreen.main.bounds.height, showGrayOverlay: true, content:{
       
-            ItemDetailsView()
+            ItemDetailsView(control: $control)
         })
       
         
