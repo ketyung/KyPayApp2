@@ -111,7 +111,7 @@ extension ItemDetailsView {
                     }
                     .padding(8)
                     .frame(maxWidth: 160, maxHeight: 50, alignment: .trailing)
-                    .background(IDV.buttonBgColor)
+                    .background(Theme.commonBgColor)
                     .cornerRadius(10)
                
                 }
@@ -131,13 +131,9 @@ extension ItemDetailsView {
 }
 
 
-typealias  IDV = ItemDetailsView
-
 extension ItemDetailsView {
     
-    
-    static let buttonBgColor : Color = Color(UIColor(hex:"#226655ff")!)
-    
+
     
     private func cartActionButton() -> some View {
         
@@ -217,7 +213,7 @@ extension ItemDetailsView {
             }
             .padding(8)
             .frame(maxWidth: 80, maxHeight: 50, alignment: .trailing)
-            .background(IDV.buttonBgColor)
+            .background(Theme.commonBgColor)
             .cornerRadius(20)
           
        

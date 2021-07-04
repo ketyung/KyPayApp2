@@ -16,6 +16,8 @@ struct SellerItemsView : View {
 
     @EnvironmentObject private var userViewModel : UserViewModel
    
+    @EnvironmentObject private var cartViewModel : CartViewModel
+    
     var body: some View {
         
         view()
@@ -30,16 +32,25 @@ struct SellerItemsView : View {
             
             VStack(alignment: .leading, spacing: 3){
             
-                Text("KyShop - shop here for great items").font(.custom(Theme.fontNameBold, size: 18))
+                HStack(spacing: 10) {
+               
+                    Text("KyShop - shop here for great items").font(.custom(Theme.fontNameBold, size: 15))
+                    
+                    cartBadge()
+                   
+                    Spacer()//.frame(width:2)
+                }
+                .padding(.leading, 10).padding(.top, 4).padding(.bottom, 4)
+                .frame(width: UIScreen.main.bounds.width - 10)
+                .background(Color(UIColor(hex: "#ddddddff")!))
                 
                 ForEach(itemsViewModel.categoryKeys, id:\.self){
                     cat in
                     
                     Text(cat).font(.custom(Theme.fontNameBold, size: 18))
-                    .padding(4)
-                    //.frame(width: UIScreen.main.bounds.width - 10)
+                    .padding(.leading, 15).padding(.top, 4).padding(.bottom, 4)
                     .frame(width: UIScreen.main.bounds.width - 10, alignment: .leading)
-                    .background(Color(UIColor(hex:"#ddeeddff")!))
+                    .background(Color(UIColor(hex:"#ccddccff")!))
                         
                     if let items = itemsViewModel.byCategories[cat] {
                         
@@ -81,6 +92,8 @@ extension SellerItemsView {
     
     private func itemView(_ item : SellerItem ) -> some View {
         
+       // let _ = print("sellet.wallet::\(item.seller?.walletRefId ?? "")::\(item.seller?.serviceWalletId ?? "")::\(item.seller?.phoneNumber ?? "")")
+        
         Button(action : {
             
             
@@ -121,3 +134,35 @@ extension SellerItemsView {
     }
 }
 
+
+extension SellerItemsView {
+    
+    private func cartBadge() -> some View {
+        
+        Button(action :{
+            
+            withAnimation{
+                
+            }
+            
+        }){
+      
+            HStack {
+        
+                Text("\(cartViewModel.total())").font(.custom(Theme.fontNameBold, size: 20)).foregroundColor(.white)
+                    
+                Image(systemName: "cart.fill").resizable()
+                .foregroundColor(.white).frame(width:20, height:16).aspectRatio(contentMode: .fit)
+            
+            }
+            .padding(8)
+            .frame(maxWidth: 60, maxHeight: 30, alignment: .trailing)
+            .background(Color(UIColor(hex:"#999999ff")!))
+            .cornerRadius(20)
+          
+       
+        }
+      
+    }
+    
+}

@@ -34,7 +34,7 @@ struct CartView : View {
             Button(action: {}){
                 
                 Text("Check Out".localized).font(.custom(Theme.fontNameBold, size: 20)).padding(6).frame(width: 200)
-                .background(IDV.buttonBgColor).foregroundColor(.white)
+                .background(Theme.commonBgColor).foregroundColor(.white)
                 .cornerRadius(6)
             }
         }
@@ -79,7 +79,7 @@ extension CartView {
         HStack(spacing:10) {
             
             Text("\(cartItem.quantity)").font(.custom(Theme.fontNameBold, size:15)).padding()
-            .foregroundColor(.white).background(IDV.buttonBgColor).frame(minWidth:55)
+            .foregroundColor(.white).background(Theme.commonBgColor).frame(minWidth:55)
             
             Image(systemName: "plus.circle.fill")
             .resizable().frame(width:30, height:30).aspectRatio(contentMode: .fit)

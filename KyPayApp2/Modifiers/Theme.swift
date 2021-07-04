@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct Theme {
     
@@ -13,4 +14,6 @@ struct Theme {
   
     static let fontNameBold : String = "Avenir-Black"
   
+    static let commonBgColor : Color = Color(UIColor(hex:"#226655ff")!)
+   
 }

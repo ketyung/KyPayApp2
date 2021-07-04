@@ -13,7 +13,6 @@ struct HomeView : View {
     @EnvironmentObject private var viewModel : UserViewModel
     
     @EnvironmentObject private var txInputViewModel : TxInputDataViewModel
-  
     
     @State private var control = PresenterControl()
     
@@ -276,3 +275,4 @@ extension HomeView {
     
     
 }
+

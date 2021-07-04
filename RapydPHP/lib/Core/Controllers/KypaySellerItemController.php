@@ -2,6 +2,8 @@
 namespace Core\Controllers;
 
 use Core\Db\KypaySellerItem as Item;
+use Core\Db\KypayUser as User;
+use Core\Db\KypayUserWallet as Wallet;
 use Core\Db\KypaySellerItemImage as ItemImage;
 use Core\Db\KypaySellerCategory as Category;
 use Core\Db\KypaySeller as Seller;
@@ -76,7 +78,7 @@ class KypaySellerItemController extends Controller {
         
         if (count($result) > 0){
        
-            $this->addRequiredFields($result);
+            $this->addRequiredFields($result, $currency);
             
             $response['status_code_header'] = 'HTTP/1.1 200 OK';
             $response['body'] = json_encode($result);
@@ -91,16 +93,17 @@ class KypaySellerItemController extends Controller {
     }
     
     
-    protected function addRequiredFields (&$res){
+    protected function addRequiredFields (&$res, $currency){
         
         $itemImage = new ItemImage($this->db);
         $cat = new Category($this->db);
         $seller = new Seller($this->db);
+        $user = new User($this->db);
+        $wallet = new Wallet($this->db);
       
         for($r=0; $r < count($res); $r++ ){
             
             $row = $res[$r];
-            
             
             $row['price'] = floatval($row['price']);
             $row['qoh'] = intval($row['qoh']);
@@ -110,9 +113,28 @@ class KypaySellerItemController extends Controller {
                 $row['category'] = $cat->getRowArray();
             
             $pk['id'] = $row['seller_id'];
-            if ( $seller->findByPK($pk, true))
+            if ( $seller->findByPK($pk, true)) {
+             
                 $row['seller'] = $seller->getRowArray();
           
+                $pk['id'] = $row['seller']['uid'];
+                
+                if ($user->findBy($pk)){
+                    
+                    $row['seller']['phone_number'] = $user->phoneNumber;
+                    $row['seller']['email'] = $user->email;
+                
+                    
+                    if ($wallet->findWalletBy($pk['id'], 'P', $currency) ){
+                        
+                        $row['seller']['wallet_ref_id'] = $wallet->refId;
+                        $row['seller']['service_wallet_id'] = $wallet->serviceWalletId;
+                    }
+                    
+                }
+                
+                
+            }
             unset($row['seller_id']); // remove
             
             

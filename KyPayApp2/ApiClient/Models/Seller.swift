@@ -13,6 +13,10 @@ struct Seller : Decodable {
     var uid : String?
     var name : String?
     var description : String?
+    var email : String?
+    var phoneNumber : String?
+    var walletRefId : String?
+    var serviceWalletId : String?
     var lastUpdated : Date?
    
 }

@@ -87,6 +87,20 @@ class KypayUser extends KypayDbObject {
     
     public function findBy($pk){
         
+        $res = parent::findBy($pk);
+        if (count($res) > 0){
+            
+            $row = $res[0];
+          
+            $this->loadResultToProperties($row);
+            
+            $this->decrypt();
+           
+            return true;
+        }
+        
+        return false;
+        /**
         if (parent::findBy($pk)){
             
             $this->decrypt();
@@ -95,6 +109,8 @@ class KypayUser extends KypayDbObject {
             
         }
         return false ;
+         */
+        
     }
     
     
