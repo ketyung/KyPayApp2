@@ -15,9 +15,11 @@ struct ItemDetailsView : View {
     
     @EnvironmentObject private var itemsViewModel : SellerItemsViewModel
 
+    @EnvironmentObject private var cartViewModel : CartViewModel
+
     var body: some View {
         
-        VStack {
+        ScrollView([], showsIndicators: false) {
             
             topBar()
             
@@ -27,7 +29,7 @@ struct ItemDetailsView : View {
                 
             }
             .padding()
-            .frame(maxHeight: UIScreen.main.bounds.height - 140)
+            .frame(maxHeight: UIScreen.main.bounds.height - 220)
             
             Spacer()//.frame(minHeight: 20)
        
@@ -85,6 +87,26 @@ extension ItemDetailsView {
                 .padding(.top, 6).padding(.bottom, 10)
                 .border(Color.purple, width: 1, cornerRadius: 6)
                 
+                
+                Button(action:{}){
+               
+                    HStack {
+                        
+                        Image(systemName: "info.circle.fill").resizable()
+                        .foregroundColor(.white).frame(width:24, height:24).aspectRatio(contentMode: .fit)
+                        
+                        Text("Seller Info").font(.custom(Theme.fontName, size: 18)).foregroundColor(.white)
+                        
+                        Spacer()
+                    }
+                    .padding(8)
+                    .frame(maxWidth: 160, maxHeight: 50, alignment: .trailing)
+                    .background(Color.blue)
+                    .cornerRadius(10)
+               
+                }
+               
+                
             
             }.padding(.leading, 10).padding(.bottom, 8).padding(.top, 8)
            
@@ -106,7 +128,13 @@ extension ItemDetailsView {
         
         HStack(spacing: 50) {
             
-            Button(action: {}){
+            Button(action: {
+                
+                if let item = itemsViewModel.selectedItem {
+         
+                    cartViewModel.add(item: item)
+                }
+            }){
             
                 ZStack {
                
@@ -121,7 +149,15 @@ extension ItemDetailsView {
             }
             
             
-            Button(action: {}){
+            Button(action: {
+                
+                
+                if let item = itemsViewModel.selectedItem {
+         
+                    cartViewModel.remove(item: item)
+                }
+                
+            }){
             
                     
                 ZStack {
@@ -141,29 +177,22 @@ extension ItemDetailsView {
         .cornerRadius(20)
        
     }
-    
+}
+
+extension ItemDetailsView {
     
     private func cartBadge() -> some View {
         
         HStack {
     
-            Spacer()
-          
-            Text("0").font(.custom(Theme.fontNameBold, size: 20)).foregroundColor(.white)
-    
-            
-            ZStack {
+            Text("\(cartViewModel.total())").font(.custom(Theme.fontNameBold, size: 20)).foregroundColor(.white)
                 
-                Circle().fill(Color.black).frame(width:36)
-                
-                Image(systemName: "cart.fill").resizable()
-                .foregroundColor(.white).frame(width:24).aspectRatio(contentMode: .fit)
-            
-            }
-            
+            Image(systemName: "cart.fill").resizable()
+            .foregroundColor(.white).frame(width:24, height:20).aspectRatio(contentMode: .fit)
+        
         }
         .padding(8)
-        .frame(maxWidth: 100, maxHeight: 50, alignment: .trailing)
+        .frame(maxWidth: 80, maxHeight: 50, alignment: .trailing)
         .background(Color.blue)
         .cornerRadius(20)
    
@@ -190,7 +219,13 @@ extension ItemDetailsView {
             Spacer()
             
             cartBadge()
-        }.padding()
+        }
+        .padding(.leading, 10)
+        .padding(.trailing, 10)
+        .padding(.top, 6)
+        .padding(.bottom, 6)
+        .frame(maxHeight:55)
+        
     }
     
 }
