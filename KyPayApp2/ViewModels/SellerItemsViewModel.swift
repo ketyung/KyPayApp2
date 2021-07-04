@@ -17,6 +17,8 @@ class SellerItemsViewModel : ObservableObject {
     
     @Published var inProgress : Bool = false
     
+    @Published var selectedItem : SellerItem?
+    
     var sellerItems : [SellerItem] {
         
         get {

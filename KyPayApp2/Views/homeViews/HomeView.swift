@@ -18,11 +18,12 @@ struct HomeView : View {
     @State private var control = PresenterControl()
     
     var body : some View {
-        
+    
         view()
         .onDisappear{ control.reset()}
         .environmentObject(TopUpPaymentViewModel())
         .environmentObject(PaymentMethodsViewModel())
+            
         
     }
     
@@ -35,7 +36,7 @@ extension HomeView {
         
         ScrollView(/*@START_MENU_TOKEN@*/.vertical/*@END_MENU_TOKEN@*/, showsIndicators: false) {
             
-            VStack(spacing:20) {
+            VStack(spacing:10) {
     
                 Spacer().frame(height: 50)
                 
@@ -45,7 +46,7 @@ extension HomeView {
                 
                 billerButtonView()
                 
-                SellerItemsView()
+                SellerItemsView(control: $control)
                 
                 Spacer()
         
@@ -80,6 +81,11 @@ extension HomeView {
         .bottomSheet(isPresented: $control.billerPaymentPresented, height: UIScreen.main.bounds.height, showGrayOverlay: true, content:{
       
             BillersSelectionView()
+        })
+      
+        .bottomSheet(isPresented: $control.itemDetailsPresented, height: UIScreen.main.bounds.height, showGrayOverlay: true, content:{
+      
+            ItemDetailsView()
         })
       
         
@@ -194,7 +200,7 @@ extension HomeView {
     
     
     
-    static func buttonView (  equallyDivideBy : CGFloat = 3, screenWidthSubstract : CGFloat = 75,
+    static func buttonView (  equallyDivideBy : CGFloat = 3, screenWidthSubstract : CGFloat = 70,
                               color : Color = .green, imageOne : String,
                               imageOneSize : CGSize = CGSize(width:32, height: 32),
                               imageOneForegroundColor : Color = .brown,

@@ -25,6 +25,7 @@ struct PresenterControl {
    
     var billerPaymentPresented : Bool = false
     
+    var itemDetailsPresented : Bool = false
     
     mutating func reset(){
         
@@ -35,5 +36,6 @@ struct PresenterControl {
         payoutMethodSelectorPresented = false
         topUpPaymentPresented = false
         billerPaymentPresented = false
+        itemDetailsPresented = false 
     }
 }

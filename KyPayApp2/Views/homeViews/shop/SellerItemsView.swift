@@ -10,11 +10,21 @@ import Kingfisher
 
 struct SellerItemsView : View {
     
+    @Binding var control : PresenterControl
+    
     @EnvironmentObject private var itemsViewModel : SellerItemsViewModel
 
     @EnvironmentObject private var userViewModel : UserViewModel
    
     var body: some View {
+        
+        view()
+        
+    }
+    
+    
+    private func view() -> some View {
+        
         
         ScrollView(.vertical, showsIndicators: false){
             
@@ -71,22 +81,37 @@ extension SellerItemsView {
     
     private func itemView(_ item : SellerItem ) -> some View {
         
-        VStack(spacing:3) {
+        Button(action : {
             
-            Text(item.name ?? "").font(.custom(Theme.fontName, size: 16))
-                .fixedSize(horizontal: false, vertical: true).lineLimit(3).frame(width:100)
             
-            KFImage( URL(string: item.images?.first?.url ?? ""))
-            .resizable()
-            .loadDiskFileSynchronously()
-            .placeholder(placeHolderImageView)
-            .cacheMemoryOnly()
-            .fade(duration: 0.25)
-            .aspectRatio(contentMode: .fit)
-            .frame(width: 80)
+            withAnimation{
+                
+                itemsViewModel.selectedItem = item
+                
+                control.itemDetailsPresented.toggle()
+            }
+            
+        }){
         
-        }.padding(6)
-        .frame(width:140,height:200)
+            
+            VStack(spacing:3) {
+                
+                Text(item.name ?? "").font(.custom(Theme.fontName, size: 16)).foregroundColor(.black)
+                    .fixedSize(horizontal: false, vertical: true).lineLimit(3).frame(width:100)
+                
+                KFImage( URL(string: item.images?.first?.url ?? ""))
+                .resizable()
+                .loadDiskFileSynchronously()
+                .placeholder(placeHolderImageView)
+                .cacheMemoryOnly()
+                .fade(duration: 0.25)
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 80)
+            
+            }.padding(6)
+            .frame(width:140,height:200)
+        }
+        
     }
     
     
