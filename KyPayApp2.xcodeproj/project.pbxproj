@@ -176,6 +176,7 @@
 		10FFB640269156E00029C1D8 /* SellerCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB63F269156E00029C1D8 /* SellerCategory.swift */; };
 		10FFB6422691571F0029C1D8 /* SellerItemImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB6412691571F0029C1D8 /* SellerItemImage.swift */; };
 		10FFB644269158120029C1D8 /* Seller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB643269158120029C1D8 /* Seller.swift */; };
+		10FFB66E26915C5D0029C1D8 /* kypay_db.sql in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB66D26915C5D0029C1D8 /* kypay_db.sql */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -383,6 +384,7 @@
 		10FFB63F269156E00029C1D8 /* SellerCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerCategory.swift; sourceTree = "<group>"; };
 		10FFB6412691571F0029C1D8 /* SellerItemImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerItemImage.swift; sourceTree = "<group>"; };
 		10FFB643269158120029C1D8 /* Seller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Seller.swift; sourceTree = "<group>"; };
+		10FFB66D26915C5D0029C1D8 /* kypay_db.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = kypay_db.sql; sourceTree = "<group>"; };
 		1B47377B496C6F0F1022FFD4 /* Pods-KyPayApp2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.debug.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.debug.xcconfig"; sourceTree = "<group>"; };
 		6F523BC3D4353462922B31B9 /* Pods-KyPayApp2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.release.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -579,6 +581,7 @@
 			isa = PBXGroup;
 			children = (
 				1033B2A42674A92D00D999CE /* tb.sql */,
+				10FFB66D26915C5D0029C1D8 /* kypay_db.sql */,
 				1033B2A52674A92D00D999CE /* Db */,
 				1033B2AC2674A92D00D999CE /* Controllers */,
 			);
@@ -1091,6 +1094,7 @@
 				1033B2CA2674A92D00D999CE /* KypayUserWallet.php in Resources */,
 				1033C0882677386000D999CE /* GoogleService-Info.plist in Resources */,
 				1033B2CC2674A92D00D999CE /* KypayDbObject.php in Resources */,
+				10FFB66E26915C5D0029C1D8 /* kypay_db.sql in Resources */,
 				1033B2CD2674A92D00D999CE /* KypayUserController.php in Resources */,
 				10B85635268BEF3D00AEF15F /* payload.json in Resources */,
 				10B85637268BF04B00AEF15F /* createPush.php in Resources */,
