@@ -78,21 +78,25 @@ extension PaymentMethodTypesView {
     
         Button(action :{
    
-            topUpViewModel.paymentMethod = paymentMethod
-            
-            if isPopBack {
-                self.presentation.dismiss()
-            }
-            else {
-                
-                self.select()
-            }
-            
+            // if other action is provided, use other action
+            // and don't set to topUpViewModel 
             if let action = otherAction {
                 
                 action(paymentMethod.type)
             }
-            
+            else {
+                
+                topUpViewModel.paymentMethod = paymentMethod
+                
+                if isPopBack {
+                    self.presentation.dismiss()
+                }
+                else {
+                    
+                    self.select()
+                }
+               
+            }
         }){
             
             toPaymentMethodView(paymentMethod)
