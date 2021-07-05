@@ -27,8 +27,6 @@ struct TopUpPaymentView : View {
     @State private var dismissTopBar : Bool = false
     
     @Binding var control : PresenterControl
-
-    
     
     var body : some View {
         

@@ -21,15 +21,16 @@ struct CheckoutView : View {
     
     @State private var isOtherPaymentOptionsPresented : Bool = false
     
+    @State private var paymentMethod : String?
+    
+    
     var body : some View {
         
         view()
         .popOver(isPresented: $isOnlineBankingPresented, content: {
-            
-            PaymentMethodTypesView(control: $control)
+            payMethodSelectionView()
         })
         .popOver(isPresented: $isOtherPaymentOptionsPresented, content: {
-            
             paymentOptionsView()
         })
 
@@ -229,6 +230,21 @@ extension CheckoutView {
 }
 
 extension CheckoutView {
+    
+    
+    private func payMethodSelectionView() -> some View {
+        
+        PaymentMethodTypesView(control: $control, otherAction: { pm in
+        
+            self.paymentMethod = pm
+            
+            withAnimation{
+            
+                self.isOnlineBankingPresented = false
+            }
+            
+        })
+    }
     
     
     private func paymentOptionsView() -> some View {
