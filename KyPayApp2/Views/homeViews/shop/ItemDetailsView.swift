@@ -38,7 +38,7 @@ struct ItemDetailsView : View {
         }
         .popOver(isPresented: $cartViewPresented, content: {
             
-            CartView().frame(width: UIScreen.main.bounds.width - 10)
+            CartView(control: $control).frame(width: UIScreen.main.bounds.width - 10)
         })
         .animation(.easeIn)
         

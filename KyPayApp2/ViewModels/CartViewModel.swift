@@ -99,13 +99,13 @@ extension CartViewModel {
         
         Dictionary(grouping: items, by: { (element: CartItem) in
             
-            return element.item.seller?.id ?? ""
+            return "\(element.item.seller?.name ?? "") - \(element.item.seller?.id ?? ""))"
             
         })
         
     }
     
-    var itemsBySellerIDs : [String] {
+    var itemSellers : [String] {
         
         Array(itemsBySeller.keys).sorted(by: {$0 < $1})
    

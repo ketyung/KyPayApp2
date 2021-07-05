@@ -17,5 +17,10 @@ struct CartItem : Equatable {
     var item : SellerItem
     
     var quantity : Int = 0
+    
+    var subTotal : Double {
+        
+        (item.price ?? 0) * Double(quantity)
+    }
   
 }

@@ -29,6 +29,8 @@ struct PresenterControl {
     
     var cartViewPresented : Bool = false
     
+    var checkoutViewPresented : Bool = false
+    
     mutating func reset(){
         
         topUpPresented = false
@@ -39,6 +41,7 @@ struct PresenterControl {
         topUpPaymentPresented = false
         billerPaymentPresented = false
         itemDetailsPresented = false
-        cartViewPresented = false 
+        cartViewPresented = false
+        checkoutViewPresented = false 
     }
 }

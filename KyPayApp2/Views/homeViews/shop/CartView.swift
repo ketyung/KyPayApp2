@@ -10,6 +10,8 @@ import Kingfisher
 
 struct CartView : View {
 
+    @Binding var control : PresenterControl
+    
     @EnvironmentObject private var cartViewModel : CartViewModel
     
     var body : some View {
@@ -31,7 +33,15 @@ struct CartView : View {
             .padding()
             .frame(width: UIScreen.main.bounds.width - 10)
         
-            Button(action: {}){
+            Button(action: {
+                
+                withAnimation {
+                    
+                    control.cartViewPresented = false
+                    control.itemDetailsPresented = false
+                    control.checkoutViewPresented = true 
+                }
+            }){
                 
                 Text("Check Out".localized).font(.custom(Theme.fontNameBold, size: 20)).padding(6).frame(width: 200)
                 .background(Theme.commonBgColor).foregroundColor(.white)
