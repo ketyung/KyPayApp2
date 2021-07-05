@@ -36,6 +36,8 @@ struct CheckoutView : View {
                         }
                     }
                 }
+                
+                totalView()
             }
             
             
@@ -82,12 +84,16 @@ extension CheckoutView {
         
     }
     
+}
+
+extension CheckoutView {
+    
     
     @ViewBuilder
     private func subTotalView ( seller : String) -> some View  {
         
         var currency = Common.defaultCurrency
-        let subTotal = cartViewModel.subTotalBy(seller: seller, currency: &currency)
+        let subTotal = cartViewModel.subTotalAmountBy(seller: seller, currency: &currency)
         
         HStack {
             
@@ -95,6 +101,23 @@ extension CheckoutView {
             
             Text("\("Sub-total".localized) : \(currency) \(subTotal.twoDecimalString)")
             .font(.custom(Theme.fontNameBold, size: 15))
+            
+        }
+    }
+    
+    @ViewBuilder
+    private func totalView() -> some View {
+        
+        var currency = Common.defaultCurrency
+        let total = cartViewModel.totalAmount(currency: &currency)
+        
+        HStack {
+            
+            Spacer()
+      
+            Text("\("Total".localized) : \(currency) \(total.twoDecimalString)")
+            .font(.custom(Theme.fontNameBold, size: 15))
+      
             
         }
     }

@@ -110,20 +110,26 @@ extension CartViewModel {
         Array(itemsBySeller.keys).sorted(by: {$0 < $1})
     }
     
-    func subTotalBy(seller : String, currency : inout String ) -> Double{
+    func subTotalAmountBy(seller : String, currency : inout String ) -> Double{
         
         var subTotal : Double = 0
         if let items = itemsBySeller[seller] {
             
             currency = items.first?.item.currency ?? Common.defaultCurrency
             
-            items.forEach{ citem in
-                
-                subTotal += citem.subTotal
-            }
+            subTotal = items.map({$0.subTotal}).reduce(0,+)
+
         }
         
         return subTotal
+    }
+    
+    
+    func totalAmount(currency : inout String) -> Double {
+        
+        currency = items.first?.item.currency ?? Common.defaultCurrency
+     
+        return items.map({$0.subTotal}).reduce(0,+)
     }
     
 }
