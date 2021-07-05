@@ -58,3 +58,26 @@ class TxHandler {
     }
     
 }
+
+extension TxHandler {
+    
+    
+    func transfer(for cartViewModel : CartViewModel,  completion : ((String?,Error?)->Void)? = nil){
+        
+        var currency = Common.defaultCurrency
+        
+        cartViewModel.itemsBySellerPhone.keys.forEach{
+            
+            phoneNumber in
+            
+            let subTotal = cartViewModel.subTotalAmountBy(sellerPhoneNumber: phoneNumber, currency: &currency)
+            
+            self.transfer(to: phoneNumber, amount: subTotal, currency: currency, completion: {
+                
+                str , err in
+                
+                
+            })
+        }
+    }
+}

@@ -11,6 +11,7 @@ class CartViewModel : ObservableObject {
     
     @Published private var items : [CartItem] = []
     
+    private lazy var txHandler = TxHandler()
     
     func add(item : SellerItem) {
         
@@ -94,8 +95,11 @@ extension CartViewModel {
         items
     }
     
+   
+    
+    
     // dictionary group items by seller 
-    var itemsBySeller : Dictionary<String, [CartItem]>{
+    var itemsBySellerName : Dictionary<String, [CartItem]>{
         
         Dictionary(grouping: items, by: { (element: CartItem) in
             
@@ -107,13 +111,13 @@ extension CartViewModel {
     
     var itemSellers : [String] {
         
-        Array(itemsBySeller.keys).sorted(by: {$0 < $1})
+        Array(itemsBySellerName.keys).sorted(by: {$0 < $1})
     }
     
     func subTotalAmountBy(seller : String, currency : inout String ) -> Double{
         
         var subTotal : Double = 0
-        if let items = itemsBySeller[seller] {
+        if let items = itemsBySellerName[seller] {
             
             currency = items.first?.item.currency ?? Common.defaultCurrency
             
@@ -132,4 +136,40 @@ extension CartViewModel {
         return items.map({$0.subTotal}).reduce(0,+)
     }
     
+}
+
+extension CartViewModel {
+    
+    var itemsBySellerPhone : Dictionary<String, [CartItem]>{
+        
+        Dictionary(grouping: items, by: { (element: CartItem) in
+            
+            element.item.seller?.phoneNumber ?? ""
+        })
+        
+    }
+    
+    func subTotalAmountBy(sellerPhoneNumber : String, currency : inout String ) -> Double{
+        
+        var subTotal : Double = 0
+        if let items = itemsBySellerPhone[sellerPhoneNumber] {
+            
+            currency = items.first?.item.currency ?? Common.defaultCurrency
+            
+            subTotal = items.map({$0.subTotal}).reduce(0,+)
+
+        }
+        
+        return subTotal
+    }
+    
+}
+
+
+extension CartViewModel {
+    
+    func payByWallet(){
+        
+        txHandler.transfer(for: self)
+    }
 }

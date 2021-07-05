@@ -13,6 +13,17 @@ class PaymentHandler : NSObject {
     
     
     
+    func pay( cartItems : [CartItem]){
+        
+        
+        
+    }
+    
+    
+}
+
+extension PayoutHandler {
+    
     func pay(to walletID : String, amount : Decimal){
         
         let currency = RPDCurrency()

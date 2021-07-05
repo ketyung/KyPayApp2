@@ -28,7 +28,7 @@ struct CheckoutView : View {
                     Section(header: sectionText ) {
                     
                    
-                        if let items = cartViewModel.itemsBySeller[sellerId] {
+                        if let items = cartViewModel.itemsBySellerName[sellerId] {
                             
                             itemRows(items)
                             
