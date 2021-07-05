@@ -89,7 +89,7 @@ extension ItemDetailsView {
                     
                
                     Text(item.description ?? "").font(.custom(Theme.fontName, size: 20)).padding(6)
-                    .fixedSize(horizontal: false, vertical: true).lineLimit(20)
+                    .fixedSize(horizontal: false, vertical: true).lineLimit(200)
                     .frame(minWidth: UIScreen.main.bounds.width - 60)
                    
                 }

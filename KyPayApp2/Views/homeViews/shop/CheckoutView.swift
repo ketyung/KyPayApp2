@@ -38,9 +38,13 @@ struct CheckoutView : View {
                 }
                 
                 totalView()
+                
+                payButton()
+                
+                infoView()
             }
             
-            
+           
         }
     }
 }
@@ -123,3 +127,39 @@ extension CheckoutView {
     }
 }
 
+
+extension CheckoutView {
+    
+    
+    private func payButton() -> some View {
+        
+        Button(action: {}){
+            
+            Text("Pay now").font(.custom(Theme.fontNameBold, size: 18)).padding().frame(width: 200, height: 40)
+                .foregroundColor(.white).background(Theme.commonBgColor)
+                .cornerRadius(6)
+        }
+    }
+    
+    
+    @ViewBuilder
+    private func infoView() -> some View {
+        
+        if cartViewModel.itemSellers.count > 1 {
+            
+            HStack {
+                
+                Image(systemName: "info.circle").resizable().foregroundColor(.blue).frame(width:24, height:24)
+                
+                 Text("Our system will automatically the payment for the \(cartViewModel.itemSellers.count) sellers").font(.custom(Theme.fontName, size: 15)).padding(6)
+                 .fixedSize(horizontal: false, vertical: true).lineLimit(200)
+               
+            }
+            .padding(10)
+            .border(Color.purple, width: 1, cornerRadius: 6)
+           
+        }
+        
+    }
+    
+}
