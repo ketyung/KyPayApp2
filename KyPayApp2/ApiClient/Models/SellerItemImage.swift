@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SellerItemImage : Decodable {
+struct SellerItemImage : Codable {
     
     var id : String?
     var itemId : String?

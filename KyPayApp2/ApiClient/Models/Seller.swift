@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Seller : Decodable {
+struct Seller : Codable {
     
     var id : String?
     var uid : String?

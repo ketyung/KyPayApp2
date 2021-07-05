@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SellerCategory : Decodable {
+struct SellerCategory : Codable {
     
     var id : String?
     

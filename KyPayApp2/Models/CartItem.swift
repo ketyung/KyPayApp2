@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CartItem : Equatable {
+struct CartItem : Equatable, Codable {
     
     static func == (lhs: CartItem, rhs: CartItem) -> Bool {
         
