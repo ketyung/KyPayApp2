@@ -7,6 +7,7 @@ use Util\Log as Log;
 use Db\SQLWhereCol as SQLWhereCol;
 use Db\ArrayOfSQLWhereCol as ArrayOfSQLWhereCol;
 use Util\EncUtil as EncUtil;
+use Util\StrUtil as StrUtil;
 
 class KypayOrder extends KypayDbObject {
     
@@ -23,16 +24,16 @@ class KypayOrder extends KypayDbObject {
         
         if (!isset($input['id'])){
             
-            $rid = strtoupper( EncUtil::randomString(24) );
+            $rid = strtoupper( EncUtil::randomString(14) );
             
-            $count = $this->count(array('id'=>$input['id']));
+            $count = $this->count(array('id'=>$rid));
             
             if ($count > 0)
             {
                 $rid .= EncUtil::randomString(3). ($count + 1);
             }
             
-            $input['id'] = $rid; 
+            $input['id'] = "ORDER".strtoupper( StrUtil::escapeBase64($rid) );
         }
         
     }
@@ -40,6 +41,9 @@ class KypayOrder extends KypayDbObject {
     public function insert(Array &$input){
       
         $this->genId($input);
+        
+       // Log::printRToErrorLog($input['id']);
+ 
         return parent::insert($input);
     }
 

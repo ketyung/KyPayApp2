@@ -21,7 +21,7 @@ class KypaySellerOrder extends KypayDbObject {
         
         if (!isset($input['id'])){
             
-            $rid = strtoupper( EncUtil::randomString(24) );
+            $rid = strtoupper( EncUtil::randomString(14) );
             
             $count = $this->count(array('id'=>$input['id']));
             
@@ -30,7 +30,7 @@ class KypaySellerOrder extends KypayDbObject {
                 $rid .= EncUtil::randomString(3). ($count + 1);
             }
             
-            $input['id'] = $rid;
+            $input['id'] = "SO".strtoupper( StrUtil::escapeBase64($rid) );
         }
         
     }

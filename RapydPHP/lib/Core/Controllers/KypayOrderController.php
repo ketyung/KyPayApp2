@@ -18,7 +18,9 @@ class KypayOrderController extends Controller {
     protected function createDbObjectFromRequest(){
     
         $input = $this->getInput();
-        Log::printRToErrorLog($input);
+        //Log::printRToErrorLog($input);
+      
+        $this->createOrder($input);
         
         return $this->notFoundResponse();
     }
@@ -26,13 +28,16 @@ class KypayOrderController extends Controller {
     
     protected function createOrder($input) {
         
-        $orders = $input['order'];
+        $orders = $input['orders'];
+        
+        $input['date_ordered'] = date('Y-m-d H:i:s');
         
         $order =  new Order($this->db);
       
         if ($order->insert ($input)){
             
-            
+          //  Log::printRToErrorLog($input);
+          
         }
         
     }
