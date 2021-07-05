@@ -23,8 +23,7 @@ struct CheckoutView : View {
                     
                     sellerId in
                     
-                    let sectionText =
-                        Text(sellerId).fixedSize(horizontal: false, vertical: true).lineLimit(1).font(.custom(Theme.fontNameBold, size: 15))
+                    let sectionText = Text(sellerId).fixedSize(horizontal: false, vertical: true).lineLimit(1).font(.custom(Theme.fontNameBold, size: 15))
                     
                     Section(header: sectionText ) {
                     
@@ -32,8 +31,9 @@ struct CheckoutView : View {
                         if let items = cartViewModel.itemsBySeller[sellerId] {
                             
                             itemRows(items)
+                            
+                            subTotalView(seller: sellerId)
                         }
-                       
                     }
                 }
             }
@@ -45,6 +45,8 @@ struct CheckoutView : View {
 
 extension CheckoutView {
     
+    
+
     private func itemRows ( _ items : [CartItem]) -> some View {
         
     
@@ -62,7 +64,6 @@ extension CheckoutView {
     private func itemRow (_ item : CartItem) -> some View {
         
         NavigationLink (destination: EmptyView()){
-         
             
             HStack {
           
@@ -79,6 +80,23 @@ extension CheckoutView {
             
         }
         
+    }
+    
+    
+    @ViewBuilder
+    private func subTotalView ( seller : String) -> some View  {
+        
+        var currency = Common.defaultCurrency
+        let subTotal = cartViewModel.subTotalBy(seller: seller, currency: &currency)
+        
+        HStack {
+            
+            Spacer()
+            
+            Text("\("Sub-total".localized) : \(currency) \(subTotal.twoDecimalString)")
+            .font(.custom(Theme.fontNameBold, size: 15))
+            
+        }
     }
 }
 
