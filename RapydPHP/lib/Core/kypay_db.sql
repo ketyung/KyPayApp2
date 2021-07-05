@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 04, 2021 at 03:02 AM
+-- Generation Time: Jul 05, 2021 at 09:07 AM
 -- Server version: 5.7.32
 -- PHP Version: 7.4.12
 
@@ -94,15 +94,46 @@ CREATE TABLE `kypay_message` (
 --
 
 INSERT INTO `kypay_message` (`id`, `uid`, `item_id`, `title`, `sub_title`, `type`, `last_updated`) VALUES
+('Mesg_1V7Nt2SnvrLAAVABCMjUyw22', 'Yan_ffbnByHzZQQ2', 'wQbTY9R4FIYEDWPKC7NaBA22', 'Money Received!', 'May Yang sent you money MYR 10', 'SM', '2021-07-04 13:53:44'),
 ('Mesg_6PScntnlbW6S4lA8OlHzZQ22', 'Yan_ffbnByHzZQQ2', 'OkxO2fmeW1Dj7P9w6Cbw8Q22', 'Money Received!', 'Ket Yung Chee sent you money MYR10', 'SM', '2021-07-03 17:41:35'),
+('Mesg_A1DCcWYl1atibv0WAlZw8A22', 'Yan_ffbnByHzZQQ2', '0uW6JBBlenGttrfTvR4A1A22', 'Money Received!', 'Ket Yung Chee sent you money MYR 10', 'SM', '2021-07-05 16:14:01'),
+('Mesg_GmBlb0foB4G1jijB4BkpsA22', 'Che_Rm92ndZL', 'AFRH0C6xoHFS6QEjOUzmXQ22', 'Money Received!', 'Ket Yung Chee sent you money MYR 10', 'SM', '2021-07-05 10:03:50'),
 ('Mesg_H92ngm8ok2FD9gZQZskkZA22', 'Yan_ffbnByHzZQQ2', 'ac6n9Fvw4P8porr3gzD6sQ22', 'Money Received!', 'Ket Yung Chee sent you money MYR 20', 'SM', '2021-07-03 17:44:18'),
 ('Mesg_JuKpZ8kGvQue3pAvob2e2A22', 'Che_Rm92ndZL', 'XyK11NhUwIi8xaEavbNPHA22', 'Money Received!', '  sent you money MYR2', 'SM', '2021-07-03 16:32:05'),
 ('Mesg_OiaEM6RrscwXW5N1ON3mcg22', 'Che_Rm92ndZL', 'KJSUqeHfzAzbqV7TXlHegg22', 'Money Received!', '  sent you money MYR1', 'SM', '2021-07-03 16:30:07'),
+('Mesg_qIeoocdduT7W37nHUBuhFg22', 'Che_Rm92ndZL', 'vAbKetrpsKiAH6DNXOoryw22', 'Money Received!', 'Ket Yung Chee sent you money MYR 200', 'SM', '2021-07-05 16:15:33'),
 ('Mesg_Tl4q3cAaKSM5WlbYww09fw22', 'Che_Rm92ndZL', 'xdHX6n2gzR7aCe60gxZofA22', 'Money Received!', 'May Yang sent you money MYR 2.03', 'SM', '2021-07-03 17:47:19'),
 ('Mesg_UguF3DWXCjfVOkVEjR6xxA22', 'Che_Rm92ndZL', '4PNPSbopnKHCTCfmp9eSgQ22', 'Money Received!', '  sent you money MYR1', 'SM', '2021-07-03 16:24:24'),
 ('Mesg_Vi7dcXbyvskBSfx0JYW5XQ22', 'Che_Rm92ndZL', 'QEeBes9jL2zwaaX3D6MkRQ22', 'Money Received!', 'May Yang sent you money MYR 1', 'SM', '2021-07-03 17:45:03'),
 ('Mesg_wAY0iZHDazN69GOqyM2Y0A22', 'Che_Rm92ndZL', 'Hmd2CpTMN6HwqIlLfa81TQ22', 'Money Received!', '  sent you money MYR1', 'SM', '2021-07-03 16:28:45'),
-('Mesg_Z0f9F7iLuenSjAq2Io2HYA22', 'Che_Rm92ndZL', 'iySNyGIsNW2TTSx1qBIPHA22', 'Money Received!', 'May Yang sent you money MYR1.09', 'SM', '2021-07-03 16:37:13');
+('Mesg_Y9fKHjwhnD2RHLCC4T6VnQ22', 'Yan_ffbnByHzZQQ2', 'ZpYEUWyJDYYXCix2n5i8qA22', 'Money Received!', 'Ket Yung Chee sent you money MYR 10', 'SM', '2021-07-04 15:00:24'),
+('Mesg_Z0f9F7iLuenSjAq2Io2HYA22', 'Che_Rm92ndZL', 'iySNyGIsNW2TTSx1qBIPHA22', 'Money Received!', 'May Yang sent you money MYR1.09', 'SM', '2021-07-03 16:37:13'),
+('Mesg_zwXSrQqCekkC2iXoUi9fMQ22', 'Yan_ffbnByHzZQQ2', 'JPf6ZJ8I6WmpXQpXzNOM9g22', 'Money Received!', 'Ket Yung Chee sent you money MYR 2', 'SM', '2021-07-05 16:43:35');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kypay_order`
+--
+
+CREATE TABLE `kypay_order` (
+  `id` varchar(32) NOT NULL DEFAULT 'x',
+  `uid` varchar(32) NOT NULL DEFAULT 'x',
+  `total` float(10,2) DEFAULT NULL,
+  `currency` varchar(5) DEFAULT NULL,
+  `status` enum('D','N','PD') NOT NULL DEFAULT 'N',
+  `payment_method` varchar(64) DEFAULT NULL,
+  `date_ordered` datetime DEFAULT NULL,
+  `date_delivered` datetime DEFAULT NULL,
+  `last_updated` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `kypay_order`
+--
+
+INSERT INTO `kypay_order` (`id`, `uid`, `total`, `currency`, `status`, `payment_method`, `date_ordered`, `date_delivered`, `last_updated`) VALUES
+('ORDERPC4XN5LLHKDMYWSEASW2', 'Che_Rm92ndZL', 260.00, 'MYR', 'N', 'kypay_wallet_transfer', '2021-07-05 17:06:01', NULL, '2021-07-05 17:06:01');
 
 -- --------------------------------------------------------
 
@@ -209,8 +240,59 @@ INSERT INTO `kypay_seller_item_image` (`id`, `item_id`, `type`, `url`, `last_upd
 (1, 'H1234567899A', 'O', '/sellers/S-CHEEKY8998KYCC/H1234567899A/images/1.png', '2021-07-04 09:44:45'),
 (1, 'H23356778BHA', 'O', '/sellers/S-CHEEKY8998KYCC/H23356778BHA/images/1.png', '2021-07-04 09:43:43'),
 (1, 'i00000002aaaXdf', 'O', '/sellers/S-8HAFvGAJ3KLaJK/i00000002aaaXdf/images/1.png', '2021-07-04 08:31:27'),
-(1, 'i000089haj38JKs', 'O', '/sellers/S-8HAFvGAJ3KLaJK/i000089haj38JKs/images/1.png\'', '2021-07-04 08:26:47'),
+(1, 'i000089haj38JKs', 'O', '/sellers/S-8HAFvGAJ3KLaJK/i000089haj38JKs/images/1.png', '2021-07-04 08:26:47'),
 (1, 'i00009abYakopI2', 'O', '/sellers/S-8HAFvGAJ3KLaJK/i00009abYakopI2/images/1.png', '2021-07-04 07:58:06');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kypay_seller_order`
+--
+
+CREATE TABLE `kypay_seller_order` (
+  `id` varchar(32) NOT NULL DEFAULT 'x',
+  `order_id` varchar(32) NOT NULL DEFAULT 'x',
+  `seller_id` varchar(32) NOT NULL DEFAULT 'x',
+  `total` float(10,2) DEFAULT NULL,
+  `currency` varchar(5) DEFAULT NULL,
+  `status` enum('D','N','PD') NOT NULL DEFAULT 'N',
+  `service_payment_id` varchar(128) DEFAULT NULL,
+  `date_ordered` datetime DEFAULT NULL,
+  `date_delivered` datetime DEFAULT NULL,
+  `last_updated` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `kypay_seller_order`
+--
+
+INSERT INTO `kypay_seller_order` (`id`, `order_id`, `seller_id`, `total`, `currency`, `status`, `service_payment_id`, `date_ordered`, `date_delivered`, `last_updated`) VALUES
+('SOFUZELYVAQPBKDAMSP2G2', 'ORDERPC4XN5LLHKDMYWSEASW2', 'S-UJAG627HAJA902', 260.00, 'MYR', 'N', 'xxxxxxxx-xxx__111', '2021-07-05 17:06:01', NULL, '2021-07-05 17:06:01');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kypay_seller_order_item`
+--
+
+CREATE TABLE `kypay_seller_order_item` (
+  `seller_order_id` varchar(32) NOT NULL DEFAULT 'x',
+  `item_id` varchar(32) NOT NULL DEFAULT '',
+  `item_name` varchar(64) DEFAULT NULL,
+  `price` float(10,2) DEFAULT NULL,
+  `quantity` smallint(3) DEFAULT NULL,
+  `total` float(10,2) DEFAULT NULL,
+  `status` enum('D','N','PD') NOT NULL DEFAULT 'N',
+  `date_delivered` datetime DEFAULT NULL,
+  `last_updated` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `kypay_seller_order_item`
+--
+
+INSERT INTO `kypay_seller_order_item` (`seller_order_id`, `item_id`, `item_name`, `price`, `quantity`, `total`, `status`, `date_delivered`, `last_updated`) VALUES
+('SOFUZELYVAQPBKDAMSP2G2', 'BF8888888888gH', 'Ultimate Football Heroes Collection 10 Books Set', 130.00, 2, 260.00, 'N', NULL, '2021-07-05 17:06:01');
 
 -- --------------------------------------------------------
 
@@ -303,7 +385,7 @@ CREATE TABLE `kypay_user_payment_tx` (
   `uid` varchar(32) NOT NULL DEFAULT 'x',
   `to_uid` varchar(255) DEFAULT NULL,
   `to_uid_type` enum('B','P','E','U') NOT NULL DEFAULT 'U',
-  `tx_type` enum('WT','SM','RM','PB') DEFAULT NULL,
+  `tx_type` enum('WT','SM','RM','PB','OP') DEFAULT NULL,
   `wallet_ref_id` varchar(16) DEFAULT NULL,
   `to_wallet_ref_id` varchar(16) DEFAULT NULL,
   `amount` float(10,2) DEFAULT NULL,
@@ -325,6 +407,7 @@ INSERT INTO `kypay_user_payment_tx` (`id`, `uid`, `to_uid`, `to_uid_type`, `tx_t
 ('02bbrh0TAlP7SgRNkb2qWg22', 'Che_Rm92ndZL', 'Che_Rm92ndZL', 'U', 'SM', 'gjud1v6Yi2Y2', NULL, -1.25, 'MYR', 'kypay_send_money', NULL, '89e3f689-d950-11eb-b38b-02240218ee6d', 'S', NULL, '2021-06-30 11:09:13'),
 ('0irXm7VkNRu9DjvIcVSJtQ22', 'Che_Rm92ndZL', 'Che_Rm92ndZL', 'U', 'SM', 'gjud1v6Yi2Y2', NULL, -2.00, 'MYR', 'kypay_send_money', NULL, '0aaaa1bd-d877-11eb-b38b-02240218ee6d', 'S', NULL, '2021-06-29 09:12:17'),
 ('0jdxJyVarlVbaBhpuRaVjQ22', 'Cha_BCmFOsbhcm02', 'Cha_BCmFOsbhcm02', 'U', 'WT', '5FAwvqtWVRs2', NULL, 0.00, 'MYR', 'my_affinbank_bank', NULL, NULL, 'S', NULL, '2021-06-25 10:37:33'),
+('0uW6JBBlenGttrfTvR4A1A22', 'Che_Rm92ndZL', 'Yan_ffbnByHzZQQ2', 'U', 'SM', 'gjud1v6Yi2Y2', 'ZLHg8jll7no2', -10.00, 'MYR', 'kypay_send_money', 'Trrrrrr', 'f38a8c7f-dd68-11eb-b38b-02240218ee6d', 'S', NULL, '2021-07-05 16:14:01'),
 ('146Zp26NkMjk7ZxsYSDY6A22', 'Che_Rm92ndZL', 'Che_Rm92ndZL', 'U', 'SM', 'gjud1v6Yi2Y2', NULL, -1.00, 'MYR', 'kypay_send_money', NULL, '8d1af0ee-d7f0-11eb-b38b-02240218ee6d', 'S', NULL, '2021-06-28 17:09:33'),
 ('20hpOb55zzyyIyxs1gLGbw22', 'Cha_BCmFOsbhcm02', 'Che_Rm92ndZL', 'U', 'SM', '5FAwvqtWVRs2', 'gjud1v6Yi2Y2', -3.00, 'MYR', 'kypay_send_money', 'Payment for Abigail’s food order tomorrow', '11d33ed8-da14-11eb-b38b-02240218ee6d', 'S', NULL, '2021-07-01 10:28:51'),
 ('22rSmylJ74Y7CWEccDjFxA22', 'Cha_BCmFOsbhcm02', 'Che_Rm92ndZL', 'U', 'SM', '5FAwvqtWVRs2', 'gjud1v6Yi2Y2', -10.00, 'MYR', 'kypay_send_money', NULL, '0947e486-da0f-11eb-b38b-02240218ee6d', 'S', NULL, '2021-07-01 09:52:58'),
@@ -362,6 +445,7 @@ INSERT INTO `kypay_user_payment_tx` (`id`, `uid`, `to_uid`, `to_uid_type`, `tx_t
 ('9M1Tz2Zbfv0GXWRdnq6b4g22', 'Che_Rm92ndZL', 'Che_Rm92ndZL', 'U', 'SM', 'gjud1v6Yi2Y2', NULL, -1.00, 'MYR', 'kypay_send_money', NULL, 'f7b3cae8-d94e-11eb-b38b-02240218ee6d', 'S', NULL, '2021-06-30 10:57:59'),
 ('ac6n9Fvw4P8porr3gzD6sQ22', 'Che_Rm92ndZL', 'Yan_ffbnByHzZQQ2', 'U', 'SM', 'gjud1v6Yi2Y2', 'ZLHg8jll7no2', -20.00, 'MYR', 'kypay_send_money', 'Pay u my dear', '3a652617-dbe3-11eb-b38b-02240218ee6d', 'S', NULL, '2021-07-03 17:44:18'),
 ('acbvBR8P7uD9yVALq5ZOQQ22', 'Yan_ffbnByHzZQQ2', 'Che_Rm92ndZL', 'U', 'SM', 'ZLHg8jll7no2', 'gjud1v6Yi2Y2', -1.00, 'MYR', 'kypay_send_money', 'Test 1', 'e8eb2900-dbd7-11eb-b38b-02240218ee6d', 'S', NULL, '2021-07-03 16:23:15'),
+('AFRH0C6xoHFS6QEjOUzmXQ22', 'Che_Rm92ndZL', 'Che_Rm92ndZL', 'U', 'WT', 'gjud1v6Yi2Y2', NULL, 10.00, 'MYR', 'my_muamalat_bank', NULL, 'payment_3e66954579cca7ca22bbef4ed24599c0', 'S', NULL, '2021-07-05 10:03:50'),
 ('Aj233TPvMX0bIcn87lFfUQ22', 'Che_Rm92ndZL', 'Che_Rm92ndZL', 'U', 'SM', 'gjud1v6Yi2Y2', NULL, -1.00, 'MYR', 'kypay_send_money', NULL, 'ef63c28f-d876-11eb-b38b-02240218ee6d', 'S', NULL, '2021-06-29 09:11:31'),
 ('aLgmPHB0UWbZBxAkAdWvOw22', 'Che_Rm92ndZL', 'Che_Rm92ndZL', 'U', 'WT', 'gjud1v6Yi2Y2', NULL, 0.00, 'MYR', 'kypay_send_money', NULL, NULL, 'S', NULL, '2021-06-28 10:50:01'),
 ('aN3xTYC1b2zAjIY5sCsylg22', 'Che_Rm92ndZL', 'Che_Rm92ndZL', 'U', 'SM', 'gjud1v6Yi2Y2', NULL, -1.00, 'MYR', 'kypay_send_money', NULL, '3252d648-d809-11eb-b38b-02240218ee6d', 'S', NULL, '2021-06-28 20:05:59'),
@@ -433,6 +517,7 @@ INSERT INTO `kypay_user_payment_tx` (`id`, `uid`, `to_uid`, `to_uid_type`, `tx_t
 ('j93tBtfuqOCTGsfwGdeNoQ22', 'Che_Rm92ndZL', 'Che_Rm92ndZL', 'U', 'SM', 'gjud1v6Yi2Y2', NULL, -1.00, 'MYR', 'kypay_send_money', NULL, 'ac6d48dc-d815-11eb-b38b-02240218ee6d', 'S', NULL, '2021-06-28 21:35:17'),
 ('j94qiPsbn2m2v7PMp3imQg22', 'Cha_BCmFOsbhcm02', 'Cha_BCmFOsbhcm02', 'U', 'WT', '5FAwvqtWVRs2', NULL, 0.00, 'MYR', 'my_maybank_bank', NULL, NULL, 'S', NULL, '2021-06-25 10:10:46'),
 ('J96rKbz0t3F0dngqeW7XOQ22', 'Che_Rm92ndZL', 'Che_Rm92ndZL', 'U', 'WT', 'gjud1v6Yi2Y2', NULL, 12.00, 'MYR', 'my_rhb_bank', NULL, NULL, 'S', NULL, '2021-06-28 11:41:09'),
+('JPf6ZJ8I6WmpXQpXzNOM9g22', 'Che_Rm92ndZL', 'Yan_ffbnByHzZQQ2', 'U', 'SM', 'gjud1v6Yi2Y2', 'ZLHg8jll7no2', -2.00, 'MYR', 'kypay_send_money', 'Teeeeeeee', '14b62d36-dd6d-11eb-b38b-02240218ee6d', 'S', NULL, '2021-07-05 16:43:35'),
 ('jQdKontYpUAohMtU2hSO4w22', 'Che_Rm92ndZL', 'Cha_BCmFOsbhcm02', 'U', 'SM', 'gjud1v6Yi2Y2', '5FAwvqtWVRs2', -3.50, 'MYR', 'kypay_send_money', NULL, '5b1834de-d981-11eb-b38b-02240218ee6d', 'S', NULL, '2021-06-30 16:58:38'),
 ('JrCzvkVOTpz20bAVrUceGA22', 'Teo_bKVBIrH0XFI2', 'Teo_bKVBIrH0XFI2', 'U', 'WT', 'BzDVyp8M60A2', NULL, 10.00, 'MYR', 'my_alliancebank_bank', NULL, 'payment_25fd8a754c36e9b923ec84cfd0dc5157', 'S', NULL, '2021-07-03 10:47:46'),
 ('jrXR8C2KrKNTvVlnfC5Z2A22', 'Che_Rm92ndZL', 'Che_Rm92ndZL', 'U', 'SM', 'gjud1v6Yi2Y2', NULL, -2.10, 'MYR', 'kypay_send_money', NULL, '991025b5-d950-11eb-b38b-02240218ee6d', 'S', NULL, '2021-06-30 11:09:37'),
@@ -505,6 +590,7 @@ INSERT INTO `kypay_user_payment_tx` (`id`, `uid`, `to_uid`, `to_uid_type`, `tx_t
 ('UKTPpVEVF0Cy7Nd2dGVcgw22', 'Che_Rm92ndZL', 'Cha_BCmFOsbhcm02', 'U', 'SM', 'gjud1v6Yi2Y2', '5FAwvqtWVRs2', -1.00, 'MYR', 'kypay_send_money', NULL, '856b1d6e-d97f-11eb-b38b-02240218ee6d', 'S', NULL, '2021-06-30 16:45:30'),
 ('UssUsBM4GX2IedGT8BGEQg22', 'Cha_BCmFOsbhcm02', 'Cha_BCmFOsbhcm02', 'U', NULL, '5FAwvqtWVRs2', NULL, 0.00, 'MYR', 'my_cimb_bank', NULL, NULL, 'S', NULL, '2021-06-25 09:40:22'),
 ('v29amR4akbzBcE2yOdMxSg22', 'Che_Rm92ndZL', 'Che_Rm92ndZL', 'U', 'SM', 'gjud1v6Yi2Y2', NULL, -1.00, 'MYR', 'kypay_send_money', NULL, 'd01da133-d86c-11eb-b38b-02240218ee6d', 'S', NULL, '2021-06-29 07:59:03'),
+('vAbKetrpsKiAH6DNXOoryw22', 'Che_Rm92ndZL', 'Che_Rm92ndZL', 'U', 'WT', 'gjud1v6Yi2Y2', NULL, 200.00, 'MYR', 'my_simpanannasional_bank', NULL, 'payment_3b1e6a683869c0a9905def4db1afe69c', 'S', NULL, '2021-07-05 16:15:33'),
 ('vbiBNWXpInyDgiGvsd3Y4w22', 'Cha_BCmFOsbhcm02', 'Che_Rm92ndZL', 'U', 'SM', '5FAwvqtWVRs2', 'gjud1v6Yi2Y2', -10.00, 'MYR', 'kypay_send_money', NULL, '1352e369-da0e-11eb-b38b-02240218ee6d', 'S', NULL, '2021-07-01 09:45:56'),
 ('vbJfFGT2CS5vg5rNBBMeGQ22', 'Cha_BCmFOsbhcm02', 'Cha_BCmFOsbhcm02', 'U', 'WT', '5FAwvqtWVRs2', NULL, 0.00, 'MYR', 'my_alliancebank_bank', NULL, NULL, 'S', NULL, '2021-06-25 11:02:38'),
 ('vjEVyJ43B70p4SyTKFjThg22', 'Che_Rm92ndZL', 'Che_Rm92ndZL', 'U', 'SM', 'gjud1v6Yi2Y2', NULL, -1.00, 'MYR', 'kypay_send_money', NULL, '4a80022f-d86a-11eb-b38b-02240218ee6d', 'S', NULL, '2021-06-29 07:41:00'),
@@ -524,6 +610,7 @@ INSERT INTO `kypay_user_payment_tx` (`id`, `uid`, `to_uid`, `to_uid_type`, `tx_t
 ('wm4BRF9Xl37zNO419d6Wlw22', 'Che_Rm92ndZL', 'Che_Rm92ndZL', 'U', 'WT', 'gjud1v6Yi2Y2', NULL, 10.00, 'MYR', 'my_maybank_bank', NULL, NULL, 'S', NULL, '2021-06-27 09:42:42'),
 ('womCPZVpQHhQqUvTRDvMeg22', 'Che_Rm92ndZL', 'Che_Rm92ndZL', 'U', 'WT', 'gjud1v6Yi2Y2', NULL, 10.00, 'MYR', 'my_simpanannasional_bank', NULL, 'payment_8d799a95045647edfa2b1eb7b0e92c30', 'S', NULL, '2021-06-28 19:42:41'),
 ('wPHIeUtVOhFC2iubfNTVDA22', 'Teo_bKVBIrH0XFI2', 'Che_Rm92ndZL', 'U', 'SM', 'BzDVyp8M60A2', 'gjud1v6Yi2Y2', -2.00, 'MYR', 'kypay_send_money', 'Test sending', '273a14e7-dbc4-11eb-b38b-02240218ee6d', 'S', NULL, '2021-07-03 14:01:49'),
+('wQbTY9R4FIYEDWPKC7NaBA22', 'Yan_ffbnByHzZQQ2', 'Yan_ffbnByHzZQQ2', 'U', 'WT', 'ZLHg8jll7no2', NULL, 10.00, 'MYR', 'my_islam_bank', NULL, 'payment_206d1a12d4fab4d668d8727498e84e65', 'S', NULL, '2021-07-04 13:53:44'),
 ('WQYwfzFIhfW9yAC2Pay71w22', 'Che_Rm92ndZL', 'Che_Rm92ndZL', 'U', 'SM', 'gjud1v6Yi2Y2', NULL, -1.00, 'MYR', 'kypay_send_money', NULL, '911682b9-d801-11eb-b38b-02240218ee6d', 'S', NULL, '2021-06-28 19:11:24'),
 ('WuGS1FDaqbKpBScndNOXsg22', 'Cha_BCmFOsbhcm02', 'Cha_BCmFOsbhcm02', 'U', 'WT', '5FAwvqtWVRs2', NULL, 25.00, 'MYR', 'my_kuwaitfinancehouse_bank', NULL, 'payment_4e71d63eba01848403195327fe48814d', 'S', NULL, '2021-07-02 18:07:39'),
 ('wYXCXANap82KvtbaztJldQ22', 'Che_Rm92ndZL', 'Che_Rm92ndZL', 'U', 'SM', 'gjud1v6Yi2Y2', NULL, -130.00, 'MYR', 'kypay_send_money', NULL, NULL, 'S', NULL, '2021-06-28 15:42:31'),
@@ -547,6 +634,7 @@ INSERT INTO `kypay_user_payment_tx` (`id`, `uid`, `to_uid`, `to_uid_type`, `tx_t
 ('zGf2h5L4GOzAQKbw64BvbQ22', 'Teo_bKVBIrH0XFI2', 'Teo_bKVBIrH0XFI2', 'U', 'WT', 'BzDVyp8M60A2', NULL, 10.00, 'MYR', 'us_visa_card', NULL, 'payment_29378a70a853cb18afa7a55c03422f02', 'S', NULL, '2021-07-03 13:55:09'),
 ('zLtCncy9VXBlaGB0eHWgAQ22', 'Che_Rm92ndZL', 'Cha_BCmFOsbhcm02', 'U', 'SM', 'gjud1v6Yi2Y2', '5FAwvqtWVRs2', -1.00, 'MYR', 'kypay_send_money', NULL, 'd916117c-d97f-11eb-b38b-02240218ee6d', 'S', NULL, '2021-06-30 16:47:50'),
 ('ZNq12oacdrjcSWRnAqOCdg22', 'Che_Rm92ndZL', 'Che_Rm92ndZL', 'U', 'WT', 'gjud1v6Yi2Y2', NULL, 10.00, 'MYR', 'my_cimb_bank', NULL, NULL, 'S', NULL, '2021-06-27 15:43:26'),
+('ZpYEUWyJDYYXCix2n5i8qA22', 'Che_Rm92ndZL', 'Yan_ffbnByHzZQQ2', 'U', 'SM', 'gjud1v6Yi2Y2', 'ZLHg8jll7no2', -10.00, 'MYR', 'kypay_send_money', 'Test ', '8092a22c-dc95-11eb-b38b-02240218ee6d', 'S', NULL, '2021-07-04 15:00:24'),
 ('Zq2ygVhkzxAbShhJiqjC5w22', 'Teo_bKVBIrH0XFI2', 'Teo_bKVBIrH0XFI2', 'U', 'WT', 'BzDVyp8M60A2', NULL, 10.00, 'MYR', 'us_visa_card', NULL, 'payment_7b81c5a62ab8c834f8cb55e72e93f0c3', 'S', NULL, '2021-07-03 13:59:11'),
 ('Zsrg232xneLhvh01qYn5Rg22', 'Cha_BCmFOsbhcm02', 'Che_Rm92ndZL', 'U', 'SM', '5FAwvqtWVRs2', 'gjud1v6Yi2Y2', -3.00, 'MYR', 'kypay_send_money', NULL, '491fa0bc-d99d-11eb-b38b-02240218ee6d', 'S', NULL, '2021-06-30 20:18:35'),
 ('Zvm7hh6ZGm7Nui24poja1Q22', 'Che_Rm92ndZL', 'Che_Rm92ndZL', 'U', 'SM', 'gjud1v6Yi2Y2', NULL, -3.00, 'MYR', 'kypay_send_money', NULL, 'b85bf429-d7e7-11eb-b38b-02240218ee6d', 'S', NULL, '2021-06-28 16:06:20'),
@@ -582,12 +670,12 @@ CREATE TABLE `kypay_user_wallet` (
 
 INSERT INTO `kypay_user_wallet` (`id`, `ref_id`, `balance`, `currency`, `type`, `service_addr_id`, `service_contact_id`, `service_cust_id`, `service_po_ben_id`, `service_po_sender_id`, `service_wallet_id`, `last_updated`) VALUES
 ('Cha_BCmFOsbhcm02', '5FAwvqtWVRs2', 168.20, 'MYR', 'P', 'address_19b2cf30bb21632df521fdaf5aab5ed1', 'cont_1c251ee25b4d0464c9a555818784a2f9', 'cus_9e0963b6e0db22f4e5d21e80db70952b', NULL, 'sender_52da87fa037b0741eebf8ddc55976f85', 'ewallet_69bb819addd90f6750dfd645a3af0c40', '2021-06-30 20:23:00'),
-('Che_Rm92ndZL', 'gjud1v6Yi2Y2', 195.92, 'MYR', 'P', 'address_7c43774d4b62495b62af4d0d9285f2fb', 'cont_3db76f3e88eea5e18e7d2fb10e8dad8f', 'cus_984be6751fedb6702e8b57c55d06982d', NULL, NULL, 'ewallet_ea94db770b966314504eafdb8ecbe603', '2021-06-30 16:59:22'),
+('Che_Rm92ndZL', 'gjud1v6Yi2Y2', 383.92, 'MYR', 'P', 'address_7c43774d4b62495b62af4d0d9285f2fb', 'cont_3db76f3e88eea5e18e7d2fb10e8dad8f', 'cus_984be6751fedb6702e8b57c55d06982d', NULL, NULL, 'ewallet_ea94db770b966314504eafdb8ecbe603', '2021-07-05 16:43:35'),
 ('Kin_pe23WUO3ZwE2', '0NZ2vaDtoPA2', 0.00, 'USD', 'P', 'address_425584f96542d5032664592a95b0a289', 'cont_74fbf83102ad34c1188aab6a804c9d91', 'cus_f2aa4f94fcd9ad708ae83e11dcdeae08', NULL, NULL, 'ewallet_bfa042323fcd6e85ed84747b968c1257', '2021-07-03 10:25:07'),
 ('Tan_Kql018jlkyo2', 'UW7SK3YVMXE2', 200.80, 'MYR', 'P', 'address_7c43774d4b62495b62af4d0d9285f2fb', 'cont_3db76f3e88eea5e18e7d2fb10e8dad8f', 'cus_99ce848db401cf2b1cf2d4fa49fe541b', NULL, NULL, 'ewallet_ea94db770b966314504eafdb8ecbe603', '2021-07-03 10:42:09'),
 ('Teo_bKVBIrH0XFI2', 'BzDVyp8M60A2', 99.00, 'MYR', 'P', 'address_2f8964b84cf0a049c66d41b8868db141', 'cont_00506872a545fa318675aa1ec7844450', 'cus_f905469d72b7fdf8d5a5392ea445ef5e', NULL, NULL, 'ewallet_59534311fd8ad71096cebd25ff1bb867', '2021-07-03 14:01:49'),
 ('Wan_82u6cg9obZc2', 'coEjXC6NmV42', 100.00, 'SGD', 'P', 'address_d11a384ddc15b6c3044c95c6c6f4ec69', 'cont_7bb2f279a10680f4362bde0295f49195', 'cus_8eb8251bf97374cdcf239764cb07ac7b', NULL, NULL, 'ewallet_c6d8ae333585425da53a01d24c86af81', '2021-07-03 14:10:20'),
-('Yan_ffbnByHzZQQ2', 'ZLHg8jll7no2', 36.88, 'MYR', 'P', 'address_fa88daedeb2a1809a6a37b3485c3f579', 'cont_8c1295ef67aa28629c3ea1a302388d85', 'cus_2868e186b61d360c53eb19d3bf0119df', NULL, NULL, 'ewallet_1058fdfd2c61bb7c8b904d1d6ee95a36', '2021-07-03 09:35:18'),
+('Yan_ffbnByHzZQQ2', 'ZLHg8jll7no2', 68.88, 'MYR', 'P', 'address_fa88daedeb2a1809a6a37b3485c3f579', 'cont_8c1295ef67aa28629c3ea1a302388d85', 'cus_2868e186b61d360c53eb19d3bf0119df', NULL, NULL, 'ewallet_1058fdfd2c61bb7c8b904d1d6ee95a36', '2021-07-03 09:35:18'),
 ('Yon_pgP5FOzMeJM2', 'pgUrZV69ElU2', 0.00, 'MYR', 'P', NULL, NULL, NULL, NULL, NULL, NULL, '2021-06-20 09:50:48');
 
 --
@@ -611,6 +699,13 @@ ALTER TABLE `kypay_device_token`
 --
 ALTER TABLE `kypay_message`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `kypay_order`
+--
+ALTER TABLE `kypay_order`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `uid` (`uid`);
 
 --
 -- Indexes for table `kypay_seller`
@@ -638,6 +733,21 @@ ALTER TABLE `kypay_seller_item`
 --
 ALTER TABLE `kypay_seller_item_image`
   ADD PRIMARY KEY (`id`,`item_id`),
+  ADD KEY `item_id` (`item_id`);
+
+--
+-- Indexes for table `kypay_seller_order`
+--
+ALTER TABLE `kypay_seller_order`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `order_id` (`order_id`),
+  ADD KEY `seller_id` (`seller_id`);
+
+--
+-- Indexes for table `kypay_seller_order_item`
+--
+ALTER TABLE `kypay_seller_order_item`
+  ADD PRIMARY KEY (`seller_order_id`,`item_id`),
   ADD KEY `item_id` (`item_id`);
 
 --
@@ -679,6 +789,12 @@ ALTER TABLE `kypay_user_wallet`
 --
 
 --
+-- Constraints for table `kypay_order`
+--
+ALTER TABLE `kypay_order`
+  ADD CONSTRAINT `kypay_order_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `kypay_user` (`id`);
+
+--
 -- Constraints for table `kypay_seller`
 --
 ALTER TABLE `kypay_seller`
@@ -696,6 +812,20 @@ ALTER TABLE `kypay_seller_item`
 --
 ALTER TABLE `kypay_seller_item_image`
   ADD CONSTRAINT `kypay_seller_item_image_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `kypay_seller_item` (`id`);
+
+--
+-- Constraints for table `kypay_seller_order`
+--
+ALTER TABLE `kypay_seller_order`
+  ADD CONSTRAINT `kypay_seller_order_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `kypay_order` (`id`),
+  ADD CONSTRAINT `kypay_seller_order_ibfk_2` FOREIGN KEY (`seller_id`) REFERENCES `kypay_seller` (`id`);
+
+--
+-- Constraints for table `kypay_seller_order_item`
+--
+ALTER TABLE `kypay_seller_order_item`
+  ADD CONSTRAINT `kypay_seller_order_item_ibfk_1` FOREIGN KEY (`seller_order_id`) REFERENCES `kypay_seller_order` (`id`),
+  ADD CONSTRAINT `kypay_seller_order_item_ibfk_2` FOREIGN KEY (`item_id`) REFERENCES `kypay_seller_item` (`id`);
 
 --
 -- Constraints for table `kypay_user_address`

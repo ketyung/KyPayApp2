@@ -74,6 +74,7 @@ extension TxHandler {
         order.currency = currency
         order.status = .new
         order.uid = user.id
+        order.paymentMethod = "kypay_wallet_transfer"
         
         itemsBySeller.keys.forEach{ seller in
             

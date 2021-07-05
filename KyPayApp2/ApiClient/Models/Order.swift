@@ -26,6 +26,8 @@ struct Order : Codable {
     
     var total : Double?
     
+    var paymentMethod : String?
+    
     var currency : String?
     
     var dateOrdered : Date?

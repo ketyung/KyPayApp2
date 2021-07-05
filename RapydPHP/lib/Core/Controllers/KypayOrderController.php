@@ -60,10 +60,29 @@ class KypayOrderController extends Controller {
                 }
                 
                 
+                $this->updateWalletOf($sellerorder['seller']['uid'], $sellerorder['seller']['wallet_ref_id'], $sellerorder['total']);
             }
           
         }
         
+    }
+    
+    
+    protected function updateWalletOf ($uid, $refId, $amount) {
+        
+        $wallet = new Wallet($this->db);
+        $pk = array('id'=>$uid, 'ref_id' => $refId);
+        
+        if ($wallet->findByPK($pk, true)){
+            
+            $row = $wallet->getRowArray();
+            $balance = $row['balance'] + $amount ;
+            
+            $walletWithNewBalance = array('id'=>$row['id'], 'ref_id'=>$row['ref_id'], 'balance' => $balance);
+            
+            $wallet->update($walletWithNewBalance);
+            
+        }
     }
     
     

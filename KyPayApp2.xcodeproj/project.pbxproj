@@ -176,7 +176,6 @@
 		10FFB640269156E00029C1D8 /* SellerCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB63F269156E00029C1D8 /* SellerCategory.swift */; };
 		10FFB6422691571F0029C1D8 /* SellerItemImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB6412691571F0029C1D8 /* SellerItemImage.swift */; };
 		10FFB644269158120029C1D8 /* Seller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB643269158120029C1D8 /* Seller.swift */; };
-		10FFB66E26915C5D0029C1D8 /* kypay_db.sql in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB66D26915C5D0029C1D8 /* kypay_db.sql */; };
 		10FFB67026915CD90029C1D8 /* SellerItemsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB66F26915CD90029C1D8 /* SellerItemsViewModel.swift */; };
 		10FFB673269162C50029C1D8 /* SellerItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB672269162C50029C1D8 /* SellerItemsView.swift */; };
 		10FFB67526917C2E0029C1D8 /* ItemDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB67426917C2E0029C1D8 /* ItemDetailsView.swift */; };
@@ -190,6 +189,7 @@
 		10FFB6852692DED00029C1D8 /* KypaySellerOrder.php in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB6842692DED00029C1D8 /* KypaySellerOrder.php */; };
 		10FFB6872692DEF50029C1D8 /* KypaySellerOrderItem.php in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB6862692DEF50029C1D8 /* KypaySellerOrderItem.php */; };
 		10FFB6892692DF7F0029C1D8 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB6882692DF7F0029C1D8 /* Order.swift */; };
+		10FFB68B2693036D0029C1D8 /* kypay_db.sql in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB68A2693036D0029C1D8 /* kypay_db.sql */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -397,7 +397,6 @@
 		10FFB63F269156E00029C1D8 /* SellerCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerCategory.swift; sourceTree = "<group>"; };
 		10FFB6412691571F0029C1D8 /* SellerItemImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerItemImage.swift; sourceTree = "<group>"; };
 		10FFB643269158120029C1D8 /* Seller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Seller.swift; sourceTree = "<group>"; };
-		10FFB66D26915C5D0029C1D8 /* kypay_db.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = kypay_db.sql; sourceTree = "<group>"; };
 		10FFB66F26915CD90029C1D8 /* SellerItemsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerItemsViewModel.swift; sourceTree = "<group>"; };
 		10FFB672269162C50029C1D8 /* SellerItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerItemsView.swift; sourceTree = "<group>"; };
 		10FFB67426917C2E0029C1D8 /* ItemDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailsView.swift; sourceTree = "<group>"; };
@@ -411,6 +410,7 @@
 		10FFB6842692DED00029C1D8 /* KypaySellerOrder.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = KypaySellerOrder.php; sourceTree = "<group>"; };
 		10FFB6862692DEF50029C1D8 /* KypaySellerOrderItem.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = KypaySellerOrderItem.php; sourceTree = "<group>"; };
 		10FFB6882692DF7F0029C1D8 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		10FFB68A2693036D0029C1D8 /* kypay_db.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = kypay_db.sql; sourceTree = "<group>"; };
 		1B47377B496C6F0F1022FFD4 /* Pods-KyPayApp2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.debug.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.debug.xcconfig"; sourceTree = "<group>"; };
 		6F523BC3D4353462922B31B9 /* Pods-KyPayApp2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.release.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -609,7 +609,7 @@
 			isa = PBXGroup;
 			children = (
 				1033B2A42674A92D00D999CE /* tb.sql */,
-				10FFB66D26915C5D0029C1D8 /* kypay_db.sql */,
+				10FFB68A2693036D0029C1D8 /* kypay_db.sql */,
 				1033B2A52674A92D00D999CE /* Db */,
 				1033B2AC2674A92D00D999CE /* Controllers */,
 			);
@@ -1111,6 +1111,7 @@
 				1033B2612674A7F300D999CE /* LaunchScreen.storyboard in Resources */,
 				1033B2D72674A92D00D999CE /* Log.php in Resources */,
 				1033B2C22674A92D00D999CE /* bootstrap.php in Resources */,
+				10FFB68B2693036D0029C1D8 /* kypay_db.sql in Resources */,
 				1033B2D32674A92D00D999CE /* .env in Resources */,
 				10FFB62D26914ADF0029C1D8 /* KypaySellerCategory.php in Resources */,
 				10B8562D268AE70900AEF15F /* PaymentSuccess.php in Resources */,
@@ -1144,7 +1145,6 @@
 				1033C0882677386000D999CE /* GoogleService-Info.plist in Resources */,
 				1033B2CC2674A92D00D999CE /* KypayDbObject.php in Resources */,
 				10FFB67F2692AD6C0029C1D8 /* KypayOrderController.php in Resources */,
-				10FFB66E26915C5D0029C1D8 /* kypay_db.sql in Resources */,
 				1033B2CD2674A92D00D999CE /* KypayUserController.php in Resources */,
 				10B85635268BEF3D00AEF15F /* payload.json in Resources */,
 				10B85637268BF04B00AEF15F /* createPush.php in Resources */,

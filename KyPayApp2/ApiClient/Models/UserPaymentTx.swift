@@ -36,6 +36,7 @@ struct UserPaymentTx : Codable{
         case sendMoney = "SM"
         case receiveMoney = "RM"
         case payBill = "PB"
+        case orderPayment = "OP"
     }
     
     var id : String?

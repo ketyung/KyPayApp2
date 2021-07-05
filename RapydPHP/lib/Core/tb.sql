@@ -307,6 +307,7 @@ create table kypay_order (
     last_updated datetime,
     primary key(id)
 );
+alter table kypay_order add payment_method varchar(64);
 
 alter table kypay_order add foreign key(uid) REFERENCES kypay_user(id);
 
@@ -327,6 +328,10 @@ create table if not exists kypay_seller_order (
 );
 
 alter table kypay_seller_order add service_payment_id varchar(128) after status;
+
+alter table kypay_seller_order add foreign key(seller_id) REFERENCES kypay_seller(id);
+
+
 
 
 drop table if exists kypay_seller_order_item;
