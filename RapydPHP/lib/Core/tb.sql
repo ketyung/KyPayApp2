@@ -291,3 +291,54 @@ create table if not exists kypay_seller_item_image(
 
 insert into kypay_seller_item_image (id, item_id, type, url , last_updated)
 values(1,'i00009abYakopI2', 'O','/sellers/S-8HAFvGAJ3KLaJK/i00009abYakopI2/images/1.png', now());
+
+
+drop table if exists kypay_order;
+
+create table kypay_order (
+
+    id varchar(32) default 'x' NOT null,
+    uid varchar(32) default 'x' NOT null,
+    total float(10,2),
+    currency varchar(5),
+    status enum('D', 'N', 'PD') default 'N' NOT null,
+    date_ordered datetime,
+    date_delivered datetime,
+    last_updated datetime,
+    primary key(id)
+);
+
+drop table if exists kypay_seller_order;
+create table if not exists kypay_seller_order (
+
+    id varchar(32) default 'x' NOT null,
+    order_id varchar(32) default 'x' NOT null,
+    seller_id varchar(32) default 'x' NOT null,
+    total float(10,2),
+    currency varchar(5),
+    status enum('D', 'N', 'PD') default 'N' NOT null,
+    date_ordered datetime,
+    date_delivered datetime,
+    last_updated datetime,
+    primary key(id),
+    FOREIGN KEY (order_id) REFERENCES kypay_order(id)
+);
+
+
+drop table if exists kypay_seller_order_item;
+create table if not exists kypay_seller_order_item (
+
+    seller_order_id varchar(32) default 'x' NOT null,
+    item_id varchar(32) default '' NOT null,
+    item_name varchar(64),
+    price float(10,2),
+    quantity smallint(3),
+    total float(10,2),
+    status enum('D', 'N', 'PD') default 'N' NOT null,
+    date_delivered datetime,
+    last_updated datetime,
+    primary key(seller_order_id, item_id),
+    FOREIGN KEY (seller_order_id) REFERENCES kypay_seller_order(id),
+    FOREIGN KEY (item_id) REFERENCES kypay_seller_item(id)
+);
+

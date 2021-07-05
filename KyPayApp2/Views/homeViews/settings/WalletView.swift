@@ -175,6 +175,9 @@ extension WalletView {
         
     }
     
+}
+
+extension WalletView {
     
     private func testButton() -> some View {
         
@@ -210,8 +213,12 @@ extension WalletView {
         
         let itemsBySeller = cartViewModel.itemsBySeller
         
-        var orders : [SellerOrder] = []
-        
+        var order  = Order()
+        order.total = cartViewModel.totalAmount()
+        order.currency = currency
+        order.status = .new
+        order.uid = userViewModel.id
+       
         itemsBySeller.keys.forEach{ seller in
             
             let subTotal = cartViewModel.subTotalAmountBy(seller: seller , currency: &currency)
@@ -219,11 +226,11 @@ extension WalletView {
             let so = SellerOrder(seller: seller, items: itemsBySeller[seller],
             total: subTotal, servicePaymentId: "xxxxxxxx-xxx__\(Int.random(in: 0...210))")
              
-            orders.append(so)
+            order.add(order: so)
             
         }
         
-        ARH.shared.addOrder(orders, returnType:[SellerOrder].self , completion: {
+        ARH.shared.addOrder(order, returnType:Order.self , completion: {
             
             res in
             

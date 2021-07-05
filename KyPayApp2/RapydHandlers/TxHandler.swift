@@ -63,13 +63,17 @@ class TxHandler {
 extension TxHandler {
     
     
-    func transfer(for cartViewModel : CartViewModel,  completion : (([SellerOrder]?,Error?)->Void)? = nil){
+    func transfer(for cartViewModel : CartViewModel, by user : User,  completion : ((Order?,Error?)->Void)? = nil){
         
         var currency = Common.defaultCurrency
         
         let itemsBySeller = cartViewModel.itemsBySeller
         
-        var orders : [SellerOrder] = []
+        var order = Order()
+        order.total = cartViewModel.totalAmount()
+        order.currency = currency
+        order.status = .new
+        order.uid = user.id
         
         itemsBySeller.keys.forEach{ seller in
             
@@ -87,7 +91,7 @@ extension TxHandler {
                     let so = SellerOrder(seller: seller,
                     items: itemsBySeller[seller], total: subTotal, servicePaymentId: id)
                      
-                    orders.append(so)
+                    order.add(order: so)
                     
                     return
                 }
@@ -99,6 +103,6 @@ extension TxHandler {
         
         }
         
-        completion?(orders, nil)
+        completion?(order, nil)
     }
 }
