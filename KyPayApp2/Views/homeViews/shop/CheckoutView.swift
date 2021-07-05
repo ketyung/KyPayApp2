@@ -216,7 +216,7 @@ extension CheckoutView {
                 
                 Image(systemName: "info.circle").resizable().foregroundColor(.blue).frame(width:24, height:24)
                 
-                 Text("Our system will automatically the payment for the \(cartViewModel.itemSellers.count) sellers").font(.custom(Theme.fontName, size: 15)).padding(6)
+                 Text("Our system will automatically split the payment for the \(cartViewModel.itemSellers.count) sellers").font(.custom(Theme.fontName, size: 15)).padding(6)
                  .fixedSize(horizontal: false, vertical: true).lineLimit(200)
                
             }

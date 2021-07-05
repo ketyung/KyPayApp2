@@ -223,13 +223,17 @@ extension WalletView {
             
             let subTotal = cartViewModel.subTotalAmountBy(seller: seller , currency: &currency)
             
-            let so = SellerOrder(seller: seller, items: itemsBySeller[seller],
+            let items = itemsBySeller[seller]
+            let so = SellerOrder(seller: seller, items: items,
             total: subTotal, servicePaymentId: "xxxxxxxx-xxx__\(Int.random(in: 0...210))")
              
             order.add(order: so)
             
         }
+   
         
+        print("order::\(order.orders?.count ?? 0)")
+
         ARH.shared.addOrder(order, returnType:Order.self , completion: {
             
             res in

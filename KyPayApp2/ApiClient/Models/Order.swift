@@ -39,15 +39,13 @@ struct Order : Codable {
     
     mutating func add(order : SellerOrder) {
         
-        if var orders = orders {
-            
-            orders.append(order)
-        }
-        else {
+        if orders == nil {
             
             orders = []
-            orders?.append(order)
         }
+        
+        orders?.append(order)
+  
     }
     
 }

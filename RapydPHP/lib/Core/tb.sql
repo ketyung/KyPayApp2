@@ -326,6 +326,8 @@ create table if not exists kypay_seller_order (
     FOREIGN KEY (order_id) REFERENCES kypay_order(id)
 );
 
+alter table kypay_seller_order add service_payment_id varchar(128) after status;
+
 
 drop table if exists kypay_seller_order_item;
 create table if not exists kypay_seller_order_item (

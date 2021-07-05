@@ -6,6 +6,8 @@ use Core\Db\KypayDbObject as KypayDbObject;
 use Util\Log as Log;
 use Db\SQLWhereCol as SQLWhereCol;
 use Db\ArrayOfSQLWhereCol as ArrayOfSQLWhereCol;
+use Util\EncUtil as EncUtil;
+use Util\StrUtil as StrUtil;
 
 class KypaySellerOrder extends KypayDbObject {
     
@@ -23,7 +25,7 @@ class KypaySellerOrder extends KypayDbObject {
             
             $rid = strtoupper( EncUtil::randomString(14) );
             
-            $count = $this->count(array('id'=>$input['id']));
+            $count = $this->count(array('id'=>$rid));
             
             if ($count > 0)
             {

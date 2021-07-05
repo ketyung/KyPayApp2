@@ -28,15 +28,27 @@ class KypayOrderController extends Controller {
     
     protected function createOrder($input) {
         
-        $orders = $input['orders'];
+        $sellerorders = $input['orders'];
         
         $input['date_ordered'] = date('Y-m-d H:i:s');
         
         $order =  new Order($this->db);
+        $sorder =  new SellerOrder($this->db);
       
         if ($order->insert ($input)){
             
-          //  Log::printRToErrorLog($input);
+            //Log::printRToErrorLog($input);
+            
+            foreach ($sellerorders as $sellerorder){
+                
+                $so = array('total'=>$sellerorder['total'], 'service_payment_id'=>$sellerorder['servicePaymentId'],
+                            'order_id'=>$input['id'], 'seller_id'=>$sellerorder['seller']['id'],
+                            'currency'=>$input['currency'], 'date_ordered'=>  $input['date_ordered'] );
+                $sorder->insert($so);
+                
+                //Log::printRToErrorLog($order);
+                
+            }
           
         }
         
