@@ -1,11 +1,11 @@
 <?php
 namespace Core\Controllers;
 
-use Core\Db\KypaySellerItem as Item;
+use Core\Db\KypayOrder as Order;
 use Core\Db\KypayUser as User;
 use Core\Db\KypayUserWallet as Wallet;
-use Core\Db\KypaySellerItemImage as ItemImage;
-use Core\Db\KypaySellerCategory as Category;
+use Core\Db\KypaySellerOrder as SellerOrder;
+use Core\Db\KypaySellerOrderItem as SellerOrderItem;
 use Core\Db\KypaySeller as Seller;
 use Core\Controllers\RequestMethod as RM;
 use Core\Controllers\Controller as Controller;
@@ -22,6 +22,21 @@ class KypayOrderController extends Controller {
         
         return $this->notFoundResponse();
     }
+    
+    
+    protected function createOrder($input) {
+        
+        $orders = $input['order'];
+        
+        $order =  new Order($this->db);
+      
+        if ($order->insert ($input)){
+            
+            
+        }
+        
+    }
+    
     
     protected function getDbObjects(){
             

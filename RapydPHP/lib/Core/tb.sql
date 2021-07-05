@@ -308,6 +308,8 @@ create table kypay_order (
     primary key(id)
 );
 
+alter table kypay_order add foreign key(uid) REFERENCES kypay_user(id);
+
 drop table if exists kypay_seller_order;
 create table if not exists kypay_seller_order (
 
