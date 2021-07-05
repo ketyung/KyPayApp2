@@ -192,36 +192,6 @@ extension ItemDetailsView {
 
 extension ItemDetailsView {
     
-    private func cartBadge() -> some View {
-        
-        Button(action :{
-            
-            withAnimation{
-                
-                self.cartViewPresented = true 
-            }
-            
-        }){
-      
-            HStack {
-        
-                Text("\(cartViewModel.total())").font(.custom(Theme.fontNameBold, size: 20)).foregroundColor(.white)
-                    
-                Image(systemName: "cart.fill").resizable()
-                .foregroundColor(.white).frame(width:24, height:20).aspectRatio(contentMode: .fit)
-            
-            }
-            .padding(8)
-            .frame(maxWidth: 80, maxHeight: 50, alignment: .trailing)
-            .background(Theme.commonBgColor)
-            .cornerRadius(20)
-          
-       
-        }
-      
-    }
-    
-    
     private func topBar() -> some View {
         
         HStack {
@@ -231,7 +201,6 @@ extension ItemDetailsView {
                 withAnimation {
                 
                     control.itemDetailsPresented = false
-                    
                 }
                 
             }){
@@ -241,7 +210,9 @@ extension ItemDetailsView {
             
             Spacer()
             
-            cartBadge()
+            //cartBadge()
+            
+            Common.cartBadge(cartViewPresented: $cartViewPresented, total: cartViewModel.total())
         }
         .padding(.leading, 10)
         .padding(.trailing, 10)

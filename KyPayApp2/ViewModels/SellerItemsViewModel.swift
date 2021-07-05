@@ -35,7 +35,7 @@ class SellerItemsViewModel : ObservableObject {
         
     }
     
-    var categoryKeys : [String] {
+    var categoryIDs : [String] {
         
         Array(byCategories.keys).sorted(by: {$0 < $1})
     }

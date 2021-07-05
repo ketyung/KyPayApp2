@@ -93,4 +93,22 @@ extension CartViewModel {
         
         items
     }
+    
+    // dictionary group items by seller 
+    var itemsBySeller : Dictionary<String, [CartItem]>{
+        
+        Dictionary(grouping: items, by: { (element: CartItem) in
+            
+            return element.item.seller?.id ?? ""
+            
+        })
+        
+    }
+    
+    var itemsBySellerIDs : [String] {
+        
+        Array(itemsBySeller.keys).sorted(by: {$0 < $1})
+   
+    }
+    
 }

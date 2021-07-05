@@ -36,15 +36,16 @@ struct SellerItemsView : View {
                
                     Text("KyShop - shop here for great items").font(.custom(Theme.fontNameBold, size: 15))
                     
-                    cartBadge()
-                   
+                    Common.cartBadge(cartViewPresented: $control.cartViewPresented, total: cartViewModel.total(),
+                                     maxSize: CGSize(width: 70, height:34), imageSize: CGSize(width: 18, height: 14),
+                                     fontName: Theme.fontName)
                     Spacer()//.frame(width:2)
                 }
                 .padding(.leading, 10).padding(.top, 4).padding(.bottom, 4)
                 .frame(width: UIScreen.main.bounds.width - 10)
                 .background(Color(UIColor(hex: "#ddddddff")!))
                 
-                ForEach(itemsViewModel.categoryKeys, id:\.self){
+                ForEach(itemsViewModel.categoryIDs, id:\.self){
                     cat in
                     
                     Text(cat).font(.custom(Theme.fontNameBold, size: 18))
@@ -134,35 +135,3 @@ extension SellerItemsView {
     }
 }
 
-
-extension SellerItemsView {
-    
-    private func cartBadge() -> some View {
-        
-        Button(action :{
-            
-            withAnimation{
-                
-            }
-            
-        }){
-      
-            HStack {
-        
-                Text("\(cartViewModel.total())").font(.custom(Theme.fontNameBold, size: 20)).foregroundColor(.white)
-                    
-                Image(systemName: "cart.fill").resizable()
-                .foregroundColor(.white).frame(width:20, height:16).aspectRatio(contentMode: .fit)
-            
-            }
-            .padding(8)
-            .frame(maxWidth: 60, maxHeight: 30, alignment: .trailing)
-            .background(Color(UIColor(hex:"#999999ff")!))
-            .cornerRadius(20)
-          
-       
-        }
-      
-    }
-    
-}

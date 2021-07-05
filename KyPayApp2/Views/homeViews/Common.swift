@@ -138,10 +138,44 @@ extension Common {
         }
     }
     
-    
-    
-   
 }
+
+extension Common {
+    
+    static func cartBadge(cartViewPresented : Binding <Bool>, total : Int,
+                          maxSize : CGSize = CGSize(width: 80, height :50 ),
+                          imageSize : CGSize = CGSize(width : 24, height: 20),
+                          fontName : String = Theme.fontNameBold, fontSize : CGFloat = 20,
+                          fontColor : Color = .white) -> some View {
+        
+        Button(action :{
+            
+            withAnimation{
+                
+                cartViewPresented.wrappedValue = true
+            }
+            
+        }){
+      
+            HStack {
+        
+                Text("\(total)").font(.custom(fontName, size: fontSize)).foregroundColor(fontColor)
+                    
+                Image(systemName: "cart.fill").resizable()
+                    .foregroundColor(.white).frame(width:imageSize.width, height:imageSize.height).aspectRatio(contentMode: .fit)
+            
+            }
+            .padding(8)
+            .frame(maxWidth: maxSize.width, maxHeight: maxSize.height, alignment: .trailing)
+            .background(Theme.commonBgColor)
+            .cornerRadius(20)
+          
+       
+        }
+      
+    }
+}
+
 
 extension Common {
     
