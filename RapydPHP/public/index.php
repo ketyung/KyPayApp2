@@ -11,6 +11,7 @@ use Core\Controllers\KypayDeviceTokenController;
 use Core\Controllers\KypayBillerController;
 use Core\Controllers\KypayMessageController;
 use Core\Controllers\KypaySellerItemController;
+use Core\Controllers\KypayOrderController;
 use Db\DbConnector as DbConn;
 
 date_default_timezone_set('Asia/Brunei');
@@ -91,6 +92,12 @@ function processUri(){
     if ($uri[1] == 'sellerItem'){
 
         $u = new KypaySellerItemController( DbConn::conn() , $requestMethod, $params );
+        $u->processRequest();
+    }
+    else
+    if ($uri[1] == 'order'){
+
+        $u = new KypayOrderController( DbConn::conn() , $requestMethod, $params );
         $u->processRequest();
     }
    

@@ -14,6 +14,7 @@ struct WalletView : View {
     
     @EnvironmentObject private var userViewModel : UserViewModel
 
+    @EnvironmentObject private var cartViewModel : CartViewModel
   
     @State private var promptDelete : Bool = false
 
@@ -192,6 +193,21 @@ extension WalletView {
             //Tester.testFetchSellerItems()
             
             //itemsViewModel.fetchSellerItems(currency: "MYR")
+            
+            ARH.shared.addOrder(cartViewModel.cartItems, returnType:[CartItem].self , completion: {
+                
+                res in
+                
+                switch(res) {
+                
+                    case .failure(let err) :
+                        print("err:\(err)")
+                
+                    case .success(let succ) :
+                        print("succ::\(succ)")
+                    
+                }
+            })
             
         }){
             
