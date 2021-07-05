@@ -267,6 +267,7 @@ extension ApiRequestHandler {
        
             let encoder = JSONEncoder()
             encoder.dateEncodingStrategy = DateFormatter.encodingStrategy
+            encoder.keyEncodingStrategy = .convertToSnakeCase
             
             if let object = dataObject  {
            

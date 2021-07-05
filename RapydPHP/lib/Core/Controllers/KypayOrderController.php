@@ -18,7 +18,7 @@ class KypayOrderController extends Controller {
     protected function createDbObjectFromRequest(){
     
         $input = $this->getInput();
-        //Log::printRToErrorLog($input);
+      //  Log::printRToErrorLog($input);
       
         $this->createOrder($input);
         
@@ -34,6 +34,7 @@ class KypayOrderController extends Controller {
         
         $order =  new Order($this->db);
         $sorder =  new SellerOrder($this->db);
+        $sorderItem =  new SellerOrderItem($this->db);
       
         if ($order->insert ($input)){
             
@@ -41,12 +42,23 @@ class KypayOrderController extends Controller {
             
             foreach ($sellerorders as $sellerorder){
                 
-                $so = array('total'=>$sellerorder['total'], 'service_payment_id'=>$sellerorder['servicePaymentId'],
+                $so = array('total'=>$sellerorder['total'], 'service_payment_id'=>$sellerorder['service_payment_id'],
                             'order_id'=>$input['id'], 'seller_id'=>$sellerorder['seller']['id'],
                             'currency'=>$input['currency'], 'date_ordered'=>  $input['date_ordered'] );
                 $sorder->insert($so);
                 
                 //Log::printRToErrorLog($order);
+                $items = $sellerorder['items'];
+                foreach( $items as $item ){
+                    
+                    $newitem = array ('item_id'=>$item['item']['id'], 'quantity'=>$item['quantity'],
+                                      'price' => $item['item']['price'], 'item_name'=>$item['item']['name'], 
+                                      'total'=> $item['item']['price'] * $item['quantity'],
+                                      'seller_order_id'=>$so['id']);
+                    
+                    $sorderItem->insert($newitem);
+                }
+                
                 
             }
           
