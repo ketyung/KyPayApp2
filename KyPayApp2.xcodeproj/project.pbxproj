@@ -190,6 +190,7 @@
 		10FFB6872692DEF50029C1D8 /* KypaySellerOrderItem.php in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB6862692DEF50029C1D8 /* KypaySellerOrderItem.php */; };
 		10FFB6892692DF7F0029C1D8 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB6882692DF7F0029C1D8 /* Order.swift */; };
 		10FFB68B2693036D0029C1D8 /* kypay_db.sql in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB68A2693036D0029C1D8 /* kypay_db.sql */; };
+		10FFB68D2693D25A0029C1D8 /* TappableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB68C2693D25A0029C1D8 /* TappableText.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -411,6 +412,7 @@
 		10FFB6862692DEF50029C1D8 /* KypaySellerOrderItem.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = KypaySellerOrderItem.php; sourceTree = "<group>"; };
 		10FFB6882692DF7F0029C1D8 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		10FFB68A2693036D0029C1D8 /* kypay_db.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = kypay_db.sql; sourceTree = "<group>"; };
+		10FFB68C2693D25A0029C1D8 /* TappableText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableText.swift; sourceTree = "<group>"; };
 		1B47377B496C6F0F1022FFD4 /* Pods-KyPayApp2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.debug.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.debug.xcconfig"; sourceTree = "<group>"; };
 		6F523BC3D4353462922B31B9 /* Pods-KyPayApp2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.release.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -970,6 +972,7 @@
 				10FFB67C269280B60029C1D8 /* CheckoutView.swift */,
 				10FFB67426917C2E0029C1D8 /* ItemDetailsView.swift */,
 				10FFB67A2691A3380029C1D8 /* CartView.swift */,
+				10FFB68C2693D25A0029C1D8 /* TappableText.swift */,
 			);
 			path = shop;
 			sourceTree = "<group>";
@@ -1303,6 +1306,7 @@
 				10B856072686ADB000AEF15F /* PaymentRedirectWebView.swift in Sources */,
 				1033C0D1267D769400D999CE /* TxInputDataViewModel.swift in Sources */,
 				1033C0B7267AC63100D999CE /* NeumorphismModifier.swift in Sources */,
+				10FFB68D2693D25A0029C1D8 /* TappableText.swift in Sources */,
 				10310ADC2681839100A071B7 /* WalletView.swift in Sources */,
 				1033C096267846E500D999CE /* FirstSignInView.swift in Sources */,
 				10B855E1267EC76300AEF15F /* UserWalletViewModel.swift in Sources */,

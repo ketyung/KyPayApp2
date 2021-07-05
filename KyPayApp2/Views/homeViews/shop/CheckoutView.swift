@@ -166,13 +166,9 @@ extension CheckoutView {
                 Text("Payment Options :".localized).font(.custom(Theme.fontNameBold, size: 16))
                 
                 
-                Button(action: {}){
+                TappableText(text: "Pay By Wallet".localized, action: {
                     
-                    Text("Pay By Wallet".localized).font(.custom(Theme.fontNameBold, size: 18)).padding().frame(width: 300, height: 40)
-                        .foregroundColor(.white).background(Theme.commonBgColor)
-                        .cornerRadius(6)
-                }
-                
+                })
                 payByOthersButton()
                
             }
@@ -190,20 +186,14 @@ extension CheckoutView {
     
     
     private func payByOthersButton() -> some View {
+       
+        TappableText(text: "Pay By Other Options".localized,
+        backgroundColor: Color(UIColor(hex:"#778822ff")!),action: {
+                        
+            self.isOtherPaymentOptionsPresented = true
+                 
+        })
         
-        Button(action: {
-            
-            withAnimation{
-                
-                self.isOtherPaymentOptionsPresented = true
-            }
-            
-        }){
-            
-            Text("Pay By Other Methods".localized).font(.custom(Theme.fontNameBold, size: 18)).padding().frame(width: 300, height: 40)
-                .foregroundColor(.white).background(Color(UIColor(hex:"#778822ff")!))
-                .cornerRadius(6)
-        }
     }
     
     
