@@ -9,15 +9,37 @@ import SwiftUI
 
 struct CheckoutView : View {
     
+    @Binding var control : PresenterControl
+
     @EnvironmentObject private var cartViewModel : CartViewModel
 
     @EnvironmentObject private var walletViewModel : UserWalletViewModel
     
+    @State private var isOnlineBankingPresented : Bool = false
+    
+    @State private var isCardPaymentPresented : Bool = false
+    
+    @State private var isOtherPaymentOptionsPresented : Bool = false
     
     var body : some View {
         
+        view()
+        .popOver(isPresented: $isOnlineBankingPresented, content: {
+            
+            PaymentMethodTypesView(control: $control)
+        })
+        .popOver(isPresented: $isOtherPaymentOptionsPresented, content: {
+            
+            paymentOptionsView()
+        })
+
+    }
+
+
+    private func view() -> some View {
+        
         VStack{
-   
+
             Text("Check Out".localized).font(.custom(Theme.fontNameBold, size: 20))
             
             List{
@@ -46,10 +68,9 @@ struct CheckoutView : View {
                 
                 infoView()
             }
-            
-           
         }
     }
+
 }
 
 extension CheckoutView {
@@ -169,7 +190,14 @@ extension CheckoutView {
     
     private func payByOthersButton() -> some View {
         
-        Button(action: {}){
+        Button(action: {
+            
+            withAnimation{
+                
+                self.isOtherPaymentOptionsPresented = true
+            }
+            
+        }){
             
             Text("Pay By Other Methods".localized).font(.custom(Theme.fontNameBold, size: 18)).padding().frame(width: 300, height: 40)
                 .foregroundColor(.white).background(Color(UIColor(hex:"#778822ff")!))
@@ -198,4 +226,69 @@ extension CheckoutView {
         
     }
     
+}
+
+extension CheckoutView {
+    
+    
+    private func paymentOptionsView() -> some View {
+        
+        VStack {
+            
+            Text("Payment Options".localized).font(.custom(Theme.fontNameBold, size: 18))
+            
+            Button(action : {
+                
+                
+                 withAnimation{
+                     
+                     self.isOtherPaymentOptionsPresented = false
+                     self.isOnlineBankingPresented = true
+                     self.isCardPaymentPresented = false
+        
+                 }
+            }){
+                
+                HStack(spacing:20)  {
+                    
+                    Image(systemName: "house.circle")
+                    .resizable()
+                    .frame(width:30, height: 30)
+                    .foregroundColor(.orange)
+                
+                    Text("Online Banking".localized)
+                    .font(.custom(Theme.fontName, size: 16))
+                    
+                    Spacer()
+                      
+                }.padding()
+              
+            }
+            
+            
+            Button(action : {
+               
+                withAnimation{
+                    
+                    self.isOtherPaymentOptionsPresented = false
+                    self.isOnlineBankingPresented = false
+                    self.isCardPaymentPresented = true
+                }
+            }){
+                
+                HStack(spacing:20) {
+                    
+                    Image(systemName: "creditcard.circle")
+                    .resizable()
+                    .frame(width:30, height: 30)
+                    .foregroundColor(.green)
+                
+                    Text("Cards".localized)
+                    .font(.custom(Theme.fontName, size: 16))
+                    
+                    Spacer()
+                }.padding()
+            }
+        }
+    }
 }

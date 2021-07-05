@@ -89,7 +89,7 @@ extension HomeView {
       
         .bottomSheet(isPresented: $control.checkoutViewPresented, height: UIScreen.main.bounds.height, showGrayOverlay: true, content:{
       
-            CheckoutView()
+            CheckoutView(control: $control)
         })
       
     }
