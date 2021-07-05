@@ -473,7 +473,8 @@ extension WalletHandler {
     }
     
     
-    private func add (amount : Double, currency : String, type : String, paymentMethodID : String, customerId : String,
+    func add (amount : Double, currency : String, type : String,
+    paymentMethodID : String, customerId : String,
     completion : ((PaymentData?, Error?)->Void)? = nil ){
         
         RPDPaymentMethodManager().fetchPaymentMethodRequiredFields(type: type) { [weak self]

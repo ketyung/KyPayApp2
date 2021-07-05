@@ -17,6 +17,6 @@ struct Seller : Decodable {
     var phoneNumber : String?
     var walletRefId : String?
     var serviceWalletId : String?
+    var serviceCustId : String?
     var lastUpdated : Date?
-   
 }

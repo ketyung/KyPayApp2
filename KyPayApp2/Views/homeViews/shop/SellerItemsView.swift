@@ -91,9 +91,10 @@ extension SellerItemsView {
     }
     
     
+    @ViewBuilder
     private func itemView(_ item : SellerItem ) -> some View {
         
-       // let _ = print("sellet.wallet::\(item.seller?.walletRefId ?? "")::\(item.seller?.serviceWalletId ?? "")::\(item.seller?.phoneNumber ?? "")")
+        //let _ = print("sellet.wallet::\(item.seller?.walletRefId ?? "")::\(item.seller?.serviceWalletId ?? "")::\(item.seller?.phoneNumber ?? "")::\(item.seller?.serviceCustId ?? "")")
         
         Button(action : {
             

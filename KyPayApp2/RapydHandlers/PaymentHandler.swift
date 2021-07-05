@@ -12,11 +12,9 @@ import RapydSDK
 class PaymentHandler : NSObject {
     
     
-    
-    func pay( cartItems : [CartItem]){
+    func pay( for cartViewModel : CartViewModel, paymentMethod : String ){
         
-        
-        
+     
     }
     
     

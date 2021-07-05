@@ -129,7 +129,8 @@ class KypaySellerItemController extends Controller {
                         
                         $row['seller']['wallet_ref_id'] = $wallet->refId;
                         $row['seller']['service_wallet_id'] = $wallet->serviceWalletId;
-                    }
+                        $row['seller']['service_cust_id'] = $wallet->serviceCustId;
+                  }
                     
                 }
                 
