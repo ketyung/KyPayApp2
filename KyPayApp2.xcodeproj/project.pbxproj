@@ -185,6 +185,7 @@
 		10FFB67B2691A3380029C1D8 /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB67A2691A3380029C1D8 /* CartView.swift */; };
 		10FFB67D269280B60029C1D8 /* CheckoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB67C269280B60029C1D8 /* CheckoutView.swift */; };
 		10FFB67F2692AD6C0029C1D8 /* KypayOrderController.php in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB67E2692AD6C0029C1D8 /* KypayOrderController.php */; };
+		10FFB6812692CCD40029C1D8 /* SellerOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFB6802692CCD40029C1D8 /* SellerOrder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -401,6 +402,7 @@
 		10FFB67A2691A3380029C1D8 /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
 		10FFB67C269280B60029C1D8 /* CheckoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutView.swift; sourceTree = "<group>"; };
 		10FFB67E2692AD6C0029C1D8 /* KypayOrderController.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = KypayOrderController.php; sourceTree = "<group>"; };
+		10FFB6802692CCD40029C1D8 /* SellerOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerOrder.swift; sourceTree = "<group>"; };
 		1B47377B496C6F0F1022FFD4 /* Pods-KyPayApp2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.debug.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.debug.xcconfig"; sourceTree = "<group>"; };
 		6F523BC3D4353462922B31B9 /* Pods-KyPayApp2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.release.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -552,6 +554,7 @@
 				10FFB643269158120029C1D8 /* Seller.swift */,
 				10FFB63F269156E00029C1D8 /* SellerCategory.swift */,
 				10FFB6412691571F0029C1D8 /* SellerItemImage.swift */,
+				10FFB6802692CCD40029C1D8 /* SellerOrder.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1258,6 +1261,7 @@
 				10B85620268949CA00AEF15F /* TxHandler.swift in Sources */,
 				1033B2572674A7F200D999CE /* SceneDelegate.swift in Sources */,
 				10FFB673269162C50029C1D8 /* SellerItemsView.swift in Sources */,
+				10FFB6812692CCD40029C1D8 /* SellerOrder.swift in Sources */,
 				10B856132687F33800AEF15F /* NavigationLinkExt.swift in Sources */,
 				10154F3A268033B600DB78C4 /* TopUpPayment.swift in Sources */,
 				10B8561A2688416300AEF15F /* PayoutMethodsViewModel.swift in Sources */,

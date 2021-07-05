@@ -194,25 +194,49 @@ extension WalletView {
             
             //itemsViewModel.fetchSellerItems(currency: "MYR")
             
-            ARH.shared.addOrder(cartViewModel.cartItems, returnType:[CartItem].self , completion: {
-                
-                res in
-                
-                switch(res) {
-                
-                    case .failure(let err) :
-                        print("err:\(err)")
-                
-                    case .success(let succ) :
-                        print("succ::\(succ)")
-                    
-                }
-            })
+          
+            testCreateDummyOrders()
             
         }){
             
             Text("Test me!!")
         }
+    }
+    
+    
+    private func testCreateDummyOrders(){
+        
+        var currency = Common.defaultCurrency
+        
+        let itemsBySeller = cartViewModel.itemsBySeller
+        
+        var orders : [SellerOrder] = []
+        
+        itemsBySeller.keys.forEach{ seller in
+            
+            let subTotal = cartViewModel.subTotalAmountBy(seller: seller , currency: &currency)
+            
+            let so = SellerOrder(seller: seller, items: itemsBySeller[seller],
+            total: subTotal, servicePaymentId: "xxxxxxxx-xxx__\(Int.random(in: 0...210))")
+             
+            orders.append(so)
+            
+        }
+        
+        ARH.shared.addOrder(orders, returnType:[SellerOrder].self , completion: {
+            
+            res in
+            
+            switch(res) {
+            
+                case .failure(let err) :
+                    print("err:\(err)")
+            
+                case .success(let succ) :
+                    print("succ::\(succ)")
+                
+            }
+        })
     }
     
 }

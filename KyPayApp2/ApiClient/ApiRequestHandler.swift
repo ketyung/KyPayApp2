@@ -711,9 +711,9 @@ extension ApiRequestHandler {
 
 extension ApiRequestHandler {
     
-    func addOrder <R:Decodable> (_ cartOrder : [CartItem], returnType : R.Type? = nil, completion:  ((Result<ReturnedResult<R>, Error>)->Void)? = nil){
+    func addOrder <R:Decodable> (_ orders : [SellerOrder], returnType : R.Type? = nil, completion:  ((Result<ReturnedResult<R>, Error>)->Void)? = nil){
         
-        send(module: "order", dataObject: cartOrder, returnType: returnType,completion:  completion)
+        send(module: "order", dataObject: orders, returnType: returnType,completion:  completion)
     }
     
 }

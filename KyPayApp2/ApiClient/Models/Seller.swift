@@ -18,7 +18,6 @@ struct Seller : Codable, Hashable {
     var walletRefId : String?
     var serviceWalletId : String?
     var serviceCustId : String?
-    var servicePaymentId : String?
     var lastUpdated : Date?
     
     func hash(into hasher: inout Hasher) {

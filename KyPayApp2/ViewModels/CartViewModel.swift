@@ -150,19 +150,10 @@ extension CartViewModel {
         
         txHandler.transfer(for: self, completion: {
             
-            [weak self] sellers, err in
+            [weak self] paymentSuccInfo, err in
             
             guard let err = err else {
                 
-                if let sellers = sellers {
-                    
-                    sellers.forEach {
-                        
-                        _ in
-                        
-                        
-                    }
-                }
                 
                 return
             }

@@ -59,31 +59,35 @@ class TxHandler {
     
 }
 
+
 extension TxHandler {
     
     
-    func transfer(for cartViewModel : CartViewModel,  completion : (([Seller]?,Error?)->Void)? = nil){
+    func transfer(for cartViewModel : CartViewModel,  completion : (([SellerOrder]?,Error?)->Void)? = nil){
         
         var currency = Common.defaultCurrency
         
-        var updatedSellers : [Seller] = []
+        let itemsBySeller = cartViewModel.itemsBySeller
         
-        cartViewModel.itemsBySeller.keys.forEach{ seller in
+        var orders : [SellerOrder] = []
+        
+        itemsBySeller.keys.forEach{ seller in
             
             let phoneNumber = seller.phoneNumber ?? ""
             
             let subTotal = cartViewModel.subTotalAmountBy(seller: seller , currency: &currency)
-            
-            var updatedSeller = seller
             
             self.transfer(to: phoneNumber, amount: subTotal, currency: currency, completion: {
                 
                 id , err in
             
                 guard let err = err else {
+          
                     
-                    updatedSeller.servicePaymentId = id
-                    updatedSellers.append(updatedSeller)
+                    let so = SellerOrder(seller: seller,
+                    items: itemsBySeller[seller], total: subTotal, servicePaymentId: id)
+                     
+                    orders.append(so)
                     
                     return
                 }
@@ -95,14 +99,6 @@ extension TxHandler {
         
         }
         
-        if updatedSellers.count > 0 {
-            
-            completion?(updatedSellers, nil)
-        }
-        else {
-            
-            completion?(nil, CustomError(errorText: "NO seller has been paid!".localized))
-        }
-        
+        completion?(orders, nil)
     }
 }
