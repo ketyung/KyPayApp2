@@ -59,9 +59,18 @@ class KypayOrderController extends Controller {
                     $sorderItem->insert($newitem);
                 }
                 
-                
+                // add the amount to the seller's wallet id
                 $this->updateWalletOf($sellerorder['seller']['uid'], $sellerorder['seller']['wallet_ref_id'], $sellerorder['total']);
             }
+         
+            // if the payment method is wallet transfer
+            if ($input ['payment_method'] == 'kypay_wallet_transfer') {
+          
+                // deduct the amount from the buyer's wallet
+                $this->updateWalletOf($input['uid'], $input['wallet_ref_id'], -floatval($input['total']));
+         
+            }
+          
           
         }
         
@@ -83,6 +92,14 @@ class KypayOrderController extends Controller {
             $wallet->update($walletWithNewBalance);
             
         }
+    }
+    
+    
+    protected function addPaymentTx(Array $input){
+        
+        
+        
+        
     }
     
     

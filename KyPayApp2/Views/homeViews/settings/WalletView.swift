@@ -218,6 +218,7 @@ extension WalletView {
         order.currency = currency
         order.status = .new
         order.uid = userViewModel.id
+        order.walletRefId = walletViewModel.refId
         order.paymentMethod = "kypay_wallet_transfer"
       
        

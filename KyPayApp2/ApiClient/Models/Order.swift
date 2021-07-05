@@ -22,6 +22,8 @@ struct Order : Codable {
     
     var uid : String?
     
+    var walletRefId : String?
+    
     var orders : [SellerOrder]?
     
     var total : Double?
