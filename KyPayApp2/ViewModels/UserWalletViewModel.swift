@@ -78,6 +78,10 @@ class UserWalletViewModel : ObservableObject {
 
     }
     
+    var balanceValue : Double {
+   
+        walletHolder.wallet.balance ?? 0
+    }
     
     var balance : String {
         

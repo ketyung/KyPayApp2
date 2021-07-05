@@ -133,9 +133,14 @@ extension CartViewModel {
         
         currency = items.first?.item.currency ?? Common.defaultCurrency
      
+        return totalAmount()
+    }
+   
+    func totalAmount() -> Double {
+        
         return items.map({$0.subTotal}).reduce(0,+)
     }
-    
+   
 }
 
 extension CartViewModel {

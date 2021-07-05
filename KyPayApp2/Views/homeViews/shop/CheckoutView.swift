@@ -10,7 +10,10 @@ import SwiftUI
 struct CheckoutView : View {
     
     @EnvironmentObject private var cartViewModel : CartViewModel
-   
+
+    @EnvironmentObject private var walletViewModel : UserWalletViewModel
+    
+    
     var body : some View {
         
         VStack{
@@ -39,7 +42,7 @@ struct CheckoutView : View {
                 
                 totalView()
                 
-                payButton()
+                payButtons()
                 
                 infoView()
             }
@@ -131,12 +134,45 @@ extension CheckoutView {
 extension CheckoutView {
     
     
-    private func payButton() -> some View {
+    @ViewBuilder
+    private func payButtons() -> some View {
+        
+        if walletViewModel.balanceValue > cartViewModel.totalAmount(){
+ 
+            VStack(alignment: .leading, spacing:20) {
+             
+                Text("Payment Options :".localized).font(.custom(Theme.fontNameBold, size: 16))
+                
+                
+                Button(action: {}){
+                    
+                    Text("Pay By Wallet".localized).font(.custom(Theme.fontNameBold, size: 18)).padding().frame(width: 300, height: 40)
+                        .foregroundColor(.white).background(Theme.commonBgColor)
+                        .cornerRadius(6)
+                }
+                
+                payByOthersButton()
+               
+            }
+        }
+        else {
+            
+            VStack {
+                
+                Text("Insufficient fund in wallet, you can only pay by other methods".localized).font(.custom(Theme.fontName, size: 14))
+                
+                payByOthersButton()
+            }
+        }
+    }
+    
+    
+    private func payByOthersButton() -> some View {
         
         Button(action: {}){
             
-            Text("Pay now").font(.custom(Theme.fontNameBold, size: 18)).padding().frame(width: 200, height: 40)
-                .foregroundColor(.white).background(Theme.commonBgColor)
+            Text("Pay By Other Methods".localized).font(.custom(Theme.fontNameBold, size: 18)).padding().frame(width: 300, height: 40)
+                .foregroundColor(.white).background(Color(UIColor(hex:"#778822ff")!))
                 .cornerRadius(6)
         }
     }
