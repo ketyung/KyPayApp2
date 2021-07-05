@@ -13,6 +13,10 @@ class CartViewModel : ObservableObject {
     
     private lazy var txHandler = TxHandler()
     
+    @Published var errorPresented = false
+    
+    @Published var errorMessage : String?
+    
     func add(item : SellerItem) {
         
         let cartItem = CartItem(item: item, quantity: 1)
@@ -144,6 +148,33 @@ extension CartViewModel {
     
     func payByWallet(){
         
-        txHandler.transfer(for: self)
+        txHandler.transfer(for: self, completion: {
+            
+            [weak self] sellers, err in
+            
+            guard let err = err else {
+                
+                if let sellers = sellers {
+                    
+                    sellers.forEach {
+                        
+                        _ in
+                        
+                        
+                    }
+                }
+                
+                return
+            }
+            
+            
+            DispatchQueue.main.async {
+                
+                self?.errorPresented = true
+                self?.errorMessage = err.localizedDescription
+            }
+            return
+            
+        })
     }
 }
