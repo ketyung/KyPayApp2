@@ -95,29 +95,25 @@ extension CartViewModel {
         items
     }
     
-   
-    
-    
-    // dictionary group items by seller 
-    var itemsBySellerName : Dictionary<String, [CartItem]>{
+    // dictionary group items by seller name and id
+    var itemsBySeller : Dictionary<Seller, [CartItem]>{
         
         Dictionary(grouping: items, by: { (element: CartItem) in
             
-            return "\(element.item.seller?.name ?? "") - \(element.item.seller?.id ?? "")"
-            
+            return element.item.seller ?? Seller()
         })
-        
     }
     
-    var itemSellers : [String] {
+    
+    var itemSellers : [Seller] {
         
-        Array(itemsBySellerName.keys).sorted(by: {$0 < $1})
+        Array(itemsBySeller.keys).sorted(by: {$0.name ?? "" < $1.name ?? ""})
     }
     
-    func subTotalAmountBy(seller : String, currency : inout String ) -> Double{
+    func subTotalAmountBy(seller : Seller, currency : inout String ) -> Double{
         
         var subTotal : Double = 0
-        if let items = itemsBySellerName[seller] {
+        if let items = itemsBySeller[seller] {
             
             currency = items.first?.item.currency ?? Common.defaultCurrency
             
@@ -141,33 +137,6 @@ extension CartViewModel {
         return items.map({$0.subTotal}).reduce(0,+)
     }
    
-}
-
-extension CartViewModel {
-    
-    var itemsBySellerPhone : Dictionary<String, [CartItem]>{
-        
-        Dictionary(grouping: items, by: { (element: CartItem) in
-            
-            element.item.seller?.phoneNumber ?? ""
-        })
-        
-    }
-    
-    func subTotalAmountBy(sellerPhoneNumber : String, currency : inout String ) -> Double{
-        
-        var subTotal : Double = 0
-        if let items = itemsBySellerPhone[sellerPhoneNumber] {
-            
-            currency = items.first?.item.currency ?? Common.defaultCurrency
-            
-            subTotal = items.map({$0.subTotal}).reduce(0,+)
-
-        }
-        
-        return subTotal
-    }
-    
 }
 
 

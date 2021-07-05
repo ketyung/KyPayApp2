@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Seller : Codable {
+struct Seller : Codable, Hashable {
     
     var id : String?
     var uid : String?
@@ -19,4 +19,8 @@ struct Seller : Codable {
     var serviceWalletId : String?
     var serviceCustId : String?
     var lastUpdated : Date?
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
 }

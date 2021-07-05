@@ -45,20 +45,20 @@ struct CheckoutView : View {
             
             List{
                 
-                ForEach(cartViewModel.itemSellers, id:\.self){
+                ForEach(cartViewModel.itemSellers, id:\.id){
                     
-                    sellerId in
+                    seller in
                     
-                    let sectionText = Text(sellerId).fixedSize(horizontal: false, vertical: true).lineLimit(1).font(.custom(Theme.fontNameBold, size: 15))
+                    let sectionText = Text(seller.name ?? "").fixedSize(horizontal: false, vertical: true).lineLimit(1).font(.custom(Theme.fontNameBold, size: 15))
                     
                     Section(header: sectionText ) {
                     
                    
-                        if let items = cartViewModel.itemsBySellerName[sellerId] {
+                        if let items = cartViewModel.itemsBySeller[seller] {
                             
                             itemRows(items)
                             
-                            subTotalView(seller: sellerId)
+                            subTotalView(seller: seller)
                         }
                     }
                 }
@@ -119,7 +119,7 @@ extension CheckoutView {
     
     
     @ViewBuilder
-    private func subTotalView ( seller : String) -> some View  {
+    private func subTotalView ( seller : Seller) -> some View  {
         
         var currency = Common.defaultCurrency
         let subTotal = cartViewModel.subTotalAmountBy(seller: seller, currency: &currency)
