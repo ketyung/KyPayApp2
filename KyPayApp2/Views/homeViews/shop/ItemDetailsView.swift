@@ -19,6 +19,8 @@ struct ItemDetailsView : View {
 
     @State private var cartViewPresented : Bool = false
     
+    @State private var customIndicatorRunning : Bool = true
+    
     var body: some View {
         
         ScrollView([], showsIndicators: false) {
@@ -63,7 +65,7 @@ extension ItemDetailsView {
                 KFImage( URL(string: item.images?.first?.url ?? ""))
                 .resizable()
                 .loadDiskFileSynchronously()
-                .placeholder(Common.imagePlaceHolderView)
+                .placeholder(customImagePlaceHolder)
                 .cacheMemoryOnly()
                 .fade(duration: 0.25)
                 .padding(.leading, 20)
@@ -222,4 +224,15 @@ extension ItemDetailsView {
         
     }
     
+}
+
+extension ItemDetailsView {
+    
+    
+    private func customImagePlaceHolder () -> some View {
+        
+        CustomActivityIndicator(color: .orange, isRunning: $customIndicatorRunning)
+        .frame(width: 240, height:240)
+        
+    }
 }

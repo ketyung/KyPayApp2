@@ -91,7 +91,11 @@ extension HomeView {
       
             CheckoutView(control: $control)
         })
+        .bottomSheet(isPresented: $control.cartViewPresented, height: UIScreen.main.bounds.height, showGrayOverlay: true, content:{
       
+            CartView(control: $control)
+        })
+        
     }
 }
 

@@ -30,24 +30,15 @@ struct CartView : View {
                     itemRowView(cartItem)
         
                 }
+                
+                Spacer().frame(height:30)
+                
+                checkoutButton()
             }
             .padding()
             .frame(width: UIScreen.main.bounds.width - 10)
         
-            Button(action: {
-                
-                withAnimation {
-                    
-                    control.cartViewPresented = false
-                    control.itemDetailsPresented = false
-                    control.checkoutViewPresented = true 
-                }
-            }){
-                
-                Text("Check Out".localized).font(.custom(Theme.fontNameBold, size: 20)).padding(6).frame(width: 200)
-                .background(Theme.commonBgColor).foregroundColor(.white)
-                .cornerRadius(6)
-            }
+           
         }
     }
 }
@@ -78,6 +69,45 @@ extension CartView {
             cartActionButtons(cartItem: cartItem)
             
         }
+    }
+    
+    
+    @ViewBuilder
+    private func checkoutButton() -> some View {
+        
+        if cartViewModel.cartItems.count > 0 {
+       
+            Button(action: {
+                
+                withAnimation {
+                    
+                    control.cartViewPresented = false
+                    control.itemDetailsPresented = false
+                    control.checkoutViewPresented = true
+                }
+            }){
+                
+                Text("Check Out".localized).font(.custom(Theme.fontNameBold, size: 20)).padding(6).frame(width: 200)
+                .background(Theme.commonBgColor).foregroundColor(.white)
+                .cornerRadius(6)
+            }
+        }
+        else {
+            
+            Text("Opps! Your Shopping Cart is empty, let's go add something!".localized)
+            .padding()
+            .font(.custom(Theme.fontName, size: 16))
+            .onTapGesture {
+                
+                withAnimation{
+                
+                    control.cartViewPresented = false
+                }
+
+            }
+          
+        }
+       
     }
 }
 
