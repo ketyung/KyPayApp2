@@ -6,6 +6,7 @@ use Core\Db\KypayUser as User;
 use Core\Db\KypayUserWallet as Wallet;
 use Core\Db\KypaySellerOrder as SellerOrder;
 use Core\Db\KypaySellerOrderItem as SellerOrderItem;
+use Core\Db\KypayUserPaymentTx as Tx;
 use Core\Db\KypaySeller as Seller;
 use Core\Controllers\RequestMethod as RM;
 use Core\Controllers\Controller as Controller;
@@ -18,7 +19,7 @@ class KypayOrderController extends Controller {
     protected function createDbObjectFromRequest(){
     
         $input = $this->getInput();
-      //  Log::printRToErrorLog($input);
+      // Log::printRToErrorLog($input);
       
         $this->createOrder($input);
         
@@ -61,6 +62,13 @@ class KypayOrderController extends Controller {
                 
                 // add the amount to the seller's wallet id
                 $this->updateWalletOf($sellerorder['seller']['uid'], $sellerorder['seller']['wallet_ref_id'], $sellerorder['total']);
+                // insert a payment transaction for recording purposes
+                
+                $this->addPaymentTx($input['uid'], $sellerorder['seller']['uid'],
+                        $input['wallet_ref_id'], $sellerorder['seller']['wallet_ref_id'],
+                        $sellerorder['total'],$input ['payment_method'],
+                        "Payment For Order:".$so['id'], $sellerorder['service_payment_id']);
+                
             }
          
             // if the payment method is wallet transfer
@@ -95,10 +103,16 @@ class KypayOrderController extends Controller {
     }
     
     
-    protected function addPaymentTx(Array $input){
+    protected function addPaymentTx($fromUid, $toUid, $fromWalletRefId,
+    $toWalletRefId, $amount, $method, $note, $serviceId){
         
+        $tx = new Tx($this->db);
         
+        $input = array('uid'=>$fromUid, 'to_uid'=>$toUid, 'wallet_ref_id'=>$fromWalletRefId,
+                    'to_wallet_ref_id'=>$toWalletRefId, 'amount'=> -$amount, 'method'=>$method,
+                    'note'=>$note, 'service_id'=> $serviceId,'tx_type'=>'OP');
         
+        $tx->insert($input);
         
     }
     

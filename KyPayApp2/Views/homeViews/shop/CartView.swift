@@ -62,7 +62,7 @@ extension CartView {
             
             Text(cartItem.item.name ?? "").font(.custom(Theme.fontName, size:16)).padding(.leading, 2)
             .fixedSize(horizontal: false, vertical: true).lineLimit(3)
-            .frame(width: 200)
+            .frame(minWidth: 200)
             
             Spacer().frame(width:10)
             
