@@ -99,7 +99,7 @@ extension CartViewModel {
         
         Dictionary(grouping: items, by: { (element: CartItem) in
             
-            return "\(element.item.seller?.name ?? "") - \(element.item.seller?.id ?? ""))"
+            return "\(element.item.seller?.name ?? "") - \(element.item.seller?.id ?? "")"
             
         })
         
