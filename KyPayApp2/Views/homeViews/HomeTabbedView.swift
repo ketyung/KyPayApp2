@@ -49,7 +49,7 @@ struct HomeTabbedView : View {
    
     var body: some View {
     
-        tabbedView()
+        /**        tabbedView()
         .bottomSheet(isPresented: $userViewModel.firstSignIn, height: UIScreen.main.bounds.height + 100, showGrayOverlay: false){
         
             FirstSignInView()
@@ -57,6 +57,28 @@ struct HomeTabbedView : View {
         .onAppear {
             
             self.fetchWalletIfNotPresent()
+        }*/
+
+        view()
+        
+    }
+    
+    
+    @ViewBuilder
+    private func view() -> some View {
+        
+        if userViewModel.firstSignIn{
+            
+            FirstSignInView()
+   
+        }
+        else {
+            
+            tabbedView()
+            .onAppear {
+                
+                self.fetchWalletIfNotPresent()
+            }
         }
         
     }
