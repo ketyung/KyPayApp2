@@ -10,9 +10,8 @@ import RapydSDK
 
 class TxHandler {
     
-    private var order : Order?
     
-    private var itemsBySeller : Dictionary<Seller , [CartItem]>?
+    private var onFinishCompletion : ((Order?) -> Void)?
     
     
     func transfer(to phoneNumber : String, amount : Double, currency :String, completion : ((String?,Error?)->Void)? = nil ){
@@ -70,50 +69,60 @@ extension TxHandler {
     
     func transfer(for cartViewModel : CartViewModel, by user : User,
                   wallertRefId : String,
-                  completion : ((Order?,Error?)->Void)? = nil){
+                  completion : ((Order?)->Void)? = nil){
+        
+        self.onFinishCompletion = completion
         
         var currency = Common.defaultCurrency
         
-        itemsBySeller = cartViewModel.itemsBySeller
+        let itemsBySeller = cartViewModel.itemsBySeller
         
-        order = Order()
-        order?.total = cartViewModel.totalAmount()
-        order?.currency = currency
-        order?.status = .new
-        order?.uid = user.id
-        order?.walletRefId = wallertRefId
+        var order = Order()
+        order.total = cartViewModel.totalAmount()
+        order.currency = currency
+        order.status = .new
+        order.uid = user.id
+        order.walletRefId = wallertRefId
         
-        order?.paymentMethod = "kypay_wallet_transfer"
+        order.paymentMethod = "kypay_wallet_transfer"
     
         
-        itemsBySeller?.keys.forEach{ seller in
+        itemsBySeller.keys.forEach{ seller in
             
             let subTotal = cartViewModel.subTotalAmountBy(seller: seller , currency: &currency)
             
-        
-            self.transfer(for: seller, currency: currency, subTotal: subTotal, completion: {[weak self] so in
+            let items = itemsBySeller[seller]
+            
+            self.transfer(for: seller, currency: currency, subTotal: subTotal, items: items, completion: { so in
                 
                 if let so = so {
         
-                    self?.order?.add(order: so)
-            
+                    order.add(order: so)
+                
+                    print("c.orders.count::\(order.orders?.count ?? 0)")
+                  
+                    if order.orders?.count == itemsBySeller.count {
+                        
+                        self.onFinishCompletion?(order)
+                    }
+                    
+                  
                 }
             })
         }
         
-        print("orders.count::\(order?.orders?.count ?? 0)")
         
-        completion?(order, nil)
+        
     }
     
     
     private func transfer(for seller : Seller, currency : String, subTotal : Double,
-        completion: ((SellerOrder?)->Void)? = nil ) {
+                          items : [CartItem]?, completion: ((SellerOrder?)->Void)? = nil ) {
         
         let phoneNumber = seller.phoneNumber ?? ""
         
         
-        var so = SellerOrder(seller: seller, items: itemsBySeller?[seller], total: subTotal)
+        var so = SellerOrder(seller: seller, items: items, total: subTotal)
         
         
         self.transfer(to: phoneNumber, amount: subTotal, currency: currency, completion: {

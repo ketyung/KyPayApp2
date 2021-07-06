@@ -164,24 +164,13 @@ extension CartViewModel {
           
             self.txHandler.transfer(for: self, by: user, wallertRefId: walletRefId, completion: {
                 
-                [weak self] order, err in
+                [weak self] order in
                 
-                guard let err = err else {
+                if let order = order {
                     
-                    if let order = order {
-                        
-                        self?.recordOrderRemotely(order)
-                    }
-                    return
+                    self?.recordOrderRemotely(order)
                 }
-                
-                
-                DispatchQueue.main.async {
-                    
-                    self?.errorPresented = true
-                    self?.errorMessage = err.localizedDescription
-                    self?.inProgress = false
-                }
+            
                 return
                 
             })
