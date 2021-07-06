@@ -269,7 +269,7 @@ extension WalletHandler {
                             completion?(walletIDs,nil)
                         }
                         
-                        print("attaching.wallet.id::\(walletIDs.custId ?? "xxxx")")
+                       // print("attaching.wallet.id::\(walletIDs.custId ?? "xxxx")")
                     }
                     else {
                         // add customer here if no customer id present ...

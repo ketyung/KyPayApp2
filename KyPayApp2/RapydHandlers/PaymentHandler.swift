@@ -11,39 +11,32 @@ import RapydSDK
 
 class PaymentHandler : NSObject {
     
+    private lazy var customerHandler = CustomerHandler()
+   
     
-    func pay( for cartViewModel : CartViewModel, paymentMethod : String ){
+    func pay( for cartViewModel : CartViewModel, paymentMethod : String,
+              customerId : String, completion : ((String?, Error?)->Void)? = nil ){
         
+        Config.setup()
         
         var currency = Common.defaultCurrency
        
         let itemsBySeller = cartViewModel.itemsBySeller
         
-        var custIds : [String] = []
-        var amounts : [Double] = []
+        var walletIds : [String] = []
+        var subTotals : [Double] = []
         
         
         itemsBySeller.keys.forEach{ seller in
         
             let subTotal = cartViewModel.subTotalAmountBy(seller: seller , currency: &currency)
-            amounts.append(subTotal)
-            custIds.append(seller.serviceCustId ?? "")
+            subTotals.append(subTotal)
+            walletIds.append(seller.serviceWalletId ?? "")
             
         }
         
-        
-        
-     
-    }
-    
-    
-    private func add (total : Double, subTotals : [Double],
-    eWalletIDs : [String], currency : String, type : String,
-    paymentMethodID : String, customerId : String,
-    completion : ((PaymentData?, Error?)->Void)? = nil ){
-        
-        RPDPaymentMethodManager().fetchPaymentMethodRequiredFields(type: type) { [weak self]
-            pmfields, error in
+        self.customerHandler.obtainPaymentMethodID(for: customerId, type: paymentMethod, completion: {
+            [weak self] paymentMethodID, error in
             
             if error != nil {
                 completion?(nil, error)
@@ -52,6 +45,38 @@ class PaymentHandler : NSObject {
             
             guard let self = self else { return }
         
+            
+            if let paymentMethodID = paymentMethodID {
+           
+                self.add(total: cartViewModel.totalAmount(), subTotals: subTotals, eWalletIDs: walletIds,
+                currency: currency, type: paymentMethod, paymentMethodID: paymentMethodID, customerId: "")
+            
+            }
+            else {
+                
+                print("Error!!!...unable.2.obtain::paymentMethodID")
+            }
+            
+        })
+        
+        
+        
+    
+    }
+    
+    
+    private func add (total : Double, subTotals : [Double],
+    eWalletIDs : [String], currency : String, type : String,
+    paymentMethodID : String, customerId : String,
+    completion : ((PaymentData?, Error?)->Void)? = nil ){
+        
+        RPDPaymentMethodManager().fetchPaymentMethodRequiredFields(type: type) {
+            pmfields, error in
+            
+            if error != nil {
+                completion?(nil, error)
+                return
+            }
             
             if var pmfields = pmfields {
             
@@ -114,21 +139,7 @@ class PaymentHandler : NSObject {
 }
 
 extension PayoutHandler {
-    
-    func pay(to walletID : String, amount : Decimal){
-        
-        let currency = RPDCurrency()
-        
-        let ewallet1 = RPDEWallet(ID: walletID, paymentValue: 50.00, paymentType:.amount )
-        
-        let rpdPaymentManager = RPDPaymentManager()
-        
-        rpdPaymentManager.createPayment(amount: amount, currency: currency, paymentMethodRequiredFields: nil, paymentMethodID: nil, eWallets: [ewallet1], completionBlock: { status ,error in
-            
-            print("err::\(String(describing: error))")
-        })
-    }
-    
+
     
     func listPayments(limit : Int = 20){
         
