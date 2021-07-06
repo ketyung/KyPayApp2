@@ -202,6 +202,7 @@ extension CartViewModel {
                 case .failure(let err) :
                     
                     DispatchQueue.main.async {
+                        self.inProgress = false 
                         self.errorPresented = true
                         self.errorMessage = err.localizedDescription
                     }

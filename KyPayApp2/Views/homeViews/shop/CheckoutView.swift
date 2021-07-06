@@ -128,29 +128,37 @@ extension CheckoutView {
         
         if cartViewModel.paymentSuccess {
             
-            HStack {
-                
-                Image(systemName: "checkmark.circle").resizable().frame(width: 30, height: 30)
-                .aspectRatio(contentMode: .fit).foregroundColor(Color(UIColor(hex:"#aaff22ff")!))
-               
-                Text("Payment Success".localized).font(.custom(Theme.fontNameBold, size: 20))
-                
-                Button(action: {
-                    
-                    self.shareSnapShot()
-                    
-                }){
-                
-                    Image("more").resizable().frame(width:24, height: 24, alignment: .topTrailing)
-                }
-                
-            }
-            .padding().background(Color(UIColor(hex:"#ddeeffff")!)).cornerRadius(10)
+            paymentSuccessInfoView()
         }
         else {
             
             Text("Check Out".localized).font(.custom(Theme.fontNameBold, size: 20))
         }
+    }
+    
+    
+    
+    private func paymentSuccessInfoView() -> some View {
+        
+        HStack {
+            
+            Image(systemName: "checkmark.circle").resizable().frame(width: 30, height: 30)
+            .aspectRatio(contentMode: .fit).foregroundColor(Color(UIColor(hex:"#aaff22ff")!))
+           
+            Text("Payment Success".localized).font(.custom(Theme.fontNameBold, size: 20)).foregroundColor(.white)
+            
+            Button(action: {
+                
+                self.shareSnapShot()
+                
+            }){
+            
+                Image("more").resizable().frame(width:24, height: 24, alignment: .topTrailing).foregroundColor(.white)
+            }
+            
+        }
+        .padding().frame(minWidth: UIScreen.main.bounds.width - 20 ).background(Color(UIColor(hex:"#556688ff")!))
+        .cornerRadius(10)
     }
     
     
