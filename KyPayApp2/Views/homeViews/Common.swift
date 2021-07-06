@@ -74,18 +74,23 @@ struct Common {
             
             if withLogo {
                 
-                HStack(spacing:2) {
-                    
-                    Spacer()
-                
-                    Image("logo").resizable().frame(width:36, height: 36).aspectRatio(contentMode: .fit)
-                
-                    Spacer().frame(width:3)
-                
-                }
+                logo()
             }
             
               
+        }
+    }
+    
+    static func logo() -> some View {
+        
+        HStack(spacing:2) {
+            
+            Spacer()
+        
+            Image("logo").resizable().frame(width:36, height: 36).aspectRatio(contentMode: .fit)
+        
+            Spacer().frame(width:3)
+        
         }
     }
     

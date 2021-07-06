@@ -99,7 +99,7 @@ extension TxHandler {
         
                     order.add(order: so)
                 
-                    print("c.orders.count::\(order.orders?.count ?? 0)")
+                    //print("c.orders.count::\(order.orders?.count ?? 0)")
                   
                     if order.orders?.count == itemsBySeller.count {
                         

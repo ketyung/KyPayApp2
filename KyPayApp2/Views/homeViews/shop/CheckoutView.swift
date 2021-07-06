@@ -43,6 +43,9 @@ struct CheckoutView : View {
     
     @State private var snapshotImages :[Any] = []
     
+    @State private var paymentSuccess : Bool = false
+
+    @State private var orderNumber : String?
     
     
     var body : some View {
@@ -58,7 +61,7 @@ struct CheckoutView : View {
         
             confirmPaymentView()
         })
-        .progressView(isShowing: $cartViewModel.inProgress)
+            .progressView(isShowing: $cartViewModel.inProgress, text: "Processing...".localized)
         .popOver(isPresented: $cartViewModel.errorPresented, content: {
         
             Common.errorAlertView(message: cartViewModel.errorMessage ?? "Error!")
@@ -75,11 +78,18 @@ struct CheckoutView : View {
     private func view() -> some View {
         
         VStack{
-
-            topTitleView()
             
-            orderListView()
+            if paymentSuccess {
+                
+                paymentSuccessInfoView()
+            }
+            else {
+            
+                Text("Check Out".localized).font(.custom(Theme.fontNameBold, size: 20))
            
+                orderListView()
+            }
+            
         }
     }
 }
@@ -109,61 +119,71 @@ extension CheckoutView {
                 }
             }
             
+            
             totalView()
-            
-            if !cartViewModel.paymentSuccess {
-            
-                payButtons()
-                
-                infoView()
-            }
-            
-        }
-    }
-    
-    
-    @ViewBuilder
-    private func topTitleView() -> some View {
-        
-        if cartViewModel.paymentSuccess {
-            
-            paymentSuccessInfoView()
-        }
-        else {
-            
-            Text("Check Out".localized).font(.custom(Theme.fontNameBold, size: 20))
-        }
-    }
-    
-    
-    
-    private func paymentSuccessInfoView() -> some View {
-        
-        HStack {
-            
-            Image(systemName: "checkmark.circle").resizable().frame(width: 30, height: 30)
-            .aspectRatio(contentMode: .fit).foregroundColor(Color(UIColor(hex:"#aaff22ff")!))
            
-            Text("Payment Success".localized).font(.custom(Theme.fontNameBold, size: 20)).foregroundColor(.white)
+            payButtons()
             
-            Button(action: {
+            infoView()
+        
+        }
+    }
+    
+    
+    
+    
+    private func paymentSuccessInfoView(withLogo : Bool = false ) -> some View {
+        
+        VStack(spacing:20) {
+      
+            HStack {
                 
-                self.shareSnapShot()
+                Image(systemName: "checkmark.circle").resizable().frame(width: 30, height: 30)
+                .aspectRatio(contentMode: .fit).foregroundColor(Color(UIColor(hex:"#aaff22ff")!))
+               
+                Text("Payment Success".localized).font(.custom(Theme.fontNameBold, size: 20)).foregroundColor(.white)
                 
-            }){
+                Button(action: {
+                    
+                    self.shareSnapShot()
+                    
+                }){
+                
+                    Image("more").resizable().frame(width:24, height: 24, alignment: .topTrailing).foregroundColor(.white)
+                }
+                
+            }
+            .padding().frame(minWidth: UIScreen.main.bounds.width - 20 ).background(Color(UIColor(hex:"#556688ff")!))
+            .cornerRadius(10)
+        
             
-                Image("more").resizable().frame(width:24, height: 24, alignment: .topTrailing).foregroundColor(.white)
+            Text("Thank You".localized).font(.custom(Theme.fontNameBold, size: 28)).foregroundColor(.black)
+          
+            if let orderNum = self.orderNumber {
+          
+                Text("Your Order no is:".localized).font(.custom(Theme.fontName, size: 18)).foregroundColor(.black)
+                Text(orderNum).font(.custom(Theme.fontNameBold, size: 20)).foregroundColor(.black)
+                
+                Text("You can also view your order status in your order list later")
+                .font(.custom(Theme.fontName, size: 18)).foregroundColor(.gray)
             }
             
-        }
-        .padding().frame(minWidth: UIScreen.main.bounds.width - 20 ).background(Color(UIColor(hex:"#556688ff")!))
-        .cornerRadius(10)
+            Spacer()
+            
+            if withLogo {
+                
+                Common.logo()
+            }
+          
+        
+        }.padding()
+      
     }
     
     
     private func shareSnapShot(){
         
-        let image = orderListView().padding().snapshot()
+        let image = paymentSuccessInfoView(withLogo: true).snapshot()
         self.snapshotImages = [image]
         withAnimation {
 
@@ -260,34 +280,39 @@ extension CheckoutView {
     @ViewBuilder
     private func payButtons() -> some View {
         
-        if walletViewModel.balanceValue > cartViewModel.totalAmount(){
- 
-            VStack(alignment: .leading, spacing:20) {
-             
-                Text("Payment Options :".localized).font(.custom(Theme.fontNameBold, size: 16))
-                
-                
-                TappableText(text: "Pay By Wallet".localized, action: {
-                    
-                    withAnimation{
-                        
-                        self.payOption = .wallet
-                        cartViewModel.confirmViewPresented = true
-                    }
-                })
-                payByOthersButton()
-               
-            }
-        }
-        else {
+        if cartViewModel.totalAmount() > 0 {
+       
             
-            VStack {
+            if walletViewModel.balanceValue > cartViewModel.totalAmount(){
+     
+                VStack(alignment: .leading, spacing:20) {
+                 
+                    Text("Payment Options :".localized).font(.custom(Theme.fontNameBold, size: 16))
+                    
+                    
+                    TappableText(text: "Pay By Wallet".localized, action: {
+                        
+                        withAnimation{
+                            
+                            self.payOption = .wallet
+                            cartViewModel.confirmViewPresented = true
+                        }
+                    })
+                    payByOthersButton()
+                   
+                }
+            }
+            else {
                 
-                Text("Insufficient fund in wallet, you can only pay by other methods".localized).font(.custom(Theme.fontName, size: 14))
-                
-                payByOthersButton()
+                VStack {
+                    
+                    Text("Insufficient fund in wallet, you can only pay by other methods".localized).font(.custom(Theme.fontName, size: 14))
+                    
+                    payByOthersButton()
+                }
             }
         }
+       
     }
     
     
@@ -452,7 +477,21 @@ extension CheckoutView {
         
         if payOption == .wallet {
             
-            cartViewModel.payByWallet(by: userViewModel.user, with: walletViewModel.refId)
+            cartViewModel.payByWallet(by: userViewModel.user, with: walletViewModel.refId, completion: {
+                
+                orderNumber in
+                
+                if let orderNumber = orderNumber {
+                    
+                    self.orderNumber = orderNumber
+                    
+                    withAnimation{
+                        
+                        self.paymentSuccess.toggle()
+                    }
+                }
+                
+            })
         }
     }
     

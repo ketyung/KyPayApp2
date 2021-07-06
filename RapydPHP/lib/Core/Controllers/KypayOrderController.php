@@ -25,13 +25,13 @@ class KypayOrderController extends Controller {
       
         $this->createOrder($input);
         
-        $response['body'] = json_encode(array('status'=>1, 'id'=>"none", 'text'=>'Order Completed!'));
+        $response['body'] = json_encode(array('status'=>1, 'id'=>$input['id'], 'text'=>'Order Completed!'));
     
         return $response;
     }
     
     
-    protected function createOrder($input) {
+    protected function createOrder(&$input) {
         
         $sellerorders = $input['orders'];
         

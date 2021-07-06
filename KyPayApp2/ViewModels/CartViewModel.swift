@@ -20,14 +20,11 @@ class CartViewModel : ObservableObject {
     
     @Published var inProgress : Bool = false
     
-    @Published var paymentSuccess : Bool = false
-    
     @Published var confirmViewPresented : Bool = false
-    
-    @Published var orderedItems : [CartItem] = []
     
     
     func add(item : SellerItem) {
+        
         
         let cartItem = CartItem(item: item, quantity: 1)
         
@@ -70,11 +67,11 @@ class CartViewModel : ObservableObject {
     }
     
     
-    func copyItemsToOrderedItems(){
+    private func clearItems(){
         
-        self.orderedItems = items
         items = [] // empty items
     }
+    
     
     
 }
@@ -119,22 +116,11 @@ extension CartViewModel {
     // dictionary group items by seller name and id
     var itemsBySeller : Dictionary<Seller, [CartItem]>{
         
-        if paymentSuccess {
-    
-            return Dictionary(grouping: orderedItems, by: { (element: CartItem) in
-                
-                return element.item.seller ?? Seller()
-            })
+        return Dictionary(grouping: items, by: { (element: CartItem) in
             
-        }
-        else {
+            return element.item.seller ?? Seller()
+        })
     
-            return Dictionary(grouping: items, by: { (element: CartItem) in
-                
-                return element.item.seller ?? Seller()
-            })
-        }
-        
     }
     
     
@@ -161,7 +147,7 @@ extension CartViewModel {
     func totalAmount(currency : inout String) -> Double {
         
         currency = items.first?.item.currency ?? Common.defaultCurrency
-     
+        
         return totalAmount()
     }
    
@@ -175,7 +161,7 @@ extension CartViewModel {
 
 extension CartViewModel {
     
-    func payByWallet(by user : User, with walletRefId : String){
+    func payByWallet(by user : User, with walletRefId : String, completion : ((String?)-> Void)? = nil){
         
         self.confirmViewPresented = false
         
@@ -190,7 +176,7 @@ extension CartViewModel {
                 
                 if let order = order {
                     
-                    self?.recordOrderRemotely(order)
+                    self?.recordOrderRemotely(order, completion: completion)
                 }
             
                 return
@@ -201,7 +187,7 @@ extension CartViewModel {
     
     
     
-    private func recordOrderRemotely(_ order : Order) {
+    private func recordOrderRemotely(_ order : Order, completion : ((String?)-> Void)? = nil) {
         
         // add order to remote
         ARH.shared.addOrder(order, returnType:Order.self , completion: {
@@ -218,18 +204,16 @@ extension CartViewModel {
                         self.errorMessage = err.localizedDescription
                     }
                     
-                case .success(_) :
+                case .success(let stat) :
                     
                     DispatchQueue.main.async {
                   
                         self.inProgress = false
-                        self.copyItemsToOrderedItems()
+                        self.clearItems()
                         
                         withAnimation(Animation.easeIn(duration: 0.5).delay(0.5) ){
                         
-                            self.paymentSuccess = true
-                            
-                            print("payment.succ::\(self.paymentSuccess)")
+                            completion?(stat.id)
                         }
                        
                     }
