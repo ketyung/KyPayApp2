@@ -50,7 +50,7 @@ struct HomeTabbedView : View {
     var body: some View {
     
         tabbedView()
-        .bottomSheet(isPresented: $userViewModel.firstSignIn, height: UIScreen.main.bounds.height + 80, showGrayOverlay: false){
+        .bottomSheet(isPresented: $userViewModel.firstSignIn, height: UIScreen.main.bounds.height + 100, showGrayOverlay: false){
         
             FirstSignInView()
         }
