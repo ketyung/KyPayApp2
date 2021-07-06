@@ -39,7 +39,10 @@ struct CheckoutView : View {
     
     @State private var payOption : PayOption = .none
     
-    @State private var confirmViewPresented : Bool = false
+    @State private var showShareSheet : Bool = false
+    
+    @State private var snapshotImages :[Any] = []
+    
     
     
     var body : some View {
@@ -51,9 +54,20 @@ struct CheckoutView : View {
         .popOver(isPresented: $isOtherPaymentOptionsPresented, content: {
             paymentOptionsView()
         })
-        .popOver(isPresented: $confirmViewPresented, content: {
+        .popOver(isPresented: $cartViewModel.confirmViewPresented, content: {
         
             confirmPaymentView()
+        })
+        .progressView(isShowing: $cartViewModel.inProgress)
+        .popOver(isPresented: $cartViewModel.errorPresented, content: {
+        
+            Common.errorAlertView(message: cartViewModel.errorMessage ?? "Error!")
+            
+        })
+        .sheet(isPresented: $showShareSheet, content: {
+        
+            ShareView(activityItems: $snapshotImages)
+               
         })
     }
 
@@ -62,36 +76,95 @@ struct CheckoutView : View {
         
         VStack{
 
-            Text("Check Out".localized).font(.custom(Theme.fontNameBold, size: 20))
+            topTitleView()
             
-            List{
+            orderListView()
+           
+        }
+    }
+}
+
+extension CheckoutView {
+    
+    
+    private func orderListView() -> some View {
+        
+        List{
+            
+            ForEach(cartViewModel.itemSellers, id:\.id){
                 
-                ForEach(cartViewModel.itemSellers, id:\.id){
-                    
-                    seller in
-                    
-                    let sectionText = Text(seller.name ?? "").fixedSize(horizontal: false, vertical: true).lineLimit(1).font(.custom(Theme.fontNameBold, size: 15))
-                    
-                    Section(header: sectionText ) {
-                    
-                   
-                        if let items = cartViewModel.itemsBySeller[seller] {
-                            
-                            itemRows(items)
-                            
-                            subTotalView(seller: seller)
-                        }
+                seller in
+                
+                let sectionText = Text(seller.name ?? "").fixedSize(horizontal: false, vertical: true).lineLimit(1).font(.custom(Theme.fontNameBold, size: 15))
+                
+                Section(header: sectionText ) {
+                
+               
+                    if let items = cartViewModel.itemsBySeller[seller] {
+                        
+                        itemRows(items)
+                        
+                        subTotalView(seller: seller)
                     }
                 }
-                
-                totalView()
+            }
+            
+            totalView()
+            
+            if !cartViewModel.paymentSuccess {
+            
                 
                 payButtons()
                 
                 infoView()
             }
+            
         }
     }
+    
+    
+    @ViewBuilder
+    private func topTitleView() -> some View {
+        
+        if cartViewModel.paymentSuccess {
+            
+            HStack {
+                
+                Image(systemName: "checkmark.circle").resizable().frame(width: 30, height: 30)
+                .aspectRatio(contentMode: .fit).foregroundColor(Color(UIColor(hex:"#aaff22ff")!))
+               
+                Text("Payment Success".localized).font(.custom(Theme.fontNameBold, size: 20))
+                
+                Button(action: {
+                    
+                    self.shareSnapShot()
+                    
+                }){
+                
+                    Image("more").resizable().frame(width:24, height: 24, alignment: .topTrailing)
+                }
+                
+            }
+            .padding().background(Color(UIColor(hex:"#ddeeffff")!)).cornerRadius(10)
+        }
+        else {
+            
+            Text("Check Out".localized).font(.custom(Theme.fontNameBold, size: 20))
+        }
+    }
+    
+    
+    private func shareSnapShot(){
+        
+        let image = orderListView().padding().snapshot()
+        self.snapshotImages = [image]
+        withAnimation {
+
+            self.showShareSheet.toggle()
+        }
+        
+    }
+   
 
 }
 
@@ -189,6 +262,11 @@ extension CheckoutView {
                 
                 TappableText(text: "Pay By Wallet".localized, action: {
                     
+                    withAnimation{
+                        
+                        self.payOption = .wallet
+                        cartViewModel.confirmViewPresented = true
+                    }
                 })
                 payByOthersButton()
                
@@ -256,7 +334,7 @@ extension CheckoutView {
                 
                 withAnimation(Animation.easeIn(duration: 0.5).delay(0.5) ){
                 
-                    self.confirmViewPresented = true
+                    cartViewModel.confirmViewPresented = true
                     
                 }
                 
@@ -354,6 +432,7 @@ extension CheckoutView {
             
             TappableText(text: "Proceed".localized, action: {
                 
+                proceedBasedOnOption()
                 
             })
         }
@@ -361,6 +440,14 @@ extension CheckoutView {
         .frame(minHeight:400)
     }
     
+    
+    private func proceedBasedOnOption(){
+        
+        if payOption == .wallet {
+            
+            cartViewModel.payByWallet(by: userViewModel.user, with: walletViewModel.refId)
+        }
+    }
     
     @ViewBuilder
     private func selectedOptionView() -> some View {

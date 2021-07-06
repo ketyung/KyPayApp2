@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class CartViewModel : ObservableObject {
     
@@ -20,6 +21,8 @@ class CartViewModel : ObservableObject {
     @Published var inProgress : Bool = false
     
     @Published var paymentSuccess : Bool = false
+    
+    @Published var confirmViewPresented : Bool = false 
     
     func add(item : SellerItem) {
         
@@ -152,34 +155,36 @@ extension CartViewModel {
     
     func payByWallet(by user : User, with walletRefId : String){
         
+        self.confirmViewPresented = false
+        
         self.inProgress = true
         
         
-        txHandler.transfer(for: self, by: user, wallertRefId: walletRefId, completion: {
-            
-            [weak self] order, err in
-            
-            guard let err = err else {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute:{
+          
+            self.txHandler.transfer(for: self, by: user, wallertRefId: walletRefId, completion: {
                 
-                if let order = order {
+                [weak self] order, err in
+                
+                guard let err = err else {
                     
-                    
-                    self?.recordOrderRemotely(order)
+                    if let order = order {
+                        
+                        self?.recordOrderRemotely(order)
+                    }
+                    return
                 }
                 
                 
+                DispatchQueue.main.async {
+                    
+                    self?.errorPresented = true
+                    self?.errorMessage = err.localizedDescription
+                    self?.inProgress = false
+                }
                 return
-            }
-            
-            
-            DispatchQueue.main.async {
                 
-                self?.errorPresented = true
-                self?.errorMessage = err.localizedDescription
-                self?.inProgress = false
-            }
-            return
-            
+            })
         })
     }
     
@@ -206,8 +211,11 @@ extension CartViewModel {
                     DispatchQueue.main.async {
                   
                         self.inProgress = false
-                        self.paymentSuccess = true
-        
+                        withAnimation(Animation.easeIn(duration: 0.5).delay(0.5) ){
+                        
+                            self.paymentSuccess = true
+                        }
+                       
                     }
                 
             }

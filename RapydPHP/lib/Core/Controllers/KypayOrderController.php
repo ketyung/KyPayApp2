@@ -21,11 +21,11 @@ class KypayOrderController extends Controller {
         $response['status_code_header'] = 'HTTP/1.1 202 Order Completed';
        
         $input = $this->getInput();
-      // Log::printRToErrorLog($input);
+        Log::printRToErrorLog($input);
       
         $this->createOrder($input);
         
-        $response['body'] = json_encode(array('status'=>1, 'id'=>0, 'text'=>'Order Completed!'));
+        $response['body'] = json_encode(array('status'=>1, 'id'=>"none", 'text'=>'Order Completed!'));
     
         return $response;
     }
