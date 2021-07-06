@@ -79,7 +79,7 @@ extension SettingsView {
                     
                     NavigationLink(destination: Text("Feature isn't available, coming soon..."), label: {
                         SettingRowView(title:
-                        userViewModel.isBusinessUser ?  "Merchant Profile".localized : "Become A Merchant".localized,
+                        userViewModel.isBusinessUser ?  "Seller Profile".localized : "Become A Seller".localized,
                         systemImageName: "cart", imageForegroundColor: .green)
                     })
                     
