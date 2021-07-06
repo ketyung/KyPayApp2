@@ -235,7 +235,7 @@ extension WalletView {
         }
    
         
-        print("order::\(order.orders?.count ?? 0)")
+       // print("order::\(order.orders?.count ?? 0)")
 
         ARH.shared.addOrder(order, returnType:Order.self , completion: {
             

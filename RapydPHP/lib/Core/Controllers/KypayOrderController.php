@@ -18,12 +18,16 @@ class KypayOrderController extends Controller {
 
     protected function createDbObjectFromRequest(){
     
+        $response['status_code_header'] = 'HTTP/1.1 202 Order Completed';
+       
         $input = $this->getInput();
       // Log::printRToErrorLog($input);
       
         $this->createOrder($input);
         
-        return $this->notFoundResponse();
+        $response['body'] = json_encode(array('status'=>1, 'id'=>0, 'text'=>'Order Completed!'));
+    
+        return $response;
     }
     
     

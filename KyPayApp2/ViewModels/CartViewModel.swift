@@ -17,6 +17,10 @@ class CartViewModel : ObservableObject {
     
     @Published var errorMessage : String?
     
+    @Published var inProgress : Bool = false
+    
+    @Published var paymentSuccess : Bool = false
+    
     func add(item : SellerItem) {
         
         let cartItem = CartItem(item: item, quantity: 1)
@@ -148,11 +152,20 @@ extension CartViewModel {
     
     func payByWallet(by user : User, with walletRefId : String){
         
+        self.inProgress = true
+        
+        
         txHandler.transfer(for: self, by: user, wallertRefId: walletRefId, completion: {
             
-            [weak self] paymentSuccInfo, err in
+            [weak self] order, err in
             
             guard let err = err else {
+                
+                if let order = order {
+                    
+                    
+                    self?.recordOrderRemotely(order)
+                }
                 
                 
                 return
@@ -163,9 +176,46 @@ extension CartViewModel {
                 
                 self?.errorPresented = true
                 self?.errorMessage = err.localizedDescription
+                self?.inProgress = false
             }
             return
             
         })
     }
+    
+    
+    
+    private func recordOrderRemotely(_ order : Order) {
+        
+        // add order to remote
+        ARH.shared.addOrder(order, returnType:Order.self , completion: {
+            
+            res in
+            
+            switch(res) {
+            
+                case .failure(let err) :
+                    
+                    DispatchQueue.main.async {
+                        self.errorPresented = true
+                        self.errorMessage = err.localizedDescription
+                    }
+                    
+                case .success(_) :
+                    
+                    DispatchQueue.main.async {
+                  
+                        self.inProgress = false
+                        self.paymentSuccess = true
+        
+                    }
+                
+            }
+        })
+    }
+    
+    
+
+    
+    
 }
