@@ -8,20 +8,38 @@
 import SwiftUI
 
 struct CheckoutView : View {
+
+    enum PayOption : Int {
+        
+        case onlineBanking
+        
+        case wallet
+        
+        case card
+        
+        case none
+    }
+    
     
     @Binding var control : PresenterControl
 
     @EnvironmentObject private var cartViewModel : CartViewModel
 
     @EnvironmentObject private var walletViewModel : UserWalletViewModel
-    
+  
+    @EnvironmentObject private var userViewModel : UserViewModel
+  
     @State private var isOnlineBankingPresented : Bool = false
     
     @State private var isCardPaymentPresented : Bool = false
     
     @State private var isOtherPaymentOptionsPresented : Bool = false
     
-    @State private var paymentMethod : String?
+    @State private var paymentMethod : PaymentMethod?
+    
+    @State private var payOption : PayOption = .none
+    
+    @State private var confirmViewPresented : Bool = false
     
     
     var body : some View {
@@ -33,7 +51,10 @@ struct CheckoutView : View {
         .popOver(isPresented: $isOtherPaymentOptionsPresented, content: {
             paymentOptionsView()
         })
-
+        .popOver(isPresented: $confirmViewPresented, content: {
+        
+            confirmPaymentView()
+        })
     }
 
 
@@ -227,10 +248,18 @@ extension CheckoutView {
         PaymentMethodTypesView(control: $control, otherAction: { pm in
         
             self.paymentMethod = pm
+            self.payOption = .onlineBanking
             
             withAnimation{
             
                 self.isOnlineBankingPresented = false
+                
+                withAnimation(Animation.easeIn(duration: 0.5).delay(0.5) ){
+                
+                    self.confirmViewPresented = true
+                    
+                }
+                
             }
             
         })
@@ -297,4 +326,75 @@ extension CheckoutView {
             }
         }
     }
+}
+
+
+extension CheckoutView {
+    
+    
+    @ViewBuilder
+    private func confirmPaymentView() -> some View {
+        
+        VStack {
+            
+            var currency = ""
+            let total = cartViewModel.totalAmount(currency: &currency)
+            
+            Text("Confirm Your Payment?").font(.custom(Theme.fontNameBold, size: 24))
+            
+            Text("Amount: \(currency) \(total.twoDecimalString)").font(.custom(Theme.fontNameBold, size: 24))
+            
+            Spacer().frame(height:50)
+            
+            Text("Selected Payment Option:").font(.custom(Theme.fontNameBold, size: 18))
+            
+            selectedOptionView()
+            
+            Spacer().frame(height:50)
+            
+            TappableText(text: "Proceed".localized, action: {
+                
+                
+            })
+        }
+        .padding()
+        .frame(minHeight:400)
+    }
+    
+    
+    @ViewBuilder
+    private func selectedOptionView() -> some View {
+        
+        
+        switch(payOption){
+        
+            case .onlineBanking :
+            
+                Common.selectedPaymentMethodView(name: paymentMethod?.name,
+                    imageURL: paymentMethod?.imageURL)
+            
+            case .card :
+                Text("Pay By Card".localized).font(.custom(Theme.fontName, size: 15))
+            
+            case .wallet :
+                VStack {
+               
+                    Text("Pay By Wallet".localized).font(.custom(Theme.fontName, size: 15))
+                    Text("Balance : \(walletViewModel.currency) \(walletViewModel.balance)")
+                    .font(.custom(Theme.fontNameBold, size: 15)).padding()
+                    .background(Color(UIColor(hex: "#ddddddff")!)).cornerRadius(10)
+                    
+                }
+               
+                
+                
+            default :
+                
+                Text("None".localized).font(.custom(Theme.fontName, size: 15))
+                
+                
+        }
+        
+    }
+    
 }

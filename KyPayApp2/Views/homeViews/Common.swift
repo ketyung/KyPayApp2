@@ -6,6 +6,7 @@
 //
 
 import SwiftUIX
+import Kingfisher
 
 struct Common {
     
@@ -175,6 +176,33 @@ extension Common {
       
     }
     
+    
+    
+    static func selectedPaymentMethodView ( name : String?, imageURL : URL? ) -> some View {
+        
+        HStack(spacing:20) {
+            
+            //Spacer().frame(width:10)
+            
+            KFImage(imageURL)
+            .resizable()
+            .loadDiskFileSynchronously()
+            .placeholder(Common.imagePlaceHolderView)
+            .cacheMemoryOnly()
+            .fade(duration: 0.25)
+            .aspectRatio(contentMode: .fit)
+            .frame(width: 34)
+            
+            Text(name ?? "")
+            .font(.custom(Theme.fontName, size: 15))
+            .frame(minWidth: 200, alignment: .leading)
+               
+            Spacer()
+            
+            Common.disclosureIndicator()
+            
+        }.padding().foregroundColor(.black).background(Color(UIColor(hex:"#eeeeeeff")!))
+    }
     
     
 }

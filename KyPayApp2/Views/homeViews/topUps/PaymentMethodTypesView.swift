@@ -20,7 +20,7 @@ struct PaymentMethodTypesView : View {
     
     @Binding var control : PresenterControl
 
-    var otherAction : ((_ selectedPaymentMethod : String?)->Void)? = nil
+    var otherAction : ((_ selectedPaymentMethod : PaymentMethod?)->Void)? = nil
     
     @Environment(\.presentationMode) private var presentation
     
@@ -82,7 +82,7 @@ extension PaymentMethodTypesView {
             // and don't set to topUpViewModel 
             if let action = otherAction {
                 
-                action(paymentMethod.type)
+                action(paymentMethod)
             }
             else {
                 

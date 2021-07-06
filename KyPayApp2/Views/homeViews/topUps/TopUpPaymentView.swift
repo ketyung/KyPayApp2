@@ -129,28 +129,8 @@ extension TopUpPaymentView  {
         
         NavigationLink(destination: PaymentMethodTypesView(isPopBack: true, control: $control)){
         
-            HStack(spacing:20) {
-                
-                //Spacer().frame(width:10)
-                
-                KFImage(topUpViewModel.paymentMethod?.imageURL)
-                .resizable()
-                .loadDiskFileSynchronously()
-                .placeholder(Common.imagePlaceHolderView)
-                .cacheMemoryOnly()
-                .fade(duration: 0.25)
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 34)
-                
-                Text(topUpViewModel.paymentMethod?.name ?? "")
-                .font(.custom(Theme.fontName, size: 15))
-                .frame(minWidth: 200, alignment: .leading)
-                   
-                Spacer()
-                
-                Common.disclosureIndicator()
-                
-            }.padding().foregroundColor(.black).background(Color(UIColor(hex:"#eeeeeeff")!))
+            Common.selectedPaymentMethodView(name: topUpViewModel.paymentMethod?.name, imageURL: topUpViewModel.paymentMethod?.imageURL)
+            
         }
         
     }
