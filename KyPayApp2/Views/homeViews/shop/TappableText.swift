@@ -33,7 +33,7 @@ struct TappableText : View {
                 tapped.toggle()
                 action?()
                 
-                withAnimation(Animation.easeIn(duration: 0.3).delay(0.3) ){
+                withAnimation(Animation.easeIn(duration: 0.2).delay(0.2) ){
                     
                     tapped.toggle()
                 }

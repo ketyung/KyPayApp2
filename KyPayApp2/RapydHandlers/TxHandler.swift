@@ -63,7 +63,9 @@ class TxHandler {
 extension TxHandler {
     
     
-    func transfer(for cartViewModel : CartViewModel, by user : User,  completion : ((Order?,Error?)->Void)? = nil){
+    func transfer(for cartViewModel : CartViewModel, by user : User,
+                  wallertRefId : String,
+                  completion : ((Order?,Error?)->Void)? = nil){
         
         var currency = Common.defaultCurrency
         
@@ -74,6 +76,8 @@ extension TxHandler {
         order.currency = currency
         order.status = .new
         order.uid = user.id
+        order.walletRefId = wallertRefId
+        
         order.paymentMethod = "kypay_wallet_transfer"
         
         itemsBySeller.keys.forEach{ seller in

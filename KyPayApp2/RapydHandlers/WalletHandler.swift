@@ -473,7 +473,7 @@ extension WalletHandler {
     }
     
     
-    func add (amount : Double, currency : String, type : String,
+    private func add (amount : Double, currency : String, type : String,
     paymentMethodID : String, customerId : String,
     completion : ((PaymentData?, Error?)->Void)? = nil ){
         
@@ -490,7 +490,7 @@ extension WalletHandler {
             
             if var pmfields = pmfields {
             
-                self.setFieldsForOnlineBanking(&pmfields)
+                WalletHandler.setFieldsForOnlineBanking(&pmfields)
         
                 let currentUser = RPDUser.currentUser()
                 let ewallet1 = RPDEWallet(ID: currentUser?.id ?? "xxx",
@@ -540,7 +540,7 @@ extension WalletHandler {
 
 extension WalletHandler {
     
-    private func setFieldsForOnlineBanking (_ pmfields : inout RPDPaymentMethodRequiredFields ){
+    static func setFieldsForOnlineBanking (_ pmfields : inout RPDPaymentMethodRequiredFields ){
         
         let user = RPDUser.currentUser()
         

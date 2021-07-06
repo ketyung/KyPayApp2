@@ -146,9 +146,9 @@ extension CartViewModel {
 
 extension CartViewModel {
     
-    func payByWallet(by user : User){
+    func payByWallet(by user : User, with walletRefId : String){
         
-        txHandler.transfer(for: self, by: user, completion: {
+        txHandler.transfer(for: self, by: user, wallertRefId: walletRefId, completion: {
             
             [weak self] paymentSuccInfo, err in
             
