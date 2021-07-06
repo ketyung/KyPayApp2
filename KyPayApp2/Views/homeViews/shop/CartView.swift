@@ -33,6 +33,15 @@ struct CartView : View {
                 
                 Spacer().frame(height:30)
                 
+                
+                var currency = ""
+                let total = cartViewModel.totalAmount(currency: &currency)
+                
+                Text("\("Total".localized): \(currency) \(total.twoDecimalString)").font(.custom(Theme.fontNameBold, size: 24))
+               
+                
+                Spacer().frame(height:30)
+                
                 checkoutButton()
             }
             .padding()

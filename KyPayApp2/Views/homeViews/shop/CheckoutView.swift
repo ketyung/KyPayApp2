@@ -340,13 +340,13 @@ extension CheckoutView {
             var currency = ""
             let total = cartViewModel.totalAmount(currency: &currency)
             
-            Text("Confirm Your Payment?").font(.custom(Theme.fontNameBold, size: 24))
+            Text("Confirm Your Payment?".localized).font(.custom(Theme.fontNameBold, size: 24))
             
-            Text("Amount: \(currency) \(total.twoDecimalString)").font(.custom(Theme.fontNameBold, size: 24))
+            Text("\("Amount".localized): \(currency) \(total.twoDecimalString)").font(.custom(Theme.fontNameBold, size: 24))
             
             Spacer().frame(height:50)
             
-            Text("Selected Payment Option:").font(.custom(Theme.fontNameBold, size: 18))
+            Text("Selected Payment Option:".localized).font(.custom(Theme.fontNameBold, size: 18))
             
             selectedOptionView()
             
