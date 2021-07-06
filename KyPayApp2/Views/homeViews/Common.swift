@@ -7,6 +7,7 @@
 
 import SwiftUIX
 import Kingfisher
+import CoreImage
 
 struct Common {
     
@@ -212,6 +213,41 @@ extension Common {
     
 }
 
+
+extension Common {
+    
+    static func generateQRCode(from string: String) -> UIImage? {
+        let data = string.data(using: String.Encoding.ascii)
+
+        if let filter = CIFilter(name: "CIQRCodeGenerator") {
+            filter.setValue(data, forKey: "inputMessage")
+            let transform = CGAffineTransform(scaleX: 3, y: 3)
+
+            if let output = filter.outputImage?.transformed(by: transform) {
+                return UIImage(ciImage: output)
+            }
+        }
+
+        return nil
+    }
+    
+    
+    @ViewBuilder
+    static func qrCodeImageView(from string : String, size : CGSize = CGSize(width:120, height:120)) -> some View {
+        
+        if let img = generateQRCode(from: string){
+            
+            ZStack {
+       
+                Rectangle().fill(Color.blue).frame(width: size.width * 1.2,height: size.width * 1.2).cornerRadius(10)
+                let _ = print("img.sz:\(img.size)")
+                Image(uiImage: img).resizable().frame(width: size.width,height: size.width).aspectRatio(contentMode: .fit)
+           
+            }
+        }
+    }
+    
+}
 
 extension Common {
     

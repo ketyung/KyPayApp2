@@ -164,6 +164,8 @@ extension CheckoutView {
                 Text("Your Order no is:".localized).font(.custom(Theme.fontName, size: 18)).foregroundColor(.black)
                 Text(orderNum).font(.custom(Theme.fontNameBold, size: 20)).foregroundColor(.black)
                 
+                Common.qrCodeImageView(from: orderNum)
+                
                 Text("You can also view your order status in your order list later")
                 .font(.custom(Theme.fontName, size: 18)).foregroundColor(.gray)
             }
