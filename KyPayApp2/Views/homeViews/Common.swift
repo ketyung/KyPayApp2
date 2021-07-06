@@ -8,6 +8,7 @@
 import SwiftUIX
 import Kingfisher
 import CoreImage
+import CoreImage.CIFilterBuiltins
 
 struct Common {
     
@@ -217,18 +218,20 @@ extension Common {
 extension Common {
     
     static func generateQRCode(from string: String) -> UIImage? {
-        let data = string.data(using: String.Encoding.ascii)
+        
+        let context = CIContext()
+        let filter = CIFilter.qrCodeGenerator()
+        
+        let data = Data(string.utf8)
+        filter.setValue(data, forKey: "inputMessage")
 
-        if let filter = CIFilter(name: "CIQRCodeGenerator") {
-            filter.setValue(data, forKey: "inputMessage")
-            let transform = CGAffineTransform(scaleX: 3, y: 3)
-
-            if let output = filter.outputImage?.transformed(by: transform) {
-                return UIImage(ciImage: output)
+        if let outputImage = filter.outputImage {
+            if let cgimg = context.createCGImage(outputImage, from: outputImage.extent) {
+                return UIImage(cgImage: cgimg)
             }
         }
 
-        return nil
+        return UIImage(systemName: "xmark.circle")
     }
     
     
@@ -240,8 +243,8 @@ extension Common {
             ZStack {
        
                 Rectangle().fill(Color.blue).frame(width: size.width * 1.2,height: size.width * 1.2).cornerRadius(10)
-                let _ = print("img.sz:\(img.size)")
-                Image(uiImage: img).resizable().frame(width: size.width,height: size.width).aspectRatio(contentMode: .fit)
+               
+                Image(uiImage: img).resizable().scaledToFit().frame(width: size.width,height: size.width)
            
             }
         }
