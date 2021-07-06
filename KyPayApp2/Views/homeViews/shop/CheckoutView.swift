@@ -113,7 +113,6 @@ extension CheckoutView {
             
             if !cartViewModel.paymentSuccess {
             
-                
                 payButtons()
                 
                 infoView()

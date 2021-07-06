@@ -22,7 +22,10 @@ class CartViewModel : ObservableObject {
     
     @Published var paymentSuccess : Bool = false
     
-    @Published var confirmViewPresented : Bool = false 
+    @Published var confirmViewPresented : Bool = false
+    
+    @Published var orderedItems : [CartItem] = []
+    
     
     func add(item : SellerItem) {
         
@@ -64,6 +67,13 @@ class CartViewModel : ObservableObject {
            
         }
         
+    }
+    
+    
+    func copyItemsToOrderedItems(){
+        
+        self.orderedItems = items
+        items = [] // empty items
     }
     
     
@@ -109,10 +119,22 @@ extension CartViewModel {
     // dictionary group items by seller name and id
     var itemsBySeller : Dictionary<Seller, [CartItem]>{
         
-        Dictionary(grouping: items, by: { (element: CartItem) in
+        if paymentSuccess {
+    
+            return Dictionary(grouping: orderedItems, by: { (element: CartItem) in
+                
+                return element.item.seller ?? Seller()
+            })
             
-            return element.item.seller ?? Seller()
-        })
+        }
+        else {
+    
+            return Dictionary(grouping: items, by: { (element: CartItem) in
+                
+                return element.item.seller ?? Seller()
+            })
+        }
+        
     }
     
     
@@ -201,9 +223,13 @@ extension CartViewModel {
                     DispatchQueue.main.async {
                   
                         self.inProgress = false
+                        self.copyItemsToOrderedItems()
+                        
                         withAnimation(Animation.easeIn(duration: 0.5).delay(0.5) ){
                         
                             self.paymentSuccess = true
+                            
+                            print("payment.succ::\(self.paymentSuccess)")
                         }
                        
                     }

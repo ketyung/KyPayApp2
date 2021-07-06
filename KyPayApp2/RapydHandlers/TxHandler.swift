@@ -11,7 +11,7 @@ import RapydSDK
 class TxHandler {
     
     
-    private var onFinishCompletion : ((Order?) -> Void)?
+   // private var onFinishCompletion : ((Order?) -> Void)?
     
     
     func transfer(to phoneNumber : String, amount : Double, currency :String, completion : ((String?,Error?)->Void)? = nil ){
@@ -71,7 +71,7 @@ extension TxHandler {
                   wallertRefId : String,
                   completion : ((Order?)->Void)? = nil){
         
-        self.onFinishCompletion = completion
+     //   self.onFinishCompletion = completion
         
         var currency = Common.defaultCurrency
         
@@ -103,7 +103,7 @@ extension TxHandler {
                   
                     if order.orders?.count == itemsBySeller.count {
                         
-                        self.onFinishCompletion?(order)
+                        completion?(order)
                     }
                     
                   
@@ -131,7 +131,6 @@ extension TxHandler {
         
             guard let _ = err else {
       
-       
                 so.servicePaymentId = id
                  
                 completion?(so)
