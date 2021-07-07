@@ -62,7 +62,11 @@ Kingfisher - for asynchronously loading images remotely or from URL https://gith
 SwiftUIX - only two components used from this framework as I needed a TextField that can programmatically become and resign as and from first responder respectively
 , thus I use the CocoaTextField from the SwiftUIX and also an ActivityIndicator. https://github.com/SwiftUIX/SwiftUIX Or altenatively, these can be written by myself by wrapping UIKit with UIViewRepresentable but due to the rush for the deadline, therefore it's best to use a ready package... 
 
-Firebase and SwiftKeychainWrapper installed by Podfile, for the authentication and a keychain wrapper for more securely storing data like the UserDefauls' way. :D
+Firebase and SwiftKeychainWrapper installed by Podfile, for the authentication and a keychain wrapper for more securely storing data like the UserDefauls' way. :D 
+
+The app supports iOS 13 and above but being tested only on the iOS simulators (iPhone and iPad) and iOS devices (iPhone X) running iOS 14.5 only.
+
+That's all for now...
 
 
 
