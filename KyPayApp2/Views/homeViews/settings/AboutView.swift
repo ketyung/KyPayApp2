@@ -43,8 +43,8 @@ struct AboutView : View {
                     }
                 }){
                 
-                    Text("https://blog.techchee.com").font(.custom(Theme.fontNameBold, size: 16))
-                        .foregroundColor(Color(UIColor(hex:"#006699ff")!))
+                    Text("Blog: https://blog.techchee.com").font(.custom(Theme.fontNameBold, size: 16))
+                        .foregroundColor(Color(UIColor(hex:"#3366ffff")!))
                  
                 }
                 
