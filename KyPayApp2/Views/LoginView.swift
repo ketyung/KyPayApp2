@@ -20,6 +20,12 @@ struct LoginView : View {
     
     @State private var yOffset : CGFloat = 0
     
+    @State private var showAbout = false
+    
+    @State private var showWeb = false
+    
+    @State private var toPresentWebURL : String = "https://blog.techchee.com"
+    
     
     var body: some View {
         
@@ -35,6 +41,7 @@ struct LoginView : View {
     
             loginView().offset(y: yOffset)
             .animation(.easeInOut(duration: 0.65))
+                
         }
      
     }
@@ -66,7 +73,12 @@ extension LoginView {
             
             dismissKeyboardButton()
          
+            Spacer().frame(height:80)
+          
+            aboutButton()
+            
             Spacer()
+          
         }
         .frame(width: UIScreen.main.bounds.width, height:UIScreen.main.bounds.height + 200)
         .background(
@@ -77,10 +89,18 @@ extension LoginView {
         .edgesIgnoringSafeArea(.all)
         .bottomSheet(isPresented: $viewModel.isCountryPickerPresented, height: UIScreen.main.bounds.height - 50 , showGrayOverlay: true){
             
-            
             CountryCodePickerUI(viewModel: viewModel, textFont: .custom(Theme.fontName, size: 16))
             
         }
+        .popOver(isPresented: $showAbout, content: {
+        
+            AboutView(isPresented: $showAbout, toPresentWeb: $showWeb, toPresentWebUrl: $toPresentWebURL)
+            .frame(minHeight: UIScreen.main.bounds.height - 200)
+        })
+        .sheet(isPresented: $showWeb, content: {
+        
+            WebViewUI(url: $toPresentWebURL)
+        })
         .alert(isPresented: $errorAlertPresented){
             
             Alert(title: Text("Error!"),message:Text(errorMessage))
@@ -105,7 +125,7 @@ extension LoginView {
         .cornerRadius(6)
         
     }
-    
+
     
     
     @ViewBuilder
@@ -138,8 +158,11 @@ extension LoginView {
             }
             
         }
-    
+
     }
+    
+    
+    
     
 }
 
@@ -209,6 +232,29 @@ extension LoginView {
         .hidden(!viewModel.phoneNumberIsFirstResponder)
     }
     
+    
+    private func aboutButton() -> some View {
+        
+        Button(action : {
+            
+            withAnimation{
+                
+                self.showAbout.toggle()
+            }
+        }){
+            
+            HStack {
+                
+                Image(systemName: "info.circle.fill")
+                .resizable().frame(width: 20, height:20).foregroundColor(.white)
+                
+                Text("About This App")
+                .foregroundColor(Color(UIColor(hex:"#eeeeeeff")!))
+                .font(.custom(Theme.fontName, size: 16))
+                
+            }.padding(8).background(Theme.commonBgColor).cornerRadius(6)
+        }
+    }
 }
 
 
