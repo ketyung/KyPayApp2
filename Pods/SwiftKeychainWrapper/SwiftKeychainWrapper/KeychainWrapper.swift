@@ -206,7 +206,7 @@ open class KeychainWrapper {
         
         //return NSKeyedUnarchiver.unarchiveObject(with: keychainData) as? NSCoding
         
-        // resolve the deprecation
+        // resolve ios 12 deprecation
         do {
            
             if let object = try NSKeyedUnarchiver.unarchivedObject(ofClasses: [NSObject.self], from: keychainData){
@@ -316,7 +316,7 @@ open class KeychainWrapper {
         
         //let data = NSKeyedArchiver.archivedData(withRootObject: value)
         
-        // resolve deprecation
+        // resolve ios 12 deprecation
         do {
             
             let data = try NSKeyedArchiver.archivedData(withRootObject: value, requiringSecureCoding: true)

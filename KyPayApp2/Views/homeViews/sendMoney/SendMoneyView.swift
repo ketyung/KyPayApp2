@@ -27,7 +27,8 @@ struct SendMoneyView : View {
     
     @State private var showShareSheet : Bool = false
     
-    @State private var snapshotImages :[Any] = []
+    @State private var snapshotImages : [Any] = []
+    
     
     
     var body : some View {
@@ -233,7 +234,7 @@ extension SendMoneyView {
                 .background(Color.white)
                 .frame(width: 200, height: 24)
                 .overlay(VStack{Divider().backgroundFill(.red).offset(x: 0, y: 26)})
-             
+                    
             }
            
         }
@@ -241,6 +242,7 @@ extension SendMoneyView {
     }
     
     
+   
     private func recipientView() -> some View{
         
         HStack {

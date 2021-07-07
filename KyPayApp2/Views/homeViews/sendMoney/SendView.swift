@@ -18,7 +18,8 @@ struct SendView : View {
     @EnvironmentObject private var userViewModel : UserViewModel
     
     @EnvironmentObject private var walletViewModel : UserWalletViewModel
-
+  
+    
     var body: some View {
         
         navView()
@@ -85,7 +86,8 @@ extension SendView {
             
             phoneView()
             
-            
+            dismissKeyboardButton()
+        
             recentAttemptsView()
             
             Spacer()
@@ -144,6 +146,33 @@ extension SendView {
         .overlay(VStack{Divider().backgroundFill(.red).offset(x: 0, y: 26)})
         
     }
+    
+    private func dismissKeyboardButton() -> some View {
+        
+        HStack(spacing:20) {
+       
+            Spacer()
+            .frame(width:5)
+            
+            Button(action: {
+                withAnimation {
+                    
+                    self.endEditing()
+                }
+            }){
+                
+                Image(systemName: "arrowtriangle.down.circle.fill")
+                .resizable()
+                .frame(width:20, height: 20, alignment: .topLeading)
+                .foregroundColor(.gray)
+                
+            }
+            
+            Spacer()
+        }
+        .hidden(!dataInputViewModel.phoneNumberIsFirstResponder)
+    }
+    
     
 }
 
