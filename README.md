@@ -51,6 +51,19 @@ For the purpose of testing for the hackathon, only Malaysia phone numbers are ab
 
 ![firebase-test-users](https://user-images.githubusercontent.com/67858418/124722308-822dbf00-df3c-11eb-8172-c52f7f26deea.png)
 
+About the code in Swift and SwiftUI.
+
+The programming approach of UIs and the flow for the iOS is based on the MVVM (Model View ViewModel) architecture pattern. So you can find most of the SwiftUI views are organized in the Views folder, whereas the ViewModels are in the ViewModels folder and so on for the Models.
+
+External Swift packages used including :
+
+Kingfisher - for asynchronously loading images remotely or from URL https://github.com/onevcat/Kingfisher 
+
+SwiftUIX - only two components used from this framework as I needed a TextField that can programmatically become and resign as and from first responder respectively
+, thus I use the CocoaTextField from the SwiftUIX and also an ActivityIndicator. https://github.com/SwiftUIX/SwiftUIX Or altenatively, these can be written by myself by wrapping UIKit with UIViewRepresentable but due to the rush for the deadline, therefore it's best to use a ready package... 
+
+Firebase and SwiftKeychainWrapper installed by Podfile, for the authentication and a keychain wrapper for more securely storing data like the UserDefauls' way. :D
+
 
 
 
