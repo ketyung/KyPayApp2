@@ -23,8 +23,11 @@ A quick note for a quick configuration on a MAMP or Apache on localhost, you sho
 RapydPHP/public/index.php , as shown below is how mine is configured 
 
 RewriteEngine on
+
 RewriteCond %{REQUEST_FILENAME} !-f
+
 RewriteCond %{REQUEST_FILENAME} !-d
+
 RewriteRule ^([A-Za-z0-9]+) /KyPay/public/index.php [NC]
 
 Please note the KyPay folder in the above is a symbolic link in my Apache's document root to the RapydPHP folder.
