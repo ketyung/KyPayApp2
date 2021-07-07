@@ -19,7 +19,25 @@ The PHP files all reside in the RapydPHP folder.
 And go to RapydPHP -> lib -> Core -> sqlfiles , look for the file kypay_db.sql and run this SQL file in your local MySQL to create all the required
 tables and import the data.
 
-And then you can run the app on the Xcode iOS simulator.
+A quick note for a quick configuration on a MAMP or Apache on localhost, you should have the .htaccess with a rewrite rule to point to the 
+RapydPHP/public/index.php , as shown below is how mine is configured 
+
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([A-Za-z0-9]+) /KyPay/public/index.php [NC]
+
+Please note the KyPay folder in the above is a symbolic link in my Apache's document root to the RapydPHP folder.
+
+And then you can run the app on the Xcode iOS simulator with the PHP backend on a localhost.
+
+If you wanna test it on an iOS device, you have to add the Rapyd framework for device, currently, what's included here is the Rapyd framework for the simulator
+only as I had problem to make the two frameworks to co-exist when developing/testing with Xcode 12.5 and I haven't figured out why. Due to rushing for the hackathon's deadline and the ease of testing it on a simulator with the backend on the localhost, so I leave it as it is. As shown in the image below boxed in red, which is the Rapyd Framework for iOS simulator only
+
+![Screenshot 2021-07-07 at 3 22 43 PM](https://user-images.githubusercontent.com/67858418/124718652-e3ec2a00-df38-11eb-983f-354e497a5fe0.png)
+
+
+If you want to 
 
 
 
