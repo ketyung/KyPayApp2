@@ -44,11 +44,22 @@ struct SettingsView : View {
     
     @State private var pushToLogin = false
     
-
+    @State private var showAbout = false
+    
+    @State private var showBlog = false
+    
     var body : some View {
         
         settingsView()
         .progressView(isShowing: $progressViewPresented, text: "Signing Out...")
+        .popOver(isPresented: $showAbout, content: {
+        
+            AboutView(isPresented: $showAbout, toPresentBlog: $showBlog)
+        })
+        .sheet(isPresented: $showBlog, content: {
+        
+            WebViewUI(url: URL(string: "https://blog.techchee.com"))
+        })
         .alert(isPresented: $errorAlertPresented){
             Alert(title: Text("Oppps!"),message:Text(errorMessage))
         }
@@ -60,6 +71,7 @@ struct SettingsView : View {
                 },secondaryButton: .cancel())
         }
        .navigationViewStyle(StackNavigationViewStyle())
+        
 
     }
     
@@ -103,6 +115,19 @@ extension SettingsView {
                     NavigationLink(destination: EmptyView(), label: {
                         SettingRowView(title: "Help Centre", systemImageName: "questionmark.circle", imageForegroundColor: .red)
                     })
+               
+                    Button(action: {
+                        
+                        withAnimation{
+                            
+                            self.showAbout.toggle()
+                        }
+                        
+                    }){
+                        
+                        SettingRowView(title: "About", systemImageName: "info.circle", imageForegroundColor: .blue)
+           
+                    }
                     
                 }
             
