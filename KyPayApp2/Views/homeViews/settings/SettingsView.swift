@@ -84,66 +84,81 @@ extension SettingsView {
     private func settingsView() -> some View {
         
         NavigationView {
-           List {
             
-                Section(header: Text("Account")) {
-                    NavigationLink(destination: EditProfileView(), label: {
-                        SettingRowView(title: "Edit Profile", systemImageName: "person")
-                    })
-                    
-                    NavigationLink(destination: Text("Feature isn't available, coming soon..."), label: {
-                        SettingRowView(title:
-                        userViewModel.isBusinessUser ?  "Seller Profile".localized : "Become A Seller".localized,
-                        systemImageName: "cart", imageForegroundColor: .green)
-                    })
-                    
-                }
-            
-                Section(header: Text("Settings")) {
-            
-                    NavigationLink(destination: WalletView(), label: {
-                        SettingRowView(title: "Your Wallet", systemImageName: "dollarsign.circle", imageForegroundColor: .purple)
-                    })
-                 
-                    
-                    NavigationLink(destination:  Text("Feature isn't available, coming soon..."), label: {
-                        SettingRowView(title: "Face ID", systemImageName: "faceid", imageForegroundColor: .blue)
-                    })
-                    
-                }
-            
-                Section(header: Text("Help & Info")) {
-            
-                    NavigationLink(destination: EmptyView(), label: {
-                        SettingRowView(title: "Help Centre", systemImageName: "questionmark.circle", imageForegroundColor: .red)
-                    })
-               
-                    Button(action: {
-                        
-                        withAnimation{
-                            
-                            self.showAbout.toggle()
-                        }
-                        
-                    }){
-                        
-                        SettingRowView(title: "About", systemImageName: "info.circle", imageForegroundColor: .blue)
+            VStack(alignment: .leading) {
+                
+                Text("Settings").font(.custom(Theme.fontNameBold, size: 26))
+                
+                settingsListView()
+                
+                Spacer()
+
+            }
+        }.padding()
+        //.navigationViewStyle(StackNavigationViewStyle())
+    }
+    
+    
+    private func settingsListView() -> some View{
+        
+        
+       List {
+        
+            Section(header: Text("Account")) {
+                NavigationLink(destination: EditProfileView(), label: {
+                    SettingRowView(title: "Edit Profile", systemImageName: "person")
+                })
+                
+                NavigationLink(destination: Text("Feature isn't available, coming soon..."), label: {
+                    SettingRowView(title:
+                    userViewModel.isBusinessUser ?  "Seller Profile".localized : "Become A Seller".localized,
+                    systemImageName: "cart", imageForegroundColor: .green)
+                })
+                
+            }
+        
+            Section(header: Text("Settings")) {
+        
+                NavigationLink(destination: WalletView(), label: {
+                    SettingRowView(title: "Your Wallet", systemImageName: "dollarsign.circle", imageForegroundColor: .purple)
+                })
+             
+                
+                NavigationLink(destination:  Text("Feature isn't available, coming soon..."), label: {
+                    SettingRowView(title: "Face ID", systemImageName: "faceid", imageForegroundColor: .blue)
+                })
+                
+            }
+        
+            Section(header: Text("Help & Info")) {
+        
+                NavigationLink(destination: EmptyView(), label: {
+                    SettingRowView(title: "Help Centre", systemImageName: "questionmark.circle", imageForegroundColor: .red)
+                })
            
+                Button(action: {
+                    
+                    withAnimation{
+                        
+                        self.showAbout.toggle()
                     }
                     
+                }){
+                    
+                    SettingRowView(title: "About", systemImageName: "info.circle", imageForegroundColor: .blue)
+       
                 }
-            
-                Spacer()
                 
-                signOutButton()
-            
-                loginScreenNavLink()
-           }
-            
-           Spacer()
+            }
         
-        }
-        //.navigationViewStyle(StackNavigationViewStyle())
+            Spacer()
+            
+            signOutButton()
+        
+            loginScreenNavLink()
+       }
+        
+
     }
 }
 
