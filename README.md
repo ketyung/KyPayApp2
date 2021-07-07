@@ -1,5 +1,5 @@
 # KyPay
-The KyPay app is built for the Rapud Hackathon contest. The app is a universal app which the current version consists of an eWallet for ease of sending and receiving money and a shopping market place for the any KyPay users to buy things and any approved KyPay users to be the sellers.
+The KyPay app is built for the Rapyd Hackathon. The app is a universal app which the current version consists of an eWallet for ease of sending and receiving money and a shopping market place for the any KyPay users to buy things and any approved KyPay users to be the sellers.
 
 The app consists of the mobile version and the backend portal for storing the KyPay user's data.
 
@@ -18,4 +18,8 @@ The PHP files all reside in the RapydPHP folder.
 
 And go to RapydPHP -> lib -> Core -> sqlfiles , look for the file kypay_db.sql and run this SQL file in your local MySQL to create all the required
 tables and import the data.
+
+And then you can run the app on the Xcode iOS simulator.
+
+
 
