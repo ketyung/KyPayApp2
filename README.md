@@ -47,6 +47,10 @@ The app is actually built for my country - Malaysia as default. The testing shop
 
 The app works this way - will determine a country and its currency based on the user's first sign-in phone number's dial code. Of course, you can use any phone number to sign up and an OTP will be sent to that phone number. 
 
+For the purpose of testing for the hackathon, only Malaysia phone numbers are able to test the full features of the app. Or you can use a list of the following Firebase test phone numbers with the preset OTP to sign in (the image below) :
+
+![firebase-test-users](https://user-images.githubusercontent.com/67858418/124722308-822dbf00-df3c-11eb-8172-c52f7f26deea.png)
+
 
 
 
