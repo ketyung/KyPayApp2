@@ -10,4 +10,8 @@ password to sign into the app
 ![KyPay app screenshots on iOS simualator](https://user-images.githubusercontent.com/67858418/124703977-e1340980-df25-11eb-9d87-a8adc82b9815.png)
 
 
+The backend is built with PHP as the REST API for the iOS mobile app to exchange data with it.
+
+To test this app, you can clone this in your Xcode. And you must also install the backend PHP, on an Apache (such as MAMP) or Nginx 
+running on a localhost with port 808. 
 
