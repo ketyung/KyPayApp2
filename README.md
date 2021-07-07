@@ -32,11 +32,13 @@ Please note the KyPay folder in the above is a symbolic link in my Apache's docu
 And then you can run the app on the Xcode iOS simulator with the PHP backend on a localhost.
 
 If you wanna test it on an iOS device, you have to add the Rapyd framework for device, currently, what's included here is the Rapyd framework for the simulator
-only as I had problem to make the two frameworks to co-exist when developing/testing with Xcode 12.5 and I haven't figured out why. Due to rushing for the hackathon's deadline and the ease of testing it on a simulator with the backend on the localhost instead of remote with frequent changes, so I leave it as it is. As shown in the image below boxed in red, which is the Rapyd Framework for iOS simulator only
+only as I had problem to make the two frameworks to co-exist when developing/testing with Xcode 12.5 and I haven't figured out why. Perhaps the Rapyd dev team could have the answers later. Due to rushing for the hackathon's deadline and the ease of testing it on a simulator with the backend on the localhost instead of remote with frequent changes, so I leave it as it is. As shown in the image below boxed in red, which is the Rapyd Framework for iOS simulator only
 
 ![Screenshot 2021-07-07 at 3 22 43 PM](https://user-images.githubusercontent.com/67858418/124718652-e3ec2a00-df38-11eb-983f-354e497a5fe0.png)
 
-If you want to test on the iOS device, you'll have to change the urlBase property of ApiRequestHandler.swift resides in the folder ApiClient, which is the main component encapsulating codes to communicate with the backend PHP api. Change this urlBase property (as shown in the above image boxed in green) to my server's test point https://techchee.com/KyPayApiTestPointV1/ , I should configure and add the PHP backend to my public web server later. Contact me at ketyung@techchee.com or WhatsApp +60138634848 for faster response.
+If you want to test on the iOS device, you'll have to change the urlBase property of ApiRequestHandler.swift resides in the folder ApiClient, which is the main component encapsulating codes to communicate with the backend PHP api. Change this urlBase property (as shown in the above image boxed in green) to my server's test point https://techchee.com/KyPayApiTestPointV1/ , I should configure and add the PHP backend to my public web server later. Contact me at ketyung@techchee.com or WhatsApp +60138634848 for faster response if you encounter any problem.
+
+
 
 
 
