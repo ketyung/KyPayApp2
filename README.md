@@ -1,5 +1,7 @@
 # KyPay
-The KyPay app is built for the Rapyd Hackathon. The app is a universal app which the current version consists of an eWallet for ease of sending and receiving money and a shopping market place for the any KyPay users to buy things and any approved KyPay users to be the sellers.
+The KyPay app is built for the Rapyd Hackathon. https://devpost.com/software/kypay
+
+The app is a universal app which the current version consists of an eWallet for ease of sending and receiving money and a shopping market place for the any KyPay users to buy things and any approved KyPay users to be the sellers.
 
 The app consists of the mobile version and the backend portal for storing the KyPay user's data.
 
@@ -66,10 +68,16 @@ Firebase and SwiftKeychainWrapper installed by Podfile, for the authentication a
 
 The app supports iOS 13 and above but being tested only on the iOS simulators (iPhone and iPad) and iOS devices (iPhone X) running iOS 14.5 only.
 
+Some unfinished work/features that need to be completed later are :
+
+1. The request money section
+2. The message section
+3. The payment by other options (e.g. bank redirect) during cart checkout
+
 That's all for now...
 
 
-https://www.dmca.com/r/d32jwd5
+https://www.dmca.com/r/d32jwd5 (Limited for use for Rapyd and DevPost testing team only) 
 
 
 
