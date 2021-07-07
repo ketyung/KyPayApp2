@@ -5,7 +5,7 @@ The app consists of the mobile version and the backend portal for storing the Ky
 
 The mobile version is the iOS version which is built by the use of Apple's UI framework SwiftUI, UIKit and the Rapyd Mobile iOS SDK 
 https://docs.rapyd.net/works-with/reference/introduction-to-mobile-sdk and the Firebase Authentication for allowing users to use phone number and one-time
-password to sign into the app
+password to sign into the app. Here is an intro video of the app https://www.youtube.com/watch?v=nXFGD52hP44
 
 ![KyPay app screenshots on iOS simualator](https://user-images.githubusercontent.com/67858418/124703977-e1340980-df25-11eb-9d87-a8adc82b9815.png)
 
