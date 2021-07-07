@@ -7,7 +7,7 @@ The mobile version is the iOS version which is built by the use of Apple's UI fr
 https://docs.rapyd.net/works-with/reference/introduction-to-mobile-sdk and the Firebase Authentication for allowing users to use phone number and one-time
 password to sign into the app
 
-<img height="300" alt="Screenshot 2021-07-07 at 1 13 46 PM 1" src="https://user-images.githubusercontent.com/67858418/124703714-5a7f2c80-df25-11eb-9ab6-2aef1596863f.png">
+<img height="450" alt="Screenshot 2021-07-07 at 1 13 46 PM 1" src="https://user-images.githubusercontent.com/67858418/124703714-5a7f2c80-df25-11eb-9ab6-2aef1596863f.png">
 
 
 
