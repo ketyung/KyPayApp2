@@ -41,7 +41,7 @@ only as I had problem to make the two frameworks to co-exist when developing/tes
 
 ![Screenshot 2021-07-07 at 3 22 43 PM](https://user-images.githubusercontent.com/67858418/124718652-e3ec2a00-df38-11eb-983f-354e497a5fe0.png)
 
-If you want to test on the iOS device, you'll have to change the urlBase property of ApiRequestHandler.swift resides in the folder ApiClient, which is the main component encapsulating codes to communicate with the backend PHP api. Change this urlBase property (as shown in the above image boxed in green) to my server's test point https://techchee.com/KyPayApiTestPointV1/ , I should configure and add the PHP backend to my public web server later. Contact me at ketyung@techchee.com or WhatsApp +60138634848 for faster response if you encounter any problem.
+If you want to test on the iOS device, you'll have to change the urlBase property of ApiRequestHandler.swift resides in the folder ApiClient, which is the main component encapsulating codes to communicate with the backend PHP api. Change this urlBase property (as shown in the above image boxed in green) to my server's test point https://techchee.com/KyPayApiTestPointV1/ , I should configure and add the PHP backend to my public web server later. Contact me at ketyung@techchee.com or ketyung@gmail.com or WhatsApp +60138634848 for faster response if you encounter any problem.
 
 About testing.
 
