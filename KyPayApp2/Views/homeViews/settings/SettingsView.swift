@@ -46,7 +46,9 @@ struct SettingsView : View {
     
     @State private var showAbout = false
     
-    @State private var showBlog = false
+    @State private var showWeb = false
+    
+    @State private var toPresentWebURL : String = "https://blog.techchee.com"
     
     var body : some View {
         
@@ -54,11 +56,11 @@ struct SettingsView : View {
         .progressView(isShowing: $progressViewPresented, text: "Signing Out...")
         .popOver(isPresented: $showAbout, content: {
         
-            AboutView(isPresented: $showAbout, toPresentBlog: $showBlog)
+            AboutView(isPresented: $showAbout, toPresentWeb: $showWeb, toPresentWebUrl: $toPresentWebURL)
         })
-        .sheet(isPresented: $showBlog, content: {
+        .sheet(isPresented: $showWeb, content: {
         
-            WebViewUI(url: URL(string: "https://blog.techchee.com"))
+            WebViewUI(url: $toPresentWebURL)
         })
         .alert(isPresented: $errorAlertPresented){
             Alert(title: Text("Oppps!"),message:Text(errorMessage))
