@@ -69,7 +69,7 @@ The app supports iOS 13 and above but being tested only on the iOS simulators (i
 That's all for now...
 
 
-
+https://www.dmca.com/r/d32jwd5
 
 
 
