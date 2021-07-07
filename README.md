@@ -14,7 +14,7 @@ The backend is built with PHP with MySQL or MariaDB as the database to serve the
 To test this app, you can clone this in your Xcode. And you must also install the backend PHP, e.g. on an Apache (such as MAMP) or Nginx 
 running on a localhost with port 808. 
 
-The PHP files all reside in the RapydPHP folder.
+The PHP files all reside in the RapydPHP folder. The name of the folder just happened to be RapydPHP but there is no major code in the PHP side that communicates with the Rapyd API except some test PHP files which I used to test the Rapyd API. The RapydPHP folder mainly contains PHP scripts that power the backend of KyPay.
 
 And go to RapydPHP -> lib -> Core -> sqlfiles , look for the file kypay_db.sql and run this SQL file in your local MySQL to create all the required
 tables and import the data.
@@ -41,7 +41,11 @@ only as I had problem to make the two frameworks to co-exist when developing/tes
 
 If you want to test on the iOS device, you'll have to change the urlBase property of ApiRequestHandler.swift resides in the folder ApiClient, which is the main component encapsulating codes to communicate with the backend PHP api. Change this urlBase property (as shown in the above image boxed in green) to my server's test point https://techchee.com/KyPayApiTestPointV1/ , I should configure and add the PHP backend to my public web server later. Contact me at ketyung@techchee.com or WhatsApp +60138634848 for faster response if you encounter any problem.
 
+About testing.
 
+The app is actually built for my country - Malaysia as default. The testing shopping items by sellers are all items with price of the currency of MYR instead of other currencies.
+
+The app works this way - will determine a country and its currency based on the user's first sign-in phone number's dial code. Of course, you can use any phone number to sign up and an OTP will be sent to that phone number. 
 
 
 
