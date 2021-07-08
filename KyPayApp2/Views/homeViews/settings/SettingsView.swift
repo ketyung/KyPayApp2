@@ -33,7 +33,9 @@ struct SettingsView : View {
     @EnvironmentObject private var userViewModel : UserViewModel
    
     @EnvironmentObject private var phoneInputViewModel : PhoneInputViewModel
-    
+   
+    @EnvironmentObject private var itemsViewModel : SellerItemsViewModel
+
     @State private var progressViewPresented : Bool = false
     
     @State private var errorAlertPresented : Bool = false
@@ -216,6 +218,8 @@ extension SettingsView {
                 }
                 
                 withAnimation {
+                    
+                    itemsViewModel.clearItems() // clear the cached in memory items
                
                     self.progressViewPresented = false
                     

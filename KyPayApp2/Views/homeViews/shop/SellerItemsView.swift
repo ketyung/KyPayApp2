@@ -104,7 +104,7 @@ extension SellerItemsView {
             else {
       
                 VStack {
-           
+                    
                     Text("Items are not available in your country or currency yet")
                     .font(.custom(Theme.fontName, size: 16))
             

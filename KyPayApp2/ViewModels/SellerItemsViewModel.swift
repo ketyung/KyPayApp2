@@ -43,9 +43,9 @@ class SellerItemsViewModel : ObservableObject {
 
 extension SellerItemsViewModel {
     
-    func fetchSellerItems(currency : String){
+    func fetchSellerItems(currency : String, forceReload : Bool = false ){
         
-        if items.count == 0 {
+        if items.count == 0 || forceReload {
         
             self.inProgress = true
             
@@ -73,6 +73,12 @@ extension SellerItemsViewModel {
             })
         }
         
+    }
+    
+    
+    func clearItems(){
+        
+        items = []
     }
     
 }
