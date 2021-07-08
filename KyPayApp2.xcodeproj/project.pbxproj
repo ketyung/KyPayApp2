@@ -201,7 +201,7 @@
 		10FFB6E12695726C0029C1D8 /* 106.png in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB6D42695726C0029C1D8 /* 106.png */; };
 		10FFB6E22695726C0029C1D8 /* 107.png in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB6D72695726C0029C1D8 /* 107.png */; };
 		10FFB6E32695726C0029C1D8 /* 108.png in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB6DA2695726C0029C1D8 /* 108.png */; };
-		10FFB6E6269573D10029C1D8 /* kypay_db.sql in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB6E5269573D10029C1D8 /* kypay_db.sql */; };
+		10FFB6E8269682D50029C1D8 /* kypay_db.sql in Resources */ = {isa = PBXBuildFile; fileRef = 10FFB6E7269682D50029C1D8 /* kypay_db.sql */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -434,7 +434,7 @@
 		10FFB6D42695726C0029C1D8 /* 106.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 106.png; sourceTree = "<group>"; };
 		10FFB6D72695726C0029C1D8 /* 107.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 107.png; sourceTree = "<group>"; };
 		10FFB6DA2695726C0029C1D8 /* 108.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 108.png; sourceTree = "<group>"; };
-		10FFB6E5269573D10029C1D8 /* kypay_db.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = kypay_db.sql; sourceTree = "<group>"; };
+		10FFB6E7269682D50029C1D8 /* kypay_db.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = kypay_db.sql; sourceTree = "<group>"; };
 		1B47377B496C6F0F1022FFD4 /* Pods-KyPayApp2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.debug.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.debug.xcconfig"; sourceTree = "<group>"; };
 		6F523BC3D4353462922B31B9 /* Pods-KyPayApp2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KyPayApp2.release.xcconfig"; path = "Target Support Files/Pods-KyPayApp2/Pods-KyPayApp2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1188,7 +1188,7 @@
 		10FFB6E4269573A80029C1D8 /* sqlfiles */ = {
 			isa = PBXGroup;
 			children = (
-				10FFB6E5269573D10029C1D8 /* kypay_db.sql */,
+				10FFB6E7269682D50029C1D8 /* kypay_db.sql */,
 				1033B2A42674A92D00D999CE /* tb.sql */,
 			);
 			path = sqlfiles;
@@ -1382,7 +1382,7 @@
 				1033B2DC2674A92D00D999CE /* CollectRequest.php in Resources */,
 				10FFB6872692DEF50029C1D8 /* KypaySellerOrderItem.php in Resources */,
 				10FFB6DF2695726C0029C1D8 /* 104.png in Resources */,
-				10FFB6E6269573D10029C1D8 /* kypay_db.sql in Resources */,
+				10FFB6E8269682D50029C1D8 /* kypay_db.sql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
