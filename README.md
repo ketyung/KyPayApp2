@@ -5,12 +5,13 @@ The app is a universal app which the current version consists of an eWallet for 
 
 The app consists of the mobile version and the backend portal for storing the KyPay user's data such as the users' profiles, addresses, wallet data, images, transactions, items and orders etc ....
 
+![KyPay app screenshots on iOS simualator](https://user-images.githubusercontent.com/67858418/124703977-e1340980-df25-11eb-9d87-a8adc82b9815.png)
+
+
 The mobile version is the iOS version which is built by the use of Apple's UI framework SwiftUI, UIKit and the Rapyd Mobile iOS SDK 
 https://docs.rapyd.net/works-with/reference/introduction-to-mobile-sdk for handling wallet, payment etc and the Firebase Authentication for allowing users to use phone number and one-time password to sign into the app. Here is an intro video of the app 
 
 [![Everything Is AWESOME](https://yt-embed.herokuapp.com/embed?v=nXFGD52hP44)](https://www.youtube.com/watch?v=nXFGD52hP44 "Everything Is AWESOME")
-
-![KyPay app screenshots on iOS simualator](https://user-images.githubusercontent.com/67858418/124703977-e1340980-df25-11eb-9d87-a8adc82b9815.png)
 
 The backend is built with PHP with MySQL or MariaDB as the database to serve the REST API for the iOS mobile app to exchange data with it.
 
