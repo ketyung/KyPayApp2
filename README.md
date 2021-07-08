@@ -17,7 +17,7 @@ To test this app, you can download it and open it in your Xcode and run it on an
 
 Or alternatively, you can run the backend on a localhost to communicate with the iOS simulator.
 
-SO you must install the backend PHP on a localhost web server, e.g. on an Apache (such as MAMP) or Nginx 
+If so, you must install the backend PHP on a localhost web server, e.g. on an Apache (such as MAMP) or Nginx 
 running on a localhost . 
 
 The PHP files all reside in the RapydPHP folder. The name of the folder just happened to be RapydPHP but there is no major code in the PHP side that communicates with the Rapyd API except some test PHP files which I used to test the Rapyd API. The RapydPHP folder mainly contains PHP scripts that power the backend of KyPay.
