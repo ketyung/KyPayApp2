@@ -83,7 +83,7 @@ Some unfinished work/features that need to be completed later are :
 That's all for now...
 
 
-https://www.dmca.com/r/d32jwd5 (Limited for use for Rapyd and DevPost testing team only) 
+https://www.dmca.com/r/d32jwd5 (Limited for use for Rapyd and DevPost testing and teams only) 
 
 
 
