@@ -7,7 +7,6 @@ use Util\Log as Log;
 use Db\SQLWhereCol as SQLWhereCol;
 use Db\ArrayOfSQLWhereCol as ArrayOfSQLWhereCol;
 
-define('URL_PREFIX', 'http://127.0.0.1:808/KyPay/images');
 
 class KypaySellerItemImage extends KypayDbObject {
     
@@ -30,7 +29,7 @@ class KypaySellerItemImage extends KypayDbObject {
         
 
         $res = $this->findByWhere($a, true, "ORDER BY id", $limit, $offset,
-        array('url'=>"concat('".URL_PREFIX."', url)"));
+        array('url'=>"concat('".IMAGE_URL_PREFIX."', url)"));
         
         return $res;
 

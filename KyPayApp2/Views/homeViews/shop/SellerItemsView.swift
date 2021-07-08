@@ -124,6 +124,8 @@ extension SellerItemsView {
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 80)
             
+                
+                //let _ = print("item.images?.first?.url ::\(item.images?.first?.url ?? "")")
             }.padding(6)
             .frame(width:140,height:200)
         }
