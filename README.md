@@ -40,7 +40,7 @@ Please note the KyPay folder in the above is a symbolic link in my Apache's docu
 
 And then you can run the app on the Xcode iOS simulator with the PHP backend on a localhost  .
 
-Please also change the urlBase property of ApiRequestHandler.swift resides in the folder ApiClient, which is the main component encapsulating codes to communicate with the backend PHP api. Change this urlBase property (as shown in the above image boxed in green) from the current https://techchee.com/KyPayApiTestPointV1/ to your localhost and port.
+Please also change the urlBase property of ApiRequestHandler.swift resides in the folder ApiClient, which is the main component encapsulating codes to communicate with the backend PHP api. Change this urlBase property (as shown in the image below boxed in green) from the current https://techchee.com/KyPayApiTestPointV1/ to your localhost and port.
 
 If you wanna test it on an iOS device, you have to add the Rapyd framework for device, currently, what's included here is the Rapyd framework for the simulator
 only as I had problem to make the two frameworks to co-exist when developing/testing with Xcode 12.5 and I haven't figured out why. Perhaps the Rapyd dev team could have the answers later. Due to rushing for the hackathon's deadline and the ease of testing it on a simulator with the backend on the localhost instead of remote with frequent changes, so I leave it as it is. As shown in the image below boxed in red, which is the Rapyd Framework for iOS simulator only
