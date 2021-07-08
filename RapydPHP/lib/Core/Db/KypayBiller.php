@@ -7,7 +7,7 @@ use Util\Log as Log;
 use Db\SQLWhereCol as SQLWhereCol;
 use Db\ArrayOfSQLWhereCol as ArrayOfSQLWhereCol;
 
-define('ICON_URL_PREFIX', 'http://127.0.0.1:808/KyPay');
+define('ICON_URL_PREFIX', 'http://127.0.0.1:808/KyPay/images');
 
 class KypayBiller extends KypayDbObject {
     

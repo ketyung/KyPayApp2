@@ -351,3 +351,8 @@ create table if not exists kypay_seller_order_item (
     FOREIGN KEY (item_id) REFERENCES kypay_seller_item(id)
 );
 
+update kypay_biller set icon_url = '/billers/MY/astro.png' where icon_url = '/images/billers/MY/astro.png';
+
+update kypay_biller set icon_url = '/billers/MY/tm.png' where icon_url = '/images/billers/MY/tm.png';
+
+update kypay_biller set icon_url = '/billers/MY/sesb.png' where icon_url = '/images/billers/MY/sesb.png';
