@@ -101,10 +101,13 @@ extension BottomSheet {
             }
         }
         .onDisappear{
-            
-            self.setToNonPresentedYOffset(geometry)
+         
+            withAnimation {
+     
+                self.setToNonPresentedYOffset(geometry)
+            }
         }
-       // .animation(.interactiveSpring())
+            // .animation(.interactiveSpring())
        // .offset(y: yOffset(geometry))
    
     }

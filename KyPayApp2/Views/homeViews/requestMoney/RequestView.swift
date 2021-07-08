@@ -15,6 +15,10 @@ struct RequestView : View {
     
     @EnvironmentObject private var txInputViewModel : TxInputDataViewModel
     
+    @ObservedObject private var moneyRequestViewModel = MoneyRequestViewModel()
+    
+    @State private var requestChoiceViewPresented : Bool = false
+    
     static let toSyncContactPublisher = Notification.Name("com.techchee.kypay.toSyncContactPublisher.id")
    
     var body: some View{
@@ -50,6 +54,27 @@ struct RequestView : View {
            // print("receive.to.sync!!!")
         
         })
+        .popOver(isPresented: $requestChoiceViewPresented , content: {
+            
+            RequestChoiceView(selectedContacts: $selectedContacts)
+            
+        })
+        .bottomFloatingButton( isPresented: self.requestButtonPresented() , action: {
+            
+            withAnimation{
+                
+                self.requestChoiceViewPresented.toggle()
+            }
+            
+        })
+        .environmentObject(moneyRequestViewModel)
+   
+    }
+    
+    
+    private func requestButtonPresented() -> Bool {
+        
+        return selectedContacts.count > 0 && !self.requestChoiceViewPresented
     }
 }
 

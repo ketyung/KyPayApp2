@@ -102,7 +102,7 @@ class ApiRequestHandler : NSObject {
 
     private let urlBase =
         
-        /** "http://127.0.0.1:808/" */
+    //    "http://127.0.0.1:808/"
     
     "https://techchee.com/KyPayApiTestPointV1/" //
     

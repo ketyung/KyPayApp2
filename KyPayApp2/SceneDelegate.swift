@@ -79,8 +79,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         //    ContactsListView()
         //CountDownTextView(viewModel: OtpTextViewModel())
             ContentView().environmentObject(PhoneInputViewModel()).environmentObject(UserViewModel()).environmentObject(UserWalletViewModel()).environmentObject(TxInputDataViewModel()).environmentObject(MessagesViewModel()).environmentObject(SellerItemsViewModel())
-                .environmentObject(CartViewModel())
-        
+            .environmentObject(CartViewModel()) 
        //SellerItemsView().environmentObject(PhoneInputViewModel()).environmentObject(UserViewModel()).environmentObject(UserWalletViewModel()).environmentObject(TxInputDataViewModel()).environmentObject(MessagesViewModel()).environmentObject(SellerItemsViewModel())
     
         //SendMoneyView().environmentObject(PhoneInputViewModel()).environmentObject(UserViewModel()).environmentObject(UserWalletViewModel()).environmentObject(TxInputDataViewModel())

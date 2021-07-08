@@ -96,6 +96,11 @@ extension HomeView {
             CartView(control: $control)
         })
         
+        .bottomSheet(isPresented: $control.requestMoneyPresented, height: UIScreen.main.bounds.height, showGrayOverlay: true, content:{
+      
+            RequestView()
+        })
+        
     }
 }
 
@@ -164,7 +169,12 @@ extension HomeView {
                     }
                     
                     
-                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/){
+                    Button(action: {
+                        
+                        txInputViewModel.reset()
+                        control.requestMoneyPresented.toggle()
+                        
+                    }){
                         
                         HomeView.buttonView(color: .purple, imageOne: "arrow.left", imageOneSize:  CGSize(width:18, height:18),
                         imageOneForegroundColor: Color(UIColor(hex:"#DDFFDDFF")!),
