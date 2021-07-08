@@ -80,7 +80,7 @@ Some unfinished work/features that need to be completed later are :
 2. The message section & remote notifications etc 
 3. The payment by other options (e.g. bank redirect) during cart checkout
 
-That's all for now...
+That's all for now... Btw, anyone wish to learn SwiftUI you can read my blog :D https://blog.techchee.com/
 
 
 https://www.dmca.com/r/d32jwd5 (Limited for use for Rapyd and DevPost testing and teams only) 
