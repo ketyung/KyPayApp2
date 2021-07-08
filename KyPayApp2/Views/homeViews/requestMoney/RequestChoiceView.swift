@@ -18,6 +18,8 @@ struct RequestChoiceView : View {
     
     @State private var textFieldFocus : Bool = false
     
+    @State private var errorPresented : Bool = false
+    
     var body: some View {
         
         VStack{
@@ -26,17 +28,28 @@ struct RequestChoiceView : View {
             
             dismissKeyboardButton()
             
+            choiceView()
+            
             contactsView()
             
-            
-            Button(action : {
+            buttonView()
                 
-                
-            }){
-                Text("Proceed")
-            }
-            
             Spacer()
+        }
+        .popOver(isPresented: $errorPresented, content: {
+            
+            Common.errorAlertView(message: "Sorry, feature is NOT fully functional yet!")
+        })
+        .onAppear{
+            
+            selectedContacts.forEach{
+                
+                contact in
+                
+                moneyRequestViewModel.addRequestBy(contact)
+              
+                
+            }
         }
     }
 }
@@ -95,6 +108,7 @@ extension RequestChoiceView {
     
     private func contactRow( _ contact : Contact ) -> some View {
         
+      
         HStack(spacing:5) {
             
             ZStack{
@@ -134,6 +148,21 @@ extension RequestChoiceView {
 
 extension RequestChoiceView {
     
+    
+    private func choiceView() -> some View {
+        
+        HStack {
+            Text("Split".localized).font(.custom(Theme.fontNameBold, size: 18))
+            
+            Text("Evenly".localized).font(.custom(Theme.fontNameBold, size: 18))
+            .padding(6).foregroundColor(.white).background(Color.green)
+           
+            Text("Custom".localized).font(.custom(Theme.fontNameBold, size: 18))
+            .padding(6).foregroundColor(.white).background(Color.gray)
+           
+        }
+    }
+    
     private func dismissKeyboardButton() -> some View {
         
         HStack(spacing:20) {
@@ -169,5 +198,22 @@ extension RequestChoiceView {
             self.textFieldFocus = false
       
         }
+    }
+    
+    
+    private func buttonView() -> some View {
+        
+        Button(action: {
+            
+            withAnimation{
+                
+                self.errorPresented.toggle()
+            }
+        }, label: {
+        
+            Text("Proceed").font(.custom(Theme.fontNameBold, size: 20))
+            .padding(6).foregroundColor(.white).background(Color.green)
+            .cornerRadius(6)
+        })
     }
 }

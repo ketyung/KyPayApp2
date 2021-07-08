@@ -9,9 +9,18 @@ import Foundation
 
 class MoneyRequestViewModel : ObservableObject {
     
+    enum SplitChoice : Int {
+        
+        case evenly
+        
+        case custom
+    }
+    
     @Published private var moneyRequest = MoneyRequest()
     
     @Published private var focusIndex : Int = 0
+    
+    @Published private var splitChoice : SplitChoice = .evenly
     
     var amountText : String {
         
@@ -24,6 +33,8 @@ class MoneyRequestViewModel : ObservableObject {
         set(newVal){
             
             moneyRequest.total = Double(newVal) ?? 0
+
+            splitAmountEvently()
         }
     }
     
@@ -56,6 +67,30 @@ class MoneyRequestViewModel : ObservableObject {
     }
     
     
+    private func splitAmountEvently(){
+        
+        if splitChoice == .evenly {
+            
+            
+            let eachAmount = (moneyRequest.total ?? 0) / Double(moneyRequest.items?.count ?? 1)
+            
+            if let items = moneyRequest.items {
+            
+                for (index, element) in items.enumerated() {
+                    
+                    var updatedItem = element
+                    updatedItem.amount = eachAmount
+                    
+                    moneyRequest.items?[index] = updatedItem
+                    
+                    
+                }
+            }
+            
+        }
+    }
+    
+    
     
 }
 
@@ -70,11 +105,12 @@ extension MoneyRequestViewModel {
             moneyRequest.items = []
             
             moneyRequest.items?.append(mrq)
+            
             return
         }
         
         moneyRequest.items?.append(mrq)
-    
+       
     }
     
     
